@@ -1,0 +1,559 @@
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    font-size: small;
+    background: #fbfbfb;
+}
+
+#header {
+    position: fixed;
+    height: 45px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 0px 5px 0px black;
+    z-index: 3;
+}
+
+#metaDataContainer {
+    /* position: absolute; */
+    top: 0;
+    padding: 8px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1;
+    display: none;
+}
+
+#metaDataContainer .metadataItem {
+    display: inline-block;
+}
+
+#contentArea {
+    position: relative;
+    top: 105px;
+    z-index: 1;
+    margin: 0 40px;
+}
+
+#leftPanel {
+    position: fixed;
+    top: 45px;
+    width: 250px;
+    left: -255px;
+    z-index: 3;
+    height: 100%;
+    transition: 300ms cubic-bezier(0.4, 0, 0.2, 1) all;
+    background: white;
+    box-shadow: 2px 2px 4px 0px #bbbbbb;
+    height: 90%;
+}
+
+#leftPanel.isVisible {
+    left: 0px;
+    top: 45px;
+}
+
+#cardContainer {
+    padding: 2px 2px;
+    /* background: white; */
+    user-select: none;
+}
+
+#cardContainer .indexCard {
+    margin: 15px 8px 8px;
+    vertical-align: top;
+}
+
+#cardContainer.fadeCards {
+    margin-right: 250px;
+}
+
+#rightPanel {
+    position: fixed;
+    top: 50px;
+    width: 250px;
+    right: 0;
+    z-index: 2;
+}
+
+#footer {
+}
+
+#header .icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    margin: 12px 5px;
+    cursor: pointer;
+    transition: 100ms linear all;
+    transition: 100ms linear all;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+}
+
+#menuIcon.icon {
+    background-image: url(../icons/menu.png);
+}
+
+#viewIcon.icon {
+    background-image: url(../icons/view.png);
+    position: absolute;
+    right: 225px;
+    opacity: 0.8;
+}
+
+#overviewIcon.icon {
+    background-image: url(../icons/overview.png);
+    position: absolute;
+    right: 255px;
+}
+
+body.viewOnly #viewIcon.icon {
+    background-color: #fbb043;
+    border: 4px solid #fbb043;
+}
+
+#header .icon:hover {
+    background-color: #e91e63;
+    border: 4px solid #e91e63;
+}
+
+#header .icon:active {
+    background-color: #fbb043;
+    border: 4px solid #fbb043;
+}
+
+div#fileNamelabel {
+    display: inline-block;
+    line-height: 40px;
+    height: 40px;
+    margin: 5px 2px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 40px;
+}
+
+#fileName {
+    padding: 2px 4px;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 25px;
+    color: #3F51B5;
+    margin: 9px 0;
+    max-width: 500px;
+    height: 28px;
+    overflow: hidden;
+    min-width: 200px;
+    border: 1px solid white;
+}
+
+#fileName:focus {
+    background: white;
+    outline: none;
+    color: grey;
+    border-color: #7a9fd8;
+}
+
+#savedTime {
+    display: inline-block;
+    font-size: small;
+    color: grey;
+}
+
+#openFile {
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+    background: red;
+    right: 0;
+}
+
+#openFile:after {
+    height: 25px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    background: red;
+    z-index: 6;
+}
+
+#fileuploadmask {
+    position: absolute;
+    right: 0;
+}
+
+#saveFile {
+    position: absolute;
+    right: 110px;
+}
+
+.button, .button:active {
+    height: 30px;
+    width: 100px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    background: TRANSPARENT;
+    padding: 0px 4px;
+    margin: 8px 10px;
+    cursor: pointer;
+    BORDER: 1PX SOLID #7a9fd8;
+    LINE-HEIGHT: 30px;
+    BORDER-RADIUS: 4PX;
+    position: absolute;
+    background: #7a9fd8;
+    color: white;
+}
+
+.button:hover {
+    /* opacity: 0.8; */
+    BACKGROUND: white;
+    COLOR: #393939;
+    border-color: #393939;
+}
+
+.metadataItem .label {
+    font-size: x-small;
+    /* text-transform: uppercase; */
+    color: #5d5d5d;
+    margin: 0 2px 0 0;
+}
+
+.metadataItem .value {
+    color: #607D8B;
+    /* font-weight: bold; */
+    margin: 0px 15px 0 0;
+}
+
+#searchContainer {
+    position: fixed;
+    top: 65px;
+    width: 400px;
+    left: 0;
+    z-index: 2;
+    right: 0;
+    height: 30px;
+    margin: auto;
+    box-shadow: 0px 0px 6px 1px #c7c7c7;
+    padding: 2px 4px;
+    overflow: hidden;
+    border-radius: 2px;
+    background: white;
+}
+
+#searchContainer .searchBar {
+    width: 370px;
+    border: none;
+    position: absolute;
+    border: none;
+    /* height: 30px; */
+    font-size: 18px;
+    line-height: 2em;
+    color: #afafaf;
+    outline: none;
+    cursor: text;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+#searchContainer:hover {
+    box-shadow: 0px 0px 6px 1px #a9a7a7
+}
+
+#searchContainer .icon {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    height: 25px;
+    width: 25px;
+    margin: 4px;
+}
+
+:placeholder {
+    color: #afafaf;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #afafaf;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #afafaf;
+}
+
+#masterButtonPane {
+    position: fixed;
+    top: 65px;
+    /* width: 200px; */
+    right: 50px;
+    z-index: 2;
+    height: 30px;
+}
+
+#masterButtonPane #actButton {
+    background-image: url(../icons/act.png);
+}
+
+#masterButtonPane #actButton.isPressed.masterButton, #masterButtonPane #actButton:hover {
+    background-color: #FFC107;
+}
+
+#masterButtonPane .masterButton:hover:after {
+    position: absolute;
+    top: 100%;
+    font-size: 10px;
+    margin-top: 8px;
+    background: grey;
+    padding: 2px 8px;
+    color: white;
+    left: -5px;
+    border-radius: 4px;
+}
+
+#masterButtonPane #beatButton:hover:after {
+    content: 'BEATS';
+}
+
+#masterButtonPane #actButton:hover:after {
+    content: 'ACT';
+}
+
+#masterButtonPane #emoButton:hover:after {
+    content: 'EMOTION';
+}
+
+#masterButtonPane #beatButton {
+    background-image: url(../icons/beat.png);
+}
+
+#masterButtonPane #beatButton.isPressed.masterButton, #masterButtonPane #beatButton:hover {
+    background-color: #4caf50;
+}
+
+#masterButtonPane #emoButton {
+    background-image: url(../icons/emotion.png);
+}
+
+#masterButtonPane #emoButton.isPressed.masterButton, #masterButtonPane #emoButton:hover {
+    background-color: #F44336;
+}
+
+#masterButtonPane.buttonActive .masterButton {
+}
+
+.masterButton {
+    background-color: #d6d5d5;
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    transition: 100ms linear all;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    margin-right: 4px;
+}
+
+.masterButton:hover {
+    transform: scale(1.1);
+}
+
+#deleteZone {
+    height: 80px;
+    width: 120px;
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #000000;
+    box-shadow: 0px 0px 4px 2px #9e9c9c;
+    z-index: 2;
+    cursor: pointer;
+    transition: 200ms linear transform;
+}
+
+#deleteZone.isVisible {
+    display: inline-block;
+}
+
+#deleteZone.isVisible:hover {
+    transform: scale(1.1);
+    opacity: 0.4;
+}
+
+#deleteZone .deleteZoneIcon {
+    background-image: url(../icons/deletewhite.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+}
+
+#deleteZone .deleteZoneText {
+    text-align: center;
+    font-size: medium;
+    margin: 4px 0;
+    color: white;
+}
+
+#blocker {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #00000078;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    #contentArea {
+        margin: unset;
+        top: 115px;
+        width: fit-content;
+        width: var(--card-width);
+        left: 0;
+        margin: auto;
+        right: 0;
+    }
+
+    #header {
+        height: 60px;
+    }
+
+    #leftPanel {
+    }
+
+    #cardContainer {
+        padding: 0;
+    }
+
+    #cardContainer .indexCard {
+        margin: 15px 0 8px;
+    }
+
+    #cardContainer.fadeCards {
+    }
+
+    #rightPanel {
+    }
+
+    #footer {
+    }
+
+    #header .icon {
+        height: 40px;
+        width: 40px;
+    }
+
+    #menuIcon.icon {
+        height: 40px;
+        width: 40px;
+    }
+
+    div#fileNamelabel {
+        display: none;
+    }
+
+    #fileName {
+        display: none;
+    }
+
+    #fileName:focus {
+    }
+
+    #savedTime {
+    }
+
+    #openFile {
+    }
+
+    #fileuploadmask {
+    }
+
+    #saveFile {
+    }
+
+    .button, .button:active {
+        height: 45px;
+        font-size: 20px;
+    }
+
+    #searchContainer {
+        height: 45px;
+        width: 45px;
+        top: 70px;
+        left: 38px;
+        right: unset;
+        background: unset;
+        box-shadow: unset;
+    }
+
+    #searchContainer .searchBar {
+        width: 0;
+    }
+
+    #searchContainer:hover {
+    }
+
+    #searchContainer .icon {
+        position: relative;
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-position: center;
+        background-size: contain;
+        border-radius: 50%;
+        border: 8px solid transparent;
+        transition: 100ms linear all;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        margin: 0 4px 0 0;
+    }
+
+    #masterButtonPane {
+    }
+
+    .masterButton {
+        /* display: block; */
+        margin-top: 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .masterButton:hover {
+    }
+
+    #deleteZone {
+    }
+
+    #deleteZone.isVisible {
+    }
+
+    #deleteZone.isVisible:hover {
+    }
+
+    #deleteZone .deleteZoneIcon {
+    }
+
+    #deleteZone .deleteZoneText {
+    }
+
+    #blocker {
+    }
+}
