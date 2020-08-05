@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Index card </title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Screen Writing Buddy">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/home.css" rel="stylesheet" type="text/css"/>
+        <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/beats.css" rel="stylesheet" type="text/css"/>
+        <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/overview.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tagPopup.css" rel="stylesheet" type="text/css"/>
+        <link href="css/largeEditor.css" rel="stylesheet" type="text/css"/>
+        <link href="css/actDialog.css" rel="stylesheet" type="text/css"/>
+        <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>
+        <script src="scripts/jquery-3.4.1.min.js"></script>
+        <script src="scripts/dropdown.js"></script>
+        <script src="scripts/indexcard.js"></script>
+        <script src="scripts/beats.js"></script>
+        <script src="scripts/ioManager.js"></script>
+        <script src="scripts/cardManager.js"></script>
+        <script src="scripts/appManager.js"></script>
+        <script src="scripts/voiceAssistant.js"></script>
+        <script src="scripts/overview.js"></script>
+        <script src="scripts/tagPopup.js"></script>
+        <script src="scripts/largeEditor.js"></script>
+        <script src="scripts/actDialog.js"></script>
+        <script>
+            jQuery(document).ready(function() {
+                appManager.init();
+                window.SCREENWRITING = {
+                     version: 5,
+                    update: ["Activated Arrow and Escape keys on Popout editor. Now you can use 'Esc' to close the dialog and arrow keys to navigate to the next or previous index card details",
+					" Added autonumbering in large Editor"]
+				}
+                var curVers = Number(localStorage.softwareVersion || 0);
+                if (curVers < window.SCREENWRITING.version) {
+                    localStorage.softwareVersion = window.SCREENWRITING.version;
+                    var s = window.SCREENWRITING.update.join("<br><br>");
+                    jQuery("#updateWindow").show().find(".updateWindowBody").html(s);
+                    jQuery("#blocker").show();
+                    jQuery("#updateWindow button").click(function() {
+                        jQuery("#updateWindow").hide();
+                        jQuery("#blocker").hide();
+                    });
+                }
+                //VoiceAssistant.takeCommand();
+
+            });
+            //HOME.saveFile();
+        </script>
+		<style>
+			#updateWindow {
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background: white;
+				position: fixed;
+				z-index: 3;
+				width: 400px;
+				max-height: 400px;
+				height: fit-content;
+			}
+
+			#updateWindow .updateWindowHeader {
+				text-align: center;
+				font-size: large;
+				margin: 8px 4px;
+				font-weight: bold;
+			}
+
+			#updateWindow .updateWindowBody {
+				padding: 8px 16px;
+				font-size: small;
+			}
+			#updateWindow .updateWindowSign{
+				padding: 0 28px;
+				font-size: small;
+				text-align: end;
+				color: #7a9fd8;
+			}
+			#updateWindow button {
+				position: relative;
+			}
+		</style>
+    </head>
+    <body>
+        <div id="header">
+            <div id='menuIcon' class='icon'></div>
+            <div id='fileNamelabel'>Current Project ></div>
+            <div id="fileName" contenteditable=true></div>
+            <div id="savedTime"></div>
+            <div id='viewIcon' class='icon'></div>
+            <input id="openFile" class="button" type="file">
+            <button id="fileuploadmask" class="button">Open</button>
+            <button id="saveFile" class="button">BACKUP</button>
+        </div>
+        <div id="searchContainer">
+            <input class="searchBar">
+            <img src='icons/search.png' class='icon'>
+        </div>
+        <div id="masterButtonPane">
+            <div id="actButton" class="masterButton"></div>
+            <div id="beatButton" class="masterButton"></div>
+            <div id="emoButton" class="masterButton"></div>
+        </div>
+        <div id="metaDataContainer">
+            <div id="time" class="metadataItem">
+                <span class='label'>Last saved at</span>
+                <span class='value'></span>
+            </div>
+            <div id="version" class="metadataItem">
+                <span class='label'>Version </span>
+                <span class='value'></span>
+            </div>
+        </div>
+        <div id="leftPanel">
+            <button id='newFile' class="button" style='display:none'>New File </button>
+        </div>
+        <div id="rightPanel"></div>
+        <div id="contentArea">
+            <div id="cardContainer"></div>
+        </div>
+        <div id='overViewContainer'>
+            <div id='overviewContainerClose'>X</div>
+            <div id='overViewPrint'></div>
+            <div id='overViewItemContainer'></div>
+        </div>
+        <div id='blocker'></div>
+        <div id="testArea">
+            <div id='updateWindow' style='display:none'>
+                <div class='updateWindowHeader'>UPDATE</div>
+                <div class='updateWindowBody'></div>
+				<div class='updateWindowSign'>-Chan</div>
+                <button class='button'>CLOSE</button>
+            </div>
+			<div id='confirmationWindow' style='display:none'>
+                <div class='updateWindowBody'></div>
+				 <button class='confirmButton button'>CLOSE</button>
+                <button class='closeButton button'>CLOSE</button>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="deleteZone" delete-area=true>
+                <div class='deleteZoneText' delete-area=true>REMOVE</div>
+                <div class='deleteZoneIcon' delete-area=true></div>
+            </div>
+        </div>
+    </body>
+</html>
