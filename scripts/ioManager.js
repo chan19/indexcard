@@ -14,10 +14,12 @@ IoManager.prototype = {
 	_creatDownloadTarget: function(){
 		this._downloadTarget = jQuery(document.createElement("a"));
 	},
-	save: function(oData, sFileName){
+	save: function(fnS){
+		var oData = (this._getDataGetter())();
+		var sFileName = oData.fileName;
 		this.saveToBackUp(oData)
 		var sBlobUrl = this._getBlobUrl(oData);
-		this._download(sBlobUrl, sFileName);
+		this._download(sBlobUrl, sFileName, fnS);
 	},
 	_getBlobUrl: function(oData){
 		var sText = this._toText([oData]);
@@ -30,23 +32,28 @@ IoManager.prototype = {
 	_getDownloadTarget: function(){
 		return this._downloadTarget;
 	},
-	_download: function(sBlobUrl, sFileName){
+	_download: function(sBlobUrl, sFileName, fnS){
 		sFileName = sFileName || "myIndexCard";
 		var dTarget = this._getDownloadTarget();
 		var e = new MouseEvent("click");
 		dTarget.attr("download", sFileName + ".iJson");
 		dTarget.attr("href", sBlobUrl);
 		dTarget.get(0).dispatchEvent(e);
+		fnS();
 	},
-
+	_setDataGetter: function(fn){
+		this._dataGetter = fn || function(){};
+	},
+	_getDataGetter: function(){
+		return this._dataGetter;
+	},
 	_initWrite: function(oConfig){
 		var id = oConfig.id;
-		var fCallback = oConfig.onWrite;
-		var dataGetter = oConfig.dataGetter;
+		var fCallback = oConfig.onWrite || function(){};
+		this._setDataGetter(oConfig.dataGetter);
 		var that = this;
 		jQuery("#"+id).on("click", function(){
-			var oData = dataGetter();
-			that.save(oData, oData.fileName);
+			that.save(fCallback);
 			
 		});
 		/*setInterval(function(){

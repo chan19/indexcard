@@ -104,7 +104,7 @@ appManager = {
 		this.setFileName(oData.fileName, true);
 		this.cardManager.setCardData(oData.cards);
 		//this.cardManager.setBeatsToCards(oData.beats);
-		this.fireEvent("pageChange", { beats: oData.beats, tags: oData.tags});
+		this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags});
 	},
 	onFileFetch: function(oData){
 			this.setData(oData);
@@ -143,6 +143,14 @@ appManager = {
 			c(oData);
 		});
 	},
+	openBackupConfirmationWindow: function(){
+		jQuery("#backupConfirmationWindow").show();
+		jQuery("#blocker").show();
+	},
+	closeBackupConfirmationWindow: function(){
+		jQuery("#backupConfirmationWindow").hide();
+		jQuery("#blocker").hide();
+	},
 	_attachEvents: function(){
 		var masterButtonPane = jQuery("#masterButtonPane");
 		var beatButton = jQuery("#beatButton");
@@ -150,9 +158,15 @@ appManager = {
 		var emoButton = jQuery("#emoButton");
 		var that = this;
 		var body = jQuery("body");
-		jQuery("#newFile").click(function(){
-			that.createNewFile();
-			jQuery("#menuIcon").trigger("click");
+		jQuery("#createNewFile").click(function(){
+			that.openBackupConfirmationWindow();
+		});
+		jQuery("#createBackupBeforeNew").click(function(){
+			that.closeBackupConfirmationWindow();
+			that._ioManager.save(that.createNewFile.bind(that));
+		});
+		jQuery("#backupConfirmationWindow .closeButton").click(function(){
+			that.closeBackupConfirmationWindow();
 		});
 		jQuery("#fileName").focusout(function(){
 			that.setFileName(this.innerText, false);
