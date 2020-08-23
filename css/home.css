@@ -167,6 +167,7 @@ div#fileNamelabel {
     outline: none;
     color: grey;
     border-color: #7a9fd8;
+	cursor:unset;
 }
 
 #savedTime {
