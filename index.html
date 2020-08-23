@@ -31,9 +31,8 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                     version: 6,
-                    update: ["Activated Arrow and Escape keys on Popout editor. Now you can use 'Esc' to close the dialog and arrow keys to navigate to the next or previous index card details",
-					" Added autonumbering in large Editor"]
+                     version: 7,
+                    update: ["Now you can create a new file by clicking on the new file icon in the tool bar."]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
