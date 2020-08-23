@@ -5,9 +5,11 @@
 	}
 	Overview.prototype = {
 		_data: {},
-		open: function(aData){
-			var html = this._getHtml(aData);
+		open: function(oData){
+			var aCard = oData.cards;
+			var html = this._getHtml(aCard);
 			jQuery("#overViewItemContainer").html(html);
+			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
 			jQuery("#blocker").show();
 			jQuery("#overViewContainer").show();
 		},

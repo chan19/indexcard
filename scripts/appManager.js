@@ -181,7 +181,10 @@ appManager = {
 		});
 		jQuery("#viewIcon").click(function(){
 			var oData = that.cardManager.getCardData();
-			that._overviewManager.open(oData);
+			that._overviewManager.open({
+				fileName: that.getFileName(),
+				cards: oData
+			});
 		});
 		jQuery("#searchContainer .searchBar").on("input", function(){
 			that.cardManager.onSearch(this.value);
