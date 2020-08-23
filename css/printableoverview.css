@@ -51,7 +51,7 @@ body{
     border-left: 4px solid #e91e63;
 }
 
-#overviewContainerClose {
+#overviewContainerClose ,.overViewContainerHeader{
   display:none;
 }
 #overviewContainerClose:hover{
