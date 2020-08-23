@@ -170,8 +170,13 @@ appManager = {
 		});
 		jQuery("#fileName").focusout(function(){
 			that.setFileName(this.innerText, false);
+			that.fireEvent("dataChange");
 		});
-		jQuery("#fileName").on("keypress", function(){
+		jQuery("#fileName").on("keydown", function(e){
+			if(e.keyCode == 13){
+				jQuery(this).blur();//.focusout();
+				return false;
+			}
 			return this.innerText.length<40;
 		});
 		jQuery("#viewIcon").click(function(){
