@@ -31,7 +31,7 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                     version: 5,
+                     version: 6,
                     update: ["Activated Arrow and Escape keys on Popout editor. Now you can use 'Esc' to close the dialog and arrow keys to navigate to the next or previous index card details",
 					" Added autonumbering in large Editor"]
 				}
@@ -39,7 +39,7 @@
                 if (curVers < window.SCREENWRITING.version) {
                     localStorage.softwareVersion = window.SCREENWRITING.version;
                     var s = window.SCREENWRITING.update.join("<br><br>");
-                    jQuery("#updateWindow").show().find(".updateWindowBody").html(s);
+                    jQuery("#updateWindow").show().find(".dialogPromptBody").html(s);
                     jQuery("#blocker").show();
                     jQuery("#updateWindow button").click(function() {
                         jQuery("#updateWindow").hide();
@@ -52,40 +52,7 @@
             //HOME.saveFile();
         </script>
 		<style>
-			#updateWindow {
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-				background: white;
-				position: fixed;
-				z-index: 3;
-				width: 400px;
-				max-height: 400px;
-				height: fit-content;
-			}
 
-			#updateWindow .updateWindowHeader {
-				text-align: center;
-				font-size: large;
-				margin: 8px 4px;
-				font-weight: bold;
-			}
-
-			#updateWindow .updateWindowBody {
-				padding: 8px 16px;
-				font-size: small;
-			}
-			#updateWindow .updateWindowSign{
-				padding: 0 28px;
-				font-size: small;
-				text-align: end;
-				color: #7a9fd8;
-			}
-			#updateWindow button {
-				position: relative;
-			}
 		</style>
     </head>
     <body>
@@ -94,6 +61,7 @@
             <div id='fileNamelabel'>Current Project ></div>
             <div id="fileName" contenteditable=true></div>
             <div id="savedTime"></div>
+			<div id='createNewFile' class='icon'></div>
             <div id='viewIcon' class='icon'></div>
             <input id="openFile" class="button" type="file">
             <button id="fileuploadmask" class="button">Open</button>
@@ -119,7 +87,6 @@
             </div>
         </div>
         <div id="leftPanel">
-            <button id='newFile' class="button" style='display:none'>New File </button>
         </div>
         <div id="rightPanel"></div>
         <div id="contentArea">
@@ -132,16 +99,17 @@
         </div>
         <div id='blocker'></div>
         <div id="testArea">
-            <div id='updateWindow' style='display:none'>
-                <div class='updateWindowHeader'>UPDATE</div>
-                <div class='updateWindowBody'></div>
-				<div class='updateWindowSign'>-Chan</div>
+            <div id='updateWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>UPDATE</div>
+                <div class='dialogPromptBody'></div>
+				<div class='dialogPromptSign'>-Chan</div>
                 <button class='button'>CLOSE</button>
             </div>
-			<div id='confirmationWindow' style='display:none'>
-                <div class='updateWindowBody'></div>
-				 <button class='confirmButton button'>CLOSE</button>
-                <button class='closeButton button'>CLOSE</button>
+			<div id='backupConfirmationWindow'  class='dialogPrompt' style='display:none'>
+				<div class='dialogPromptHeader'>CONFIRM NEW FILE</div>
+                <div class='dialogPromptBody'>For safety purpose, the current file will be saved before creating a new file.<br> Proceed? </div>
+				<button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
+				<button class='closeButton button'>CANCEL</button>
             </div>
         </div>
         <div id="footer">
