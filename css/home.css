@@ -155,10 +155,15 @@ div#fileNamelabel {
     overflow: hidden;
     min-width: 200px;
     border: 1px solid white;
+    border-radius:2px;
+	cursor:pointer;
 }
-
+#fileName:hover {
+    background: #e2e2e2;
+    color: black;
+}
 #fileName:focus {
-    background: white;
+    background: white!important;
     outline: none;
     color: grey;
     border-color: #7a9fd8;
