@@ -1,13 +1,13 @@
 div#overViewContainer {
     position: fixed;
-    max-height: 85%;
+    max-height: 95%;
     top: 20px;
+    bottom: 20px;
     left: 0;
     right: 0;
     width: 80%;
     margin: auto;
     background: white;
-    padding: 20px 50px;
     z-index: 4;
     display: none;
     height: 100%;
@@ -79,15 +79,38 @@ div#overViewContainer {
     line-height: 25px;
     font-weight: bold;
     box-shadow: 0px 0px 4px 2px grey;
+    z-index: 2;
 }
 
 #overviewContainerClose:hover {
     opacity: 0.8
 }
 
+.overViewContainerHeader {
+    height: 40px;
+    background: #e8e8e8;
+    padding: 0px 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.overViewContainerHeaderText {
+    font-size: large;
+    display: inline-block;
+    line-height: 40px;
+}
+
 div#overViewItemContainer {
     overflow-y: auto;
     height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border: 50px solid white;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+    background: white;
+    /* border-bottom: 20px; */
 }
 
 #overViewPrint {
@@ -100,13 +123,12 @@ div#overViewItemContainer {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: white;
     margin: 5px;
     cursor: pointer;
     float: right;
     opacity: 0.8;
     transition: 100ms linear all;
-    position: absolute;
-    top: 50px;
 }
 
 #overViewPrint:hover {
