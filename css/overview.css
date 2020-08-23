@@ -160,6 +160,26 @@ div#overViewItemContainer {
         top: 0;
     }
 
+    .overViewContainerHeader {
+        height: 60px;
+        position: relative;
+        z-index: 1;
+        padding: 0;
+    }
+
+    .overViewContainerHeaderText {
+        font-size: 20px;
+        display: inline-block;
+        line-height: 60px;
+        position: absolute;
+        max-width: 70%;
+        height: 60px;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
     .overviewItem {
         border-left-width: 10px !important;
         margin-bottom: 2px;
@@ -169,7 +189,7 @@ div#overViewItemContainer {
         height: 40px;
         width: 40px;
         right: 0;
-        top: 0;
+        top: 10px;
         font-size: 30px;
         line-height: 40px;
         font-weight: normal;
@@ -182,17 +202,19 @@ div#overViewItemContainer {
     }
 
     div#overViewItemContainer {
-        margin-top: 50px;
+        margin-top: 60px;
+        border: 0px solid white;
     }
 
     #overViewPrint {
         height: 40px;
         width: 40px;
-        left: 0;
-        top: 0;
+        right: 50px;
+        top: 10px;
+        position: absolute;
+        z-index: 1;
         font-size: 30px;
         line-height: 40px;
         font-weight: normal;
-        right: unset;
     }
 }
