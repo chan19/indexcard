@@ -31,7 +31,7 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                     version: 7,
+                    version: 7,
                     update: ["Now you can create a new file by clicking on the new file icon in the tool bar."]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
@@ -92,8 +92,11 @@
             <div id="cardContainer"></div>
         </div>
         <div id='overViewContainer'>
+			<div class='overViewContainerHeader'>
+				<div class='overViewContainerHeaderText'></div>
+				<div id='overViewPrint'></div>
+			</div>
             <div id='overviewContainerClose'>X</div>
-            <div id='overViewPrint'></div>
             <div id='overViewItemContainer'></div>
         </div>
         <div id='blocker'></div>
