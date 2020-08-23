@@ -184,9 +184,10 @@ div#fileNamelabel {
     box-sizing: border-box;
     border: 0;
     outline: none;
+	opacity:0;
 }
 
-#openFile:after {
+#openFile::after {
     content: 'OPEN';
     position: absolute;
     z-index: 2;
@@ -199,7 +200,7 @@ div#fileNamelabel {
 #fileuploadmask {
     position: absolute;
     right: 0;
-    display: none;
+    /* display: none; */
 }
 
 #saveFile {
@@ -207,7 +208,7 @@ div#fileNamelabel {
     right: 110px;
 }
 
-.button, .button:active,.button:after {
+.button, .button:active,.button::after {
     height: 30px;
     width: 100px;
     border: none;
@@ -227,7 +228,7 @@ div#fileNamelabel {
     outline: none;
 }
 
-.button:hover, .button:hover:after  {
+.button:hover, .button:hover::after  {
     /* opacity: 0.8; */
     BACKGROUND: white;
     COLOR: #393939;
@@ -321,7 +322,7 @@ div#fileNamelabel {
     background-color: #FFC107;
 }
 
-#masterButtonPane .masterButton:hover:after {
+#masterButtonPane .masterButton:hover::after {
     position: absolute;
     top: 100%;
     font-size: 10px;
@@ -333,15 +334,15 @@ div#fileNamelabel {
     border-radius: 4px;
 }
 
-#masterButtonPane #beatButton:hover:after {
+#masterButtonPane #beatButton:hover::after {
     content: 'BEATS';
 }
 
-#masterButtonPane #actButton:hover:after {
+#masterButtonPane #actButton:hover::after {
     content: 'ACT';
 }
 
-#masterButtonPane #emoButton:hover:after {
+#masterButtonPane #emoButton:hover::after {
     content: 'EMOTION';
 }
 
