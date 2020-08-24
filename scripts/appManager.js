@@ -18,6 +18,7 @@ appManager = {
 		this._ioManager = new IoManager({
 			read: {
 				id: "openFile",
+				pseudo: "fileuploadmask",
 				onRead: this.onFileFetch.bind(this)
 			},
 			write: {
@@ -161,6 +162,7 @@ appManager = {
 		jQuery("#createNewFile").click(function(){
 			that.openBackupConfirmationWindow();
 		});
+		
 		jQuery("#createBackupBeforeNew").click(function(){
 			that.closeBackupConfirmationWindow();
 			that._ioManager.save(that.createNewFile.bind(that));

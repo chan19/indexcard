@@ -76,14 +76,17 @@ IoManager.prototype = {
 		var aData;
 		var reader = new FileReader();
 		var that = this;
+		var fileUploader = jQuery("#"+id);
 		reader.onload = function(){
 			sData = reader.result;
 			aData = JSON.parse(sData);
 			fCallback(aData[0]);
 			that.saveToBackUp(aData[0])
 		}
-		
-		jQuery("#"+id).on("change", function(e){
+		jQuery("#" + oConfig.pseudo).on("click", function(){
+			fileUploader.click();
+		});
+		fileUploader.on("change", function(e){
 			var input = e.target;
 			if(input){
 				reader.readAsText(input.files[0]);
