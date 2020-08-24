@@ -181,7 +181,7 @@ div#fileNamelabel {
 }
 
 #openFile, #openFile:hover, #openFile:active {
-    z-index: 1;
+    /* z-index: 1; */
     cursor: pointer;
     right: 0;
     display: inline-block;

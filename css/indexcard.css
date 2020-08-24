@@ -231,7 +231,7 @@ body.viewOnly .indexCardTitle {
     background-position: center;
     transition: 200ms linear all;
     outline: none;
-    opacity: 0.6;
+    opacity: 1;
     display: block;
     margin: auto;
 }
