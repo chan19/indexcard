@@ -24,7 +24,9 @@ div#overViewContainer {
 
 .overviewTitle {
     font-size: medium;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-family: calibri;
 }
 
 .overviewItem .overviewItemBullet {
@@ -37,9 +39,10 @@ div#overViewContainer {
 
 .overviewContent {
     font-size: medium;
-    color: grey;
-    margin: 8px 0;
-    font-weight: lighter;
+    color: black;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: calibri;
 }
 
 .overviewItem.violet {
@@ -140,15 +143,17 @@ div#overViewItemContainer {
 }
 
 #overViewContainer .overviewNotes {
-    color: #9E9E9E;
+    color: #000000;
     font-family: Open;
-    font-size: small;
-    font-family: inherit;
-    background: #fbfbfb;
-    padding: 4px;
+    font-size: medium;
+    font-family: calibri;
+    background: #e8e8e8;
+    padding: 4px 12px;
     /* border: 1px #9E9E9E solid; */
     /* padding: 10px 0; */
     margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
 }
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
