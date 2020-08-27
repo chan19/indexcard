@@ -12,6 +12,7 @@ body {
     background: #ffffff;
     box-shadow: 0px 0px 5px 0px black;
     z-index: 3;
+    background: #e8e8e8;
 }
 
 #metaDataContainer {
@@ -150,7 +151,7 @@ div#fileNamelabel {
     display: inline-block;
     font-size: 18px;
     line-height: 25px;
-    color: #3F51B5;
+    color: #101010;
     margin: 9px 0;
     max-width: 500px;
     height: 28px;
@@ -159,10 +160,11 @@ div#fileNamelabel {
     border: 1px solid white;
     border-radius: 2px;
     cursor: pointer;
+    border-color: #e8e8e8;
 }
 
 #fileName:hover {
-    background: #e2e2e2;
+    background: #ffffff;
     color: black;
 }
 
