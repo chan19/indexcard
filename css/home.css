@@ -15,6 +15,15 @@ body {
     background: #e8e8e8;
 }
 
+#logo {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+
 #metaDataContainer {
     /* position: absolute; */
     top: 0;
@@ -138,23 +147,24 @@ body.viewOnly #viewIcon.icon {
 
 div#fileNamelabel {
     display: inline-block;
-    line-height: 40px;
-    height: 40px;
-    margin: 5px 2px;
+    line-height: 45px;
+    height: 45px;
+    margin: 0 2px;
     overflow: hidden;
     position: relative;
-    margin-left: 40px;
+    margin-left: 55px;
+    vertical-align: top;
 }
 
 #fileName {
-    padding: 2px 4px;
+    padding: 0px 8px;
     display: inline-block;
     font-size: 18px;
-    line-height: 25px;
+    line-height: 35px;
     color: #101010;
-    margin: 9px 0;
+    margin: 4px 0;
     max-width: 500px;
-    height: 28px;
+    height: 35px;
     overflow: hidden;
     min-width: 200px;
     border: 1px solid white;
@@ -171,7 +181,7 @@ div#fileNamelabel {
 #fileName:focus {
     background: white!important;
     outline: none;
-    color: grey;
+    color: black;
     border-color: #7a9fd8;
     cursor: unset;
 }
@@ -236,7 +246,7 @@ div#fileNamelabel {
 
 .button:hover, .button:hover::after {
     /* opacity: 0.8; */
-    BACKGROUND: white;
+    BACKGROUND: #ffffff00;
     COLOR: #393939;
     border-color: #393939;
 }
@@ -277,11 +287,13 @@ div#fileNamelabel {
     border: none;
     /* height: 30px; */
     font-size: 18px;
-    line-height: 2em;
-    color: #afafaf;
+    line-height: 34px;
+    color: #191919;
     outline: none;
     cursor: text;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    font-family: calibri;
+    vertical-align: middle;
+    top: 0;
 }
 
 #searchContainer:hover {
@@ -521,6 +533,12 @@ div#fileNamelabel {
     #header .icon {
         height: 40px;
         width: 40px;
+    }
+
+    #logo {
+        height: 50px;
+        width: 50px;
+        top: 5px;
     }
 
     #menuIcon.icon {
