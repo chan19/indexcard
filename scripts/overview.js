@@ -56,7 +56,7 @@
 				printWindow.document.close();
 				printWindow.focus();
 				printWindow.print();
-				printWindow.close();
+				//printWindow.close();
 			}
 		},
 		_getNode: function(){
