@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Index card </title>
+        <title>inkEXT </title>
         <meta charset="UTF-8">
-        <meta name="description" content="Screen Writing Buddy">
+		<meta name="title" content="inkEXT">
+		<meta name="description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+		<meta name="image" content="icons/inkextlogo.png">
+		<meta name="author" content="chan">
+		<meta property="og:title" content="inkEXT">
+		<meta property="og:description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+		<meta property="og:image" content="icons/inkextlogo.png">
+		<meta property="og:author" content="chan">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="icons/inkextlogo.png" type="image/x-icon">
         <link href="css/theme.css" rel="stylesheet" type="text/css"/>
         <link href="css/home.css" rel="stylesheet" type="text/css"/>
         <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
@@ -31,8 +39,8 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 7,
-                    update: ["Now you can create a new file by clicking on the new file icon in the tool bar."]
+                    version: 8,
+                    update: ["Logo Added"]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
@@ -56,7 +64,8 @@
     </head>
     <body>
         <div id="header">
-            <div id='menuIcon' class='icon'></div>
+            <div id='menuIcon' class='icon' style='display:none'></div>
+			<img id='logo' src='icons/inkextlogo.png'>
             <div id='fileNamelabel'>Current Project ></div>
             <div id="fileName" contenteditable=true></div>
             <div id="savedTime"></div>
