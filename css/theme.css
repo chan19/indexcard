@@ -1,47 +1,35 @@
 :root {
-  --color-red:#e91e63;
-  --color-blue: #7a9fd8;
-  --color-green: #009688;
-  --color-orange: #fbb043;
-  --color-violet: #673AB7;
-  --card-width-s: 175px;
-  --card-height-s: 175px;
-}
-body.theme2{
-  --color-red:#f6a6b2;
-  --color-blue: #90d2d8;
-  --color-green: #b7ded2;
-  --color-orange: #f7c297;
-  --color-violet: #af90d8;
-}
-@media only screen and (max-width: 1280px){
-	:root{
-		--card-width: 275px;
-		--card-height: 240px;
-	}
-}
-@media only screen and (max-width: 1800px) and (min-width: 1280px){
-	:root{
-		--card-width: 275px;
-		--card-height: 240px;
-	}
+    --color-red:#e91e63; --color-blue: #4d81d0; --color-green: #009688; --color-orange: #fbb043; --color-violet: #673AB7; --card-width-s: 175px; --card-height-s: 175px; }
+
+body.theme2 {
+    --color-red:#f6a6b2; --color-blue: #90d2d8; --color-green: #b7ded2; --color-orange: #f7c297; --color-violet: #af90d8; }
+
+@media only screen and (max-width: 1280px) {
+    :root {
+        --card-width: 275px;
+        --card-height: 240px; }
 }
 
-@media only screen and (min-width: 1801px){
-	:root{
-		--card-width: 300px;
-		--card-height: 240px;
-	}
+@media only screen and (max-width: 1800px) and (min-width: 1280px) {
+    :root {
+        --card-width: 275px;
+        --card-height: 240px; }
 }
+
+@media only screen and (min-width: 1801px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 240px; }
+}
+
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
-	:root{
-		--card-width: 350px;
-		--card-height: 240px;
-	}
+    :root {
+        --card-width: 350px;
+        --card-height: 240px; }
 }
+
 @media only screen and (max-width: 349px) and (min-width: 235px) and (orientation: portrait) {
-	:root{
-		--card-width: 275px;
-		--card-height: 240px;
-	}
+    :root {
+        --card-width: 275px;
+        --card-height: 240px; }
 }
