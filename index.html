@@ -39,8 +39,8 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 8,
-                    update: ["Logo Added"]
+                    version: 9,
+                    update: ["Enforcing .ijson file type while opening a saved file"]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
@@ -71,7 +71,7 @@
             <div id="savedTime"></div>
 			<div id='createNewFile' class='icon'></div>
             <div id='viewIcon' class='icon'></div>
-            <input id="openFile" class="button" type="file">
+            <input id="openFile" class="button" type="file" accept=".ijson">
             <button id="fileuploadmask" class="button">Open</button>
             <button id="saveFile" class="button">BACKUP</button>
         </div>
