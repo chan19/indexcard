@@ -29,20 +29,21 @@ body {
 .overviewItem {
     /* border-bottom: 1px solid #dedcdc; */
     padding: 0px 8px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     /* background: #f9f8f8; */
     /* background: white; */
 }
 
 .overviewTitle {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
 .overviewContent {
-    font-size: 14px;
+    font-size: 16px;
+    padding-left: 14px;
 }
 
 .overviewItem.violet {
@@ -74,6 +75,6 @@ body {
 }
 
 #overViewItemContainer {
-    height: 100%;
+    /* height: 100%; */
     margin-top: 10px;
 }
