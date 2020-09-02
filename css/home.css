@@ -335,6 +335,7 @@ div#fileNamelabel {
     right: 50px;
     z-index: 2;
     height: 30px;
+    display: none;
 }
 
 #masterButtonPane #actButton {
