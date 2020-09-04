@@ -453,7 +453,7 @@ div#fileNamelabel {
     position: fixed;
     height: 100%;
     width: 100%;
-    background: #00000078;
+    background: #000000a6;
     top: 0;
     left: 0;
     z-index: 3;
@@ -652,3 +652,4 @@ div#fileNamelabel {
     #blocker {
     }
 }
+

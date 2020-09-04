@@ -92,7 +92,7 @@
     /* background: #f3f3f3; */
     padding: 2px 30px 2px 30px;
     box-sizing: border-box;
-    border-bottom: 55px solid transparent;
+    border-bottom: 48px solid transparent;
     border-top: 35px solid #ffffff00;
     width: 100%;
 }
@@ -161,6 +161,7 @@
     color: white;
     overflow: hidden;
     outline: none;
+    float: right;
 }
 
 .largeEditor .largeEditorIcon {
@@ -177,6 +178,30 @@
     cursor: pointer;
     transition: 100ms linear all;
     border: 1px solid #7a9fd8;
+    display: none;
+}
+
+.largeEditor .largeEditorFloatingIcon {
+    position: absolute;
+    top: 35%;
+    z-index: 2;
+    color: white;
+    font-size: 70px;
+    /* font-weight: bold; */
+    cursor: pointer;
+    transition: 100ms linear all;
+}
+
+.largeEditor .largeEditorFloatingIcon:hover {
+    transform: scale(1.1);
+}
+
+.largeEditor .largeEditorFloatingIcon.next {
+    right: -60px;
+}
+
+.largeEditor .largeEditorFloatingIcon.prev {
+    left: -60px;
 }
 
 .largeEditor .largeEditorButton:hover , .largeEditor .largeEditorIcon:hover {
