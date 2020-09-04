@@ -165,7 +165,7 @@
 				} else if(sProp == "statusText"){
 					this._node.find(".statusBox").text(val);
 				} else if(sProp == "notes"){
-					this._node.find(".indexCardNotes").html( val ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
+					this._node.find(".indexCardNotes").html( (val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
 				} else if(sProp == "act"){
 					this._node.find(".indexCardAct").html(((val == undefined) || (val == -1))? "" : "ACT " + val);
 				} else if(sProp == "content"){

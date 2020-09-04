@@ -103,11 +103,12 @@
 					"<div class='editorLabel'>Additional Notes</div>" +
 					"<textarea class='plotpointNote editorValue largeField' contenteditable=true></textarea></div>" +
 				"</div>" +
+				"<div class='largeEditorFloatingIcon prev'><</div><div class='largeEditorFloatingIcon next'>></div>" +
 				"<div class='largeEditorButtonPane'>" +
 					"<div class='largeEditorIcon prev'><</div>" +
-					"<button class='largeEditorButton save'>SAVE</button>" +
-					"<button class='largeEditorButton cancel'>CANCEL</button>" +
 					"<div class='largeEditorIcon next'>></div>" +
+					"<button class='largeEditorButton cancel'>CANCEL</button>" +
+					"<button class='largeEditorButton save'>SAVE</button>" +
 				"</div>" +
 			"</div>"
 		},
