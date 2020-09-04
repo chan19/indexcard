@@ -142,7 +142,7 @@
 			},{
 				key: "-1",
 				value: "NONE"
-			}], "CHOOSE ACT");
+			}], "ACT");
 			this._node.find(".field1").append(this._locationTypeSel.getNode().get(0));
 			this._node.find(".field2").append(this._timeSel.getNode().get(0));
 			this._node.find(".field3").append(this._actSel.getNode().get(0));
