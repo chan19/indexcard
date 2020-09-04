@@ -6,7 +6,7 @@
 
 .dropDown .dropDownValue {
     border: 1px solid #2196f3;
-    padding: 4px 40px 4px 25px;
+    padding: 5px 30px 4px 10px;
     color: #2196f3;
     cursor: pointer;
 }
@@ -67,41 +67,41 @@
 }
 
 @media only screen and (max-width: 500px) and (min-width: 235px) and (orientation: portrait) {
+    .dropDown .dropDownOptionContainer {
+        position: fixed;
+        width: 100%;
+        box-shadow: unset;
+        width: fit-content;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        height: fit-content;
+        background: #ffffff;
+    }
 
-	.dropDown .dropDownOptionContainer {
-		position: fixed;
-		width: 100%;
-		box-shadow: unset;
-		width: fit-content;
-		left: 0;
-		right: 0;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		height: fit-content;
-		background: #ffffff;
-	}
+    .dropDown .dropDownOptionContainer:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #00000096;
+    }
 
-	.dropDown .dropDownOptionContainer:before{
-		content: '';
-		position: fixed;
-		top: 0;
-		left:0;
-		width: 100%;
-		height: 100%;
-		background: #00000096;
-	}
-	.dropDown .dropDownOption {
-		background: #ffffff;
-		color: #2196f3;
-		padding: 10px 40px;
-		margin: 1px;
-		cursor: pointer;
-		position: relative;
-		z-index: 0;
-		text-align: center;
-		font-size: 20px;
-		width: auto;
-		border-bottom: none;
-	}
+    .dropDown .dropDownOption {
+        background: #ffffff;
+        color: #2196f3;
+        padding: 10px 40px;
+        margin: 1px;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        font-size: 20px;
+        width: auto;
+        border-bottom: none;
+    }
 }

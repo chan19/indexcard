@@ -6,13 +6,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 85%;
-    max-width: 25cm;
+    width: 80%;
+    max-width: 18cm;
     height: 90%;
     /* min-height: 600px; */
     background: white;
     z-index: 3;
-    border-top: 40px solid white;
+    border-top: 30px solid white;
     user-select: none;
 }
 
@@ -26,10 +26,10 @@
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: none !important;
+    background: white !important;
     color: grey;
-    color: #607D8B;
-    margin-top: 8px;
+    color: #171717;
+    font-weight: bold;
 }
 
 .largeEditor .largeEditorBody {
@@ -37,14 +37,13 @@
 
 .largeEditor .largeEditorPanel {
     /* border-bottom: 1px solid #ecebeb; */
-    padding: 4px 0 0px 0;
     margin: 5px 0;
     position: relative;
 }
 
 .largeEditor .editorLabel {
     font-size: small;
-    color: #7a9fd8;
+    color: #797979;
     text-transform: capitalize;
     /* font-weight: bold; */
     margin-top: 14px;
@@ -54,17 +53,17 @@
     display: inline-block;
     margin-left: 10px;
     padding: 0px 10px 4px;
-    /* border-bottom: 1px solid #cfd4d6; */
+    /* font-weight: bold; */
     border-radius: 10px;
 }
 
 .largeEditor .editorValue {
-    border: 1px solid #cfd4d6;
+    border: 1px solid #737373;
     border-radius: 4px;
     padding: 11px 14px;
     margin: -10px 0 8PX;
     /* box-shadow: 0px 0px 5px 1px #e2e2e2; */
-    COLOR: #696868;
+    COLOR: #000000;
     font-size: medium;
     line-height: 24px;
     overflow-y: auto;
@@ -74,6 +73,7 @@
     width: 100%;
     /* font-family: inherit; */
     box-sizing: border-box;
+    outline: none;
 }
 
 .largeEditor .editorValue.largeField {
@@ -84,13 +84,17 @@
 }
 
 .largeEditor .largeEditorBody {
-    position: relative;
-    /* top: 0; */
-    max-height: 80%;
+    position: absolute;
+    top: 0;
+    height: 100%;
     overflow-y: auto;
     padding: 8px 7px;
     /* background: #f3f3f3; */
-    padding: 2px 30px;
+    padding: 2px 30px 2px 30px;
+    box-sizing: border-box;
+    border-bottom: 55px solid transparent;
+    border-top: 35px solid #ffffff00;
+    width: 100%;
 }
 
 .largeEditor .largeEditorSelect {
@@ -128,34 +132,35 @@
 
 .largeEditor .largeEditorButtonPane {
     padding: 4px 10px;
-    /* border-top: 1px solid #bbbbbb; */
     padding: 8px 30px;
     background: white;
-    /* width: 90%; */
     position: absolute;
     bottom: 0;
     padding: 4px 30px;
-    /* background: #f3f3f3; */
-    /* width: 90%; */
+    background: #e8e8e8;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    border-top: 1px solid #cacaca;
 }
 
 .largeEditor .largeEditorButton {
+    transition: 100ms linear all;
+    /* float: right; */
     height: 30px;
     width: 100px;
-    border: none;
     text-align: center;
     text-transform: uppercase;
-    background: TRANSPARENT;
     padding: 0px 4px;
-    margin: 8px 8px 8px 0;
+    margin: 4px 10px;
     cursor: pointer;
     BORDER: 1PX SOLID #7a9fd8;
     LINE-HEIGHT: 30px;
     BORDER-RADIUS: 4PX;
     background: #7a9fd8;
     color: white;
-    transition: 100ms linear all;
-    /* float: right; */
+    overflow: hidden;
+    outline: none;
 }
 
 .largeEditor .largeEditorIcon {
@@ -168,15 +173,16 @@
     text-align: center;
     border-radius: 50%;
     font-size: large;
-    margin: 8px 8px 8px 0;
+    margin: 4px 8px 4px 0;
     cursor: pointer;
     transition: 100ms linear all;
     border: 1px solid #7a9fd8;
 }
 
 .largeEditor .largeEditorButton:hover , .largeEditor .largeEditorIcon:hover {
-    background: white;
-    color: #7a9fd8;
+    BACKGROUND: #ffffff00;
+    COLOR: #393939;
+    border-color: #393939;
 }
 
 .largeEditor.blue .largeEditorHeader, #largeEditor.blue .currentColor {
@@ -308,7 +314,7 @@
     position: relative;
     background: transparent;
     border: 1px solid #2196f3;
-    padding: 4px 40px 4px 25px;
+    padding: 4px 10px 4px 10px;
     color: #2196f3;
     cursor: text;
 }

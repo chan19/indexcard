@@ -6,13 +6,13 @@ body.theme2 {
 
 @media only screen and (max-width: 1280px) {
     :root {
-        --card-width: 275px;
+        --card-width: 300px;
         --card-height: 240px; }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 1280px) {
     :root {
-        --card-width: 275px;
+        --card-width: 300px;
         --card-height: 240px; }
 }
 
