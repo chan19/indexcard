@@ -237,7 +237,7 @@ div#fileNamelabel {
     text-transform: uppercase;
     background: TRANSPARENT;
     padding: 0px 4px;
-    margin: 8px 10px;
+    margin: 8px 0px 8px 25px;
     cursor: pointer;
     BORDER: 1PX SOLID #7a9fd8;
     LINE-HEIGHT: 30px;
@@ -461,8 +461,7 @@ div#fileNamelabel {
 }
 
 .dialogPrompt {
-    top: 0;
-    bottom: 0;
+    top: 170px;
     left: 0;
     right: 0;
     margin: auto;
@@ -472,6 +471,7 @@ div#fileNamelabel {
     width: 400px;
     max-height: 400px;
     height: fit-content;
+    font-family: calibri;
 }
 
 .dialogPromptHeader {
@@ -485,16 +485,17 @@ div#fileNamelabel {
 }
 
 .dialogPromptBody {
-    padding: 2px 16px;
-    font-size: small;
+    padding: 12px 25px;
+    font-size: large;
     margin: 8px 0;
 }
 
 .dialogPromptSign {
     padding: 0 28px;
-    font-size: small;
+    font-size: medium;
     text-align: end;
-    color: #7a9fd8;
+    color: #bbbbbb;
+    font-weight: bold;
 }
 
 .dialogPrompt .button {
@@ -652,4 +653,3 @@ div#fileNamelabel {
     #blocker {
     }
 }
-
