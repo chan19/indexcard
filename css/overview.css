@@ -1,18 +1,18 @@
 div#overViewContainer {
     position: fixed;
-    max-height: 95%;
-    top: 20px;
-    bottom: 20px;
+    top: 0px;
+    border-top: 15px solid transparent;
     left: 0;
     right: 0;
     width: 80%;
     max-width: 18cm;
     margin: auto;
-    background: white;
+    /* background: white; */
     z-index: 4;
     display: none;
     height: 100%;
     /* background: #f9f8f8; */
+    box-sizing: border-box;
 }
 
 .overviewItem {
@@ -67,7 +67,7 @@ div#overViewContainer {
 }
 
 #overviewContainerClose {
-    cursor: pointer;
+cursor: pointer;
     position: absolute;
     right: -12px;
     top: -12px;
@@ -114,7 +114,7 @@ div#overViewItemContainer {
     box-sizing: border-box;
     padding-bottom: 20px;
     background: white;
-    /* border-bottom: 20px; */
+    border-bottom: 5px solid white;
 }
 
 #overViewPrint {

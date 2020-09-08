@@ -8,12 +8,13 @@
     right: 0;
     width: 80%;
     max-width: 18cm;
-    height: 90%;
+    height: 98%;
     /* min-height: 600px; */
     background: white;
     z-index: 3;
     border-top: 30px solid white;
     user-select: none;
+    box-sizing: border-box;
 }
 
 .largeEditor .largeEditorHeader {
