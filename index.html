@@ -39,8 +39,8 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 9,
-                    update: ["Enforcing .ijson file type while opening a saved file"]
+                    version: 10,
+                    update: ["Displaying the last saved time"]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
@@ -68,7 +68,6 @@
 			<img id='logo' src='logos/inkextlogo.png'>
             <div id='fileNamelabel'>Current Project ></div>
             <div id="fileName" contenteditable=true></div>
-            <div id="savedTime"></div>
 			<div id='createNewFile' class='icon'></div>
             <div id='viewIcon' class='icon'></div>
             <input id="openFile" class="button" type="file" accept=".ijson">
@@ -84,16 +83,17 @@
             <div id="beatButton" class="masterButton"></div>
             <div id="emoButton" class="masterButton"></div>
         </div>
-        <div id="metaDataContainer">
-            <div id="time" class="metadataItem">
-                <span class='label'>Last saved at</span>
-                <span class='value'></span>
-            </div>
-            <div id="version" class="metadataItem">
-                <span class='label'>Version </span>
-                <span class='value'></span>
-            </div>
-        </div>
+		<div id="metaDataContainer">
+			<div id="time" class="metadataItem">
+				<span class='label'>Saved</span>
+				<span class='value'></span>
+				<span class='detailedValue'></span>
+			</div>
+			<div id="version" class="metadataItem" style="display:none">
+				<span class='label'>Version </span>
+				<span class='value'></span>
+			</div>
+		</div>
         <div id="leftPanel">
         </div>
         <div id="rightPanel"></div>
@@ -117,8 +117,8 @@
                 <button class='button'>CLOSE</button>
             </div>
 			<div id='backupConfirmationWindow'  class='dialogPrompt' style='display:none'>
-				<div class='dialogPromptHeader'>CONFIRM NEW FILE</div>
-                <div class='dialogPromptBody'>For safety purpose, the current file will be saved before creating a new file.<br> Proceed? </div>
+				<div class='dialogPromptHeader'>SAVE THE CURRENT FILE</div>
+                <div class='dialogPromptBody'>The current file will be saved before creating a new file.<br> Proceed? </div>
 				<button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
 				<button class='closeButton button'>CANCEL</button>
             </div>
