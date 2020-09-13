@@ -96,8 +96,10 @@ IoManager.prototype = {
 	},
 	_addGlobalListeners: function(fDataGetter){
 		var that = this;
-		this.getCore().listenTo("dataChange", function(){
-			that.saveToBackUp(fDataGetter());
+		this.getCore().listenTo("dataChange", function(oParam){
+			if(!oParam ||(oParam && !oParam.suppressBackup)){
+				that.saveToBackUp(fDataGetter());
+			}
 		});
 	}
 }

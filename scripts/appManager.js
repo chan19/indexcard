@@ -11,6 +11,7 @@ appManager = {
 		this._initTagPopup(oData.tags);
 		this._initCardManager(oData.cards);
 		this._initActDialog();
+		setInterval(this.refreshLastSavedTime.bind(this), 60000);
 	},
 	_data: {},
 	_eventListeners: {},
@@ -67,16 +68,52 @@ appManager = {
 		}
 	},
 	setProperties: function(oData){
-		this.setTime(oData.time);
+		this.setLastSavedTime(oData.time);
 		this.setVersion(oData.version);
 		this.setFileName(oData.fileName, true);
 		
 	},
-	setTime: function(iTime){
+	setLastSavedTime: function(iTime){
 		this._time = iTime || Date.now();
-		var oDate = new Date(this._time);
-		jQuery("#time .value").html(oDate.toDateString()+" "+ oDate.toLocaleTimeString());
+		this.refreshLastSavedTime(this._time);
 		return this._time;
+	},
+	getLastSavedTime: function(){
+		return this._time || Date.now();
+	},
+	refreshLastSavedTime: function (){
+		//x is current time, y is saved time;
+		var lastSavedTime = this.getLastSavedTime();
+		var d = Date.now() - lastSavedTime;
+		var oLastSaved = new Date(lastSavedTime);
+		var s = "";
+		var t = "";
+		if(d < 10000) {
+			s = "now";
+		} else if(d < 60000){
+			t = Math.floor(d/1000);
+			s = t + "seconds ago";
+		} else if(d < 3600000){
+			t = Math.floor(d/60000);
+			s = (t == 1) ? "a minute ago" : t + " minutes ago";
+		} else if(d < 86400000){
+			t = Math.floor(d/3600000);
+			s = (t == 1) ? "a hour ago" : t + " hours ago";
+		} else if(d < 2592000000){
+			t = Math.floor(d/86400000);
+			s = (t == 1) ? "a day ago" : t + " days ago";
+		} else if(d < 31104000000){
+			t = Math.floor(d/2592000000);
+			s = (t == 1) ? "a month ago" : t + " months ago";
+		} else {
+			t = Math.floor(d/31104000000);
+			s = (t == 1) ? "a year ago" : t +  "years ago";
+		}
+		jQuery("#time .value").html(s);
+		jQuery("#time .detailedValue").html(oLastSaved.toDateString() + " " + oLastSaved.toLocaleTimeString());
+	},
+	getVersion: function(){
+		return this._version || 0;
 	},
 	setVersion: function(iVersion){
 		this._version = iVersion || ++this._version;
@@ -94,30 +131,31 @@ appManager = {
 		return this._fileName;
 		
 	},
-	setLastSavedTime: function(iTime){
-		jQuery("#savedTime").html();
-		return this;
-		
-	},
-	setData: function(oData){
-		this.setTime(oData.time);
+	setData: function(oData, bSuppressBackup){
+		this.setLastSavedTime(oData.time);
 		this.setVersion(oData.version);
 		this.setFileName(oData.fileName, true);
 		this.cardManager.setCardData(oData.cards);
 		//this.cardManager.setBeatsToCards(oData.beats);
-		this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags});
+		this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 	},
 	onFileFetch: function(oData){
-			this.setData(oData);
+			this.setData(oData, true);
 	},
 	createNewFile: function(){
 		var data = this._getProcessedData({});
 		this.setData(data);
 	},
 	getDataToSave:function(){
+		var aData = this.getCurrentData();
+		aData.time = this.setLastSavedTime();
+		aData.version = this.setVersion();
+		return aData;
+	},
+	getCurrentData: function(){
 		var aCards = this.cardManager.getCardData();
-		var iTime = this.setTime();
-		var iVersion = this.setVersion();
+		var iTime = this.getLastSavedTime();
+		var iVersion = this.getVersion();
 		var fileName = this.getFileName();
 		return {
 			cards: aCards,
@@ -131,7 +169,7 @@ appManager = {
 		};
 	},
 	getData: function(sKey){
-		var aData = this.getDataToSave();
+		var aData = this.getCurrentData();
 		return sKey? aData[sKey] : aData;
 	},
 	listenTo: function(sEvent, fn){
@@ -179,7 +217,7 @@ appManager = {
 				jQuery(this).blur();//.focusout();
 				return false;
 			}
-			return this.innerText.length<40;
+			return (e.keyCode == 8) || (e.keyCode==46) || this.innerText.length<40;
 		});
 		jQuery("#viewIcon").click(function(){
 			var oData = that.cardManager.getCardData();
