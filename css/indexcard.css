@@ -28,14 +28,14 @@
 
 .indexCardTitle {
     padding: 2px 4px;
-    height: 35px;
+    height: var(--card-titleH);
     outline: none;
     background-color: var(--color-blue);
     color: white;
     border-bottom: 1px solid transparent;
     font-size: 14px;
-	z-index:1;
-	position:relative;
+    z-index: 1;
+    position: relative;
 }
 
 .indexCard .currentColor {
@@ -129,13 +129,13 @@
     /* font-family: monospace; */
     font-size: small;
     box-sizing: border-box;
-    top:-200px;
+    top: -200px;
     transition: 300ms ease-in-out all;
     word-break: break-word;
 }
 
 .indexCard .indexCardNotes.isVisible {
-    top:40px;
+    top: 40px;
 }
 
 .indexCardBg {
@@ -191,7 +191,7 @@ body.viewOnly .indexCardTitle {
     width: 100%;
     height: 31px;
     background: #f7f7f7;
-    border-top: 1px solid #b7b7b7;
+    /* border-top: 1px solid #b7b7b7; */
     transition: 200ms ease all;
     bottom: -33px;
     overflow: hidden;
@@ -425,4 +425,24 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
 
 #cardContainer.fadeCards .indexCard .statusBox {
     display: inline-block;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    .indexCard {
+        font-size: medium;
+    }
+
+    .indexCardTitle {
+        font-size: medium;
+        padding: 8px 10px;
+    }
+
+    .indexCardContent,.indexCard:hover .indexCardContent {
+        font-size: medium;
+        padding: 10px 10px;
+        height: var(--card-height);
+        max-height: 265px;
+        border-top-width: var(--card-titleH);
+        box-sizing: border-box;
+    }
 }

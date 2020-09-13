@@ -275,25 +275,28 @@ div#fileNamelabel {
     font-weight: bold;
     font-size: 12px;
 }
+
 .metadataItem .detailedValue {
-	/* display:none; */
-	position:absolute;
-	background:black;
-	top: 0px;
-	display: block;
-	color: white;
-	width: 160px;
-	left: 0;
-	padding: 5px;
-	text-align: center;
-	opacity:0;
-	cursor:pointer;
-	/* z-index: 1; */
-	transition: 100ms linear all;
+    /* display:none; */
+    position: absolute;
+    background: black;
+    top: 0px;
+    display: block;
+    color: white;
+    width: 160px;
+    left: 0;
+    padding: 5px;
+    text-align: center;
+    opacity: 0;
+    cursor: pointer;
+    /* z-index: 1; */
+    transition: 100ms linear all;
 }
-#time.metadataItem .detailedValue:hover{
-	opacity:1;
+
+#time.metadataItem .detailedValue:hover {
+    opacity: 1;
 }
+
 #searchContainer {
     position: fixed;
     top: 65px;
@@ -601,10 +604,12 @@ div#fileNamelabel {
     #savedTime {
     }
 
-    #openFile {
+    #openFile, #openFile:hover, #openFile:active {
+    right: 9px;
     }
 
     #fileuploadmask {
+    right: 5px;
     }
 
     #saveFile {
@@ -613,38 +618,43 @@ div#fileNamelabel {
     .button, .button:active {
         height: 45px;
         font-size: 20px;
+        right: 5px;
     }
-
+	#metaDataContainer{
+	display: none;
+	}
     #searchContainer {
-        height: 45px;
-        width: 45px;
-        top: 70px;
-        left: 38px;
-        right: unset;
-        background: unset;
-        box-shadow: unset;
+        height: 40px;
+        width: var(--card-width);
+        top: 75px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        box-sizing: border-box;
+        /* background: unset; */
+        /* box-shadow: unset; */
+        padding: 0;
     }
 
     #searchContainer .searchBar {
-        width: 0;
+        width: var(--card-width);
     }
 
     #searchContainer:hover {
     }
 
     #searchContainer .icon {
-        position: relative;
         display: inline-block;
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
         background-position: center;
         background-size: contain;
         border-radius: 50%;
-        border: 8px solid transparent;
+        border: 4px solid transparent;
         transition: 100ms linear all;
         cursor: pointer;
         background-repeat: no-repeat;
-        margin: 0 4px 0 0;
+        margin: 0 0px 0 0;
     }
 
     #masterButtonPane {
