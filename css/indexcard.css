@@ -131,7 +131,7 @@
     box-sizing: border-box;
     top:-200px;
     transition: 300ms ease-in-out all;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .indexCard .indexCardNotes.isVisible {
