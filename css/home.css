@@ -26,13 +26,20 @@ body {
 }
 
 #metaDataContainer {
-    /* position: absolute; */
-    top: 0;
-    padding: 8px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
     z-index: 1;
-    display: none;
+    box-sizing: border-box;
+    display: inline-block;
+    line-height: 16px;
+    height: 20px;
+    vertical-align: baseline;
+    position: fixed;
+    top: 65px;
+    left: 50px;
+    font-family: calibri;
+    padding: 2px 12px;
+    background: #d2d2d2;
+    border-radius: 10px;
+    text-transform: uppercase;
 }
 
 #metaDataContainer .metadataItem {
@@ -257,18 +264,36 @@ div#fileNamelabel {
 }
 
 .metadataItem .label {
-    font-size: x-small;
+    font-size: 10px;
     /* text-transform: uppercase; */
-    color: #5d5d5d;
+    color: black;
     margin: 0 2px 0 0;
 }
 
-.metadataItem .value {
-    color: #607D8B;
-    /* font-weight: bold; */
-    margin: 0px 15px 0 0;
+.metadataItem .value, .metadataItem .detailedValue {
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
 }
-
+.metadataItem .detailedValue {
+	/* display:none; */
+	position:absolute;
+	background:black;
+	top: 0px;
+	display: block;
+	color: white;
+	width: 160px;
+	left: 0;
+	padding: 5px;
+	text-align: center;
+	opacity:0;
+	cursor:pointer;
+	/* z-index: 1; */
+	transition: 100ms linear all;
+}
+#time.metadataItem .detailedValue:hover{
+	opacity:1;
+}
 #searchContainer {
     position: fixed;
     top: 65px;

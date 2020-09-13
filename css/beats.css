@@ -39,21 +39,3 @@
 
 .beatItem:hover , .beatItem.selected{background: #efeeee;color: #2196F3;}
 
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #ffffff;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #f1f1f1;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
