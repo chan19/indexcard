@@ -34,6 +34,8 @@
     color: white;
     border-bottom: 1px solid transparent;
     font-size: 14px;
+	z-index:1;
+	position:relative;
 }
 
 .indexCard .currentColor {
@@ -120,7 +122,6 @@
     position: relative;
     border-bottom: 0;
     position: absolute;
-    display: none;
     top: 40px;
     background: #e8e8e8;
     color: black;
@@ -128,10 +129,13 @@
     /* font-family: monospace; */
     font-size: small;
     box-sizing: border-box;
+    top:-200px;
+    transition: 300ms ease-in-out all;
+    word-break: break-all;
 }
 
 .indexCard .indexCardNotes.isVisible {
-    display: unset;
+    top:40px;
 }
 
 .indexCardBg {
@@ -273,9 +277,9 @@ body.viewOnly .indexCardTitle {
     top: 0;
     margin: 7px;
     display: none;
-    background-color: #101010;
+    background-color: #777777;
     border-radius: 50%;
-    border: 1px solid black;
+    z-index: 2;
 }
 
 .indexCard:hover .info.icon {
