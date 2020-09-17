@@ -13,7 +13,7 @@ body {
     box-shadow: 0px 0px 5px 0px black;
     z-index: 3;
     background: #e8e8e8;
-    font-family: calibri;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 #logo {
@@ -35,7 +35,7 @@ body {
     position: fixed;
     top: 65px;
     left: 50px;
-    font-family: calibri;
+   font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     padding: 2px 12px;
     background: #d2d2d2;
     border-radius: 10px;
@@ -324,7 +324,7 @@ div#fileNamelabel {
     color: #191919;
     outline: none;
     cursor: text;
-    font-family: calibri;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     vertical-align: middle;
     top: 0;
 }
@@ -499,7 +499,7 @@ div#fileNamelabel {
     width: 400px;
     max-height: 400px;
     height: fit-content;
-    font-family: calibri;
+	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 .dialogPromptHeader {

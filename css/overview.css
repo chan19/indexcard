@@ -27,7 +27,7 @@ div#overViewContainer {
     font-size: medium;
     margin-bottom: 0px;
     font-weight: bold;
-    font-family: calibri;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 .overviewItem .overviewItemBullet {
@@ -43,7 +43,7 @@ div#overViewContainer {
     color: black;
     margin: 4px 0;
     font-weight: normal;
-    font-family: calibri;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 .overviewItem.violet {
@@ -147,7 +147,7 @@ div#overViewItemContainer {
     color: #000000;
     font-family: Open;
     font-size: medium;
-    font-family: calibri;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     background: #e8e8e8;
     padding: 4px 12px;
     /* border: 1px #9E9E9E solid; */
