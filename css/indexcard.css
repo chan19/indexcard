@@ -113,7 +113,7 @@
 
 .indexCard .indexCardNotes {
     padding: 4px 8px;
-    height: 200px;
+    height: var(--card-height);
     overflow-y: auto;
     scroll-margin: 0;
     scroll-padding: 0;
