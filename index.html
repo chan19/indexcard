@@ -39,8 +39,8 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 10,
-                    update: ["Displaying the last saved time"]
+                    version: 11,
+                    update: ["Changes in UI design"]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
@@ -66,13 +66,15 @@
         <div id="header">
             <div id='menuIcon' class='icon' style='display:none'></div>
 			<img id='logo' src='logos/inkextlogo.png'>
-            <div id='fileNamelabel'>Current Project ></div>
-            <div id="fileName" contenteditable=true></div>
+            <div id='fileNamelabel'>Title ></div>
+            <div id="fileName" contenteditable=true spellcheck=false></div>
 			<div id='createNewFile' class='icon'></div>
             <div id='viewIcon' class='icon'></div>
-            <input id="openFile" class="button" type="file" accept=".ijson">
-            <button id="fileuploadmask" class="button">Open</button>
-            <button id="saveFile" class="button">BACKUP</button>
+            <div id='saveFile' class='icon'></div>
+			<input id="openFile" class="button" type="file" accept=".ijson">
+		  	<div id='fileuploadmask' class='icon'></div>
+             <!-- <button id="fileuploadmask" class="button">Open</button>-->
+            <!-- <button id="saveFile" class="button">BACKUP</button>-->
         </div>
         <div id="searchContainer">
             <input class="searchBar">
