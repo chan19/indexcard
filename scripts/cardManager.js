@@ -334,11 +334,11 @@ CardManager.prototype.getCardAtMousePosition = function(eX,eY){
 CardManager.prototype.refreshPageMeter = function(bFade){
 	var aCards = this.getCards();
 	var l = aCards.length;
-	var meter = 0;
+	var meter = 1;
 	var cur;
 	for(var i = 0; i < l; i++){
 		cur = aCards[i];
+		cur.setProperty("statusText", "p.no " + meter, true);
 		meter +=  Number(cur.getProperty("pgTarget"));
-		cur.setProperty("statusText", meter + ( meter > 1 ? " pages" : " page") , true);
 	}
 }
