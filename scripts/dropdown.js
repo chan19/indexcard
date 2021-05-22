@@ -22,14 +22,19 @@
 		_value: null,
 		_options: {},
 		_handlers: {
-			onChange: function(){
+			change: function(){
 				
 			}
 		},
 		_setHandlers: function(oConfig){
 			this._handlers = {
-				change: oConfig.onChange
+				change: oConfig.onChange || function(){}
 			};
+		},
+		attachOnChange: function(fn){
+			this._setHandlers({
+				onChange: fn
+			});
 		},
 		setOptions: function(aList){
 			this._options = aList;
@@ -56,13 +61,15 @@
 			}
 			return sel;
 		},
-		setValue: function(sKey){
+		setValue: function(sKey, bSuppressHandlerCall){
 			var a = this.getOptions();
 			var i = this._getIndexOfKey(sKey);
 			var sText = (i == -1 )? this._defaultText : a[i].value;
 			this._node.find(".dropDownValue").text(sText.length < 25? sText : (sText.substr(0, 25) + "..."));
 			this._value = sKey;
-			this._handlers.change(sKey, i, sText);
+			if(!bSuppressHandlerCall){
+				this._handlers.change(sKey, i, sText);	
+			}
 			return this;
 		},
 		getValue: function(){

@@ -30,6 +30,7 @@
 			this._locationTypeSel.setValue(oData.locationType);
 			this._timeSel.setValue(oData.time);
 			this._actSel.setValue(oData.act);
+			this._pgSel.setValue(oData.pgTarget);
 			this._node.find("#largeEditorInp1").val(oData.location).trigger("change");
 			this._node.find(".plotpointNote").val(oData.notes[0] || "");
 			this._node.removeClass(this._curColor).addClass(oData.color);
@@ -92,7 +93,7 @@
 				"<div class='largeEditorHeader'></div>" +
 				"<div class='largeEditorBody'>" +
 					"<div class='largeEditorPanel'><div class='largeEditorFieldContainer field1'></div>" +  this._getLocationBox() +  "<div class='largeEditorFieldContainer field2'></div>" + 
-						this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div></div>" +
+						this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div><div class='largeEditorFieldContainer field4'></div></div>" +
 					"<div class='largeEditorPanel'>" + 
 					"<div class='editorLabel'>Plot point title</div>" +
 					"<div id='plotpointTitle' class='editorValue' contenteditable=true></div></div>" +
@@ -144,9 +145,65 @@
 				key: "-1",
 				value: "NONE"
 			}], "ACT");
+			this._pgSel = this._getCustomDropdown("largeEditorSel4",[{
+				key: "0.25",
+				value: "1/4 page"
+			},{
+				key: "0.5",
+				value: "1/2 page"
+			},{
+				key: "0.75",
+				value: "3/4 page"
+			},{
+				key: "1",
+				value: "1 page"
+			},{
+				key: "2",
+				value: "2 pages"
+			},{
+				key: "3",
+				value: "3 pages"
+			},{
+				key: "4",
+				value: "4 pages"
+			},{
+				key: "5",
+				value: "5 pages"
+			},{
+				key: "6",
+				value: "6 pages"
+			},{
+				key: "7",
+				value: "7 pages"
+			},{
+				key: "8",
+				value: "8 pages"
+			},{
+				key: "9",
+				value: "9 pages"
+			},{
+				key: "10",
+				value: "10 pages"
+			},{
+				key: "11",
+				value: "11 pages"
+			},{
+				key: "12",
+				value: "12 pages"
+			},{
+				key: "13",
+				value: "13 pages"
+			},{
+				key: "14",
+				value: "14 pages"
+			},{
+				key: "15",
+				value: "15 pages"
+			}], "PAGE TARGET");
 			this._node.find(".field1").append(this._locationTypeSel.getNode().get(0));
 			this._node.find(".field2").append(this._timeSel.getNode().get(0));
 			this._node.find(".field3").append(this._actSel.getNode().get(0));
+			this._node.find(".field4").append(this._pgSel.getNode().get(0));
 			return this;
 		},
 		render: function(sId){
@@ -166,10 +223,12 @@
 				that.close();
 			});
 			this._node.find(".prev").click(function(){
-				fOnPrev.call(that, that._getValuesFromFields());
+				fOnSave.call(that, that._getValuesFromFields());
+				fOnPrev.call(that);
 			});
 			this._node.find(".next").click(function(){
-				fOnNext.call(that, that._getValuesFromFields());
+				fOnSave.call(that, that._getValuesFromFields());
+				fOnNext.call(that);
 			});
 			this._node.find(".currentColor").click(function(){
 				colorPicker.toggleClass("isVisible");
@@ -224,6 +283,7 @@
 				color: this._curColor,
 				notes: [this._node.find(".plotpointNote")[0].value],
 				act: this._actSel.getValue(),
+				pgTarget: this._pgSel.getValue(),
 				meta: {
 					locationType: this._locationTypeSel.getValue(),
 					time: this._timeSel.getValue(),
@@ -265,7 +325,8 @@
 				time: time+ "",
 				notes: aNote2,
 				location: meta.location || "",
-				act: o.act || "-1"
+				act: o.act || "-1",
+				pgTarget: o.pgTarget || "1"
 			};
 		}
 	}

@@ -62,15 +62,6 @@
 			var aBeatItem = this._node.find(".beatItem");
 			var selectedBeatIndex;
 			aBeatItem.on("click", function(){
-				aBeatItem.removeClass("selected");
-				if(that._currentSelected != (selectedBeatIndex =  jQuery(this).attr("data-beat"))){
-					appManager.onBeatItemClick(that._oBeatObject);
-					jQuery(this).addClass("selected");
-					that._currentSelected = selectedBeatIndex;
-				} else {
-					that._currentSelected = null;
-					appManager.onBeatItemClick(false);
-				}
 			});
 		},
 		_addGlobalListeners: function(){

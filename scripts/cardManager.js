@@ -35,27 +35,46 @@ CardManager.prototype._initLargeEditor = function(){
 		o.setProperty("meta", d.meta);
 		o.setProperty("notes", d.notes, true);
 		o.setProperty("act", d.act, true);
+		o.setProperty("pgTarget", d.pgTarget, true);
+	}
+	function isSaveRequired(oCardData, oEditorData){
+		var isRequired = false;
+		oPrev = oPrev || {};
+		oCur = oCur || {};
+		for(var each in oPrev){
+			if(oCur[each] == oPrev[each]){
+				isRequired = true;
+				break;
+			}
+		}
+		return isRequired;
 	}
 	this.largeEditor = new LargeEditor({
 		onSave: function(data){
 			var owner = this.getOwner();
+			var sOldAct = owner.getProperty("act");
+			var sNewAct = data.act;
 			setDataToCard(owner, data);
+			if(sOldAct != sNewAct){
+				that._updateCardsAct(owner.getProperty("index"), sNewAct, sOldAct);
+			}
+			that.refreshTotalPageCount();
 		},
-		onPrev: function(data){
+		onPrev: function(){
 			var owner = this.getOwner();
 			var ownerCardIndex = owner.getProperty("index");
 			var prevCardIndex = ownerCardIndex == 0? ownerCardIndex : ownerCardIndex -1;
 			var prevCard = that.getCard(prevCardIndex);
-			setDataToCard(owner, data);
+			//setDataToCard(owner, data);
 			that.largeEditor.setData(prevCard.getData()).setOwner(prevCard);
 		},
-		onNext: function(data){
+		onNext: function(){
 			var owner = this.getOwner();
 			var ownerCardIndex = owner.getProperty("index");
 			var l = that.getCards().length;
 			var nextCardIndex = (ownerCardIndex == l -1) ? ownerCardIndex : ownerCardIndex + 1;
 			var nextCard = that.getCard(nextCardIndex);
-			setDataToCard(owner, data);
+			//setDataToCard(owner, data);
 			that.largeEditor.setData(nextCard.getData()).setOwner(nextCard);
 		}
 	});
@@ -97,6 +116,7 @@ CardManager.prototype.createCards = function(aData){
 		that.addCard(oData, false);
 	});
 	this.renderAll();
+	this.refreshTotalPageCount();
 }
 CardManager.prototype.getCardData = function(){
 	var aCards = this.getCards();
@@ -127,7 +147,7 @@ CardManager.prototype.addCard = function(oData, bRender){
 }
 CardManager.prototype.addEmptyCard = function(nIndex, bRender){
 	nIndex = nIndex || 0;
-	var act = "-1";
+	var act = "1";
 	if(nIndex > 0){
 		act = this.getCard(nIndex - 1).getProperty("act");
 	}
@@ -140,6 +160,30 @@ CardManager.prototype._updateCardsIndex = function(nFromPos){
 		oCard = aCards[i];
 		oCard.setProperty("index", i );
 	}
+}
+CardManager.prototype._updateCardsAct = function(nPos, sNewAct, sOldAct){
+	var oActRank = {"-1" : 0, "1" : 1, "2A" : 2, "2B": 3, "3" : 4};
+	var rankOfNewAct = oActRank [sNewAct];
+	var rankOfOldAct = oActRank [sOldAct];
+	var aCards = this._cards;
+	var oCard;
+		if(rankOfNewAct < rankOfOldAct){
+			for(var i = nPos -1; i >= 0; i--){
+				if(oActRank[aCards[i].getProperty("act")] <= oActRank[sNewAct]){
+					break;
+				} else {
+					aCards[i].setProperty("act", sNewAct, true);
+				}
+			}
+		} else if (rankOfNewAct > rankOfOldAct) {
+			for(var i = nPos + 1; i  < aCards.length; i++){
+				if(oActRank[aCards[i].getProperty("act")] >= oActRank[sNewAct]){
+					break;
+				} else {
+					aCards[i].setProperty("act", sNewAct, true);
+				}
+			}
+		}
 }
 CardManager.prototype.renderAll = function(){
 	var aCard = this.getCards();
@@ -169,6 +213,7 @@ CardManager.prototype.addNewCard = function(nIndex){
 		this._updateCardsIndex(nIndex);
 		this.renderAll();
 	}
+	this.refreshTotalPageCount();
 }
 
 CardManager.prototype.onSearch = function(sText){
@@ -196,6 +241,15 @@ CardManager.prototype.deleteCard = function(nIndex){
 	appManager.fireEvent("afterCardDelete", {
 		cardId: cardId
 	});
+	this.refreshTotalPageCount();
+}
+CardManager.prototype.refreshTotalPageCount =function(){
+	var c = this.getCards();
+	var l = c.length;
+	for(var j =0, i=0; i < c.length; i++){
+		j += Number(c[i].getProperty("pgTarget"));
+	}
+	appManager.setTotalTargetPageCount(j);
 }
 CardManager.prototype.popoutCard = function(oCard){
 	this.largeEditor.setData(oCard.getData()).open(oCard);
@@ -277,9 +331,14 @@ CardManager.prototype.getCardAtMousePosition = function(eX,eY){
 		}
 	}
 }
-CardManager.prototype.fadeCards = function(bFade){
-	jQuery("#cardContainer")[bFade ? "addClass" : "removeClass"]("fadeCards");
-	if(bFade){
-		
+CardManager.prototype.refreshPageMeter = function(bFade){
+	var aCards = this.getCards();
+	var l = aCards.length;
+	var meter = 0;
+	var cur;
+	for(var i = 0; i < l; i++){
+		cur = aCards[i];
+		meter +=  Number(cur.getProperty("pgTarget"));
+		cur.setProperty("statusText", meter + ( meter > 1 ? " pages" : " page") , true);
 	}
 }

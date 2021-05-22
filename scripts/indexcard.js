@@ -5,7 +5,7 @@
 	}
 
 	IndexCard.prototype = {
-		_props: ["id", "title","content","index", "color", "statusText", "tags", "meta", "notes", "act"],
+		_props: ["id", "title","content","index", "color", "statusText", "tags", "meta", "notes", "act", "pgTarget", "beat"],
 		getCore: function(){
 			return appManager;
 		},
@@ -103,6 +103,8 @@
 			this._meta = oData.meta || "{}";
 			this._notes = oData.notes || [];
 			this._act = oData.act || "-1";
+			this._pgTarget = oData.pgTarget || "1";
+			this._beat = oData.beat || "NONE";
 		},
 		_setHandler: function(sName, fHandler){
 			this._handler [sName] = fHandler || function(){};
@@ -111,11 +113,21 @@
 		_getHandler: function(sName){
 			return this._handler [sName];
 		},
+		_createBeatSelector: function(){
+			return new Dropdown({
+				id: "beat_"+this.getProperty("id"),
+				defaultText: "Choose Beat",
+				list: appManager.getConfig("beat"),
+				value: this.getProperty("beat")
+			});
+		},
 		_createNode: function(){
 			var oData = this.getData();
 			var fOnAddNew = this._getHandler("add");
 			var sHtml = this.getHtml(oData);
 			this._node = jQuery(sHtml);
+			this._beatCard = this._createBeatSelector();
+			this._node.find(".beatCard").append(this._beatCard.getNode().get(0));
 			this._attachEvents(this._node);
 			return this._node;
 		},
@@ -134,13 +146,15 @@
 			var size = this.getSize();
 			var indexNumberStyle = this._showIndex ? " " : "display:none";
 			var sizeClass = (size == "default") ? "" : "size" + size.toUpperCase();
-			var html = "<div id='card_"+oData.id+"' class='indexCard " + isEditableClass + " "+ sizeClass + " "+oData.color + "'>"+
+			var actClass = (oData.act!= "-1") ? "_act"+oData.act : "_actNone";
+			var html = "<div id='card_"+oData.id+"' class='indexCard " + isEditableClass + " "+ sizeClass + " "+oData.color + " "+ actClass+"'>"+
 						"<div class='indexCardTitle' contentEditable=" + isEditable + ">" + 
 							this.getCore().sanitizeHtml(oData.title) + "</div>" +
 						"<div class='icon info'></div>" +
 						"<div class='indexCardBg'></div>" +
 						"<textarea class='indexCardContent' contentEditable=" + isEditable + ">" + oData.content + "</textarea>" +
 						"<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1 )+ "</div>" +
+						"<div class='indexCardPgTarget'>" + oData.pgTarget + ((oData.pgTarget) > 1 ? " PAGES" : " PAGE") + "</div>" +
 						"<div class='indexCardAct'>" + (((oData.act == "undefined") || (oData.act == -1) )? "" : "ACT " + oData.act) + "</div>" +
 						"<div class='indexCardFooter'>" +
 						"<div class='indexCardColumn'><div class='icon currentColor'></div></div>" +
@@ -151,6 +165,7 @@
 						"</div>" + this._getColorPickerHtml()+
 						"<div class='cardMask'></div><div class='statusBox'></div>" +
 						"<div class='indexCardNotes'>" + (oData.notes[0] ? this.getCore().sanitizeHtml(oData.notes.join("<br>")) : "No notes to display") + "</div>" +
+						"<div class='beatCard'></div>"+
 					"</div>";
 			return html;
 		},
@@ -159,24 +174,33 @@
 		},
 		setProperty: function(sProp, val, bRender){
 			var propertyClass;
-			if(bRender){
-				if(sProp == "color"){
-					this._node.removeClass(this.getProperty("color")).addClass(val);
-				} else if(sProp == "statusText"){
-					this._node.find(".statusBox").text(val);
-				} else if(sProp == "notes"){
-					this._node.find(".indexCardNotes").html( (val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
-				} else if(sProp == "act"){
-					this._node.find(".indexCardAct").html(((val == undefined) || (val == -1))? "" : "ACT " + val);
-				} else if(sProp == "content"){
-					this._node.find(".indexCardContent").val(val);
-				}else {
-					this._node.find(".indexCard" + (sProp == "title"? "Title" : "Number")).html(this.getCore().sanitizeHtml(val));
+			var tmp;
+			if(this._props.indexOf(sProp) > -1){
+				if(bRender){
+					if(sProp == "color"){
+						this._node.removeClass(this.getProperty("color")).addClass(val);
+					} else if(sProp == "statusText"){
+						this._node.find(".statusBox").text(val);
+					} else if(sProp == "notes"){
+						this._node.find(".indexCardNotes").html( (val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
+					} else if(sProp == "act"){
+						tmp = this.getProperty("act");
+						this._node.removeClass("_act" + (tmp == "-1" ? "None" : tmp)).addClass("_act" + (val==-1 ? "None" : val));
+						this._node.find(".indexCardAct").html(((val == undefined) || (val == -1))? "" : "ACT " + val);
+					} else if(sProp == "pgTarget"){
+						this._node.find(".indexCardPgTarget").html(((val == undefined) || (val == -1))? "" : (val > 1 ? val + " PAGES" : val + " PAGE"));
+					}else if(sProp == "beat"){
+						this._beatCard.setValue(val, true); // second parameter true, so that the onchange handler of the selector isn't called.
+					}else if(sProp == "content"){
+						this._node.find(".indexCardContent").val(val);
+					}else {
+						this._node.find(".indexCard" + (sProp == "title"? "Title" : "Number")).html(this.getCore().sanitizeHtml(val));
+					}
+					
 				}
-				
-			}
 			this["_" + sProp] = val;
-			this.getCore().fireEvent("dataChange");
+			this.getCore().fireEvent("dataChange");				
+			}
 			return this;
 		},
 		getNode: function(bUnsetCss){
@@ -199,7 +223,9 @@
 				tags: this._tags,
 				meta: this._meta,
 				notes: this._notes,
-				act: this._act
+				act: this._act,
+				pgTarget: this._pgTarget,
+				beat: this._beat
 			}
 		},
 		show: function(){
@@ -307,6 +333,9 @@
 			oNode.find(".icon.info").on("click", function(e){
 				notesPane.toggleClass("isVisible");
 			});
+			this._beatCard.attachOnChange(function(key,index, value){
+					that.setProperty("beat", key, false);
+			});
 			
 		},
 		_onTitleChange: function(sValue, bRender){
@@ -332,7 +361,9 @@
 					tags: [],
 					notes: [],
 					meta: "{}",
-					act: "-1"
+					act: "1",
+					pgTarget: "1",
+					beat: "NONE"
 				};
 			
 		},
