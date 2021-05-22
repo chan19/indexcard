@@ -1,0 +1,389 @@
+#largeEditor {
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    height: 98%;
+    /* min-height: 600px; */
+    background: white;
+    z-index: 3;
+    border-top: 30px solid white;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+.largeEditor .largeEditorHeader {
+    height: 35px;
+    background: #607D8B;
+    text-transform: uppercase;
+    line-height: 35px;
+    font-size: medium;
+    padding: 0px 30px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: white !important;
+    color: grey;
+    color: #171717;
+    font-weight: bold;
+}
+
+.largeEditor .largeEditorBody {
+}
+
+.largeEditor .largeEditorPanel {
+    /* border-bottom: 1px solid #ecebeb; */
+    margin: 5px 0;
+    position: relative;
+}
+
+.largeEditor .editorLabel {
+    font-size: small;
+    color: #797979;
+    text-transform: capitalize;
+    /* font-weight: bold; */
+    margin-top: 14px;
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0px 10px 4px;
+    /* font-weight: bold; */
+    border-radius: 10px;
+}
+
+.largeEditor .editorValue {
+    border: 1px solid #737373;
+    border-radius: 4px;
+    padding: 11px 14px;
+    margin: -10px 0 8PX;
+    /* box-shadow: 0px 0px 5px 1px #e2e2e2; */
+    COLOR: #000000;
+    font-size: medium;
+    line-height: 24px;
+    overflow-y: auto;
+    background: white;
+    position: relative;
+    display: block;
+    width: 100%;
+    /* font-family: inherit; */
+    box-sizing: border-box;
+    outline: none;
+}
+
+.largeEditor .editorValue.largeField {
+    height: 500px;
+    display: block;
+    font-family: inherit;
+    resize: none;
+}
+
+.largeEditor .largeEditorBody {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow-y: auto;
+    padding: 8px 7px;
+    /* background: #f3f3f3; */
+    padding: 2px 30px 2px 30px;
+    box-sizing: border-box;
+    border-bottom: 48px solid transparent;
+    border-top: 35px solid #ffffff00;
+    width: 100%;
+}
+
+.largeEditor .largeEditorSelect {
+    padding: 4px;
+    margin: 0 15px;
+    border: 1px solid #cfd4d6;
+    cursor: pointer;
+    color: #cfd4d6;
+    border-radius: 2px;
+    display: inline-block;
+    box-sizing: unset;
+    vertical-align: bottom;
+    height: 14px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.largeEditor .largeEditorFieldContainer {
+    margin: 4px;
+    display: inline-block;
+    box-sizing: unset;
+    vertical-align: bottom;
+    height: 27px;
+}
+
+.largeEditor .largeEditorSelect option {
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.largeEditor .largeEditorSelect option:hover {
+    background-color: #7a9fd8;
+    color: white;
+}
+
+.largeEditor .largeEditorButtonPane {
+    padding: 4px 10px;
+    padding: 8px 30px;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    padding: 4px 30px;
+    background: #e8e8e8;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    border-top: 1px solid #cacaca;
+}
+
+.largeEditor .largeEditorButton {
+    transition: 100ms linear all;
+    /* float: right; */
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0px 4px;
+    margin: 4px 10px;
+    cursor: pointer;
+    BORDER: 1PX SOLID #7a9fd8;
+    LINE-HEIGHT: 30px;
+    BORDER-RADIUS: 4PX;
+    background: #7a9fd8;
+    color: white;
+    overflow: hidden;
+    outline: none;
+    float: right;
+}
+
+.largeEditor .largeEditorIcon {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    color: white;
+    background: #7a9fd8;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: large;
+    margin: 4px 8px 4px 0;
+    cursor: pointer;
+    transition: 100ms linear all;
+    border: 1px solid #7a9fd8;
+    display: none;
+}
+
+.largeEditor .largeEditorFloatingIcon {
+    position: absolute;
+    top: 35%;
+    z-index: 2;
+    color: white;
+    font-size: 70px;
+    /* font-weight: bold; */
+    cursor: pointer;
+    transition: 100ms linear all;
+}
+
+.largeEditor .largeEditorFloatingIcon:hover {
+    transform: scale(1.1);
+}
+
+.largeEditor .largeEditorFloatingIcon.next {
+    right: -60px;
+}
+
+.largeEditor .largeEditorFloatingIcon.prev {
+    left: -60px;
+}
+
+.largeEditor .largeEditorButton:hover , .largeEditor .largeEditorIcon:hover {
+    BACKGROUND: #ffffff00;
+    COLOR: #393939;
+    border-color: #393939;
+}
+
+.largeEditor.blue .largeEditorHeader, #largeEditor.blue .currentColor {
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+    /* color: white; */
+}
+
+#largeEditor.red .currentColor {
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+    color: white;
+}
+
+#largeEditor.green .currentColor {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+    color: white;
+}
+
+#largeEditor.orange .currentColor {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: black;
+}
+
+#largeEditor.violet .currentColor {
+    background-color: var(--color-violet);
+    border-color: var(--color-violet);
+    color: white;
+}
+
+#largeEditor.violet {
+    border-color: var(--color-violet);
+}
+
+#largeEditor.blue {
+    border-color: var(--color-blue);
+}
+
+#largeEditor.red {
+    border-color: var(--color-red);
+}
+
+#largeEditor.green {
+    border-color: var(--color-green);
+}
+
+#largeEditor.orange {
+    border-color: var(--color-orange);
+}
+
+#largeEditor.violet {
+    border-color: var(--color-violet);
+}
+
+#largeEditor .colorContainer {
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    height: 27px;
+}
+
+#largeEditor .currentColor {
+    display: inline-block;
+    height: 27px;
+    width: 27px;
+    cursor: pointer;
+}
+
+#largeEditor .colorPicker {
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 27px;
+    padding: 0px;
+    /* border: 1px solid #e2e2e2; */
+    z-index: 2;
+    transition: 200ms ease all;
+    overflow: hidden;
+    box-shadow: 0px 0px 6px 0px #bdbdbd;
+    opacity: 0;
+}
+
+#largeEditor .colorPicker.isVisible {
+    height: 135px;
+    opacity: 1;
+    /* overflow: visible; */
+}
+
+#largeEditor .colorPickerContainer {
+    /* padding: 2px 2px 2px; */
+    background-color: #ffffff;
+    /* box-shadow: 0px 0px 6px 0px #bdbdbd; */
+}
+
+#largeEditor .colorPickerPopupArrow {
+    border: 10px solid transparent;
+    border-top-color: #ffffff;
+    width: 0;
+    border-bottom: 0;
+    margin: 0px 2px 2px;
+    display: none;
+}
+
+#largeEditor .colorPicker .colorCode {
+    height: 27px;
+    width: 27px;
+    background-color: black;
+    cursor: pointer;
+}
+
+#largeEditor .largeEditorSearchBox {
+    display: inline-block;
+    cursor: pointer;
+    color: #7a9fd8;
+    border-radius: 2px;
+    position: relative;
+}
+
+#largeEditor .largeEditorSearchBox input {
+    border: none;
+    width: 250px;
+    color: #cfd4d6;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    text-transform: uppercase;
+    outline: none;
+    box-sizing: unset;
+    position: relative;
+    background: transparent;
+    border: 1px solid  #737373;
+    padding: 4px 10px 4px 10px;
+    color: black;
+    cursor: text;
+}
+
+#largeEditor .largeEditorSearchBox .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    line-height: 24px;
+    color: #cfd4d6;
+    text-transform: uppercase;
+    font-size: small;
+    padding-left: 10px;
+}
+
+#largeEditor .largeEditorSuggestionBox {
+}
+
+#largeEditor .largeEditorSuggestionBox .largeEditorSuggestionItem {
+}
+
+#largeEditor .colorPicker .colorCode:hover {
+    opacity: 0.7;
+}
+
+#largeEditor .colorPicker .colorCode.blue {
+    background-color: var(--color-blue);
+}
+
+#largeEditor .colorPicker .colorCode.red {
+    background-color: var(--color-red);
+}
+
+#largeEditor .colorPicker .colorCode.green {
+    background-color: var(--color-green);
+}
+
+#largeEditor .colorPicker .colorCode.orange {
+    background-color: var(--color-orange);
+}
+
+#largeEditor .colorPicker .colorCode.violet {
+    background-color: var(--color-violet);
+}
