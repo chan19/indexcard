@@ -144,7 +144,7 @@
 			},{
 				key: "-1",
 				value: "NONE"
-			}], "ACT");
+			}], "CHOOSE ACT");
 			this._pgSel = this._getCustomDropdown("largeEditorSel4",[{
 				key: "0.25",
 				value: "1/4 page"
@@ -158,17 +158,32 @@
 				key: "1",
 				value: "1 page"
 			},{
+				key: "1.5",
+				value: "1.5 pages"
+			},{
 				key: "2",
 				value: "2 pages"
+			},{
+				key: "2.5",
+				value: "2.5 pages"
 			},{
 				key: "3",
 				value: "3 pages"
 			},{
+				key: "3.5",
+				value: "3.5 pages"
+			},{
 				key: "4",
 				value: "4 pages"
 			},{
+				key: "4.5",
+				value: "4.5 pages"
+			},{
 				key: "5",
 				value: "5 pages"
+			},{
+				key: "5.5",
+				value: "5.5 pages"
 			},{
 				key: "6",
 				value: "6 pages"

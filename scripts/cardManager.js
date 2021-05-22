@@ -335,10 +335,11 @@ CardManager.prototype.refreshPageMeter = function(bFade){
 	var aCards = this.getCards();
 	var l = aCards.length;
 	var meter = 1;
-	var cur;
+	var cur, tmp;
 	for(var i = 0; i < l; i++){
 		cur = aCards[i];
-		cur.setProperty("statusText", "p.no " + meter, true);
-		meter +=  Number(cur.getProperty("pgTarget"));
+		tmp = Number(cur.getProperty("pgTarget"));
+		cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp), true);
+		meter +=  tmp;
 	}
 }

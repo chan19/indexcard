@@ -1,6 +1,10 @@
 appManager = (function(){
 	var oConfig = {};
-	oConfig.beat= [{"key": "BEAT0",
+	oConfig.beat= [ {
+						"key": -1,
+						"value": "NONE"
+		
+					}, {"key": "BEAT0",
 						"value": "Opening"
 					}, {
 						"key": "BEAT1",
