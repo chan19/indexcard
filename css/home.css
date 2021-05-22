@@ -452,7 +452,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 }
 
 .masterButton {
-    background-color: #d6d5d5;
+    background-color: #000000;
     display: inline-block;
     height: 22px;
     width: 22px;

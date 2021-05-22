@@ -128,7 +128,7 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     scroll-margin: 0;
     scroll-padding: 0;
     outline: none;
-    color: #3e3e3e;
+    color: #000000;
     /* background: white; */
     position: relative;
     /* border: 1px solid #e8e8e8; */
@@ -254,8 +254,11 @@ body.viewOnly .indexCardTitle {
     text-align: center;
     margin: auto;
     background: white;
+    opacity: 0;
 }
-
+body.showPageMeter .indexCard .indexCardPgTarget{
+	opacity:1;
+}
 .indexCardTitle div, .indexCardContent div {
     position: relative;
 }
@@ -498,10 +501,10 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     border-radius: 4px;
     bottom: 28px;
     left: 40%;
-    width: 70px;
+    width: 95px;
     height: 20px;
     line-height: 20px;
-    text-align: c;
+    text-align: center;
     left: 0;
     right: 0;
     margin: auto;
