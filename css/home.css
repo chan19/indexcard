@@ -38,14 +38,18 @@ body {
     top: 65px;
     left: 50px;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    padding: 2px 12px;
-    background: #d2d2d2;
-    border-radius: 10px;
+    /* padding: 2px 12px; */
+    /* background: #d2d2d2; */
+    /* border-radius: 10px; */
     text-transform: uppercase;
 }
 
 #metaDataContainer .metadataItem {
     display: inline-block;
+    margin-right: 20px;
+    padding: 2px 12px;
+    background: #d2d2d2;
+    border-radius: 10px;
 }
 
 #contentArea {
@@ -382,20 +386,12 @@ div#fileNamelabel {
 
 #masterButtonPane {
     position: fixed;
-    top: 65px;
+    top: 60px;
     /* width: 200px; */
     right: 50px;
     z-index: 2;
     height: 30px;
-    display: none;
-}
-
-#masterButtonPane #actButton {
-    background-image: url(../icons/act.png);
-}
-
-#masterButtonPane #actButton.isPressed.masterButton, #masterButtonPane #actButton:hover {
-    background-color: #FFC107;
+    /* display: none; */
 }
 
 #masterButtonPane .masterButton:hover::after {
@@ -421,20 +417,34 @@ div#fileNamelabel {
 #masterButtonPane #emoButton:hover::after {
     content: 'EMOTION';
 }
-
+#masterButtonPane #pageMeterButton:hover::after {
+    content: 'PAGE METER';
+}
 #masterButtonPane #beatButton {
     background-image: url(../icons/beat.png);
 }
+#masterButtonPane #actButton {
+    background-image: url(../icons/act.png);
+}
+#masterButtonPane #emoButton {
+    background-image: url(../icons/emotion.png);
+	display:none;
+}
+#masterButtonPane #pageMeterButton {
+    background-image: url(../icons/pageMeter.png);
+}
+body.showActColors #masterButtonPane #actButton.masterButton, #masterButtonPane #actButton:hover {
+    background-color: #FFC107;
+}
 
-#masterButtonPane #beatButton.isPressed.masterButton, #masterButtonPane #beatButton:hover {
+body.showBeats #masterButtonPane #beatButton.masterButton, #masterButtonPane #beatButton:hover {
     background-color: #4caf50;
 }
 
-#masterButtonPane #emoButton {
-    background-image: url(../icons/emotion.png);
+body.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
+    background-color: #F44336;
 }
-
-#masterButtonPane #emoButton.isPressed.masterButton, #masterButtonPane #emoButton:hover {
+body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButtonPane #pageMeterButton:hover {
     background-color: #F44336;
 }
 

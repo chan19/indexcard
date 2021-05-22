@@ -5,9 +5,9 @@
 }
 
 .dropDown .dropDownValue {
-    border: 1px solid #2196f3;
+    border: 1px solid  #737373;
     padding: 5px 30px 4px 10px;
-    color: #2196f3;
+    color: #000000;
     cursor: pointer;
 }
 
@@ -18,7 +18,7 @@
     border: 8px solid transparent;
     top: 12px;
     right: 12px;
-    border-top-color: #2196f3;
+    border-top-color: #7d7d7d;
     border-bottom: none;
     cursor: pointer;
 }
