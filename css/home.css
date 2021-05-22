@@ -567,7 +567,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     #contentArea {
         margin: unset;
-        top: 115px;
+        top: 155px;
         width: fit-content;
         width: var(--card-width);
         left: 0;
@@ -662,7 +662,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     #searchContainer {
         height: 40px;
         width: var(--card-width);
-        top: 75px;
+        top: 125px;
         left: 0;
         right: 0;
         margin: auto;
@@ -694,6 +694,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     #masterButtonPane {
+    width: var(--card-width);
+    left: 0;
+    right: 0;
+    margin: auto;
     }
 
     .masterButton {
@@ -701,6 +705,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         margin-top: 5px;
         height: 40px;
         width: 40px;
+        box-shadow: 0px 0px 4px 0px #8c8c8c;
+        background-color: #607d8b;
     }
 
     .masterButton:hover {
