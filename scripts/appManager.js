@@ -168,7 +168,12 @@ appManager = (function(){
 			return this._version;
 		},
 		setTotalTargetPageCount: function(n){
-			jQuery("#pageCount .value").html(n);
+			if(Number(n) > 1){
+				jQuery("#pageCount .value").html(n + " pages");
+			} else {
+				jQuery("#pageCount .value").html(n + " page");
+			}
+			
 		},
 		setFileName: function(sVal, bRender){
 			this._fileName = sVal || "Untitled File";
