@@ -28,7 +28,7 @@ body {
 }
 
 #metaDataContainer {
-    z-index: 1;
+    z-index: 2;
     box-sizing: border-box;
     display: inline-block;
     line-height: 16px;
@@ -445,14 +445,14 @@ body.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoBu
     background-color: #F44336;
 }
 body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButtonPane #pageMeterButton:hover {
-    background-color: #F44336;
+    background-color: #03a9f4;
 }
 
 #masterButtonPane.buttonActive .masterButton {
 }
 
 .masterButton {
-    background-color: #000000;
+    background-color: #a9a9a9;
     display: inline-block;
     height: 22px;
     width: 22px;

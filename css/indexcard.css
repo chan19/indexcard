@@ -132,13 +132,14 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     /* background: white; */
     position: relative;
     /* border: 1px solid #e8e8e8; */
-    border-bottom: 0;
+    border: none;
+    border-bottom: 1px solid #e8e8e8;
     font-size: 14px;
     display: block;
     font-family: inherit;
     resize: none;
     width: 100%;
-    border: none;
+    /* border: none; */
     box-sizing: border-box;
 }
 
@@ -245,7 +246,7 @@ body.viewOnly .indexCardTitle {
     position: absolute;
     bottom: 0;
     line-height: 32px;
-    color: #000000;
+    color: #908e8e;
     /*  display: none;*/
     display: inline-block;
     left: 0;
@@ -254,11 +255,7 @@ body.viewOnly .indexCardTitle {
     text-align: center;
     margin: auto;
     background: white;
-    opacity: 0;
-    text-transform: l;
-}
-body.showPageMeter .indexCard .indexCardPgTarget{
-	opacity:1;
+    text-transform: lowercase;
 }
 .indexCardTitle div, .indexCardContent div {
     position: relative;
