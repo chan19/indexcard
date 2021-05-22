@@ -431,7 +431,7 @@ div#fileNamelabel {
 	display:none;
 }
 #masterButtonPane #pageMeterButton {
-    background-image: url(../icons/pageMeter.png);
+    background-image: url(../icons/pagemeter.png);
 }
 body.showActColors #masterButtonPane #actButton.masterButton, #masterButtonPane #actButton:hover {
     background-color: #FFC107;
