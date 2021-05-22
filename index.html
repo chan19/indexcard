@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>inkEXT </title>
+        <title>inkext </title>
         <meta charset="UTF-8">
 		<meta name="title" content="inkEXT">
 		<meta name="description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
@@ -35,12 +35,16 @@
         <script src="scripts/tagPopup.js"></script>
         <script src="scripts/largeEditor.js"></script>
         <script src="scripts/actDialog.js"></script>
+		 <script src="https://apis.google.com/js/platform.js" async defer>
+          {parsetags: 'explicit'}
+        </script>
+
         <script>
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 11,
-                    update: ["Changes in UI design."]
+                    version: 12,
+                    update: ["Assign Target Page Count to the cards", "ACTs view - The indexcard will be color coded based on the acts", "Assign Beats to the card. Work in progress"]
 				}
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
@@ -66,13 +70,13 @@
         <div id="header">
             <div id='menuIcon' class='icon' style='display:none'></div>
 			<img id='logo' src='logos/inkextlogo.png'>
-            <div id='fileNamelabel'>Title ></div>
+            <div id='fileNamelabel'>Title > </div>
             <div id="fileName" contenteditable=true spellcheck=false></div>
-			<div id='createNewFile' class='icon'></div>
-            <div id='viewIcon' class='icon'></div>
-            <div id='saveFile' class='icon'></div>
+			<div id='createNewFile' title='Create new file' class='icon'></div>
+            <div id='viewIcon' class='icon' title ='View only'></div>
+            <div id='saveFile' class='icon' title ='backup'></div>
 			<input id="openFile" class="button" type="file" accept=".ijson">
-		  	<div id='fileuploadmask' class='icon'></div>
+		  	<div id='fileuploadmask' class='icon' title='open'></div>
              <!-- <button id="fileuploadmask" class="button">Open</button>-->
             <!-- <button id="saveFile" class="button">BACKUP</button>-->
         </div>
@@ -83,11 +87,17 @@
         <div id="masterButtonPane">
             <div id="actButton" class="masterButton"></div>
             <div id="beatButton" class="masterButton"></div>
+			<div id="pageMeterButton" class="masterButton"></div>
             <div id="emoButton" class="masterButton"></div>
         </div>
 		<div id="metaDataContainer">
 			<div id="time" class="metadataItem">
 				<span class='label'>Saved</span>
+				<span class='value'></span>
+				<span class='detailedValue'></span>
+			</div>
+			<div id="pageCount" class="metadataItem">
+				<span class='label'>Page Target Total</span>
 				<span class='value'></span>
 				<span class='detailedValue'></span>
 			</div>
@@ -97,6 +107,15 @@
 			</div>
 		</div>
         <div id="leftPanel">
+			<div id="container">
+				  <div class="g-savetodrive"
+					 data-src="//example.com/path/to/myfile.pdf"
+					 data-filename="My Statement.pdf"
+					 data-sitename="My Company Name"></div>
+			</div>
+			<script type="text/javascript">
+			 // gapi.savetodrive.go('container');
+			</script>
         </div>
         <div id="rightPanel"></div>
         <div id="contentArea">
