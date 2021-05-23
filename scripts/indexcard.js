@@ -150,7 +150,7 @@
 			var html = "<div id='card_"+oData.id+"' class='indexCard " + isEditableClass + " "+ sizeClass + " "+oData.color + " "+ actClass+"'>"+
 						"<div class='indexCardTitle' contentEditable=" + isEditable + ">" + 
 							this.getCore().sanitizeHtml(oData.title) + "</div>" +
-						"<div class='icon info'></div>" +
+						"<div class='icon info'>i</div>" +
 						"<div class='indexCardBg'></div>" +
 						"<textarea class='indexCardContent' contentEditable=" + isEditable + ">" + oData.content + "</textarea>" +
 						"<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1 )+ "</div>" +

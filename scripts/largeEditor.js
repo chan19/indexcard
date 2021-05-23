@@ -261,6 +261,14 @@
 			}).on("change",function(){
 				inputPlaceholder[(this.value== "") ? "show" : "hide"]();
 			});
+			var container = this._node.find(".largeEditorBody");
+			this._node.find(".largeField").on("focusin", function(){
+				var parentPanel = jQuery(this).parent(".largeEditorPanel");
+				var position = parentPanel.offset().top - container.offset().top + container.scrollTop() - 35;
+				container.animate({
+					scrollTop:position
+				},500);
+			});
 			this._node.find(".largeField").on("keyup", function(e){
 				if(e.keyCode == 13){
 					var curPos = this.selectionStart;
