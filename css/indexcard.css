@@ -345,7 +345,7 @@ body.viewOnly .indexCardTitle {
 }
 
 .indexCard .info.icon {
-    background-image: url(../icons/info.png);
+    /* background-image: url(../icons/info.png); */
     cursor: pointer;
     opacity: 1;
     position: absolute;
@@ -353,9 +353,17 @@ body.viewOnly .indexCardTitle {
     top: 0;
     margin: 7px;
     display: none;
-    background-color: #777777;
+    background-color: #000000;
     border-radius: 50%;
     z-index: 2;
+    text-align: center;
+    /* box-shadow: 0px 0px 4px 1px white; */
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    line-height: 20px;
+    font-family: monospace;
+    color: white;
 }
 
 .indexCard:hover .info.icon {

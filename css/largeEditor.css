@@ -78,7 +78,7 @@
 }
 
 .largeEditor .editorValue.largeField {
-    height: 500px;
+    height: 380px;
     display: block;
     font-family: inherit;
     resize: none;
