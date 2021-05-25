@@ -33,10 +33,12 @@ var cloudBox = (function() {
 	}
 
 	function handleAuthClick(event) {
-		gapi.auth2.getAuthInstance().signIn();
+		var x = gapi.auth2.getAuthInstance().signIn();
+		console.log("auth click");
 	}
 	function handleSignoutClick(event) {
-		gapi.auth2.getAuthInstance().signOut();
+		var x = gapi.auth2.getAuthInstance().signOut();
+		console.log("sign out");
 	}
 	
 	var driveItems = {};
@@ -101,8 +103,25 @@ var cloudBox = (function() {
         },
         getFile: function(sId) {
         },
-        createFolder: function() {
-
+		getUserProfile: function(fnS){
+			try{
+				var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+				fnS({
+					name: s.getGivenName() + " " + s.getFamilyName(),
+					email: s.getEmail(),
+					img: s.getImageUrl()
+				});
+			} catch(e){
+				fnS({
+					name: "Guest User",
+					email: "",
+					img: "icons/user.png"
+				});
+			}
+		},
+        createFolder: function(fnS) {
+			driveItems.folder = driveItems.folder || [];
+			driveItems.file = driveItems.file || [];
             var request = gapi.client.request({
                 'path': '/drive/v2/files/',
                 'method': 'POST',
@@ -116,7 +135,8 @@ var cloudBox = (function() {
             });
 
             request.execute(function(resp) {
-                console.log(resp);
+					driveItems.folder.push(resp);
+					//resp.id  is folder id;
             });
 
         },

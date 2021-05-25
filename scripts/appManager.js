@@ -197,6 +197,13 @@ appManager = (function(){
 			this.cardManager.setCardData(oData.cards);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
+		refreshUserInfo: function(){
+			cloudBox.getUserProfile(function(o){
+				jQuery("#user").css("background-image", o.img);
+				jQuery("#userInfoPane .userName", o.name);
+				jQuery("#userInfoPane .userInfoBody", o.email);
+			});
+		},
 		onFileFetch: function(oData){
 				this.setData(oData, true);
 		},
@@ -283,6 +290,9 @@ appManager = (function(){
 					fileName: that.getFileName(),
 					cards: oData
 				});
+			});
+			jQuery("#user").click(function(){
+				jQuery("#userInfoPane").toggle();
 			});
 			jQuery("#searchContainer .searchBar").on("input", function(){
 				that.cardManager.onSearch(this.value);
