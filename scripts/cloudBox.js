@@ -125,7 +125,19 @@ var cloudBox = (function() {
 		},
         getFolder: function(sId) {
         },
-        getFile: function(sId) {
+        getFile: function(sId, fnS) {
+			var request = gapi.client.request({
+                'path': '/drive/v2/files/' + sId + "?alt=media",
+                'method': 'get',
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'body': {}
+            });
+
+            request.execute(function(oFileData) {
+                fnS(oFileData);
+            });
         },
 		getUserProfile: function(fnS){
 			try{
@@ -153,18 +165,31 @@ var cloudBox = (function() {
                     'Content-Type': 'application/json'
                 },
                 'body': {
-                    "title": "inkext",
+                    "title": "Inkext app data",
                     "mimeType": "application/vnd.google-apps.folder",
                 }
             });
 
             request.execute(function(resp) {
 					driveItems.folder.push(resp);
+					fns(resp);
 					//resp.id  is folder id;
             });
 
         },
-        createFile: function(sFileName, oData, sFolderId) {
+		creatFile: function(oData){
+			var that = this;
+			this.getFolders(function(aFolder){
+				if(aFolder.length){
+					that._createFile(oData, aFolder[0].id);
+				} else {
+					that.createFolder(function(oResp){
+						that._createFile(oData, oResp.id);
+					});
+				}
+			});
+		},
+        _createFile: function(oData, sFolderId) {
 
             var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
@@ -173,7 +198,7 @@ var cloudBox = (function() {
             var fileData = "[" + localStorage.backup + "]";
             var contentType = 'text/plain';
             var metadata = {
-                'name': sFileName,
+                'name': appManager.getFileName()+".ijson",
                 'mimeType': contentType,
                 'parents': sFolderId || ["1eJJJgPhWc9OAnkLwoJPMspVT_YXTsqVE"]
             };
