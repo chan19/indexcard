@@ -2,7 +2,7 @@ var cloudBox = (function() {
 	var CLIENT_ID = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
 	var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
 	var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
-	var SCOPES = "https://www.googleapis.com/auth/drive.file,https://www.googleapis.com/auth/drive.appdata";
+	var SCOPES = "https://www.googleapis.com/auth/drive.file";
 	var authorizeButton, signoutButton ;             
 	function initClient() {
 		gapi.client.init({
