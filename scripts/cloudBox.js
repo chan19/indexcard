@@ -78,21 +78,23 @@ var cloudBox = (function() {
 			var that = this;
 			if(sType == "file" || sType == "folder"){
 				if(driveItems[sType]){
-					fns(driveItems[sType]);
+					fnS(driveItems[sType]);
 				} else {
 					this._fetchItemsFromCloud(function(aItem){
 						that._segregateFilesAndFolders(aItem);
-						fns(driveItems[sType]);
+						fnS(driveItems[sType]);
 					});
 				}
 				
 			}
 
         },
-		getFolders: function() {
+		getFolders: function(fnS) {
+			fnS = fnS || function(){};
 			this._getItem("folder", fnS);
         },
 		getFiles: function(fnS){
+			fnS = fnS || function(){};
 			this._getItem("file", fnS);
 		},
         getFolder: function(sId) {
