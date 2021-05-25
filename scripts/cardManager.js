@@ -307,21 +307,6 @@ CardManager.prototype.moveCardToIndex = function(oCard,fromIndex, toIndex, oClon
 	});
 	
 }
-
-CardManager.prototype.setBeatsToCards = function(oBeats){
-	var aCards = this.getCards();
-	var i;
-	var that = this;
-	aCards.forEach(function(c, i){
-		c.setProperty("statusText", "", true);
-		c.setFocus(false);
-	});
-	for(var each in oBeats){
-		if(oBeats[each].card){
-			that.getCardById(oBeats[each].card).setProperty("statusText", each, true).setFocus(true);
-		}
-	}
-}
 CardManager.prototype.getCardAtMousePosition = function(eX,eY){
 	var aCards = this.getCards();
 	var l = aCards.length;

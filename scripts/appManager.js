@@ -93,8 +93,8 @@ appManager = (function(){
 			this._overviewManager = new Overview("overViewContainer");
 		},
 		_initBeat: function(){
-			this.beat = new Beat();
-			jQuery("#rightPanel").append(this.beat.getNode());
+			this.beat = new Beat(oConfig.beat);
+			jQuery("#testArea").append(this.beat.getNode());
 		},
 		_initTagPopup: function(aTag){
 			this.tagPopup = new TagPopup({
@@ -195,7 +195,6 @@ appManager = (function(){
 			this.setVersion(oData.version);
 			this.setFileName(oData.fileName, true);
 			this.cardManager.setCardData(oData.cards);
-			//this.cardManager.setBeatsToCards(oData.beats);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
 		onFileFetch: function(oData){
@@ -297,14 +296,19 @@ appManager = (function(){
 					that.fireEvent("rightArrowPress");
 				}
 			}
+			var configureBeatButton = jQuery("#configureBeat");
 			jQuery("#beatButton").click(function(){
 				var body = jQuery("body");
 				if(body.hasClass("showBeats")){
 					body.removeClass("showBeats");
+					configureBeatButton.hide();
+				
 				} else {
 					body.addClass("showBeats");
+					configureBeatButton.show();
 				}
 			});
+
 			jQuery("#actButton").click(function(){
 				var body = jQuery("body");
 				if(body.hasClass("showActColors")){
@@ -325,6 +329,9 @@ appManager = (function(){
 			});
 			jQuery("#menuIcon").click(function(){
 				jQuery("#leftPanel").toggleClass("isVisible");
+			});
+			configureBeatButton.click(function(){
+				that.beat.show();
 			});
 		},
 		onMasterPaneButtonPress: function(sButton, oButton){

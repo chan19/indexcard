@@ -3,58 +3,41 @@
 	"Second Act", "Plot B", "New Characters", "Mid Point", "Low point", "Climax", "Beginning of the End", "Finale"]
 	
 	
-	Beat = function(){
-		this.init();
+	Beat = function(aBeat){
+		this.init(aBeat);
 	}
 	Beat.prototype = {
-		init: function(){
-			this._setBeats();
+		init: function(aBeat){
+			this._setBeats(aBeat);
 			this._addGlobalListeners();
 		},
 		_oBeatObject: {},
 		_currentSelected: null,
-		_setBeats: function(oBeat, bRender){
-			var o = {};
-			if(oBeat){
-				aBeatConfig.forEach(function(c){
-					o[c] = {
-						card: oBeat[c].card
-					};
-				});
-				
-			} else {
-				aBeatConfig.forEach(function(c){
-					o[c] = {
-						card: 0
-					};
-				});
-				
-			}
-			this._oBeatObject = o;
-		},
-		_setBeatToCard: function(sBeat, i){
-			var o = this._oBeatObject;
-			for(var each in o){
-				if(o[each].card == i){
-					o[each].card = 0;
-					break;
-				}
-			}
-			this._oBeatObject[sBeat] = {
-				card: i
-			};
+		_setBeats: function(aBeat, bRender){
+			this._aBeat = aBeat;
 		},
 		getDataToSave: function(){
 			return this._oBeatObject;
 		},
-		_getHtml: function(){
+		_getHtml: function(aBeat){
 			var sHtml = "";
-			aBeatConfig.forEach(function(c, i){
-				sHtml += "<div class='beatItem' data-beat='" + i + "'>"+c+"</div>"
+			aBeat.forEach(function(c, i){
+				sHtml += "<div class='beatItem' data-beat='" + c.key + "'>"+c.value+"</div>"
 				
 			});
 			return "<div class='beatContainer'><div class='beatContainerHeader'>Beats</div>" +
-					"<div class='beatlist'>" + sHtml + "</div></div>";
+					"<div class='beatContainerBody'>" + 
+						"<div class='beatlist'>" + sHtml + "</div>" +
+						"<div class='beatDetailsPane'>" +
+							"<div class='beatDetailsPanel'>" + 
+							"<div class='beatDetailsLabel'>Beat title</div>" +
+							"<div id='beatItemTitle' class='beatDetailsValue' contenteditable=true></div></div>" +
+							"<div class='beatDetailsPanel'>" + 
+							"<div class='beatDetailsLabel'>Beat Description</div>" +
+							"<textarea id = 'beatItemDesc' class='beatDetailsValue largeField' contenteditable=true></textarea></div>" +
+						"</div>"+
+					"</div>"+
+					"</div>";
 			
 		},
 		_attachEvents: function(){
@@ -65,32 +48,12 @@
 			});
 		},
 		_addGlobalListeners: function(){
+			return;
 			var that = this;
-			appManager.listenTo("cardClick", function(oData){
-				var cardId = oData.source.getProperty("id");
-				if(that._currentSelected){
-					var selectedBeat = aBeatConfig[that._currentSelected];
-					that._setBeatToCard(selectedBeat, cardId);
-					appManager.cardManager.setBeatsToCards(that._oBeatObject);
-				}
-			});
 			appManager.listenTo("pageChange", function(data){
-				if(data.beats){
-					that._setBeats(data.beats)
-				} else {
-					that._setBeats();
-				}
+
 			});
 			appManager.listenTo("afterCardDelete", function(oData){
-				var cardId = oData.cardId;
-				var o = that._oBeatObject;
-				for(var each in o){
-					if(o[each].card == cardId){
-						o[each].card = 0;
-						break;
-					}
-				}
-				appManager.cardManager.setBeatsToCards(that._oBeatObject);
 			});
 		},
 		getNode: function(){
@@ -98,7 +61,7 @@
 			
 		},
 		_createNode: function(){
-			var sHtml = this._getHtml();
+			var sHtml = this._getHtml(this._aBeat);
 			this._node = jQuery(sHtml);
 			this._attachEvents();
 			return this._node;
@@ -115,8 +78,8 @@
 			this._currentSelected = null;
 		},
 		show: function(){
+			jQuery("#blocker").show();
 			this._node.addClass("isVisible");
-			appManager.cardManager.setBeatsToCards(this._oBeatObject);
 		}
 	}
 	
