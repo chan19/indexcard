@@ -3,7 +3,7 @@ var cloudBox = (function() {
                 var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
                 var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
                 var SCOPES = ["https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive.appdata"];
-               
+				var authorizeButton, signoutButton ;             
                 function initClient() {
                     gapi.client.init({
                         apiKey: API_KEY,
@@ -41,8 +41,8 @@ var cloudBox = (function() {
 
     return {
 		init: function(oConfig){
-                var authorizeButton = document.getElementById('authorize_button');
-                var signoutButton = document.getElementById('signout_button');				
+              authorizeButton = document.getElementById('authorize_button');
+              signoutButton = document.getElementById('signout_button');				
 				
 		},
 		onClientLoad: function(){
