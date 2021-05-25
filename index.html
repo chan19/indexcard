@@ -54,6 +54,10 @@
                         jQuery("#blocker").hide();
                     });
                 }
+				
+				if(window.location.search){
+					jQuery("#leftPanel").css('left','0px');
+				}
                 //VoiceAssistant.takeCommand();
 
             });
