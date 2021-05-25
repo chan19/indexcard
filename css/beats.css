@@ -1,19 +1,23 @@
 .beatContainer {
-    height: 0;
     background: white;
     margin: 15px 8px 0 0;
-    width: 230px;
+    width: 700px;
     box-shadow: 0px 0px 4px 2px #d0d0d0;
     position: absolute;
-    top: 55px;
+    top: 10px;
     transition: 300ms linear all;
     overflow: hidden;
     box-shadow: none;
+    z-index: 3;
+    display: none;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 90%;
 }
 
 .beatContainer.isVisible {
-    height: 455px;
-    box-shadow: 0px 0px 4px 2px #d0d0d0;
+    display: block;
 }
 
 .beatContainerHeader {
@@ -26,16 +30,82 @@
 }
 
 .beatlist {
-    height: 400px;
+    /* height: 400px; */
     overflow-y: auto;
+    display: inline-block;
+    width: 200px;
+    position: absolute;
+    height: 100%;
+    box-sizing: border-box;
+    border-top: 40px solid transparent;
+    top: 0;
 }
 
 .beatItem {
     padding: 10px 10px;
     border-bottom: 1px solid #efeeee;
-    color: #7d7d7d;
+    color: #000000;
     cursor: pointer;
+    background-color: #ffffff;
+}
+.beatDetailsPane{
+	height: 400px;
+	overflow-y: auto;
+	display: inline-block;
+	width: 500px;
+	box-sizing: border-box;
+	padding: 40px 40px;
+	position: absolute;
+	right: 0;
+	height: 100%;
+	top: 0;
+}
+.beatItem:hover , .beatItem.selected{background: #efeeee;color: #2196F3}
+
+.beatContainer .beatDetailsPanel {
+    /* border-bottom: 1px solid #ecebeb; */
+    margin: 5px 0;
 }
 
-.beatItem:hover , .beatItem.selected{background: #efeeee;color: #2196F3;}
+.beatContainer .beatDetailsLabel {
+    font-size: small;
+    color: #797979;
+    text-transform: capitalize;
+    /* font-weight: bold; */
+    margin-top: 14px;
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0px 10px 4px;
+    /* font-weight: bold; */
+    border-radius: 10px;
+}
+
+.beatContainer .beatDetailsValue {
+    border: 1px solid #737373;
+    border-radius: 4px;
+    padding: 11px 14px;
+    margin: -10px 0 8PX;
+    /* box-shadow: 0px 0px 5px 1px #e2e2e2; */
+    COLOR: #000000;
+    font-size: medium;
+    line-height: 24px;
+    overflow-y: auto;
+    background: white;
+    position: relative;
+    display: block;
+    width: 100%;
+    /* font-family: inherit; */
+    box-sizing: border-box;
+    outline: none;
+}
+
+.beatContainer .beatDetailsValue.largeField {
+    height: 380px;
+    display: block;
+    font-family: inherit;
+    resize: none;
+}
 

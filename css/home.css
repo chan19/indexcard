@@ -240,6 +240,7 @@ div#fileNamelabel {
     margin: 6px 5px;
     overflow: unset;
     padding: 4px;
+    min-width: unset;
 }
 
 #openFile::after {
@@ -265,7 +266,7 @@ div#fileNamelabel {
 
 .button, .button:active,.button::after {
     height: 30px;
-    width: 100px;
+    min-width: 100px;
     border: none;
     text-align: center;
     text-transform: uppercase;
@@ -389,6 +390,17 @@ div#fileNamelabel {
     top: 60px;
     /* width: 200px; */
     right: 50px;
+    z-index: 2;
+    height: 30px;
+    /* display: none; */
+}
+#viewControlsPane {
+    position: fixed;
+    top: 50px;
+    width: 300px;
+    left: 0;
+    right: 0;
+    margin: auto;
     z-index: 2;
     height: 30px;
     /* display: none; */
@@ -699,6 +711,9 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     right: 0;
     margin: auto;
     }
+	#viewControlsPane{
+		display:none;
+	}
 
     .masterButton {
         /* display: block; */
