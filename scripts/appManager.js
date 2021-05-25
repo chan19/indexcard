@@ -197,12 +197,10 @@ appManager = (function(){
 			this.cardManager.setCardData(oData.cards);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
-		refreshUserInfo: function(){
-			cloudBox.getUserProfile(function(o){
+		refreshUserInfo: function(o){
 				jQuery("#user").css("background-image", o.img);
 				jQuery("#userInfoPane .userName").html(o.name);
 				jQuery("#userInfoPane .userInfoBody").html(o.email);
-			});
 		},
 		onFileFetch: function(oData){
 				this.setData(oData, true);

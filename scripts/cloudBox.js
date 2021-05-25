@@ -30,15 +30,39 @@ var cloudBox = (function() {
 			authorizeButton.style.display = 'block';
 			signoutButton.style.display = 'none';
 		}
+		refreshUserInfo(isSignedIn);
 	}
 
 	function handleAuthClick(event) {
-		var x = gapi.auth2.getAuthInstance().signIn();
+		var x = gapi.auth2.getAuthInstance().signIn().then(function(){
+			refreshUserInfo(true);
+		});
 		console.log("auth click");
 	}
 	function handleSignoutClick(event) {
-		var x = gapi.auth2.getAuthInstance().signOut();
+		gapi.auth2.getAuthInstance().signOut().then(function(){
+			refreshUserInfo(false);
+		});
 		console.log("sign out");
+	}
+	
+	function refreshUserInfo(bLoggedIn){
+			if(bLoggedIn){
+				var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+				appManager.refreshUserInfo({
+						name: oData.getGivenName() + " " + oData.getFamilyName(),
+						email: oData.getEmail(),
+						img: oData.getImageUrl()
+				});
+				
+			} else {
+				appManager.refreshUserInfo({
+					name: "Guest User",
+					email: "",
+					img: "icons/user.png"
+				});
+				
+			}
 	}
 	
 	var driveItems = {};
@@ -107,9 +131,9 @@ var cloudBox = (function() {
 			try{
 				var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
 				fnS({
-					name: s.getGivenName() + " " + s.getFamilyName(),
-					email: s.getEmail(),
-					img: s.getImageUrl()
+					name: oData.getGivenName() + " " + oData.getFamilyName(),
+					email: oData.getEmail(),
+					img: oData.getImageUrl()
 				});
 			} catch(e){
 				fnS({
