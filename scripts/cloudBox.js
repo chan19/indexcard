@@ -202,7 +202,7 @@ var cloudBox = (function() {
             var metadata = {
                 'name': appManager.getFileName()+".ijson",
                 'mimeType': contentType,
-                'parents': sFolderId || ["1eJJJgPhWc9OAnkLwoJPMspVT_YXTsqVE"]
+                'parents': [sFolderId] || ["1eJJJgPhWc9OAnkLwoJPMspVT_YXTsqVE"]
             };
 
             var multipartRequestBody = delimiter + 'Content-Type: application/json; charset=UTF-8\r\n\r\n' + JSON.stringify(metadata) + delimiter + 'Content-Type: ' + contentType + '\r\n\r\n' + fileData + '\r\n' + close_delim;
