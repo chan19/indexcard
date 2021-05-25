@@ -79,10 +79,12 @@ var cloudBox = (function() {
 			driveItems.folder = driveItems.folder || [];
 			driveItems.file = driveItems.file || [];
 			oItems.forEach(function(o){
-				if(o.mimeType == "application/vnd.google-apps.folder"){
-					driveItems.folder.push(o);
-				} else {
-					driveItems.file.push(o);
+				if(!o.explicitlyTrashed){ // ignore if deleted
+					if(o.mimeType == "application/vnd.google-apps.folder"){
+						driveItems.folder.push(o);
+					} else {
+						driveItems.file.push(o);
+					}					
 				}
 			});
 		},
@@ -172,7 +174,7 @@ var cloudBox = (function() {
 
             request.execute(function(resp) {
 					driveItems.folder.push(resp);
-					fns(resp);
+					fnS(resp);
 					//resp.id  is folder id;
             });
 
