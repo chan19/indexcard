@@ -3,16 +3,16 @@
     <head>
         <title>inkext </title>
         <meta charset="UTF-8">
-		<meta name="title" content="inkEXT">
-		<meta name="description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
-		<meta name="image" content="logos/inkextlogo.png">
-		<meta name="author" content="chan">
-		<meta property="og:title" content="inkEXT">
-		<meta property="og:description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
-		<meta property="og:image" content="logos/inkextlogo.png">
-		<meta property="og:author" content="chan">
+        <meta name="title" content="inkEXT">
+        <meta name="description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+        <meta name="image" content="logos/inkextlogo.png">
+        <meta name="author" content="chan">
+        <meta property="og:title" content="inkEXT">
+        <meta property="og:description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+        <meta property="og:image" content="logos/inkextlogo.png">
+        <meta property="og:author" content="chan">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" href="logos/inkextlogo.png" type="image/x-icon">
+        <link rel="icon" href="logos/inkextlogo.png" type="image/x-icon">
         <link href="css/theme.css" rel="stylesheet" type="text/css"/>
         <link href="css/home.css" rel="stylesheet" type="text/css"/>
         <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
@@ -35,13 +35,14 @@
         <script src="scripts/tagPopup.js"></script>
         <script src="scripts/largeEditor.js"></script>
         <script src="scripts/actDialog.js"></script>
+        <script src="scripts/cloudBox.js"></script>
         <script>
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
                     version: 12,
                     update: ["Assign Target Page Count to the cards", "ACTs view - The indexcard will be color coded based on the acts", "Assign Beats to the card. Work in progress"]
-				}
+                }
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
                     localStorage.softwareVersion = window.SCREENWRITING.version;
@@ -58,22 +59,20 @@
             });
             //HOME.saveFile();
         </script>
-		<style>
-
-		</style>
+        <style></style>
     </head>
     <body>
         <div id="header">
             <div id='menuIcon' class='icon' style='display:none'></div>
-			<img id='logo' src='logos/inkextlogo.png'>
+            <img id='logo' src='logos/inkextlogo.png'>
             <div id='fileNamelabel'>Title > </div>
             <div id="fileName" contenteditable=true spellcheck=false></div>
-			<div id='createNewFile' title='Create new file' class='icon'></div>
-            <div id='viewIcon' class='icon' title ='View only'></div>
-            <div id='saveFile' class='icon' title ='backup'></div>
-			<input id="openFile" class="button" type="file" accept=".ijson">
-		  	<div id='fileuploadmask' class='icon' title='open'></div>
-             <!-- <button id="fileuploadmask" class="button">Open</button>-->
+            <div id='createNewFile' title='Create new file' class='icon'></div>
+            <div id='viewIcon' class='icon' title='View only'></div>
+            <div id='saveFile' class='icon' title='backup'></div>
+            <input id="openFile" class="button" type="file" accept=".ijson">
+            <div id='fileuploadmask' class='icon' title='open'></div>
+            <!-- <button id="fileuploadmask" class="button">Open</button>-->
             <!-- <button id="saveFile" class="button">BACKUP</button>-->
         </div>
         <div id="searchContainer">
@@ -83,38 +82,37 @@
         <div id="masterButtonPane">
             <div id="actButton" class="masterButton"></div>
             <div id="beatButton" class="masterButton"></div>
-			<div id="pageMeterButton" class="masterButton"></div>
+            <div id="pageMeterButton" class="masterButton"></div>
             <div id="emoButton" class="masterButton"></div>
         </div>
-		<div id="metaDataContainer">
-			<div id="time" class="metadataItem">
-				<span class='label'>Saved</span>
-				<span class='value'></span>
-				<span class='detailedValue'></span>
-			</div>
-			<div id="pageCount" class="metadataItem">
-				<span class='label'>Page Meter - </span>
-				<span class='value'></span>
-				<span class='detailedValue'></span>
-			</div>
-			<div id="version" class="metadataItem" style="display:none">
-				<span class='label'>Version </span>
-				<span class='value'></span>
-			</div>
-		</div>
-		<div id='viewControlsPane'>
-			<button id = 'configureBeat' class='button' style="display:none">Configure BEATs</button>
-		</div>
-
+        <div id="metaDataContainer">
+            <div id="time" class="metadataItem">
+                <span class='label'>Saved</span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="pageCount" class="metadataItem">
+                <span class='label'>Page Meter - </span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="version" class="metadataItem" style="display:none">
+                <span class='label'>Version </span>
+                <span class='value'></span>
+            </div>
+        </div>
+        <div id='viewControlsPane'>
+            <button id='configureBeat' class='button' style="display:none">Configure BEATs</button>
+        </div>
         <div id="rightPanel"></div>
         <div id="contentArea">
             <div id="cardContainer"></div>
         </div>
         <div id='overViewContainer'>
-			<div class='overViewContainerHeader'>
-				<div class='overViewContainerHeaderText'></div>
-				<div id='overViewPrint'></div>
-			</div>
+            <div class='overViewContainerHeader'>
+                <div class='overViewContainerHeaderText'></div>
+                <div id='overViewPrint'></div>
+            </div>
             <div id='overviewContainerClose'>X</div>
             <div id='overViewItemContainer'></div>
         </div>
@@ -123,14 +121,16 @@
             <div id='updateWindow' class='dialogPrompt' style='display:none'>
                 <div class='dialogPromptHeader'>UPDATE</div>
                 <div class='dialogPromptBody'></div>
-				<div class='dialogPromptSign'>-Chan</div>
+                <div class='dialogPromptSign'>-Chan</div>
                 <button class='button'>CLOSE</button>
             </div>
-			<div id='backupConfirmationWindow'  class='dialogPrompt' style='display:none'>
-				<div class='dialogPromptHeader'>SAVE THE CURRENT FILE</div>
-                <div class='dialogPromptBody'>The current file will be saved before creating a new file.<br> Proceed? </div>
-				<button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
-				<button class='closeButton button'>CANCEL</button>
+            <div id='backupConfirmationWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>SAVE THE CURRENT FILE</div>
+                <div class='dialogPromptBody'>
+                    The current file will be saved before creating a new file.<br>Proceed? 
+                </div>
+                <button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
+                <button class='closeButton button'>CANCEL</button>
             </div>
         </div>
         <div id="footer">
@@ -139,109 +139,20 @@
                 <div class='deleteZoneIcon' delete-area=true></div>
             </div>
         </div>
-		<div id='leftPanel'>
-				<button id="authorize_button" style="display: none;">Authorize</button>
-				<button id="signout_button" style="display: none;">Sign Out</button>
-				<pre id="content"></pre>
-
-				<script type="text/javascript">
-					var CLIENT_ID = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
-					var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
-					var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
-					var SCOPES = "https://www.googleapis.com/auth/drive.file";
-
-				  var authorizeButton = document.getElementById('authorize_button');
-				  var signoutButton = document.getElementById('signout_button');
-
-				  /**
-				   *  On load, called to load the auth2 library and API client library.
-				   */
-				  function handleClientLoad() {
-					gapi.load('client:auth2', initClient);
-				  }
-
-				  /**
-				   *  Initializes the API client library and sets up sign-in state
-				   *  listeners.
-				   */
-				  function initClient() {
-					gapi.client.init({
-					  apiKey: API_KEY,
-					  clientId: CLIENT_ID,
-					  discoveryDocs: DISCOVERY_DOCS,
-					  scope: SCOPES
-					}).then(function() {
-					  // Listen for sign-in state changes.
-					  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-					  // Handle the initial sign-in state.
-					  updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-					  authorizeButton.onclick = handleAuthClick;
-					  signoutButton.onclick = handleSignoutClick;
-					});
-				  }
-
-				  /**
-				   *  Called when the signed in status changes, to update the UI
-				   *  appropriately. After a sign-in, the API is called.
-				   */
-				  function updateSigninStatus(isSignedIn) {
-					if (isSignedIn) {
-					  authorizeButton.style.display = 'none';
-					  signoutButton.style.display = 'block';
-					  printDocTitle();
-					} else {
-					  authorizeButton.style.display = 'block';
-					  signoutButton.style.display = 'none';
-					}
-				  }
-
-				  /**
-				   *  Sign in the user upon button click.
-				   */
-				  function handleAuthClick(event) {
-					gapi.auth2.getAuthInstance().signIn();
-				  }
-
-				  /**
-				   *  Sign out the user upon button click.
-				   */
-				  function handleSignoutClick(event) {
-					gapi.auth2.getAuthInstance().signOut();
-				  }
-
-				  /**
-				   * Append a pre element to the body containing the given message
-				   * as its text node. Used to display the results of the API call.
-				   *
-				   * @param {string} message Text to be placed in pre element.
-				   */
-				  function appendPre(message) {
-					var pre = document.getElementById('content');
-					var textContent = document.createTextNode(message + '\n');
-					pre.appendChild(textContent);
-				  }
-
-				  /**
-				   * Prints the title of a sample doc:
-				   * https://docs.google.com/document/d/195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE/edit
-				   */
-				  function printDocTitle() {
-					gapi.client.docs.documents.get({
-					documentId: '195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE'
-				  }).then(function(response) {
-					var doc = response.result;
-					var title = doc.title;
-					appendPre('Document "' + title + '" successfully found.\n');
-				  }, function(response) {
-					appendPre('Error: ' + response.result.error.message);
-				  });
+        <div id='leftPanel'>
+            <button id="authorize_button" style="display: none;">Authorize</button>
+            <button id="signout_button" style="display: none;">Sign Out</button>
+            <pre id="content"></pre>
+            <script type="text/javascript">
+				if(1 || window.location.search){
+					cloudBox.init();
 				}
-				</script>
-				<script async="" defer="" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>		
-					
-		
-		</div>
-		
+				function handleClientLoad() {
+                   cloudBox.onClientLoad();
+                }
+ 
+            </script>
+            <script async="" defer="" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
+        </div>
     </body>
 </html>
