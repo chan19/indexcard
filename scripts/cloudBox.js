@@ -1,44 +1,45 @@
 var cloudBox = (function() {
-			    var CLIENT_ID = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
-                var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
-                var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
-                var SCOPES = "https://www.googleapis.com/auth/drive.file,https://www.googleapis.com/auth/drive.appdata";
-				var authorizeButton, signoutButton ;             
-                function initClient() {
-                    gapi.client.init({
-                        apiKey: API_KEY,
-                        clientId: CLIENT_ID,
-                        discoveryDocs: DISCOVERY_DOCS,
-                        scope: SCOPES
-                    }).then(function() {
-                        // Listen for sign-in state changes.
-                        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+	var CLIENT_ID = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
+	var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
+	var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
+	var SCOPES = "https://www.googleapis.com/auth/drive.file,https://www.googleapis.com/auth/drive.appdata";
+	var authorizeButton, signoutButton ;             
+	function initClient() {
+		gapi.client.init({
+			apiKey: API_KEY,
+			clientId: CLIENT_ID,
+			discoveryDocs: DISCOVERY_DOCS,
+			scope: SCOPES
+		}).then(function() {
+			// Listen for sign-in state changes.
+			gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-                        // Handle the initial sign-in state.
-                        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-                        authorizeButton.onclick = handleAuthClick;
-                        signoutButton.onclick = handleSignoutClick;
-                    });
-                }
+			// Handle the initial sign-in state.
+			updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+			authorizeButton.onclick = handleAuthClick;
+			signoutButton.onclick = handleSignoutClick;
+		});
+	}
 
-                function updateSigninStatus(isSignedIn) {
-                    if (isSignedIn) {
-                        authorizeButton.style.display = 'none';
-                        signoutButton.style.display = 'block';
-                        // write code to fetch files;
-                    } else {
-                        authorizeButton.style.display = 'block';
-                        signoutButton.style.display = 'none';
-                    }
-                }
+	function updateSigninStatus(isSignedIn) {
+		if (isSignedIn) {
+			authorizeButton.style.display = 'none';
+			signoutButton.style.display = 'block';
+			// write code to fetch files;
+		} else {
+			authorizeButton.style.display = 'block';
+			signoutButton.style.display = 'none';
+		}
+	}
 
-                function handleAuthClick(event) {
-                    gapi.auth2.getAuthInstance().signIn();
-                }
-                function handleSignoutClick(event) {
-                    gapi.auth2.getAuthInstance().signOut();
-                }
-
+	function handleAuthClick(event) {
+		gapi.auth2.getAuthInstance().signIn();
+	}
+	function handleSignoutClick(event) {
+		gapi.auth2.getAuthInstance().signOut();
+	}
+	
+	var driveItems = {};
     return {
 		init: function(oConfig){
               authorizeButton = document.getElementById('authorize_button');
@@ -48,10 +49,19 @@ var cloudBox = (function() {
 		onClientLoad: function(){
 			 gapi.load('client:auth2', initClient);
 		},
-        getFolders: function() {
-        },
-        getFiles: function() {
-            var request = gapi.client.request({
+		_segregateFilesAndFolders: function(oItems){
+			driveItems.folder = driveItems.folder || [];
+			driveItems.file = driveItems.file || [];
+			oItems.forEach(function(o){
+				if(o.mimeType == "application/vnd.google-apps.folder"){
+					driveItems.folder.push(o);
+				} else {
+					driveItems.file.push(o);
+				}
+			});
+		},
+		_fetchItemsFromCloud: function(fnS){
+			var request = gapi.client.request({
                 'path': '/drive/v2/files/',
                 'method': 'get',
                 'headers': {
@@ -61,10 +71,30 @@ var cloudBox = (function() {
             });
 
             request.execute(function(resp) {
-                debugger ;
+                fnS(resp.items);
             });
+		},
+        _getItem: function(sType, fnS) {
+			var that = this;
+			if(sType == "file" || sType == "folder"){
+				if(driveItems[sType]){
+					fns(driveItems[sType]);
+				} else {
+					this._fetchItemsFromCloud(function(aItem){
+						that._segregateFilesAndFolders(aItem);
+						fns(driveItems[sType]);
+					});
+				}
+				
+			}
 
         },
+		getFolders: function() {
+			this._getItem("folder", fnS);
+        },
+		getFiles: function(fnS){
+			this._getItem("file", fnS);
+		},
         getFolder: function(sId) {
         },
         getFile: function(sId) {
