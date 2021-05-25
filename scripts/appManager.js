@@ -198,7 +198,7 @@ appManager = (function(){
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
 		refreshUserInfo: function(o){
-				jQuery("#user").css("background-image", o.img);
+				jQuery("#user").css("background-image","url("+o.img+ ")");
 				jQuery("#userInfoPane .userName").html(o.name);
 				jQuery("#userInfoPane .userInfoBody").html(o.email);
 		},
