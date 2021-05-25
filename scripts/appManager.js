@@ -200,8 +200,8 @@ appManager = (function(){
 		refreshUserInfo: function(){
 			cloudBox.getUserProfile(function(o){
 				jQuery("#user").css("background-image", o.img);
-				jQuery("#userInfoPane .userName", o.name);
-				jQuery("#userInfoPane .userInfoBody", o.email);
+				jQuery("#userInfoPane .userName").html(o.name);
+				jQuery("#userInfoPane .userInfoBody").html(o.email);
 			});
 		},
 		onFileFetch: function(oData){
