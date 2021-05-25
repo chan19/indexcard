@@ -56,7 +56,7 @@
                 }
 				
 				if(window.location.search){
-					jQuery("#leftPanel").css('left','0px');
+					jQuery("#user").show();
 				}
                 //VoiceAssistant.takeCommand();
 
@@ -71,13 +71,20 @@
             <img id='logo' src='logos/inkextlogo.png'>
             <div id='fileNamelabel'>Title > </div>
             <div id="fileName" contenteditable=true spellcheck=false></div>
-            <div id='createNewFile' title='Create new file' class='icon'></div>
-            <div id='viewIcon' class='icon' title='View only'></div>
-            <div id='saveFile' class='icon' title='backup'></div>
-            <input id="openFile" class="button" type="file" accept=".ijson">
-            <div id='fileuploadmask' class='icon' title='open'></div>
-            <!-- <button id="fileuploadmask" class="button">Open</button>-->
-            <!-- <button id="saveFile" class="button">BACKUP</button>-->
+			<div id='headerIconPane'>
+				<div id='createNewFile' title='Create new file' class='icon'></div>
+				<div id='viewIcon' class='icon' title='View only'></div>
+				<div id='saveFile' class='icon' title='backup'></div>
+				<input id="openFile" class="button" type="file" accept=".ijson" style='display:none'>
+				<div id='fileuploadmask' class='icon' title='open'></div>
+				<div id='user' class='icon' title='user' style='display:none'></div>
+			</div>
+			<div id='userInfoPane' style='display:none'>
+				<div class='userName'>Guest User</div>
+				<div class='userInfoBody'></div>
+				<button id="authorize_button" style="display: none;" class='button'>Authorize</button>
+				<button id="signout_button" style="display: none;" class='button'>Sign Out</button>
+			</div>
         </div>
         <div id="searchContainer">
             <input class="searchBar">
@@ -144,9 +151,6 @@
             </div>
         </div>
         <div id='leftPanel'>
-            <button id="authorize_button" style="display: none;">Authorize</button>
-            <button id="signout_button" style="display: none;">Sign Out</button>
-            <pre id="content"></pre>
             <script type="text/javascript">
 				if(1 || window.location.search){
 					cloudBox.init();
@@ -156,7 +160,7 @@
                 }
  
             </script>
-            <script async="" defer="" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
+            <script async defer onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
         </div>
     </body>
 </html>
