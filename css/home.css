@@ -181,6 +181,13 @@ body {
     background-image: url(../icons/user.png);
     background-color: #2196f3;
     margin-left: 10px;
+    border: none;
+    height: 33px;
+    width: 33px;
+}
+#header #user.icon:hover {
+    border: none;
+    transform: scale(1.1);
 }
 body.viewOnly #viewIcon.icon {
     background-color: #fbb043;
