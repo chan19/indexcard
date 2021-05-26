@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>inkext </title>
+        <meta charset="UTF-8">
+        <meta name="title" content="inkEXT">
+        <meta name="description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+        <meta name="image" content="logos/inkextlogo.png">
+        <meta name="author" content="chan">
+        <meta property="og:title" content="inkEXT">
+        <meta property="og:description" content="A simple free to use online index card tool to help you ideate your story/screenplay plot">
+        <meta property="og:image" content="logos/inkextlogo.png">
+        <meta property="og:author" content="chan">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="logos/inkextlogo.png" type="image/x-icon">
+        <link href="css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/home.css" rel="stylesheet" type="text/css"/>
+        <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/beats.css" rel="stylesheet" type="text/css"/>
+        <link href="css/indexcard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/overview.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tagPopup.css" rel="stylesheet" type="text/css"/>
+        <link href="css/largeEditor.css" rel="stylesheet" type="text/css"/>
+        <link href="css/actDialog.css" rel="stylesheet" type="text/css"/>
+        <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>
+        <script src="scripts/jquery-3.4.1.min.js"></script>
+        <script src="scripts/dropdown.js"></script>
+        <script src="scripts/indexcard.js"></script>
+        <script src="scripts/beats.js"></script>
+        <script src="scripts/ioManager.js"></script>
+        <script src="scripts/cardManager.js"></script>
+        <script src="scripts/appManager.js"></script>
+        <script src="scripts/voiceAssistant.js"></script>
+        <script src="scripts/overview.js"></script>
+        <script src="scripts/tagPopup.js"></script>
+        <script src="scripts/largeEditor.js"></script>
+        <script src="scripts/actDialog.js"></script>
+        <script src="scripts/cloudBox.js"></script>
+        <script>
+            jQuery(document).ready(function() {
+                appManager.init();
+                window.SCREENWRITING = {
+                    version: 12,
+                    update: ["Assign Target Page Count to the cards", "ACTs view - The indexcard will be color coded based on the acts", "Assign Beats to the card. Work in progress"]
+                }
+                var curVers = Number(localStorage.softwareVersion || 0);
+                if (curVers < window.SCREENWRITING.version) {
+                    localStorage.softwareVersion = window.SCREENWRITING.version;
+                    var s = window.SCREENWRITING.update.join("<br><br>");
+                    jQuery("#updateWindow").show().find(".dialogPromptBody").html(s);
+                    jQuery("#blocker").show();
+                    jQuery("#updateWindow button").click(function() {
+                        jQuery("#updateWindow").hide();
+                        jQuery("#blocker").hide();
+                    });
+                }
+				
+				if(window.location.search){
+					jQuery("#user").show();
+				}
+                //VoiceAssistant.takeCommand();
+
+            });
+            //HOME.saveFile();
+        </script>
+        <style></style>
+    </head>
+    <body>
+        <div id="header">
+            <div id='menuIcon' class='icon' style='display:none'></div>
+            <img id='logo' src='logos/inkextlogo.png'>
+            <div id='fileNamelabel'>Title > </div>
+            <div id="fileName" contenteditable=true spellcheck=false></div>
+			<div id='headerIconPane'>
+				<div id='createNewFile' title='Create new file' class='icon'></div>
+				<div id='viewIcon' class='icon' title='View only'></div>
+				<div id='saveFile' class='icon' title='backup'></div>
+				<input id="openFile" class="button" type="file" accept=".ijson" style='display:none'>
+				<div id='fileuploadmask' class='icon' title='open'></div>
+				<div id='user' class='icon' title='user' style='display:none'></div>
+			</div>
+			<div id='userInfoPane' style='display:none'>
+				<div class='userName'>Guest User</div>
+				<div class='userInfoBody'></div>
+				<button id="authorize_button" style="display: none;" class='button'>Sign In with Google</button>
+				<button id="signout_button" style="display: none;" class='button'>Sign Out</button>
+			</div>
+        </div>
+        <div id="searchContainer">
+            <input class="searchBar">
+            <img src='icons/search.png' class='icon'>
+        </div>
+        <div id="masterButtonPane">
+            <div id="actButton" class="masterButton"></div>
+            <div id="beatButton" class="masterButton"></div>
+            <div id="pageMeterButton" class="masterButton"></div>
+            <div id="emoButton" class="masterButton"></div>
+        </div>
+        <div id="metaDataContainer">
+            <div id="time" class="metadataItem">
+                <span class='label'>Saved</span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="pageCount" class="metadataItem">
+                <span class='label'>Page Meter - </span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="version" class="metadataItem" style="display:none">
+                <span class='label'>Version </span>
+                <span class='value'></span>
+            </div>
+        </div>
+        <div id='viewControlsPane'>
+            <button id='configureBeat' class='button' style="display:none">Configure BEATs</button>
+        </div>
+        <div id="rightPanel"></div>
+        <div id="contentArea">
+            <div id="cardContainer"></div>
+        </div>
+        <div id='overViewContainer'>
+            <div class='overViewContainerHeader'>
+                <div class='overViewContainerHeaderText'></div>
+                <div id='overViewPrint'></div>
+            </div>
+            <div id='overviewContainerClose'>X</div>
+            <div id='overViewItemContainer'></div>
+        </div>
+        <div id='blocker'></div>
+		<div id='busy' style='display:none'>
+			<div class='busyIndicator'></div>
+		</div>
+        <div id="testArea">
+            <div id='updateWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>UPDATE</div>
+                <div class='dialogPromptBody'></div>
+                <div class='dialogPromptSign'>-Chan</div>
+                <button class='button'>CLOSE</button>
+            </div>
+            <div id='backupConfirmationWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>SAVE THE CURRENT FILE</div>
+                <div class='dialogPromptBody'>
+                    The current file will be saved before creating a new file.<br>Proceed? 
+                </div>
+                <button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
+                <button class='closeButton button'>CANCEL</button>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="deleteZone" delete-area=true>
+                <div class='deleteZoneText' delete-area=true>REMOVE</div>
+                <div class='deleteZoneIcon' delete-area=true></div>
+            </div>
+        </div>
+        <div id='leftPanel'>
+            <script type="text/javascript">
+				if(1 || window.location.search){
+					cloudBox.init();
+				}
+				function handleClientLoad() {
+                   cloudBox.onClientLoad();
+                }
+ 
+            </script>
+            <script async defer onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
+        </div>
+    </body>
+</html>
