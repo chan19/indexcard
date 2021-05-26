@@ -34,14 +34,18 @@ var cloudBox = (function() {
 	}
 
 	function handleAuthClick(event) {
+		appManager.setBusy(true);
 		var x = gapi.auth2.getAuthInstance().signIn().then(function(){
 			refreshUserInfo(true);
+			appManager.setBusy(false);
 		});
 		console.log("auth click");
 	}
 	function handleSignoutClick(event) {
+		appManager.setBusy(true);
 		gapi.auth2.getAuthInstance().signOut().then(function(){
 			refreshUserInfo(false);
+			appManager.setBusy(false);
 		});
 		console.log("sign out");
 	}
@@ -180,24 +184,29 @@ var cloudBox = (function() {
 
         },
 		creatFile: function(oData){
+			appManager.setBusy(true);
 			var that = this;
 			this.getFolders(function(aFolder){
 				if(aFolder.length){
-					that._createFile(oData, aFolder[0].id);
+					that._createFile(oData, aFolder[0].id, function(){
+						appManager.setBusy(false);
+					});
 				} else {
 					that.createFolder(function(oResp){
-						that._createFile(oData, oResp.id);
+						that._createFile(oData, oResp.id, function(){
+							appManager.setBusy(false);
+						});
 					});
 				}
 			});
 		},
-        _createFile: function(oData, sFolderId) {
+        _createFile: function(oData, sFolderId, fnS) {
 
             var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
             var close_delim = "\r\n--" + boundary + "--";
             var fileName = 'warrior4.ijson';
-            var fileData = "[" + localStorage.backup + "]";
+            var fileData = JSON.stringify([appManager.getDataToSave()]);
             var contentType = 'text/plain';
             var metadata = {
                 'name': appManager.getFileName()+".ijson",
@@ -220,7 +229,7 @@ var cloudBox = (function() {
             });
 
             request.execute(function(file) {
-                console.log(file)
+                fnS();
             });
         }
 

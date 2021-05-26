@@ -253,6 +253,9 @@ appManager = (function(){
 			jQuery("#backupConfirmationWindow").hide();
 			jQuery("#blocker").hide();
 		},
+		setBusy: function(bIsBusy){
+			jQuery("#busy")[bIsBusy? "show" : "hide"]();
+		},
 		_attachEvents: function(){
 			var masterButtonPane = jQuery("#masterButtonPane");
 			var beatButton = jQuery("#beatButton");
