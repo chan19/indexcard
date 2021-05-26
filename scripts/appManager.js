@@ -365,7 +365,7 @@ appManager = (function(){
 			} else if(oTargetCard && ((toPos = oTargetCard.getProperty("index")) != fromPos)){
 				cardContainer.height(cardContainerH + "px");
 				window.scrollTo(scrollX1,scrollY1)
-				this.cardManager.moveCardToIndex(oCard,fromPos, toPos, oClone, function(){
+				this.cardManager.moveCardToIndex(oCard,fromPos, toPos, oClone, scrollY1, function(){
 					window.scrollTo(scrollX1,scrollY1);
 					cardContainer.css("height", "");
 					oClone.remove();

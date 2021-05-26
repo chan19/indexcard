@@ -183,35 +183,34 @@ var cloudBox = (function() {
             });
 
         },
-		creatFile: function(oData){
+		creatFile: function(){
 			appManager.setBusy(true);
 			var that = this;
 			this.getFolders(function(aFolder){
 				if(aFolder.length){
-					that._createFile(oData, aFolder[0].id, function(){
+					that._createFile(aFolder[0].id, function(){
 						appManager.setBusy(false);
 					});
 				} else {
 					that.createFolder(function(oResp){
-						that._createFile(oData, oResp.id, function(){
+						that._createFile(oResp.id, function(){
 							appManager.setBusy(false);
 						});
 					});
 				}
 			});
 		},
-        _createFile: function(oData, sFolderId, fnS) {
+        _createFile: function(sFolderId, fnS) {
 
             var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
             var close_delim = "\r\n--" + boundary + "--";
-            var fileName = 'warrior4.ijson';
             var fileData = JSON.stringify([appManager.getDataToSave()]);
             var contentType = 'text/plain';
             var metadata = {
                 'name': appManager.getFileName()+".ijson",
                 'mimeType': contentType,
-                'parents': [sFolderId] || ["1eJJJgPhWc9OAnkLwoJPMspVT_YXTsqVE"]
+                'parents': [sFolderId]
             };
 
             var multipartRequestBody = delimiter + 'Content-Type: application/json; charset=UTF-8\r\n\r\n' + JSON.stringify(metadata) + delimiter + 'Content-Type: ' + contentType + '\r\n\r\n' + fileData + '\r\n' + close_delim;

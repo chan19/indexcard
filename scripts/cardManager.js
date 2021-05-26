@@ -261,15 +261,16 @@ CardManager.prototype.cloneProxyMove = function(aPos, oCard, oClone){
 	var oPos = aPos[oCard.getProperty("index")];
 	
 	node.css({opacity:0});
-	
 	oClone.animate({
-		top: oPos.top + mT,
+		top: oClone.offset().top + parseInt(jQuery("#cardContainer").css('top')),
 		left: oPos.left + mL
 	}, 200);
 }
-CardManager.prototype.animateCardsReorder = function(aNodeOld,aPos, oCard, oClone, fCallback){
+CardManager.prototype.animateCardsReorder = function(aNodeOld,aPos, oCard, oClone, sY, fCallback){
 	var cardContainer = jQuery("#cardContainer");
 	cardContainer.addClass("reordermode");
+	cardContainer.css("top", "-" + sY + "px");
+	//jQuery("#card_1621341707958").offset().top + parseInt(jQuery("#cardContainer").css('top'))
 	var aNode = this.getNodes();
 	var l = aNode.length;
 	for(var i=0; i < l; i++){
@@ -280,11 +281,11 @@ CardManager.prototype.animateCardsReorder = function(aNodeOld,aPos, oCard, oClon
 		aNode[i].animate(aPos[i], 400);
 	}
 	setTimeout(function(){
-		cardContainer.removeClass("reordermode");
+		//cardContainer.removeClass("reordermode");
 		fCallback();
 	},400);
 }
-CardManager.prototype.moveCardToIndex = function(oCard,fromIndex, toIndex, oClone, callback){
+CardManager.prototype.moveCardToIndex = function(oCard,fromIndex, toIndex, oClone, sY, callback){
 	var that = this;
 	var fromIndex = oCard.getProperty("index");
 	var aCard = this.getCards();
@@ -301,7 +302,8 @@ CardManager.prototype.moveCardToIndex = function(oCard,fromIndex, toIndex, oClon
 	}
 	
 	oCard.setProperty("index", toIndex, false);
-	this.animateCardsReorder(aNode, aPos, oCard, oClone, function(){
+	this.animateCardsReorder(aNode, aPos, oCard, oClone, sY, function(){
+		jQuery("#cardContainer").removeClass("reordermode");
 		that.renderAll();
 		callback();
 	});
