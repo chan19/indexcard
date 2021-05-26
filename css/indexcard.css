@@ -73,7 +73,7 @@
 
 .indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg {
     background-color: var(--color-orange);
-    color: white;
+    color: #252525;
 }
 
 .indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg {
@@ -460,7 +460,7 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
 
 .indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg, .indexCard .colorPicker .colorCode.orange {
     background-color: var(--color-orange);
-    color: white;
+    color: black;
 }
 
 .indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg, .indexCard .colorPicker .colorCode.violet {
