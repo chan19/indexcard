@@ -23,7 +23,7 @@
 }
 
 #cardContainer.reordermode .indexCard {
-    position: fixed;
+    position: absolute;
 }
 
 .indexCardTitle {
