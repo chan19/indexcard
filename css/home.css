@@ -559,6 +559,21 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     z-index: 3;
     display: none;
 }
+#busy{
+    height: 100%;
+    width: 100%;
+    background: #000000a6;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+}
+#busy .busyIndicator{
+	height: 50px;
+	width: 50px;
+	background-image: url(../icons/busy.gif);
+
+}
 
 .dialogPrompt {
     top: 170px;
