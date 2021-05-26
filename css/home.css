@@ -562,17 +562,25 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 #busy{
     height: 100%;
     width: 100%;
-    background: #000000a6;
+    background: #000000e6;
     top: 0;
     left: 0;
     z-index: 3;
     display: none;
+    position: fixed;
 }
 #busy .busyIndicator{
-	height: 50px;
-	width: 50px;
+	height: 75px;
+	width: 75px;
 	background-image: url(../icons/busy.gif);
-
+	position: absolute;
+	background-repeat: no-repeat;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-size: contain;
+	margin: auto;
 }
 
 .dialogPrompt {
