@@ -23,6 +23,7 @@
         <link href="css/largeEditor.css" rel="stylesheet" type="text/css"/>
         <link href="css/actDialog.css" rel="stylesheet" type="text/css"/>
         <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>
+        <link href="css/cloudBox.css" rel="stylesheet" type="text/css"/>
         <script src="scripts/jquery-3.4.1.min.js"></script>
         <script src="scripts/dropdown.js"></script>
         <script src="scripts/indexcard.js"></script>
@@ -57,6 +58,7 @@
 				
 				if(window.location.search){
 					jQuery("#user").show();
+					jQuery("#cloudFetch").show();
 				}
                 //VoiceAssistant.takeCommand();
 
@@ -77,6 +79,7 @@
 				<div id='saveFile' class='icon' title='backup'></div>
 				<input id="openFile" class="button" type="file" accept=".ijson" style='display:none'>
 				<div id='fileuploadmask' class='icon' title='open'></div>
+				<div id='cloudFetch' class='icon' title ='Fetch from cloud'></div>
 				<div id='user' class='icon' title='user' style='display:none'></div>
 			</div>
 			<div id='userInfoPane' style='display:none'>
@@ -146,6 +149,9 @@
                 <button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
                 <button class='closeButton button'>CANCEL</button>
             </div>
+			<div id ='cloudBox' style='display:none'>
+				
+			</div>
         </div>
         <div id="footer">
             <div id="deleteZone" delete-area=true>
