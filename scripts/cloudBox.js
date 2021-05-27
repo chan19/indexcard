@@ -265,6 +265,7 @@ var cloudBox = (function() {
                 var fileId = this.attributes["data-fileId"].value;
                 that.loadFile(fileId, function() {
                     jQuery("#cloudBox").hide();
+					jQuery("#blocker").hide();
                 });
             });
         }
