@@ -292,6 +292,9 @@ appManager = (function(){
 					cards: oData
 				});
 			});
+			jQuery("#cloudFetch").click(function(){
+				cloudBox.displayFiles();
+			});
 			jQuery("#user").click(function(){
 				jQuery("#userInfoPane").toggle();
 			});
