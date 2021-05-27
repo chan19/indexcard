@@ -1,3 +1,12 @@
+:root {
+    --color-red: #e91e63;
+    --color-blue: #4d81d0;
+    --color-green: #009688;
+    --color-orange: #ff9800;
+    --color-violet: #673AB7;
+    --card-width-s: 175px;
+    --card-height-s: 175px;
+}
 body {
     background-color: #f9f8f8;
     width: 18cm;
@@ -27,45 +36,55 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 .overviewItem {
-    /* border-bottom: 1px solid #dedcdc; */
-    padding: 0px 8px;
-    margin-bottom: 20px;
-    /* background: #f9f8f8; */
-    /* background: white; */
+   /* border-bottom: 1px solid #ececec;*/
+    padding: 5px 8px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
 }
 
 .overviewTitle {
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 5px;
-    font-weight: bold;
+    font-size: medium;
+    margin-bottom: 0px;
+    /* font-weight: bold; */
+    font-family: monospace, Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
 }
 
 .overviewContent {
-    font-size: 16px;
-    padding-left: 14px;
+    font-size: medium;
+    color: black;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
-.overviewItem.violet {
-    border-left: 2px solid #673AB7;
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
 }
 
-.overviewItem.blue {
-    border-left: 2px solid #7a9fd8;
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
 }
 
-.overviewItem.green {
-    border-left: 2px solid #009688;
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
 }
 
-.overviewItem.orange {
-    border-left: 2px solid #fbb043;
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
 }
 
-.overviewItem.red {
-    border-left: 2px solid #e91e63;
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
 }
-
 #overviewContainerClose ,.overViewContainerHeader {
     display: none;
 }

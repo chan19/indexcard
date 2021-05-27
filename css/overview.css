@@ -16,9 +16,9 @@ div#overViewContainer {
 }
 
 .overviewItem {
-    /* border-bottom: 1px solid #dedcdc; */
-    padding: 10px 8px;
-    margin-bottom: 14px;
+    border-bottom: 1px solid #ececec;
+    padding: 5px 8px 10px;
+    margin-bottom: 10px;
     background: #f9f8f8;
     background: white;
 }
@@ -26,8 +26,8 @@ div#overViewContainer {
 .overviewTitle {
     font-size: medium;
     margin-bottom: 0px;
-    font-weight: bold;
-font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    /* font-weight: bold; */
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 .overviewItem .overviewItemBullet {
@@ -46,24 +46,24 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
-.overviewItem.violet {
-    border-left: 4px solid #673AB7;
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
 }
 
-.overviewItem.blue {
-    border-left: 4px solid #7a9fd8;
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
 }
 
-.overviewItem.green {
-    border-left: 4px solid #009688;
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
 }
 
-.overviewItem.orange {
-    border-left: 4px solid #fbb043;
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
 }
 
-.overviewItem.red {
-    border-left: 4px solid #e91e63;
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
 }
 
 #overviewContainerClose {
@@ -110,11 +110,12 @@ div#overViewItemContainer {
     position: absolute;
     top: 0;
     width: 100%;
-    border: 50px solid white;
+    /* border: 50px solid white; */
     box-sizing: border-box;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     background: white;
-    border-bottom: 5px solid white;
+    /* border-bottom: 5px solid white; */
+    padding: 60px 50px 5px;
 }
 
 #overViewPrint {
@@ -147,8 +148,8 @@ div#overViewItemContainer {
     color: #000000;
     font-family: Open;
     font-size: medium;
-font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    background: #e8e8e8;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
     padding: 4px 12px;
     /* border: 1px #9E9E9E solid; */
     /* padding: 10px 0; */
