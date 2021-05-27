@@ -255,7 +255,7 @@ var cloudBox = (function() {
         _fetchFileHtml: function(aFile) {
             var html = "";
             aFile.forEach(function(oFile, i) {
-                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(v[0].createdDate)).toLocaleString() + "</div>" + "</div>");
+                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(oFile.createdDate)).toLocaleString() + "</div>" + "</div>");
             });
             return html;
         },
