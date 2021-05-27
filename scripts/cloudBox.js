@@ -142,9 +142,16 @@ var cloudBox = (function() {
             });
 
             request.execute(function(oFileData) {
+				oFileData = oFileData || [];
                 fnS(oFileData);
             });
         },
+		loadFile: function(sId){
+			this.getFile(sId, function(oData){
+				appManager._ioManager.saveToBackUp(oData[0]);
+				appManager.onFileFetch(oData[0], true);
+			});
+		},
 		getUserProfile: function(fnS){
 			try{
 				var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
