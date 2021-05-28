@@ -2,6 +2,7 @@ div#overViewContainer {
     position: fixed;
     top: 0px;
     border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
     left: 0;
     right: 0;
     width: 80%;
@@ -66,25 +67,7 @@ div#overViewContainer {
      color: var(--color-red);
 }
 
-#overviewContainerClose {
-cursor: pointer;
-    position: absolute;
-    right: -12px;
-    top: -12px;
-    display: inline-block;
-    height: 25px;
-    width: 25px;
-    text-align: center;
-    background: white;
-    border-radius: 50%;
-    color: white;
-    background: #E91E63;
-    font-size: 12px;
-    line-height: 25px;
-    font-weight: bold;
-    box-shadow: 0px 0px 4px 2px grey;
-    z-index: 2;
-}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
 
 #overviewContainerClose:hover {
     opacity: 0.8
@@ -165,13 +148,17 @@ div#overViewItemContainer {
         box-sizing: border-box;
         max-height: 100%;
         top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
     }
 
     .overViewContainerHeader {
         height: 60px;
         position: relative;
         z-index: 1;
-        padding: 0;
+        padding: unset;
+        text-align: center;
     }
 
     .overViewContainerHeaderText {
@@ -179,12 +166,12 @@ div#overViewItemContainer {
         display: inline-block;
         line-height: 60px;
         position: absolute;
-        max-width: 70%;
-        height: 60px;
+        left: 0;
         top: 0;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        width: 100%;
     }
 
     .overviewItem {
@@ -195,9 +182,9 @@ div#overViewItemContainer {
     #overviewContainerClose {
         height: 40px;
         width: 40px;
-        right: 0;
-        top: 10px;
-        font-size: 30px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
         line-height: 40px;
         font-weight: normal;
         margin: 5px;
@@ -209,15 +196,16 @@ div#overViewItemContainer {
     }
 
     div#overViewItemContainer {
-        margin-top: 60px;
         border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 60px;
     }
 
     #overViewPrint {
         height: 40px;
         width: 40px;
-        right: 50px;
-        top: 10px;
+        right: 5px;
+        top: 5px;
         position: absolute;
         z-index: 1;
         font-size: 30px;
