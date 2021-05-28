@@ -15,6 +15,9 @@
     margin: auto;
     height: 90%;
 }
+.cloudBoxContainer {
+    margin: 10px 15px;
+}
 .cloudBoxFileItem{
 	padding: 10px 10px;
     border-bottom: 1px solid #efeeee;
@@ -22,9 +25,18 @@
     cursor: pointer;
     background-color: #ffffff;
 }
+.cloudBoxFileItem:hover {
+    background-color: #dcdbdb;
+}
 .cloudBoxFileItemName{
-	
+	font-weight: bold;
+	margin: 2px 0;
+	font-size: large;
 }
 .cloudBoxFileItemDate{
-	
+	font-size: small;
+	margin: 2px 0 2px;
+}
+#saveToCloud {
+    margin: 4px 24px;
 }
