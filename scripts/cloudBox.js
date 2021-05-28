@@ -249,13 +249,13 @@ var cloudBox = (function() {
             this.getFiles(function(aFile) {
                 appManager.setBusy(false);
                 jQuery("#blocker").show();
-                jQuery("#cloudBox").show().html(that._fetchFileHtml(aFile));
+                jQuery("#cloudBox").show().find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
             });
         },
         _fetchFileHtml: function(aFile) {
             var html = "";
             aFile.forEach(function(oFile, i) {
-                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(oFile.createdDate)).toLocaleString() + "</div>" + "</div>");
+                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title.replace(".ijson", "") + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(oFile.createdDate)).toLocaleString() + "</div>" + "</div>");
             });
             return html;
         },
@@ -268,6 +268,14 @@ var cloudBox = (function() {
 					jQuery("#blocker").hide();
                 });
             });
+		  jQuery("#saveToCloud").click(function(){
+			  appManager.setBusy(true);
+			  that.createFile(function(){
+				    appManager.setBusy(false);
+				    jQuery("#cloudBox").hide();
+					jQuery("#blocker").hide();  
+			  });
+		  });
         }
     };
 }
