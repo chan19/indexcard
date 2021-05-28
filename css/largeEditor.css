@@ -387,3 +387,55 @@
 #largeEditor .colorPicker .colorCode.violet {
     background-color: var(--color-violet);
 }
+@media only screen and (max-width: 1280px) and (orientation: portrait){
+    #largeEditor{
+        width: 100%;
+        max-width: unset;
+        height: 100%;
+        border-top: 60px solid white;
+        bottom: 4px;
+    }
+    .largeEditor .largeEditorBody{
+        padding: 2px 10px;
+        border-bottom: unset;
+    }
+	.largeEditor .largeEditorFloatingIcon {
+		position: absolute;
+		top: -80px;
+		z-index: 2;
+		color: white;
+		font-size: 70px;
+		/* font-weight: bold; */
+		cursor: pointer;
+		transition: 100ms linear all;
+	}
+
+	.largeEditor .largeEditorFloatingIcon:hover {
+		transform: scale(1.1);
+	}
+
+	.largeEditor .largeEditorFloatingIcon.next {
+		right: 0;
+	}
+
+	.largeEditor .largeEditorFloatingIcon.prev {
+		left: 0;
+	}
+	.largeEditor .largeEditorButtonPane{
+	    bottom: unset;
+	    top: -55px;
+	    background: none;
+	    margin-left: 50px;
+	    margin-right: 20px;
+	    right: 0;
+	    border: none;
+	}
+	.largeEditor .largeEditorButton{
+		height: 45px;
+		font-size: 20px;
+		right: 5px;
+		margin: 0px 20px 0px 10px;
+		background: #1d1d1d;
+		border: none;
+	}
+}
