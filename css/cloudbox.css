@@ -15,8 +15,13 @@
     margin: auto;
     height: 90%;
 }
+.cloudBoxHeader {
+    padding: 10px 10px;
+    font-size: large;
+    background: #03a9f4;
+    color: white;
+}
 .cloudBoxContainer {
-    margin: 10px 15px;
 }
 .cloudBoxFileItem{
 	padding: 10px 10px;
@@ -36,7 +41,8 @@
 .cloudBoxFileItemDate{
 	font-size: small;
 	margin: 2px 0 2px;
+	color: grey;
 }
 #saveToCloud {
-    margin: 4px 24px;
+    margin: 50px 10px;
 }
