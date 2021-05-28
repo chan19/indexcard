@@ -402,7 +402,7 @@
 	.largeEditor .largeEditorFloatingIcon {
 		position: absolute;
 		top: -80px;
-		z-index: 2;
+		z-index: 3;
 		color: white;
 		font-size: 70px;
 		/* font-weight: bold; */
@@ -416,6 +416,7 @@
 
 	.largeEditor .largeEditorFloatingIcon.next {
 		right: 0;
+		z-index: 3;
 	}
 
 	.largeEditor .largeEditorFloatingIcon.prev {
