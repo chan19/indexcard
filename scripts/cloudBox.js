@@ -1,13 +1,13 @@
 var cloudBox = (function() {
-    var CLIENT_ID = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
-    var API_KEY = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
+    var PZQ = "936055039321-js5svf8q8f6tn7tvb6sa5fcu4iea7kg7.apps.googleusercontent.com";
+    var QWT = "AIzaSyBhT9jHbwPFEBYowrafuYD3_rM6UN1Nk_Y";
     var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
     var SCOPES = "https://www.googleapis.com/auth/drive.file";
     var authorizeButton, signoutButton;
     function initClient() {
         gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
+            apiKey: QWT,
+            clientId: PZQ,
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
         }).then(function() {
@@ -262,10 +262,12 @@ var cloudBox = (function() {
         _attachEvents: function() {
             var that = this;
             jQuery("#cloudBox").on("click", ".cloudBoxFileItem", function() {
+				jQuery("#cloudBox").hide();
+				jQuery("#blocker").hide();
+				appManager.setBusy(true);
                 var fileId = this.attributes["data-fileId"].value;
                 that.loadFile(fileId, function() {
-                    jQuery("#cloudBox").hide();
-					jQuery("#blocker").hide();
+					appManager.setBusy(false);
                 });
             });
 		  jQuery("#saveToCloud").click(function(){
