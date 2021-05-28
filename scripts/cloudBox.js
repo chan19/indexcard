@@ -269,12 +269,13 @@ var cloudBox = (function() {
                 });
             });
 		  jQuery("#saveToCloud").click(function(){
-			  appManager.setBusy(true);
-			  that.createFile(function(){
-				    appManager.setBusy(false);
-				    jQuery("#cloudBox").hide();
-					jQuery("#blocker").hide();  
-			  });
+				jQuery("#cloudBox").hide();
+				jQuery("#blocker").hide();  
+				appManager.setBusy(true);
+				that.createFile(function(){
+						appManager.setBusy(false);
+
+				});
 		  });
         }
     };
