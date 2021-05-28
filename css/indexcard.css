@@ -27,13 +27,14 @@
 }
 
 .indexCardTitle {
-    padding: 2px 4px;
+    padding: 2px 8px;
     height: var(--card-titleH);
     outline: none;
     background-color: var(--color-blue);
     color: white;
     border-bottom: 1px solid transparent;
     font-size: 14px;
+    line-height: 18px;
     z-index: 1;
     position: relative;
     border-top-left-radius: 4px;
@@ -121,7 +122,7 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
 }
 
 .indexCardContent {
-    padding: 4px;
+    padding: 4px 8px;
     height: 198px;
     max-height: 168px;
     overflow-y: auto;
