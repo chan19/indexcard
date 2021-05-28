@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
     font-size: small;
-    background: #fbfbfb;
+    background: #e4e4e4;
 }
 
 #header {
@@ -497,7 +497,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 }
 
 .masterButton {
-    background-color: #a9a9a9;
+    background-color: #868585;
     display: inline-block;
     height: 22px;
     width: 22px;
