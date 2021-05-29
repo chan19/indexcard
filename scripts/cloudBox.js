@@ -303,6 +303,7 @@ var cloudBox = (function() {
 					that.createFile(function(o){
 						appManager.setBusy(false);
 						appManager.setFileId(o.id);
+						appManager.fireEvent("dataChange");
 					});
 				}
 		  });
