@@ -64,7 +64,8 @@ appManager = (function(){
 			//set metadatas
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
-			this.setFileName(oData.fileName, true);	
+			this.setFileName(oData.fileName, true);
+			this.setFileId(oData.fileId);
 			setInterval(this.refreshLastSavedTime.bind(this), 60000);
 		},
 		_data: {},
@@ -121,6 +122,7 @@ appManager = (function(){
 				version: oData.version || 1,
 				cards: oData.cards || [],
 				fileName: oData.fileName || "Untitled File",
+				fileId: oData.fileId || "",
 				tags: oData.tags || []
 			}
 		},
@@ -190,10 +192,17 @@ appManager = (function(){
 			return this._fileName;
 			
 		},
+		setFileId: function(sId){
+			this._fileId = sId;
+		},
+		getFileId: function(){
+			return this._fileId;
+		},
 		setData: function(oData, bSuppressBackup){
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
 			this.setFileName(oData.fileName, true);
+			this.setFileId(oData.fileId);
 			this.cardManager.setCardData(oData.cards);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
