@@ -135,6 +135,7 @@
 			<div class='busyIndicator'></div>
 		</div>
         <div id="testArea">
+			<div id='messageToast' class='messageToast'></div>
             <div id='updateWindow' class='dialogPrompt' style='display:none'>
                 <div class='dialogPromptHeader'>UPDATE</div>
                 <div class='dialogPromptBody'></div>
@@ -142,18 +143,21 @@
                 <button class='button'>CLOSE</button>
             </div>
             <div id='backupConfirmationWindow' class='dialogPrompt' style='display:none'>
-                <div class='dialogPromptHeader'>SAVE THE CURRENT FILE</div>
+                <div class='dialogPromptHeader'>SAVE THE CURRENT FILE?</div>
                 <div class='dialogPromptBody'>
-                    The current file will be saved before creating a new file.<br>Proceed? 
+                   Do you want to save the current file on your computer, before creating a new one? 
                 </div>
-                <button id='createBackupBeforeNew' class='confirmButton button'>OK</button>
+                <button id='createBackupBeforeNew' class='confirmButton button'>SAVE</button>
+				<button id='createNewWithoutBackup' class='confirmButton button'>DON'T SAVE</button>
                 <button class='closeButton button'>CANCEL</button>
             </div>
 			<div id ='cloudBox' style='display:none'>
 				<div class='cloudBoxHeader'>SYNC WITH CLOUD</div>
 				<div class='cloudBoxContainer'></div>
-				<button id='saveToCloud' class='button'>SAVE TO DRIVE</button>
-				
+				<div class='buttonPane'>
+					<button id='saveToCloud' class='button'>SAVE TO DRIVE</button>
+					<button id='closeCloudBox' class='button'>CLOSE</button>
+				</div>
 			</div>
         </div>
         <div id="footer">
