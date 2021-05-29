@@ -570,10 +570,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 #busy{
     height: 100%;
     width: 100%;
-    background: #000000e6;
+    background: #ffffffe6;
     top: 0;
     left: 0;
-    z-index: 3;
+    z-index: 4;
     display: none;
     position: fixed;
 }
@@ -592,7 +592,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 }
 
 .dialogPrompt {
-    top: 170px;
+    top: 100px;
     left: 0;
     right: 0;
     margin: auto;
@@ -606,13 +606,14 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 }
 
 .dialogPromptHeader {
-    color: white;
+    color: #1b1b1b;
     text-align: center;
-    font-size: large;
+    font-size: x-large;
     margin: 0px 0px;
     /* font-weight: bold; */
-    background: #009688;
+    background: #ffffff;
     padding: 8px 0;
+    border-bottom: 1px solid #dedede;
 }
 
 .dialogPromptBody {
@@ -633,6 +634,40 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     position: relative;
     margin-left: 20px;
 }
+.messageToast {
+    position: fixed;
+    top: 0;
+    padding: 20px 80px;
+    color: white;
+    box-shadow: 0px 4px 20px 12px #212121;
+    display: inline-block;
+    width: auto;
+    left: 0;
+    right: 0;
+    font-size: large;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+    opacity: 0;
+    text-transform: uppercase;
+    z-index: 4;
+    display: none;
+}
+
+.messageToast.success {
+    background-color: #4CAF50;
+    opacity: 1;
+    transition: 300ms linear all;
+}
+
+.messageToast.fail {
+    background-color: #F44336;
+    opacity: 1;
+    transition: 300ms linear all;
+}
+
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     #contentArea {
