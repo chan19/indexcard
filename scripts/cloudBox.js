@@ -217,7 +217,7 @@ var cloudBox = (function() {
 		updateFile: function(sId, fnS){
             var fileData = JSON.stringify([appManager.getDataToSave()]);
             var request = window.gapi.client.request({
-                'path': 'https://www.googleapis.com/upload/drive/v3/files/' + sId,
+                'path': 'https://www.googleapis.com/upload/drive/v2/files/' + sId,
                 //  'id': '195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE',
                 'method': 'PUT',
                 'params': {

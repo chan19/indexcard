@@ -235,7 +235,7 @@ appManager = (function(){
 				version: iVersion,
 				fileName: fileName,
 				tags: this.tagPopup.getAllTags(),
-				fileId: Date.now(),
+				fileId: this.getFileId(),
 				beats: this.beat.getDataToSave()/*,
 				acts: this.actDialog.getDataToSave()*/
 			};
