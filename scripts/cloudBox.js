@@ -270,14 +270,6 @@ var cloudBox = (function() {
 				}
             });
         },
-        displayFiles: function() {
-            var that = this;
-            appManager.setBusy(true);
-            this.getFiles(function(aFile) {
-                appManager.setBusy(false);
-                jQuery("#cloudBox").find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
-            });
-        },
         _fetchFileHtml: function(aFile) {
             var html = "";
             aFile.forEach(function(oFile, i) {
@@ -285,9 +277,18 @@ var cloudBox = (function() {
             });
             return html;
         },
+		refreshFiles: function(){
+			appManager.setBusy(true);
+            this.getFiles(function(aFile) {
+                appManager.setBusy(false);
+                jQuery("#cloudBox").find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
+            });			
+		},
 		open: function(){
+			var that = this;
 			jQuery("#blocker").show();
             jQuery("#cloudBox").show();
+			this.refreshFiles();
 		},
 		close: function(){
 			jQuery("#blocker").hide();
