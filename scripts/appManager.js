@@ -65,7 +65,7 @@ appManager = (function(){
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
 			this.setFileName(oData.fileName, true);
-			this.setFileId(oData.fileId);
+			this.setFileId(oData.id);
 			setInterval(this.refreshLastSavedTime.bind(this), 60000);
 		},
 		_data: {},
@@ -122,7 +122,7 @@ appManager = (function(){
 				version: oData.version || 1,
 				cards: oData.cards || [],
 				fileName: oData.fileName || "Untitled File",
-				fileId: oData.fileId || "",
+				fileId: oData.id || "",
 				tags: oData.tags || []
 			}
 		},
@@ -202,7 +202,7 @@ appManager = (function(){
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
 			this.setFileName(oData.fileName, true);
-			this.setFileId(oData.fileId);
+			this.setFileId(oData.id);
 			this.cardManager.setCardData(oData.cards);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
