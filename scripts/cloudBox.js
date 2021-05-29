@@ -216,7 +216,7 @@ var cloudBox = (function() {
                 }
             });
         },
-		updateFile: function(sId, fnS){
+		updateFile: function(sId, fnS, fnE){
             var fileData = JSON.stringify([appManager.getDataToSave()]);
             var request = window.gapi.client.request({
                 'path': 'https://www.googleapis.com/upload/drive/v2/files/' + sId,
@@ -228,11 +228,15 @@ var cloudBox = (function() {
                 'body': fileData
             });
 
-            request.execute(function(file) {
-                fnS(file);
+            request.execute(function(o) {
+				if(o.error){
+					fnE("File could not be updated.<br>" + o.error.message);
+				} else {
+					fnS(o);					
+				}
             });			
 		},
-        _createFile: function(sFolderId, fnS) {
+        _createFile: function(sFolderId, fnS, fnE) {
             var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
             var close_delim = "\r\n--" + boundary + "--";
@@ -258,8 +262,12 @@ var cloudBox = (function() {
                 'body': multipartRequestBody
             });
 
-            request.execute(function(file) {
-                fnS(file);
+            request.execute(function(o) {
+				if(o.error){
+					fnE("File could not be created.<br>" + o.error.message);
+				} else {
+					fnS(o);					
+				}
             });
         },
         displayFiles: function() {
@@ -267,8 +275,7 @@ var cloudBox = (function() {
             appManager.setBusy(true);
             this.getFiles(function(aFile) {
                 appManager.setBusy(false);
-                jQuery("#blocker").show();
-                jQuery("#cloudBox").show().find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
+                jQuery("#cloudBox").find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
             });
         },
         _fetchFileHtml: function(aFile) {
@@ -278,11 +285,18 @@ var cloudBox = (function() {
             });
             return html;
         },
+		open: function(){
+			jQuery("#blocker").show();
+            jQuery("#cloudBox").show();
+		},
+		close: function(){
+			jQuery("#blocker").hide();
+            jQuery("#cloudBox").hide();
+		},
         _attachEvents: function() {
             var that = this;
             jQuery("#cloudBox").on("click", ".cloudBoxFileItem", function() {
-				jQuery("#cloudBox").hide();
-				jQuery("#blocker").hide();
+				that.close();
 				appManager.setBusy(true);
                 var fileId = this.attributes["data-fileId"].value;
                 that.loadFile(fileId, function() {
@@ -291,21 +305,31 @@ var cloudBox = (function() {
             });
 		  jQuery("#saveToCloud").click(function(){
 				var fileId = appManager.getFileId();
-				jQuery("#cloudBox").hide();
-				jQuery("#blocker").hide();  
+				that.close();
 				appManager.setBusy(true);
 				if(fileId){
 					that.updateFile(fileId, function(){
 						appManager.setBusy(false);
+						appManager.showSuccess("File has been updated");
 
+					}, function(e){
+						appManager.setBusy(false);
+						appManager.showFailure(e);
 					});					
 				} else {
 					that.createFile(function(o){
 						appManager.setBusy(false);
+						appManager.showSuccess("File has been saved");
 						appManager.setFileId(o.id);
 						appManager.fireEvent("dataChange");
+					}, function(e){
+						appManager.setBusy(false);
+						appManager.showFailure(e);
 					});
 				}
+		  });
+		  jQuery("#closeCloudBox").click(function(){
+			  that.close();
 		  });
         }
     };

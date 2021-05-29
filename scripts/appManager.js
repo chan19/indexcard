@@ -280,6 +280,10 @@ appManager = (function(){
 				that.closeBackupConfirmationWindow();
 				that._ioManager.save(that.createNewFile.bind(that));
 			});
+			jQuery("#createNewWithoutBackup").click(function(){
+				that.closeBackupConfirmationWindow();
+				that.createNewFile();
+			});
 			jQuery("#backupConfirmationWindow .closeButton").click(function(){
 				that.closeBackupConfirmationWindow();
 			});
@@ -302,7 +306,7 @@ appManager = (function(){
 				});
 			});
 			jQuery("#cloudFetch").click(function(){
-				cloudBox.displayFiles();
+				cloudBox.open();
 			});
 			jQuery("#user").click(function(){
 				jQuery("#userInfoPane").toggle();
@@ -436,6 +440,20 @@ appManager = (function(){
 		},
 		getConfirmation: function(sText, fnOk, fnCancel){
 			jQuery("#confirmationWindow").show();
+		},
+		showSuccess: function(sMsg){
+			sMsg = sMsg || "Success";
+			jQuery("#messageToast").html(sMsg).removeClass("fail").show().addClass("success");
+			setTimeout(function(){
+				jQuery("#messageToast").hide();
+			}, 3000);
+		},
+		showFailure: function(sMsg){
+			sMsg = sMsg || "Fail";
+			jQuery("#messageToast").html(sMsg).removeClass("success").show().addClass("fail");
+			setTimeout(function(){
+				jQuery("#messageToast").hide();
+			}, 3000);
 		}
 	}
 })();
