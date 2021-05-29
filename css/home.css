@@ -743,11 +743,18 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         width: 28px;
         margin: 5px 3px;
         border: 8px solid transparent;
+        background-color: transparent;
     }
 
     #header .icon:hover {
         background-color: #e4e4e4;
         border: 8px solid #e4e4e4;
+    }
+    #header #user.icon{
+        border: none;
+        height: 30px;
+        width: 30px;
+        margin: 12px 3px;
     }
 
     #viewIcon.icon {
@@ -794,7 +801,14 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 
     #saveFile {
     }
-
+    #userInfoPane{
+        top: 54px;
+    }
+    #userInfoPane:before{
+        border-width: 12px;
+        top: -12px;
+        right: 0;
+    }
     .button, .button:active {
         height: 45px;
         font-size: 20px;
