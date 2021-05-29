@@ -278,6 +278,7 @@ var cloudBox = (function() {
             return html;
         },
 		refreshFiles: function(){
+			var that = this;
 			appManager.setBusy(true);
             this.getFiles(function(aFile) {
                 appManager.setBusy(false);
@@ -285,7 +286,6 @@ var cloudBox = (function() {
             });			
 		},
 		open: function(){
-			var that = this;
 			jQuery("#blocker").show();
             jQuery("#cloudBox").show();
 			this.refreshFiles();
