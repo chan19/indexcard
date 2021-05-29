@@ -122,7 +122,7 @@ appManager = (function(){
 				version: oData.version || 1,
 				cards: oData.cards || [],
 				fileName: oData.fileName || "Untitled File",
-				fileId: oData.id || "",
+				id: oData.id || "",
 				tags: oData.tags || []
 			}
 		},
@@ -235,7 +235,7 @@ appManager = (function(){
 				version: iVersion,
 				fileName: fileName,
 				tags: this.tagPopup.getAllTags(),
-				fileId: this.getFileId(),
+				id: this.getFileId(),
 				beats: this.beat.getDataToSave()/*,
 				acts: this.actDialog.getDataToSave()*/
 			};
