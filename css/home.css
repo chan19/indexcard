@@ -15,12 +15,14 @@ body {
     background: #e8e8e8;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
-#headerIconPane{
-	position: absolute;
-	height: 45px;
-	right: 0;
-	top: 0;
+
+#headerIconPane {
+    position: absolute;
+    height: 45px;
+    right: 0;
+    top: 0;
 }
+
 #logo {
     height: 35px;
     width: 35px;
@@ -63,41 +65,47 @@ body {
     z-index: 1;
     margin: 0 40px;
 }
-#userInfoPane{
-	position: fixed;
-	right: 8px;
-	background: #d2d2d2;
-	top: 45px;
-	box-shadow: 0px 5px 8px 0px grey;
-	padding: 4px 10px;
-	z-index: 2;
+
+#userInfoPane {
+    position: fixed;
+    right: 8px;
+    background: #d2d2d2;
+    top: 45px;
+    box-shadow: 0px 5px 8px 0px grey;
+    padding: 4px 10px;
+    z-index: 2;
 }
-#userInfoPane:before{
-    position:absolute;
-    content:'';
-    height:0;
-    width:0;
-    border:10px solid transparent;
-    border-top:0;
+
+#userInfoPane:before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-top: 0;
     border-bottom-color: #d2d2d2;
     top: -8px;
     right: 4px;
 }
-#userInfoPane .userName{
-	text-align: center;
-	font-size: medium;
-	margin: 10px 0;
+
+#userInfoPane .userName {
+    text-align: center;
+    font-size: medium;
+    margin: 10px 0;
 }
-#userInfoPane .userInfoBody{
-	text-align: center;
+
+#userInfoPane .userInfoBody {
+    text-align: center;
     font-size: medium;
     margin: 10px 0 10px;
 }
-#userInfoPane .button{
+
+#userInfoPane .button {
     margin: 10px 0;
     width: 100%;
     box-sizing: border-box;
 }
+
 #leftPanel {
     position: fixed;
     top: 45px;
@@ -121,11 +129,13 @@ body {
     /* background: white; */
     user-select: none;
 }
-#cardContainer.reordermode{
+
+#cardContainer.reordermode {
     position: fixed;
     top: 0;
     left: 0;
 }
+
 #cardContainer .indexCard {
     margin: 15px 8px 8px;
     vertical-align: top;
@@ -187,9 +197,11 @@ body {
 #fileuploadmask.icon {
     background-image: url(../icons/open.png);
 }
-#cloudFetch.icon{
-	 background-image: url(../icons/cloud.png);
+
+#cloudFetch.icon {
+    background-image: url(../icons/cloud.png);
 }
+
 #user.icon {
     background-image: url(../icons/user.png);
     background-color: #2196f3;
@@ -198,10 +210,12 @@ body {
     height: 33px;
     width: 33px;
 }
+
 #header #user.icon:hover {
     border: none;
     transform: scale(1.1);
 }
+
 body.viewOnly #viewIcon.icon {
     background-color: #fbb043;
     border: 4px solid #fbb043;
@@ -299,6 +313,7 @@ div#fileNamelabel {
     margin: 0;
     box-sizing: border-box;
 }
+
 .button, .button:active,.button::after {
     height: 30px;
     min-width: 100px;
@@ -428,6 +443,7 @@ div#fileNamelabel {
     height: 30px;
     /* display: none; */
 }
+
 #viewControlsPane {
     position: fixed;
     top: 50px;
@@ -463,22 +479,28 @@ div#fileNamelabel {
 #masterButtonPane #emoButton:hover::after {
     content: 'EMOTION';
 }
+
 #masterButtonPane #pageMeterButton:hover::after {
     content: 'PAGE METER';
 }
+
 #masterButtonPane #beatButton {
     background-image: url(../icons/beat.png);
 }
+
 #masterButtonPane #actButton {
     background-image: url(../icons/act.png);
 }
+
 #masterButtonPane #emoButton {
     background-image: url(../icons/emotion.png);
-	display:none;
+    display: none;
 }
+
 #masterButtonPane #pageMeterButton {
     background-image: url(../icons/pagemeter.png);
 }
+
 body.showActColors #masterButtonPane #actButton.masterButton, #masterButtonPane #actButton:hover {
     background-color: #FFC107;
 }
@@ -490,6 +512,7 @@ body.showBeats #masterButtonPane #beatButton.masterButton, #masterButtonPane #be
 body.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
     background-color: #F44336;
 }
+
 body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButtonPane #pageMeterButton:hover {
     background-color: #03a9f4;
 }
@@ -567,7 +590,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     z-index: 3;
     display: none;
 }
-#busy{
+
+#busy {
     height: 100%;
     width: 100%;
     background: #ffffffe6;
@@ -577,18 +601,19 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     display: none;
     position: fixed;
 }
-#busy .busyIndicator{
-	height: 75px;
-	width: 75px;
-	background-image: url(../icons/busy.gif);
-	position: absolute;
-	background-repeat: no-repeat;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-size: contain;
-	margin: auto;
+
+#busy .busyIndicator {
+    height: 75px;
+    width: 75px;
+    background-image: url(../icons/busy.gif);
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: contain;
+    margin: auto;
 }
 
 .dialogPrompt {
@@ -634,6 +659,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     position: relative;
     margin-left: 20px;
 }
+
 .messageToast {
     position: fixed;
     top: 0;
@@ -668,11 +694,14 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     transition: 300ms linear all;
 }
 
-
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
+    body {
+        background:white;
+    }
+
     #contentArea {
         margin: unset;
-        top: 155px;
+        top: 100px;
         width: fit-content;
         width: var(--card-width);
         left: 0;
@@ -681,7 +710,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     #header {
-        height: 60px;
+        background: white;
+        height: 54px;
+        box-shadow: none;
+        border-bottom: 1px solid #e4e4e4;
     }
 
     #leftPanel {
@@ -693,6 +725,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 
     #cardContainer .indexCard {
         margin: 15px 0 8px;
+        box-shadow: unset;
+        border: 1px solid #e4e4e4;
     }
 
     #cardContainer.fadeCards {
@@ -705,9 +739,15 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     #header .icon {
-        height: 35px;
-        width: 35px;
-        margin: 9px 3px;
+        height: 28px;
+        width: 28px;
+        margin: 5px 3px;
+        border: 8px solid transparent;
+    }
+
+    #header .icon:hover {
+        background-color: #e4e4e4;
+        border: 8px solid #e4e4e4;
     }
 
     #viewIcon.icon {
@@ -719,9 +759,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     #logo {
-        height: 50px;
-        width: 50px;
-        top: 5px;
+        height: 40px;
+        width: 40px;
+        top: 0px;
+        border: 7px solid #e91e6300;
     }
 
     #menuIcon.icon {
@@ -767,15 +808,16 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     #searchContainer {
         height: 40px;
         width: var(--card-width);
-        top: 125px;
+        top: 65px;
         left: 0;
         right: 0;
         margin: auto;
         box-sizing: border-box;
         /* background: unset; */
-        /* box-shadow: unset; */
+        box-shadow: unset;
         padding: 0;
         z-index: 1;
+        border: 1px solid #e3e4e4;
     }
 
     #searchContainer .searchBar {
@@ -800,25 +842,32 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     #masterButtonPane {
-    width: var(--card-width);
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: 64px;
-    background: #e4e4e4;
-    padding: 0 4px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 64px;
+        background: #ffffff;
+        top: unset;
+        column-count: 3;
+        padding: 0px 40px;
+        bottom: 0;
+        box-sizing: border-box;
+        border-top: 1px solid #e4e4e4;
     }
-	#viewControlsPane{
-		display:none;
-	}
+
+    #viewControlsPane {
+        display: none;
+    }
 
     .masterButton {
         /* display: block; */
         margin-top: 8px;
         height: 30px;
         width: 30px;
-        box-shadow: 0px 0px 4px 0px #8c8c8c;
-        background-color: #444444;
+        box-shadow: unset;
+        background-color: #1d1d1d;
+        margin-right: unset;
     }
 
     .masterButton:hover {
