@@ -429,7 +429,7 @@ appManager = (function(){
 		},
 		getThemes: function(){
 			//["#7a9fd8","#e91e63","#009688","#fbb043","#673AB7"];
-			return ["blue", "red", "green", "orange", "violet"];
+			return ["blue", "red", "green", "orange", "violet", "white"];
 		},
 		openPopup: function(oCard, aTag){
 			this.tagPopup.open(aTag, oCard);
