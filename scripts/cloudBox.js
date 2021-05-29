@@ -150,10 +150,12 @@ var cloudBox = (function() {
             });
         },
         loadFile: function(sId, fnS) {
-            this.getFile(sId, function(oData) {
+            this.getFile(sId, function(o) {
+				var oData = o[0];
+				oData.id =sId;
 				appManager.setFileId(sId);
-                appManager._ioManager.saveToBackUp(oData[0]);
-                appManager.onFileFetch(oData[0], true);
+                appManager._ioManager.saveToBackUp(oData);
+                appManager.onFileFetch(oData, true);
                 fnS();
             });
         },
