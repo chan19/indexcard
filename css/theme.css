@@ -4,6 +4,7 @@
     --color-green: #009688;
     --color-orange: #ff9800;
     --color-violet: #673AB7;
+	--color-white: white;
     --card-width-s: 175px;
     --card-height-s: 175px;
 }
@@ -27,6 +28,7 @@ body.theme2 {
     --color-green: #b7ded2;
     --color-orange: #f7c297;
     --color-violet: #af90d8;
+	--color-white: white;
 }
 
 @media only screen and (max-width: 1280px) {

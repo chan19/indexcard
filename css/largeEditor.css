@@ -155,10 +155,10 @@
     padding: 0px 4px;
     margin: 4px 10px;
     cursor: pointer;
-    BORDER: 1PX SOLID #7a9fd8;
+    BORDER: 1PX SOLID #2196f3;
     LINE-HEIGHT: 30px;
     BORDER-RADIUS: 4PX;
-    background: #7a9fd8;
+    background: #2196f3;
     color: white;
     overflow: hidden;
     outline: none;
@@ -240,11 +240,11 @@
     border-color: var(--color-violet);
     color: white;
 }
-
-#largeEditor.violet {
-    border-color: var(--color-violet);
+#largeEditor.white .currentColor {
+    background-color: var(--color-white);
+    border-color: #c5c5c5;
+    color: black;
 }
-
 #largeEditor.blue {
     border-color: var(--color-blue);
 }
@@ -264,7 +264,9 @@
 #largeEditor.violet {
     border-color: var(--color-violet);
 }
-
+#largeEditor.white {
+    border-color: var(--color-white);
+}
 #largeEditor .colorContainer {
     display: inline-block;
     position: relative;
@@ -274,9 +276,10 @@
 
 #largeEditor .currentColor {
     display: inline-block;
-    height: 27px;
-    width: 27px;
+    height: 25px;
+    width: 25px;
     cursor: pointer;
+    border: 1px solid transparent;
 }
 
 #largeEditor .colorPicker {
@@ -286,15 +289,14 @@
     top: 27px;
     padding: 0px;
     /* border: 1px solid #e2e2e2; */
-    z-index: 2;
+    z-index: 3;
     transition: 200ms ease all;
-    overflow: hidden;
     box-shadow: 0px 0px 6px 0px #bdbdbd;
     opacity: 0;
 }
 
 #largeEditor .colorPicker.isVisible {
-    height: 135px;
+    /* height: 135px; */
     opacity: 1;
     /* overflow: visible; */
 }
@@ -386,6 +388,12 @@
 
 #largeEditor .colorPicker .colorCode.violet {
     background-color: var(--color-violet);
+}
+#largeEditor .colorPicker .colorCode.white {
+    background-color: var(--color-white);
+    border: 1px solid #e0e0e0;
+    height: 25px;
+    width: 25px;
 }
 @media only screen and (max-width: 1280px) and (orientation: portrait){
     #largeEditor{

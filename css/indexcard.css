@@ -58,29 +58,35 @@
     left: 4px;
 }
 
-.indexCard.blue .indexCardTitle, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg {
+
+.indexCard.blue .indexCardTitle, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
     background-color: var(--color-blue);
     color: white;
 }
 
-.indexCard.red .indexCardTitle, .indexCard.red .currentColor,.indexCard.red .indexCardBg {
+.indexCard.red .indexCardTitle, .indexCard.red .currentColor,.indexCard.red .indexCardBg, .indexCard .colorPicker .colorCode.red {
     background-color: var(--color-red);
     color: white;
 }
 
-.indexCard.green .indexCardTitle, .indexCard.green .currentColor,.indexCard.green .indexCardBg {
+.indexCard.green .indexCardTitle, .indexCard.green .currentColor,.indexCard.green .indexCardBg, .indexCard .colorPicker .colorCode.green {
     background-color: var(--color-green);
     color: white;
 }
 
-.indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg {
+.indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg, .indexCard .colorPicker .colorCode.orange {
     background-color: var(--color-orange);
-    color: #252525;
+    color: black;
 }
 
-.indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg {
+.indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg, .indexCard .colorPicker .colorCode.violet {
     background-color: var(--color-violet);
     color: white;
+}
+.indexCard.white .indexCardTitle, .indexCard.white .currentColor,.indexCard.white .indexCardBg, .indexCard .colorPicker .colorCode.white {
+    background-color: var(--color-white);
+    color: black;
+    border-bottom-color: #e4e4e4;
 }
 
 body.showActColors .indexCard._actNone .indexCardContent, body.showActColors .indexCard._actNone .indexCardTitle {
@@ -446,30 +452,7 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     opacity: 0.7;
 }
 
-.indexCard.blue .indexCardTitle, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
-    background-color: var(--color-blue);
-    color: white;
-}
 
-.indexCard.red .indexCardTitle, .indexCard.red .currentColor,.indexCard.red .indexCardBg, .indexCard .colorPicker .colorCode.red {
-    background-color: var(--color-red);
-    color: white;
-}
-
-.indexCard.green .indexCardTitle, .indexCard.green .currentColor,.indexCard.green .indexCardBg, .indexCard .colorPicker .colorCode.green {
-    background-color: var(--color-green);
-    color: white;
-}
-
-.indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg, .indexCard .colorPicker .colorCode.orange {
-    background-color: var(--color-orange);
-    color: black;
-}
-
-.indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg, .indexCard .colorPicker .colorCode.violet {
-    background-color: var(--color-violet);
-    color: white;
-}
 
 #cardContainer .indexCard .cardMask {
     position: absolute;

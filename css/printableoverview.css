@@ -4,6 +4,7 @@
     --color-green: #009688;
     --color-orange: #ff9800;
     --color-violet: #673AB7;
+	--color-white: white;
     --card-width-s: 175px;
     --card-height-s: 175px;
 }
@@ -69,7 +70,9 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 .overviewItem.violet .overviewTitle{
    color: var(--color-violet)
 }
-
+.overviewItem.white .overviewTitle{
+     color: black;
+}
 .overviewItem.blue .overviewTitle{
     color: var(--color-blue)
 }
