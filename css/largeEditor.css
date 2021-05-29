@@ -409,11 +409,12 @@
     }
 	.largeEditor .largeEditorFloatingIcon {
 		position: absolute;
-		top: -80px;
+		top: -85px;
 		z-index: 3;
-		color: white;
+		color: black;
 		font-size: 70px;
-		/* font-weight: bold; */
+		font-weight: lighter;
+		line-height: 90px;
 		cursor: pointer;
 		transition: 100ms linear all;
 	}
