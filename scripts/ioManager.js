@@ -52,7 +52,8 @@ IoManager.prototype = {
 		var fCallback = oConfig.onWrite || function(){};
 		this._setDataGetter(oConfig.dataGetter);
 		var that = this;
-		jQuery("#"+id).on("click", function(){
+		this._writeNode = jQuery("#"+id);
+		this._writeNode.on("click", function(){
 			that.save(fCallback);
 			
 		});
@@ -76,23 +77,30 @@ IoManager.prototype = {
 		var aData;
 		var reader = new FileReader();
 		var that = this;
-		var fileUploader = jQuery("#"+id);
+		this._readNode = jQuery("#"+id);
 		reader.onload = function(){
 			sData = reader.result;
 			aData = JSON.parse(sData);
 			fCallback(aData[0]);
 			that.saveToBackUp(aData[0])
 		}
-		jQuery("#" + oConfig.pseudo).on("click", function(){
-			fileUploader.click();
-		});
-		fileUploader.on("change", function(e){
+		/*jQuery("#" + oConfig.pseudo).on("click", function(){
+			that._readNode.click();
+		});*/
+		
+		this._readNode.on("change", function(e){
 			var input = e.target;
 			if(input){
 				reader.readAsText(input.files[0]);
 			}
 		});
 		
+	},
+	_fireRead: function(){
+		this._readNode.click();
+	},
+	_fireWrite: function(){
+		this._writeNode.click();
 	},
 	_addGlobalListeners: function(fDataGetter){
 		var that = this;

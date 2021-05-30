@@ -30,13 +30,13 @@ var cloudBox = (function() {
             authorizeButton.style.display = 'block';
             signoutButton.style.display = 'none';
         }
-        refreshUserInfo(isSignedIn);
+        setCloudMode(isSignedIn);
     }
 
     function handleAuthClick(event) {
         appManager.setBusy(true);
         var x = gapi.auth2.getAuthInstance().signIn().then(function() {
-            refreshUserInfo(true);
+            setCloudMode(true);
             appManager.setBusy(false);
         });
         console.log("auth click");
@@ -44,28 +44,24 @@ var cloudBox = (function() {
     function handleSignoutClick(event) {
         appManager.setBusy(true);
         gapi.auth2.getAuthInstance().signOut().then(function() {
-            refreshUserInfo(false);
+            setCloudMode(false);
             appManager.setBusy(false);
         });
         console.log("sign out");
     }
 
-    function refreshUserInfo(bLoggedIn) {
+    function setCloudMode(bLoggedIn) {
         if (bLoggedIn) {
             var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-            appManager.refreshUserInfo({
+			
+            appManager.setCloudMode(true,{
                 name: oData.getGivenName() + " " + oData.getFamilyName(),
                 email: oData.getEmail(),
                 img: oData.getImageUrl()
             });
 
         } else {
-            appManager.refreshUserInfo({
-                name: "Guest User",
-                email: "",
-                img: "icons/user.png"
-            });
-
+            appManager.setCloudMode(false);
         }
     }
 
@@ -270,6 +266,31 @@ var cloudBox = (function() {
 				}
             });
         },
+		save: function(){
+			var fileId = appManager.getFileId();
+			this.close();
+			appManager.setBusy(true);
+			if(fileId){
+				this.updateFile(fileId, function(){
+					appManager.setBusy(false);
+					appManager.showSuccess("File has been updated");
+
+				}, function(e){
+					appManager.setBusy(false);
+					appManager.showFailure(e);
+				});					
+			} else {
+				this.createFile(function(o){
+					appManager.setBusy(false);
+					appManager.showSuccess("File has been saved");
+					appManager.setFileId(o.id);
+					appManager.fireEvent("dataChange");
+				}, function(e){
+					appManager.setBusy(false);
+					appManager.showFailure(e);
+				});
+			}
+		},
         _fetchFileHtml: function(aFile) {
             var html = "";
             aFile.forEach(function(oFile, i) {
@@ -304,34 +325,9 @@ var cloudBox = (function() {
 					appManager.setBusy(false);
                 });
             });
-		  jQuery("#saveToCloud").click(function(){
-				var fileId = appManager.getFileId();
-				that.close();
-				appManager.setBusy(true);
-				if(fileId){
-					that.updateFile(fileId, function(){
-						appManager.setBusy(false);
-						appManager.showSuccess("File has been updated");
-
-					}, function(e){
-						appManager.setBusy(false);
-						appManager.showFailure(e);
-					});					
-				} else {
-					that.createFile(function(o){
-						appManager.setBusy(false);
-						appManager.showSuccess("File has been saved");
-						appManager.setFileId(o.id);
-						appManager.fireEvent("dataChange");
-					}, function(e){
-						appManager.setBusy(false);
-						appManager.showFailure(e);
-					});
-				}
-		  });
-		  jQuery("#closeCloudBox").click(function(){
+		    jQuery("#closeCloudBox").click(function(){
 			  that.close();
-		  });
+			});
         }
     };
 }

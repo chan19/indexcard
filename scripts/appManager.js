@@ -73,12 +73,12 @@ appManager = (function(){
 		_initIoManager: function(){
 			this._ioManager = new IoManager({
 				read: {
-					id: "openFile",
-					pseudo: "fileuploadmask",
+					id: "openFileTrigger",
+					pseudo: "openFile",
 					onRead: this.onFileFetch.bind(this)
 				},
 				write: {
-					id: "saveFile",
+					id: "saveFileTrigger",
 					onWrite: function(){
 						console.log("filesaved");
 					},
@@ -206,7 +206,20 @@ appManager = (function(){
 			this.cardManager.setCardData(oData.cards);
 			this.fireEvent("dataChange", { beats: oData.beats, tags: oData.tags, suppressBackup: bSuppressBackup});
 		},
-		refreshUserInfo: function(o){
+		_isCloudMode: false,
+		setCloudMode: function(bOn, oUserInfo){
+			this._isCloudMode = bOn;
+			oUserInfo = oUserInfo || {
+                name: "Guest User",
+                email: "",
+                img: "icons/user.png"
+            };
+			this.updateUserInfo(oUserInfo);
+		},
+		getCloudMode: function(){
+			return this._isCloudMode;
+		},
+		updateUserInfo: function(o){
 				jQuery("#user").css("background-image","url("+o.img+ ")");
 				jQuery("#userInfoPane .userName").html(o.name);
 				jQuery("#userInfoPane .userInfoBody").html(o.email);
@@ -305,11 +318,45 @@ appManager = (function(){
 					cards: oData
 				});
 			});
-			jQuery("#cloudFetch").click(function(){
+			
+			jQuery("#loadFromLocal").click(function(){
+				that._ioManager._fireRead();
+			});
+			jQuery("#loadFromCloud").click(function(){
 				cloudBox.open();
 			});
+			jQuery("#saveToCloud").click(function(){
+				cloudBox.save();
+			});
+			jQuery("#saveToLocal").click(function(){
+				that._ioManager._fireWrite();
+			});
+			var userInfoPane = jQuery("#userInfoPane");
+			var savePane  = jQuery("#savePane");
+			var loadPane  = jQuery("#loadPane");
+			
+			jQuery("#saveFile").click(function(){
+				if(that.getCloudMode()){
+					savePane.toggle();
+					userInfoPane.hide();
+					loadPane.hide();					
+				} else {
+					that._ioManager._fireWrite();
+				}
+			});
+			jQuery("#openFile").click(function(){
+				if(that.getCloudMode()){
+					savePane.hide();
+					userInfoPane.hide();
+					loadPane.toggle();					
+				} else {
+					that._ioManager._fireRead();
+				}
+			});
 			jQuery("#user").click(function(){
-				jQuery("#userInfoPane").toggle();
+				savePane.hide();
+				userInfoPane.toggle();
+				loadPane.hide();
 			});
 			jQuery("#searchContainer .searchBar").on("input", function(){
 				that.cardManager.onSearch(this.value);
