@@ -611,7 +611,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 .dialogPromptHeader {
     color: #1b1b1b;
     text-align: center;
-    font-size: x-large;
+    font-size: medium;
     margin: 0px 0px;
     /* font-weight: bold; */
     background: #ffffff;
@@ -685,6 +685,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         left: 0;
         margin: auto;
         right: 0;
+        border-bottom: 55px solid transparent;
     }
 
     #header {
@@ -753,6 +754,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     #menuIcon.icon {
         height: 40px;
         width: 40px;
+        display: block;
     }
 
     div#fileNamelabel {
@@ -761,6 +763,13 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 
     #fileName {
         display: none;
+        font-size: small;
+        margin-left: 48px;
+        margin-top: 10px;
+        padding: 0px 4px;
+        border-radius: 8px;
+        border-color: white;
+        max-width: 180px;
     }
 
     #fileName:focus {
@@ -784,8 +793,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         right: 0;
     }
     .button, .button:active {
-        height: 45px;
-        font-size: 20px;
+        height: 30px;
+        font-size: small;
         right: 5px;
     }
 
@@ -837,11 +846,11 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         left: 0;
         right: 0;
         margin: auto;
-        height: 64px;
+        height: 54px;
         background: #ffffff;
         top: unset;
         column-count: 3;
-        padding: 8px 40px;
+        padding: 4px 40px;
         bottom: 0;
         box-sizing: border-box;
         border-top: 1px solid #e4e4e4;
@@ -854,8 +863,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     .masterButton {
         display: block;
         /* margin-top: 8px; */
-        height: 30px;
-        width: 30px;
+        height: 28px;
+        width: 28px;
         box-shadow: unset;
         background-color: #e4e4e4;
         margin-right: unset;
