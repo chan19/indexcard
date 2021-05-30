@@ -897,6 +897,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 	}
 	#masterButtonPane #beatButton {
 		background-image: url(../icons/mobile/beat.png);
+		background-color: #4caf50;
 	}
 
 	#masterButtonPane #actButton {

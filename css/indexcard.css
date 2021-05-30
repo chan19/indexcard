@@ -542,4 +542,8 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
         box-sizing: border-box;
         top: 0;
     }
+    .indexCardNumber, .indexCardAct, .indexCardPgTarget{
+        line-height: 28px;
+        font-size: small;
+    }
 }
