@@ -66,18 +66,15 @@ body {
     margin: 0 40px;
     background: #e4e4e4;
 }
-
-#userInfoPane {
+.headerActionPane{
     position: fixed;
-    right: 8px;
     background: #d2d2d2;
     top: 45px;
     box-shadow: 0px 5px 8px 0px grey;
     padding: 4px 10px;
-    z-index: 2;
+    z-index: 2;	
 }
-
-#userInfoPane:before {
+.headerActionPane:before {
     position: absolute;
     content: '';
     height: 0;
@@ -88,6 +85,20 @@ body {
     top: -8px;
     right: 4px;
 }
+.headerActionPane .button {
+    margin: 2px 0 2px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#savePane{
+	right: 100px;
+}
+#loadPane{
+	right: 60px;
+}
+#userInfoPane {
+    right: 8px;
+}
 
 #userInfoPane .userName {
     text-align: center;
@@ -95,18 +106,13 @@ body {
     margin: 10px 0;
 }
 
-#userInfoPane .userInfoBody {
+#userInfoPane .userInfoBody, .headerActionPane .headerActionInfo {
     text-align: center;
     font-size: medium;
     margin: 10px 0 10px;
 }
-
 #userInfoPane .button {
-    margin: 10px 0;
-    width: 100%;
-    box-sizing: border-box;
 }
-
 #leftPanel {
     position: fixed;
     top: 45px;
@@ -195,7 +201,7 @@ body {
     background-image: url(../icons/backup.png);
 }
 
-#fileuploadmask.icon {
+#openFile.icon {
     background-image: url(../icons/open.png);
 }
 
@@ -285,35 +291,6 @@ div#fileNamelabel {
     color: grey;
 }
 
-#openFile, #openFile:hover, #openFile:active {
-    /* z-index: 1; */
-    cursor: pointer;
-    right: 25px;
-    display: inline-block;
-    box-sizing: border-box;
-    /* border: 0; */
-    outline: none;
-    opacity: 0;
-    background: black;
-    border-radius: 50%;
-    border: 4px solid transparent;
-    height: 33px;
-    width: 33px;
-    margin: 6px 5px;
-    overflow: unset;
-    padding: 4px;
-    min-width: unset;
-}
-
-#openFile::after {
-    content: 'OPEN';
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    top: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
 
 .button, .button:active,.button::after {
     height: 30px;
@@ -454,7 +431,7 @@ div#fileNamelabel {
     margin: auto;
     z-index: 2;
     height: 30px;
-    /* display: none; */
+    display: none;
 }
 
 #masterButtonPane .masterButton:hover::after {
@@ -792,20 +769,16 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     #savedTime {
     }
 
-    #openFile, #openFile:hover, #openFile:active {
-        right: 25px;
-    }
-
-    #fileuploadmask {
+    #openFile {
         right: 5px;
     }
 
     #saveFile {
     }
-    #userInfoPane{
+    .headerActionPane{
         top: 54px;
     }
-    #userInfoPane:before{
+    .headerActionPane:before{
         border-width: 12px;
         top: -12px;
         right: 0;

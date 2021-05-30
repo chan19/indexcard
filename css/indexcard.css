@@ -191,12 +191,12 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     width: 100%;
     height: 32px;
     background: #f7f7f7;
-    /* border-top: 1px solid #b7b7b7; */
+    border-top: 1px solid #e4e4e4;
     transition: 200ms ease all;
-    padding-top: 3px;
+    padding-top: 1px;
     bottom: -33px;
     /* overflow: hidden; */
-    background: #d8d8d8;
+    /* background: #d8d8d8; */
     display: block;
     justify-content: center;
     display: none;
@@ -243,7 +243,7 @@ body.viewOnly .indexCardTitle {
     position: absolute;
     bottom: 0;
     /* width: 100%; */
-    line-height: 32px;
+    line-height: 30px;
     color: #908e8e;
     /* text-align: center; */
     background: white;
@@ -255,7 +255,7 @@ body.viewOnly .indexCardTitle {
 .indexCardPgTarget {
     position: absolute;
     bottom: 0;
-    line-height: 32px;
+    line-height: 30px;
     color: #908e8e;
     /*  display: none;*/
     display: inline-block;
@@ -264,7 +264,7 @@ body.viewOnly .indexCardTitle {
     width: 50%;
     text-align: center;
     margin: auto;
-    background: white;
+    /*! background: white; */
     text-transform: lowercase;
 }
 .indexCardTitle div, .indexCardContent div {
@@ -491,16 +491,16 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     z-index: 1;
     font-size: small;
     background: #000000;
-    padding: 4px 0px;
+    padding: 4px 10px;
     border-radius: 4px;
     bottom: 28px;
-    left: 40%;
-    width: 95px;
+    left: 35%;
+    width: auto;
     height: 20px;
     line-height: 20px;
     text-align: center;
-    left: 0;
-    right: 0;
+    /* left: 0; */
+    /* right: 0; */
     margin: auto;
 }
 #cardContainer .indexCard .statusBox:after {

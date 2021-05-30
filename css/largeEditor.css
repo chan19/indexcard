@@ -479,6 +479,8 @@
         /* padding-bottom: 2px; */
         border-radius: unset;
         background: none;
+        margin-left: 0;
+        padding: 0px 8px 4px;
     }
 
     .largeEditor .editorValue {
@@ -487,6 +489,7 @@
         margin-top: 0px;
         border-radius: unset;
         box-shadow: none;
+        padding: 11px 8px;
     }
 
     .largeEditor .editorValue.largeField {
