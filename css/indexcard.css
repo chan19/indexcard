@@ -40,6 +40,7 @@
     position: relative;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    overflow: hidden;
 }
 
 .indexCard .currentColor {
@@ -526,7 +527,7 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
 
     .indexCardTitle {
         font-size: medium;
-        padding: 8px 10px;
+        padding: 2px 8px;
     }
     .indexCard .indexCardNotes{
         padding-top: 16px;
@@ -534,10 +535,11 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
     }
     .indexCardContent,.indexCard:hover .indexCardContent {
         font-size: medium;
-        padding: 10px 10px;
+        padding: 5px 10px;
         height: var(--card-height);
-        max-height: 265px;
+        max-height: 302px;
         border-top-width: var(--card-titleH);
         box-sizing: border-box;
+        top: 0;
     }
 }

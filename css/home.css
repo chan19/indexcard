@@ -64,6 +64,7 @@ body {
     top: 90px;
     z-index: 1;
     margin: 0 40px;
+    background: #e4e4e4;
 }
 
 #userInfoPane {
@@ -222,13 +223,13 @@ body.viewOnly #viewIcon.icon {
 }
 
 #header .icon:hover {
-    background-color: #e91e63;
-    border: 4px solid #e91e63;
+    background-color: #068af5;
+    border: 4px solid #2196f3;
 }
 
 #header .icon:active {
-    background-color: #fbb043;
-    border: 4px solid #fbb043;
+    background-color: #d1e5f5;
+    border: 4px solid #d1e5f5;
 }
 
 div#fileNamelabel {
@@ -696,7 +697,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     body {
-        background:white;
+        
     }
 
     #contentArea {
@@ -743,7 +744,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         width: 28px;
         margin: 5px 3px;
         border: 8px solid transparent;
-        background-color: transparent;
+        /* background-color: transparent; */
     }
 
     #header .icon:hover {
@@ -864,7 +865,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         background: #ffffff;
         top: unset;
         column-count: 3;
-        padding: 0px 40px;
+        padding: 8px 40px;
         bottom: 0;
         box-sizing: border-box;
         border-top: 1px solid #e4e4e4;
@@ -875,17 +876,35 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     }
 
     .masterButton {
-        /* display: block; */
-        margin-top: 8px;
+        display: block;
+        /* margin-top: 8px; */
         height: 30px;
         width: 30px;
         box-shadow: unset;
-        background-color: #1d1d1d;
+        background-color: #e4e4e4;
         margin-right: unset;
+        margin: 0px auto 0;
     }
 
-    .masterButton:hover {
-    }
+	#masterButtonPane .masterButton:hover::after {
+		display:none;
+	}
+	#masterButtonPane #beatButton {
+		background-image: url(../icons/mobile/beat.png);
+	}
+
+	#masterButtonPane #actButton {
+		background-image: url(../icons/mobile/act.png);
+	}
+
+	#masterButtonPane #emoButton {
+		background-image: url(../icons/emotion.png);
+		display: none;
+	}
+
+	#masterButtonPane #pageMeterButton {
+		background-image: url(../icons/mobile/pagemeter.png);
+	}
 
     #deleteZone {
     }
