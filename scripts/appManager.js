@@ -332,7 +332,7 @@ appManager = (function(){
 				
 				} else {
 					body.addClass("showBeats");
-					configureBeatButton.show();
+					//configureBeatButton.show();
 				}
 			});
 
