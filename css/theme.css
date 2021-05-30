@@ -59,7 +59,7 @@ body.theme2 {
     :root {
         --card-width: 350px;
         --card-height: 375px;
-        --card-titleH: 60px;
+        --card-titleH: 35px;
     }
 }
 

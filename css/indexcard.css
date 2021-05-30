@@ -526,15 +526,15 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
     }
 
     .indexCardTitle {
-        font-size: medium;
-        padding: 2px 8px;
+        font-size: small;
+        padding: 4px 8px;
     }
     .indexCard .indexCardNotes{
         padding-top: 16px;
         font-size: medium;
     }
     .indexCardContent,.indexCard:hover .indexCardContent {
-        font-size: medium;
+        font-size: small;
         padding: 5px 10px;
         height: var(--card-height);
         max-height: 302px;
