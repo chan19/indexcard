@@ -415,11 +415,15 @@
         border-bottom: unset;
     }
 
+    .largeEditor .largeEditorHeader {
+    padding: 0px 4px;
+    }
+
     .largeEditor .largeEditorFloatingIcon {
         position: absolute;
         top: -60px;
         z-index: 3;
-        color: white;
+        color: black;
         font-size: 60px;
         font-weight: lighter;
         line-height: 50px;
@@ -466,26 +470,27 @@
     }
 
     .largeEditor .largeEditorPanel {
-    border-bottom: 8px solid #cecece;
-    padding: 4px 0;
+        border-bottom: 8px solid #cecece;
+        padding: 4px 0;
     }
 
     .largeEditor .editorLabel {
-    margin-top: 0;
-    /* padding-bottom: 2px; */
-    border-radius: unset;
-    background: none;
+        margin-top: 0;
+        /* padding-bottom: 2px; */
+        border-radius: unset;
+        background: none;
     }
 
     .largeEditor .editorValue {
-    border: unset;
-    border-top: 1px solid #e4e4e4;
-    margin-top: 0px;
-    border-radius: unset;
-    box-shadow: none;
+        border: unset;
+        border-top: 1px solid #e4e4e4;
+        margin-top: 0px;
+        border-radius: unset;
+        box-shadow: none;
     }
 
     .largeEditor .editorValue.largeField {
+    height: 300px;
     }
 
     .largeEditor .largeEditorBody {
