@@ -215,6 +215,10 @@ appManager = (function(){
                 img: "icons/user.png"
             };
 			this.updateUserInfo(oUserInfo);
+			// remove this later
+			if(!!window.location.search){
+				this._isCloudMode = false;
+			}
 		},
 		getCloudMode: function(){
 			return this._isCloudMode;
@@ -318,22 +322,26 @@ appManager = (function(){
 					cards: oData
 				});
 			});
-			
-			jQuery("#loadFromLocal").click(function(){
-				that._ioManager._fireRead();
-			});
-			jQuery("#loadFromCloud").click(function(){
-				cloudBox.open();
-			});
-			jQuery("#saveToCloud").click(function(){
-				cloudBox.save();
-			});
-			jQuery("#saveToLocal").click(function(){
-				that._ioManager._fireWrite();
-			});
 			var userInfoPane = jQuery("#userInfoPane");
 			var savePane  = jQuery("#savePane");
 			var loadPane  = jQuery("#loadPane");
+			
+			jQuery("#loadFromLocal").click(function(){
+				loadPane.hide();
+				that._ioManager._fireRead();
+			});
+			jQuery("#loadFromCloud").click(function(){
+				loadPane.hide();
+				cloudBox.open();
+			});
+			jQuery("#saveToCloud").click(function(){
+				savePane.hide();
+				cloudBox.save();
+			});
+			jQuery("#saveToLocal").click(function(){
+				savePane.hide();
+				that._ioManager._fireWrite();
+			});
 			
 			jQuery("#saveFile").click(function(){
 				if(that.getCloudMode()){
