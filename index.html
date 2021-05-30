@@ -37,8 +37,7 @@
         <script src="scripts/largeEditor.js"></script>
         <script src="scripts/actDialog.js"></script>
         <script src="scripts/cloudBox.js"></script>
-     <script data-ad-client="ca-pub-8980895848451862" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>   
-<script>
+        <script>
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
@@ -59,7 +58,6 @@
 				
 				if(window.location.search){
 					jQuery("#user").show();
-					jQuery("#cloudFetch").show();
 				}
                 //VoiceAssistant.takeCommand();
 
@@ -78,12 +76,23 @@
 				<div id='createNewFile' title='Create new file' class='icon'></div>
 				<div id='viewIcon' class='icon' title='View only'></div>
 				<div id='saveFile' class='icon' title='backup'></div>
-				<input id="openFile" class="button" type="file" accept=".ijson" style='display:none'>
-				<div id='fileuploadmask' class='icon' title='open'></div>
+				<div id='openFile' class='icon' title='open'></div>
+				<div id='saveFileTrigger' class='icon' title='backup' style='display:none'></div>
+				<input id="openFileTrigger" class="button" type="file" accept=".ijson" style='display:none'>
 				<div id='cloudFetch' class='icon' title ='Fetch from cloud' style='display:none'></div>
 				<div id='user' class='icon' title='user' style='display:none'></div>
 			</div>
-			<div id='userInfoPane' style='display:none'>
+			<div id='savePane' class='headerActionPane' style='display:none'>
+				<div class='headerActionInfo'>Save the file to </div>
+				<button id='saveToLocal' class='button'>COMPUTER</button>
+				<button id='saveToCloud' class='button'>CLOUD</button>
+			</div>
+			<div id='loadPane' class='headerActionPane' style='display:none'>
+				<div class='headerActionInfo'>Load a file from -</div>
+				<button id='loadFromLocal' class='button'>COMPUTER</button>
+				<button id='loadFromCloud' class='button'>CLOUD</button>
+			</div>
+			<div id='userInfoPane' class='headerActionPane' style='display:none'>
 				<div class='userName'>Guest User</div>
 				<div class='userInfoBody'></div>
 				<button id="authorize_button" style="display: none;" class='button'>Sign In with Google</button>
@@ -156,7 +165,6 @@
 				<div class='cloudBoxHeader'>SYNC WITH CLOUD</div>
 				<div class='cloudBoxContainer'></div>
 				<div class='buttonPane'>
-					<button id='saveToCloud' class='button'>SAVE TO DRIVE</button>
 					<button id='closeCloudBox' class='button'>CLOSE</button>
 				</div>
 			</div>
