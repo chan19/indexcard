@@ -216,7 +216,7 @@ appManager = (function(){
             };
 			this.updateUserInfo(oUserInfo);
 			// remove this later
-			if(!!window.location.search){
+			if(!!window.location.search == false){
 				this._isCloudMode = false;
 			}
 		},
@@ -227,6 +227,7 @@ appManager = (function(){
 				jQuery("#user").css("background-image","url("+o.img+ ")");
 				jQuery("#userInfoPane .userName").html(o.name);
 				jQuery("#userInfoPane .userInfoBody").html(o.email);
+				jQuery("#userInfoPane").hide();
 		},
 		onFileFetch: function(oData){
 				this.setData(oData, true);
