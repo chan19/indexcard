@@ -951,4 +951,13 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 
     #blocker {
     }
+    .dialogPrompt{
+        top: 55px;
+        width: 100%;
+        /* border: 2px solid transparent; */
+        box-sizing: border-box;
+    }
+    .dialogPromptBody{
+        margin: 16px 0 25px;
+    }
 }
