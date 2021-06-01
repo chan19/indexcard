@@ -59,7 +59,6 @@
     left: 4px;
 }
 
-
 .indexCard.blue .indexCardTitle, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
     background-color: var(--color-blue);
     color: white;
@@ -84,6 +83,7 @@
     background-color: var(--color-violet);
     color: white;
 }
+
 .indexCard.white .indexCardTitle, .indexCard.white .currentColor,.indexCard.white .indexCardBg, .indexCard .colorPicker .colorCode.white {
     background-color: var(--color-white);
     color: black;
@@ -177,13 +177,13 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     /*top: -200px;*/
     transition: 300ms ease-in-out all;
     word-break: break-word;
-    display:none;
+    display: none;
     border-top: var(--card-titleH) solid transparent;
 }
 
 .indexCard .indexCardNotes.isVisible {
-   /* top: 40px;*/
-   display:unset;
+    /* top: 40px;*/
+    display: unset;
 }
 
 .indexCard .beatCard {
@@ -204,7 +204,7 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
 
 body.showBeats .beatCard {
     bottom: 0px;
-	display: flex;
+    display: flex;
 }
 
 .indexCardBg {
@@ -267,6 +267,7 @@ body.viewOnly .indexCardTitle {
     /*! background: white; */
     text-transform: lowercase;
 }
+
 .indexCardTitle div, .indexCardContent div {
     position: relative;
 }
@@ -294,7 +295,7 @@ body.viewOnly .indexCardTitle {
 }
 
 .indexCard.isEditable:hover .indexCardFooter,.indexCard.isEditable:active .indexCardFooter {
-    bottom: 0;
+    bottom: 1px;
     opacity: 1;
     display: block;
     height: 31px;
@@ -412,7 +413,7 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     box-shadow: 0px 0px 6px 0px #bdbdbd;
     opacity: 1;
     /*left: -100%;*/
-    left:0;
+    left: 0;
     width: 0;
     height: 31px;
 }
@@ -454,8 +455,6 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
 .indexCard .colorPicker .colorCode:hover {
     opacity: 0.7;
 }
-
-
 
 #cardContainer .indexCard .cardMask {
     position: absolute;
@@ -504,17 +503,18 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     /* right: 0; */
     margin: auto;
 }
+
 #cardContainer .indexCard .statusBox:after {
-	content: '';
-	display: block;
-	position: absolute;
-	height: 0;
-	width:0;
-	border: 5px solid #ff000000;
-	border-bottom: none;
-	border-top: 5px solid #000000e6;
-	bottom: -5px;
-	left: 30px;
+    content: '';
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 5px solid #ff000000;
+    border-bottom: none;
+    border-top: 5px solid #000000e6;
+    bottom: -5px;
+    left: 30px;
 }
 
 body.showPageMeter #cardContainer .indexCard .statusBox {
@@ -530,28 +530,45 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
         font-size: small;
         padding: 4px 8px;
     }
-    .indexCard .info.icon{
+
+    .indexCard .info.icon {
         height: 30px;
         width: 30px;
         line-height: 30px;
         font-size: 15px;
         font-weight: lighter;
     }
-    .indexCard .indexCardNotes{
+
+    .indexCard .indexCardNotes {
         padding-top: 16px;
         font-size: medium;
     }
+
     .indexCardContent,.indexCard:hover .indexCardContent {
         font-size: small;
         padding: 5px 10px;
         height: var(--card-height);
-        max-height: 302px;
+        max-height: 289px;
         border-top-width: var(--card-titleH);
         box-sizing: border-box;
         top: 0;
     }
-    .indexCardNumber, .indexCardAct, .indexCardPgTarget{
+
+    .indexCardNumber, .indexCardAct, .indexCardPgTarget {
         line-height: 28px;
         font-size: small;
+    }
+
+    .indexCard.isEditable:hover .indexCardFooter {
+    height: var(--card-titleH);
+    bottom: 1px;
+    padding: 4px 0;
+    }
+
+    .indexCard.isEditable .indexCardFooter .indexCardColumn {
+    }
+    .indexCard.isEditable .indexCardFooter .icon{
+        height: 28px;
+        width: 28px;
     }
 }

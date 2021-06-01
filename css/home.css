@@ -300,7 +300,7 @@ div#fileNamelabel {
     text-transform: uppercase;
     background: TRANSPARENT;
     padding: 0px 4px;
-    margin: 8px 8px 8px 8px;
+    margin: 8px 8px 8px 0px;
     cursor: pointer;
     BORDER: 1PX SOLID #2196f3;
     LINE-HEIGHT: 30px;
@@ -606,10 +606,12 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     max-height: 400px;
     height: fit-content;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
 .dialogPromptHeader {
-    color: #1b1b1b;
+    color: #9c9c9c;
     text-align: center;
     font-size: medium;
     margin: 0px 0px;
@@ -620,22 +622,35 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 }
 
 .dialogPromptBody {
-    padding: 12px 25px;
-    font-size: large;
-    margin: 8px 0;
+    font-size: medium;
+    margin: 8px 0 8px;
 }
-
+.dialogPromptItem{margin-bottom: 4px;position: relative;padding-left: 14px;}
+.dialogPromptItem:before{
+    content:'';
+    position: absolute;
+    height: 4px;
+    width: 5px;
+    display: block;
+    background: #565656;
+    bottom: 8px;
+    left: 0px;
+    border-radius: 50%;
+}
 .dialogPromptSign {
-    padding: 0 28px;
+    padding: 0 0px 4px;
     font-size: medium;
     text-align: end;
     color: #bbbbbb;
-    font-weight: bold;
+    font-weight: lighter;
+    text-transform: lowercase;
+    /* position: absolute; */
+    display: none;
 }
 
 .dialogPrompt .button {
     position: relative;
-    margin-left: 20px;
+    float: right;
 }
 
 .messageToast {
@@ -795,9 +810,16 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     .button, .button:active {
         height: 30px;
         font-size: small;
-        right: 5px;
+        width: 100%;
+        margin: 0px 0px 4px !important;
+        box-sizing: border-box;
+        border-width: 0px 11px;
     }
-
+    .button:hover, .button:hover::after{
+        BACKGROUND: #58b1f7;
+        COLOR: #ffffff;
+        border-color: #58b1f7;
+    }
     #metaDataContainer {
         display: none;
     }
