@@ -15,6 +15,7 @@
     border-top: 30px solid white;
     user-select: none;
     box-sizing: border-box;
+    border-top: none;
 }
 
 .largeEditor .largeEditorHeader {
@@ -27,10 +28,9 @@
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: white !important;
+    background: white;
     color: grey;
     color: #171717;
-    font-weight: bold;
 }
 
 .largeEditor .largeEditorBody {
@@ -214,34 +214,33 @@
 .largeEditor.blue .largeEditorHeader, #largeEditor.blue .currentColor {
     background-color: var(--color-blue);
     border-color: var(--color-blue);
-    /* color: white; */
+    color: white;
 }
-
-#largeEditor.red .currentColor {
+.largeEditor.red .largeEditorHeader, #largeEditor.red .currentColor {
     background-color: var(--color-red);
     border-color: var(--color-red);
     color: white;
 }
 
-#largeEditor.green .currentColor {
+.largeEditor.green .largeEditorHeader, #largeEditor.green .currentColor {
     background-color: var(--color-green);
     border-color: var(--color-green);
     color: white;
 }
 
-#largeEditor.orange .currentColor {
+.largeEditor.orange .largeEditorHeader, #largeEditor.orange .currentColor {
     background-color: var(--color-orange);
     border-color: var(--color-orange);
-    color: black;
+    color: white;
 }
 
-#largeEditor.violet .currentColor {
+.largeEditor.violet .largeEditorHeader, #largeEditor.violet .currentColor {
     background-color: var(--color-violet);
     border-color: var(--color-violet);
     color: white;
 }
 
-#largeEditor.white .currentColor {
+.largeEditor.white .largeEditorHeader, #largeEditor.white .currentColor {
     background-color: var(--color-white);
     border-color: #c5c5c5;
     color: black;
@@ -406,30 +405,37 @@
         width: 100%;
         max-width: unset;
         height: 100%;
-        border-top: 60px solid white;
         bottom: 4px;
     }
-
+	.largeEditor .largeEditorHeader{
+		  
+	}
     .largeEditor .largeEditorBody {
         padding: 2px 0px;
         border-bottom: unset;
     }
 
     .largeEditor .largeEditorHeader {
-    padding: 0px 4px;
+    padding: 0px 8px;
     }
 
     .largeEditor .largeEditorFloatingIcon {
         position: absolute;
-        top: -60px;
+        bottom: 2px;
         z-index: 3;
-        color: black;
-        font-size: 60px;
+        top: unset;
+        color: #ffffff;
+        font-size: 35px;
         font-weight: lighter;
-        line-height: 50px;
-        height: 60px;
+        line-height: 35px;
+        height: 40px;
+        font-family: monospace;
+        width: 40px;
+        text-align: center;
+        border-radius: 50%;
         cursor: pointer;
         transition: 100ms linear all;
+        background: #03a9f4;
     }
 
     .largeEditor .largeEditorFloatingIcon:hover {
@@ -437,26 +443,19 @@
     }
 
     .largeEditor .largeEditorFloatingIcon.next {
-        right: 0;
+        right: 5px;
         z-index: 3;
     }
 
     .largeEditor .largeEditorFloatingIcon.prev {
-        left: 0;
+        left: 5px;
     }
 
     .largeEditor .largeEditorButtonPane {
-        bottom: unset;
-        top: -60px;
-        background: none;
         /* border: none; */
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
-        right: 0;
-        padding: unset;
-        box-sizing: border-box;
         width: 100%;
         column-count: 2;
+        height: 45px;
     }
 
     .largeEditor .largeEditorButton {
@@ -464,13 +463,13 @@
         font-size: small;
         line-height: 35px;
         right: 5px;
-        margin: 12px 20px 12px 10px;
-        background: #1d1d1d;
+        margin: 0px 45px 0px 10px;
+        background: #03a9f4;
         border: none;
     }
 
     .largeEditor .largeEditorPanel {
-        border-bottom: 8px solid #cecece;
+        border-bottom: 8px solid #e4e4e4;
         padding: 4px 0;
     }
 
