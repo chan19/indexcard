@@ -41,14 +41,17 @@
             jQuery(document).ready(function() {
                 appManager.init();
                 window.SCREENWRITING = {
-                    version: 13,
+                    version: 14,
                     update: ["UI design changes for mobile", "Option to create a new file without backup of the current one", "White color code added for cards"]
                 }
                 var curVers = Number(localStorage.softwareVersion || 0);
                 if (curVers < window.SCREENWRITING.version) {
                     localStorage.softwareVersion = window.SCREENWRITING.version;
-                    var s = window.SCREENWRITING.update.join("<br><br>");
-                    jQuery("#updateWindow").show().find(".dialogPromptBody").html(s);
+                    var str = "";
+					window.SCREENWRITING.update.forEach(function(s){
+						str += "<div class='dialogPromptItem'>" + s + "</div>";
+					});
+                    jQuery("#updateWindow").show().find(".dialogPromptBody").html(str);
                     jQuery("#blocker").show();
                     jQuery("#updateWindow button").click(function() {
                         jQuery("#updateWindow").hide();
