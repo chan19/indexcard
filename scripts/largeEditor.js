@@ -322,7 +322,7 @@
 		_attachTouchEvents: function(){
 			var x0, y0, x1,y1, dX, dY, t1, thMax = 50, thMin=50;
 			var that = this;
-			var bNewTouch = false;
+			var nTouches = 0;
 			this._node.on("touchstart", function(e){
 				x0 = e.touches[0].pageX;
 				y0 = e.touches[0].pageY
@@ -333,11 +333,12 @@
 			this._node.on("touchmove", function(e){
 				x1 = e.touches[0].pageX;
 				y1 = e.touches[0].pageY
+				nTouches ++;
 			});
 			this._node.on("touchend", function(e){
 				dX = x1 - x0;
 				dY = y1 - y0;
-				if(!that._suppressSwipe || (Date.now() - t1 < 2000)){
+				if((!that._suppressSwipe || (Date.now() - t1 < 2000)) && nTouches){
 					if((Math.abs(dX) > Math.abs(dY)) && (Math.abs(dX) > 50)){
 						if(dX > 0){
 							that.swipeRight();
@@ -348,6 +349,8 @@
 						e.stopPropagation();
 					}					
 				}
+				nTouches = 0;
+
 			});
 		},
         _addGlobalListeners: function() {
