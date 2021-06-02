@@ -337,8 +337,8 @@
 			this._node.on("touchend", function(e){
 				dX = x1 - x0;
 				dY = y1 - y0;
-				if(!that._suppressSwipe || (Date.now() - t1 < 1000)){
-					if((Math.abs(dX) > Math.abs(dY)) && (Math.abs(dX) > 50) &&( that._suppressSwipe != true)){
+				if(!that._suppressSwipe || (Date.now() - t1 < 2000)){
+					if((Math.abs(dX) > Math.abs(dY)) && (Math.abs(dX) > 50)){
 						if(dX > 0){
 							that.swipeRight();
 						} else {
