@@ -273,8 +273,9 @@
 			var fOnPopout = this._getHandler("popout");
 			var notesPane = oNode.find(".indexCardNotes");
 			
-			oNode.on("mousedown", function(e){
+			oNode.on("click", function(e){
 				if(navigator.maxTouchPoints){
+					oNode.find(".indexCardContent").blur();
 					fOnPopout(that);
 				}
 			});
