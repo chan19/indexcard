@@ -63,10 +63,15 @@ CardManager.prototype._initLargeEditor = function(){
 		onPrev: function(){
 			var owner = this.getOwner();
 			var ownerCardIndex = owner.getProperty("index");
-			var prevCardIndex = ownerCardIndex == 0? ownerCardIndex : ownerCardIndex -1;
-			var prevCard = that.getCard(prevCardIndex);
+			var l = that.getCards().length;
+			if(ownerCardIndex > 0){
+				var prevCardIndex = ownerCardIndex == 0? ownerCardIndex : ownerCardIndex -1;
+				var prevCard = that.getCard(prevCardIndex);
+				that.largeEditor.setData(prevCard.getData(), (prevCardIndex == 0), (prevCardIndex == l-1)).setOwner(prevCard);
+			} 
+
 			//setDataToCard(owner, data);
-			that.largeEditor.setData(prevCard.getData()).setOwner(prevCard);
+
 		},
 		onNext: function(){
 			var owner = this.getOwner();
@@ -75,7 +80,7 @@ CardManager.prototype._initLargeEditor = function(){
 			var nextCardIndex = (ownerCardIndex == l -1) ? ownerCardIndex : ownerCardIndex + 1;
 			var nextCard = that.getCard(nextCardIndex);
 			//setDataToCard(owner, data);
-			that.largeEditor.setData(nextCard.getData()).setOwner(nextCard);
+			that.largeEditor.setData(nextCard.getData(),(nextCardIndex == 0), (nextCardIndex == l-1)).setOwner(nextCard);
 		}
 	});
 	this.largeEditor.render("testArea");
@@ -252,7 +257,9 @@ CardManager.prototype.refreshTotalPageCount =function(){
 	appManager.setTotalTargetPageCount(j);
 }
 CardManager.prototype.popoutCard = function(oCard){
-	this.largeEditor.setData(oCard.getData()).open(oCard);
+	var i =oCard.getProperty("index");
+	var l = this.getCards().length;
+	this.largeEditor.setData(oCard.getData(),(i == 0), (i == l-1)).open(oCard);
 }
 CardManager.prototype.cloneProxyMove = function(aPos, oCard, oClone){
 	var node = oCard.getNodeReference();

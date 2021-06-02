@@ -23,7 +23,7 @@
             this._owner = o;
             return this;
         },
-        setData: function(o) {
+        setData: function(o, bDisablePrev, bDisableNext) {
             var oData = this._getProcessedData(o);
             this._node.find(".largeEditorHeader").html(oData.header);
             this._node.find("#plotpointTitle").html(oData.title);
@@ -38,8 +38,26 @@
             this._curColor = oData.color;
             this._locationType = oData.locationType;
             this._time = oData.time;
+			this._setDisablePrev(bDisablePrev);
+			this._setDisableNext(bDisableNext);
             return this;
         },
+		_setDisablePrev: function(bDisable){
+			this._disablePrev = bDisable;
+			this._node[bDisable? "addClass" : "removeClass"]("disablePrev");
+			return this;
+		},
+		_setDisableNext: function(bDisable){
+			this._disableNext = bDisable;
+			this._node[bDisable? "addClass" : "removeClass"]("disableNext");
+			return this;
+		},
+		_getDisablePrev: function(){
+			return this._disablePrev;
+		},
+		_getDisableNext: function(){
+			return this._disableNext;
+		},
         open: function(oCard) {
             jQuery("#blocker").show();
             this._node.show();
@@ -91,7 +109,7 @@
 
             //var locationSel= "<select id='largeEditorSel1' class='largeEditorSelect'><option value=-1>INT/EXT</option><option value=0>INT</option><option value=1>EXT</option></select>";
             //var timeSel = "<select id='largeEditorSel2' class='largeEditorSelect'><option value=-1>DAY/NIGHT</option><option value=0>DAY</option><option value=1>NIGHT</option></select>";
-            return "<div id='largeEditor' class='largeEditor'>" + "<div class='largeEditorHeader'></div>" + "<div class='largeEditorBody'>" + "<div class='largeEditorPanel'><div class='largeEditorFieldContainer field1'></div>" + this._getLocationBox() + "<div class='largeEditorFieldContainer field2'></div>" + this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div><div class='largeEditorFieldContainer field4'></div></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point title</div>" + "<div id='plotpointTitle' class='editorValue' contenteditable=true></div></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point description</div>" + "<textarea id = 'plotpointDesc' class='editorValue largeField' contenteditable=true></textarea></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Additional Notes</div>" + "<textarea class='plotpointNote editorValue largeField' contenteditable=true></textarea></div>" + "</div>" + "<div class='largeEditorFloatingIcon prev'><</div><div class='largeEditorFloatingIcon next'>></div>" + "<div class='largeEditorButtonPane'>" + "<div class='largeEditorIcon prev'><</div>" + "<div class='largeEditorIcon next'>></div>" + "<button class='largeEditorButton cancel'>CANCEL</button>" + "<button class='largeEditorButton save'>SAVE</button>" + "</div>" + "</div>"
+            return "<div id='largeEditor' class='largeEditor'>" + "<div class='largeEditorHeader'></div>" + "<div class='largeEditorBody'>" + "<div class='largeEditorPanel'><div class='largeEditorFieldContainer field1'></div>" + this._getLocationBox() + "<div class='largeEditorFieldContainer field2'></div>" + this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div><div class='largeEditorFieldContainer field4'></div></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point title</div>" + "<div id='plotpointTitle' class='editorValue' contenteditable=true></div></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point description</div>" + "<textarea id = 'plotpointDesc' class='editorValue largeField' contenteditable=true></textarea></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Additional Notes</div>" + "<textarea class='plotpointNote editorValue largeField' contenteditable=true></textarea></div>" + "</div>" + "<div class='largeEditorFloatingIcon prev'><</div><div class='largeEditorFloatingIcon next'>></div>" + "<div class='largeEditorButtonPane'>" + "<button class='largeEditorButton cancel'>CANCEL</button>" + "<button class='largeEditorButton save'>SAVE</button>" + "</div>" + "</div>"
         },
         _createNode: function() {
             this._node = jQuery(this.getHtml());
@@ -203,55 +221,47 @@
         },
         render: function(sId) {
             jQuery("#" + sId).append(this._node);
-            this._lClone = this._node.clone().attr('id', 'largeEditorCloneLeft').css('left', "-100%").css('right', "unset");
-            this._rClone = this._node.clone().attr('id', 'largeEditorCloneRight').css('left', "100%").css('right', "unset");
+            this._lClone = this._node.clone().addClass('largeEditorClone').css('left', "-100%").css('right', "unset");
+            this._rClone = this._node.clone().addClass('largeEditorClone').css('left', "100%").css('right', "unset");
             jQuery("#" + sId).append(this._lClone).append(this._rClone);
             return this;
 
         },
         swipeLeft: function() {
-            var node = this._node;
-            var clone = this._rClone;
-			clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
-			clone.html(node.html());
-			node.css('left', "100%");
-			clone.css('left', 0);
-			node.find(".largeEditorIcon.next").click();
-			
-            node.animate({
-                left: 0
-            }, 100);
-            clone.animate({
-                left: "-100%"
-            }, 100);
-
-           /* setTimeout(function() {
-                node.css('left', "unset");
-                clone.css('right', "-100%");
-				node.find(".largeEditorIcon.next").click();
-            }, 200);*/
+			if(!this._getDisableNext()){
+				var node = this._node;
+				var clone = this._rClone;
+				clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
+				clone.html(node.html());
+				node.css('left', "100%");
+				clone.css('left', 0);
+				node.find(".largeEditorFloatingIcon.next").click();
+				
+				node.animate({
+					left: 0
+				}, 300, "swing");
+				clone.animate({
+					left: "-100%"
+				}, 300, "swing");				
+			}
         },
         swipeRight: function() {
-            var node = this._node;
-            var clone = this._lClone;
-			clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
-			clone.html(node.html());
-			node.css('left', "-100%");
-			clone.css('left', 0);
-			node.find(".largeEditorIcon.prev").click();
-			
-            node.animate({
-                left: 0
-            }, 100);
-            clone.animate({
-                left: "100%"
-            }, 100);
-
-            /*setTimeout(function() {
-				node.css('right', "unset");
-				clone.css('left', "-100%");
-				node.find(".largeEditorIcon.prev").click();
-            }, 200);*/
+			if(!this._getDisablePrev()){
+				var node = this._node;
+				var clone = this._lClone;
+				clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
+				clone.html(node.html());
+				node.css('left', "-100%");
+				clone.css('left', 0);
+				node.find(".largeEditorFloatingIcon.prev").click();
+				
+				node.animate({
+					left: 0
+				}, 300, "swing");
+				clone.animate({
+					left: "100%"
+				}, 300, "swing");				
+			}
         },
         _attachEvents: function(fOnSave, fOnPrev, fOnNext) {
             var that = this;
