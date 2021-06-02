@@ -17,7 +17,9 @@
     box-sizing: border-box;
     border-top: none;
 }
-
+.largeEditor.largeEditorClone{
+	opacity: 0.7;
+}
 .largeEditor .largeEditorHeader {
     height: 35px;
     background: #607D8B;
@@ -165,22 +167,6 @@
     float: right;
 }
 
-.largeEditor .largeEditorIcon {
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    color: white;
-    background: #7a9fd8;
-    line-height: 35px;
-    text-align: center;
-    border-radius: 50%;
-    font-size: large;
-    margin: 4px 8px 4px 0;
-    cursor: pointer;
-    transition: 100ms linear all;
-    border: 1px solid #7a9fd8;
-    display: none;
-}
 
 .largeEditor .largeEditorFloatingIcon {
     position: absolute;
@@ -192,7 +178,9 @@
     cursor: pointer;
     transition: 100ms linear all;
 }
-
+.largeEditor.largeEditorClone .largeEditorFloatingIcon{
+	display:none;
+}
 .largeEditor .largeEditorFloatingIcon:hover {
     transform: scale(1.1);
 }
@@ -204,8 +192,13 @@
 .largeEditor .largeEditorFloatingIcon.prev {
     left: -60px;
 }
-
-.largeEditor .largeEditorButton:hover , .largeEditor .largeEditorIcon:hover {
+.largeEditor.disablePrev .largeEditorFloatingIcon.prev {
+	display:none;
+}
+.largeEditor.disableNext .largeEditorFloatingIcon.next {
+	display:none;
+}
+.largeEditor .largeEditorButton:hover  {
     BACKGROUND: #ffffff00;
     COLOR: #393939;
     border-color: #393939;
