@@ -1,4 +1,4 @@
-#largeEditor {
+.largeEditor {
     display: none;
     position: fixed;
     margin: auto;
@@ -211,73 +211,73 @@
     border-color: #393939;
 }
 
-.largeEditor.blue .largeEditorHeader, #largeEditor.blue .currentColor {
+.largeEditor.blue .largeEditorHeader, .largeEditor.blue .currentColor {
     background-color: var(--color-blue);
     border-color: var(--color-blue);
     color: white;
 }
-.largeEditor.red .largeEditorHeader, #largeEditor.red .currentColor {
+.largeEditor.red .largeEditorHeader, .largeEditor.red .currentColor {
     background-color: var(--color-red);
     border-color: var(--color-red);
     color: white;
 }
 
-.largeEditor.green .largeEditorHeader, #largeEditor.green .currentColor {
+.largeEditor.green .largeEditorHeader, .largeEditor.green .currentColor {
     background-color: var(--color-green);
     border-color: var(--color-green);
     color: white;
 }
 
-.largeEditor.orange .largeEditorHeader, #largeEditor.orange .currentColor {
+.largeEditor.orange .largeEditorHeader, .largeEditor.orange .currentColor {
     background-color: var(--color-orange);
     border-color: var(--color-orange);
     color: white;
 }
 
-.largeEditor.violet .largeEditorHeader, #largeEditor.violet .currentColor {
+.largeEditor.violet .largeEditorHeader, .largeEditor.violet .currentColor {
     background-color: var(--color-violet);
     border-color: var(--color-violet);
     color: white;
 }
 
-.largeEditor.white .largeEditorHeader, #largeEditor.white .currentColor {
+.largeEditor.white .largeEditorHeader, .largeEditor.white .currentColor {
     background-color: var(--color-white);
     border-color: #c5c5c5;
     color: black;
 }
 
-#largeEditor.blue {
+.largeEditor.blue {
     border-color: var(--color-blue);
 }
 
-#largeEditor.red {
+.largeEditor.red {
     border-color: var(--color-red);
 }
 
-#largeEditor.green {
+.largeEditor.green {
     border-color: var(--color-green);
 }
 
-#largeEditor.orange {
+.largeEditor.orange {
     border-color: var(--color-orange);
 }
 
-#largeEditor.violet {
+.largeEditor.violet {
     border-color: var(--color-violet);
 }
 
-#largeEditor.white {
+.largeEditor.white {
     border-color: var(--color-white);
 }
 
-#largeEditor .colorContainer {
+.largeEditor .colorContainer {
     display: inline-block;
     position: relative;
     vertical-align: bottom;
     height: 27px;
 }
 
-#largeEditor .currentColor {
+.largeEditor .currentColor {
     display: inline-block;
     height: 25px;
     width: 25px;
@@ -285,7 +285,7 @@
     border: 1px solid transparent;
 }
 
-#largeEditor .colorPicker {
+.largeEditor .colorPicker {
     height: 0;
     position: absolute;
     left: 0;
@@ -298,19 +298,19 @@
     opacity: 0;
 }
 
-#largeEditor .colorPicker.isVisible {
+.largeEditor .colorPicker.isVisible {
     /* height: 135px; */
     opacity: 1;
     /* overflow: visible; */
 }
 
-#largeEditor .colorPickerContainer {
+.largeEditor .colorPickerContainer {
     /* padding: 2px 2px 2px; */
     background-color: #ffffff;
     /* box-shadow: 0px 0px 6px 0px #bdbdbd; */
 }
 
-#largeEditor .colorPickerPopupArrow {
+.largeEditor .colorPickerPopupArrow {
     border: 10px solid transparent;
     border-top-color: #ffffff;
     width: 0;
@@ -319,14 +319,14 @@
     display: none;
 }
 
-#largeEditor .colorPicker .colorCode {
+.largeEditor .colorPicker .colorCode {
     height: 27px;
     width: 27px;
     background-color: black;
     cursor: pointer;
 }
 
-#largeEditor .largeEditorSearchBox {
+.largeEditor .largeEditorSearchBox {
     display: inline-block;
     cursor: pointer;
     color: #7a9fd8;
@@ -334,7 +334,7 @@
     position: relative;
 }
 
-#largeEditor .largeEditorSearchBox input {
+.largeEditor .largeEditorSearchBox input {
     border: none;
     width: 250px;
     color: #cfd4d6;
@@ -350,7 +350,7 @@
     cursor: text;
 }
 
-#largeEditor .largeEditorSearchBox .placeholder {
+.largeEditor .largeEditorSearchBox .placeholder {
     position: absolute;
     top: 0;
     left: 0;
@@ -363,37 +363,37 @@
     padding-left: 10px;
 }
 
-#largeEditor .largeEditorSuggestionBox {
+.largeEditor .largeEditorSuggestionBox {
 }
 
-#largeEditor .largeEditorSuggestionBox .largeEditorSuggestionItem {
+.largeEditor .largeEditorSuggestionBox .largeEditorSuggestionItem {
 }
 
-#largeEditor .colorPicker .colorCode:hover {
+.largeEditor .colorPicker .colorCode:hover {
     opacity: 0.7;
 }
 
-#largeEditor .colorPicker .colorCode.blue {
+.largeEditor .colorPicker .colorCode.blue {
     background-color: var(--color-blue);
 }
 
-#largeEditor .colorPicker .colorCode.red {
+.largeEditor .colorPicker .colorCode.red {
     background-color: var(--color-red);
 }
 
-#largeEditor .colorPicker .colorCode.green {
+.largeEditor .colorPicker .colorCode.green {
     background-color: var(--color-green);
 }
 
-#largeEditor .colorPicker .colorCode.orange {
+.largeEditor .colorPicker .colorCode.orange {
     background-color: var(--color-orange);
 }
 
-#largeEditor .colorPicker .colorCode.violet {
+.largeEditor .colorPicker .colorCode.violet {
     background-color: var(--color-violet);
 }
 
-#largeEditor .colorPicker .colorCode.white {
+.largeEditor .colorPicker .colorCode.white {
     background-color: var(--color-white);
     border: 1px solid #e0e0e0;
     height: 25px;
@@ -401,11 +401,13 @@
 }
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
-    #largeEditor {
+    .largeEditor {
         width: 100%;
         max-width: unset;
         height: 100%;
         bottom: 4px;
+        right: unset;
+        left: unset;
     }
 	.largeEditor .largeEditorHeader{
 		  
