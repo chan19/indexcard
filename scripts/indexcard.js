@@ -273,6 +273,11 @@
 			var fOnPopout = this._getHandler("popout");
 			var notesPane = oNode.find(".indexCardNotes");
 			
+			oNode.on("mousedown", function(e){
+				if(navigator.maxTouchPoints){
+					fOnPopout(that);
+				}
+			});
 			oNode.find(".indexCardTitle").focusout(function(){
 				that._setIsDirty("title", true);
 				that._onTitleChange(this.innerText, false);
@@ -315,6 +320,7 @@
 				colorPicker.toggleClass("isVisible");
 			});
 			oNode.find(".popout").click(function(){
+				oNode.find(".indexCardContent").blur();
 				fOnPopout(that);
 			});
 			oNode.find(".colorCode").click(function(){
