@@ -204,7 +204,7 @@
         render: function(sId) {
             jQuery("#" + sId).append(this._node);
             this._lClone = this._node.clone().attr('id', 'largeEditorCloneLeft').css('left', "-100%").css('right', "unset");
-            this._rClone = this._node.clone().attr('id', 'largeEditorCloneRight').css('right', "-100%").css('left', "unset");
+            this._rClone = this._node.clone().attr('id', 'largeEditorCloneRight').css('left', "100%").css('right', "unset");
             jQuery("#" + sId).append(this._lClone).append(this._rClone);
             return this;
 
@@ -213,35 +213,45 @@
             var node = this._node;
             var clone = this._rClone;
 			clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
+			clone.html(node.html());
+			node.css('left', "100%");
+			clone.css('left', 0);
+			node.find(".largeEditorIcon.next").click();
+			
             node.animate({
-                left: "-100%"
+                left: 0
             }, 100);
             clone.animate({
-                right: 0
+                left: "-100%"
             }, 100);
 
-            setTimeout(function() {
+           /* setTimeout(function() {
                 node.css('left', "unset");
                 clone.css('right', "-100%");
-                node.find(".largeEditorIcon.next").click();
-            }, 200);
+				node.find(".largeEditorIcon.next").click();
+            }, 200);*/
         },
         swipeRight: function() {
             var node = this._node;
             var clone = this._lClone;
 			clone.removeClass(["blue","red","green","violet","white","orange"]).addClass(this._curColor);
+			clone.html(node.html());
+			node.css('left', "-100%");
+			clone.css('left', 0);
+			node.find(".largeEditorIcon.prev").click();
+			
             node.animate({
-                right: "-100%"
-            }, 100);
-            clone.animate({
                 left: 0
             }, 100);
+            clone.animate({
+                left: "100%"
+            }, 100);
 
-            setTimeout(function() {
-               node.css('right', "unset");
+            /*setTimeout(function() {
+				node.css('right', "unset");
 				clone.css('left', "-100%");
-                node.find(".largeEditorIcon.prev").click();
-            }, 200);
+				node.find(".largeEditorIcon.prev").click();
+            }, 200);*/
         },
         _attachEvents: function(fOnSave, fOnPrev, fOnNext) {
             var that = this;
