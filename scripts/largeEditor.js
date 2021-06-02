@@ -257,10 +257,12 @@
             var that = this;
             var inputPlaceholder = this._node.find(".placeholder");
             var colorPicker = this._node.find(".colorPicker");
-            this._node.find(".cancel").click(function() {
+            this._node.find(".cancel").click(function(e) {
+				e.stopPropagation();
                 that.close();
             });
-            this._node.find(".save").click(function() {
+            this._node.find(".save").click(function(e) {
+				e.stopPropagation();
                 fOnSave.call(that, that._getValuesFromFields());
                 that.close();
             });
@@ -281,10 +283,12 @@
                 that._curColor = color;
                 colorPicker.toggleClass("isVisible");
             });
-            this._node.find("#largeEditorInp1").on("focusin", function() {
+            this._node.find("#largeEditorInp1").on("focusin", function(e) {
                 inputPlaceholder.hide();
+				that._suppressSwipe = true;
             }).on("focusout", function() {
                 inputPlaceholder[(this.value == "") ? "show" : "hide"]();
+				that._suppressSwipe = false;
             }).on("change", function() {
                 inputPlaceholder[(this.value == "") ? "show" : "hide"]();
             });
@@ -295,7 +299,10 @@
                 container.animate({
                     scrollTop: position
                 }, 500);
-            });
+				that._suppressSwipe = true;
+            }).on("focusout", function(){
+				that._suppressSwipe = false;
+			});
             this._node.find(".largeField").on("keyup", function(e) {
                 if (e.keyCode == 13) {
                     var curPos = this.selectionStart;
@@ -311,14 +318,17 @@
                 }
             });
         },
+		_suppressSwipe: false,
 		_attachTouchEvents: function(){
 			var x0, y0, x1,y1, dX, dY, t1, thMax = 50, thMin=50;
 			var that = this;
+			var bNewTouch = false;
 			this._node.on("touchstart", function(e){
 				x0 = e.touches[0].pageX;
 				y0 = e.touches[0].pageY
 				t1 = Date.now();
-				console.log(x0, y0);
+				//console.log(x0, y0);
+				bNewTouch =true;
 			});
 			this._node.on("touchmove", function(e){
 				x1 = e.touches[0].pageX;
@@ -327,13 +337,16 @@
 			this._node.on("touchend", function(e){
 				dX = x1 - x0;
 				dY = y1 - y0;
-				if(Math.abs(dX) > Math.abs(dY)){
-					if(dX > 0){
-						that.swipeRight();
-					} else {
-						that.swipeLeft();
-					}
-					e.preventDefault();
+				if(!that._suppressSwipe || (Date.now() - t1 < 1000)){
+					if((Math.abs(dX) > Math.abs(dY)) && (Math.abs(dX) > 50) &&( that._suppressSwipe != true)){
+						if(dX > 0){
+							that.swipeRight();
+						} else {
+							that.swipeLeft();
+						}
+						e.preventDefault();
+						e.stopPropagation();
+					}					
 				}
 			});
 		},
