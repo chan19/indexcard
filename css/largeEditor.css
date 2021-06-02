@@ -438,6 +438,7 @@
         cursor: pointer;
         transition: 100ms linear all;
         background: #03a9f4;
+        display: none;
     }
 
     .largeEditor .largeEditorFloatingIcon:hover {
@@ -456,18 +457,21 @@
     .largeEditor .largeEditorButtonPane {
         /* border: none; */
         width: 100%;
-        column-count: 2;
         height: 45px;
+        padding: 4px 0px 4px 10px;
     }
 
     .largeEditor .largeEditorButton {
         height: 35px;
         font-size: small;
         line-height: 35px;
-        right: 5px;
-        margin: 0px 45px 0px 10px;
+        right: unset;
+        margin: 0px 1px 0px 1px;
         background: #03a9f4;
         border: none;
+        float: unset;
+        width: 48%;
+        box-sizing: border-box;
     }
 
     .largeEditor .largeEditorPanel {
