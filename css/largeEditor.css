@@ -17,9 +17,6 @@
     box-sizing: border-box;
     border-top: none;
 }
-.largeEditor.largeEditorClone{
-	opacity: 0.7;
-}
 .largeEditor .largeEditorHeader {
     height: 35px;
     background: #607D8B;
@@ -37,7 +34,9 @@
 
 .largeEditor .largeEditorBody {
 }
-
+.largeEditor.largeEditorClone .largeEditorBody{
+	opacity: 0.8;
+}
 .largeEditor .largeEditorPanel {
     /* border-bottom: 1px solid #ecebeb; */
     margin: 5px 0;
