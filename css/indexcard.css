@@ -198,6 +198,7 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     display: block;
     justify-content: center;
     display: none;
+	z-index:4;
 }
 
 body.showBeats .beatCard {
