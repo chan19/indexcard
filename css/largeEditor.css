@@ -321,16 +321,17 @@
 }
 
 .largeEditor .largeEditorSearchBox {
-    display: inline-block;
+    display: block;
     cursor: pointer;
     color: #7a9fd8;
     border-radius: 2px;
     position: relative;
+    margin-right: 8px;
 }
 
 .largeEditor .largeEditorSearchBox input {
     border: none;
-    width: 250px;
+    width: 100%;
     color: #cfd4d6;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     text-transform: uppercase;
@@ -338,10 +339,12 @@
     box-sizing: unset;
     position: relative;
     background: transparent;
-    border: 1px solid #737373;
+    border: 1px solid #d6d6d6;
     padding: 4px 10px 4px 10px;
     color: black;
     cursor: text;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 .largeEditor .largeEditorSearchBox .placeholder {
