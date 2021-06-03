@@ -131,25 +131,23 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
 
 .indexCardContent {
     padding: 4px 8px;
-    height: 198px;
-    max-height: 168px;
     overflow-y: auto;
     scroll-margin: 0;
     scroll-padding: 0;
     outline: none;
     color: #000000;
-    /* background: white; */
-    position: relative;
-    /* border: 1px solid #e8e8e8; */
+    position: absolute;
     border: none;
-    /* border-bottom: 1px solid #e8e8e8; */
     font-size: 14px;
     display: block;
     font-family: inherit;
     resize: none;
     width: 100%;
-    /* border: none; */
+    top: 0;
     box-sizing: border-box;
+    border-top: var(--card-titleH) solid #ffffff00;
+    height: var(--card-height);
+    border-bottom: var(--card-titleH) solid #673ab700;
 }
 
 
@@ -604,7 +602,6 @@ body.nonTouchDevice .indexCard .icon:active {
     opacity: 0.8;
 }
 body.nonTouchDevice .indexCard:hover .indexCardContent {
-    height: 175px;
 }
 body.nonTouchDevice #cardContainer.fadeCards .indexCard.inFocus .cardMask:hover, body.noTouchDevice #cardContainer.fadeCards .indexCard .cardMask:hover {
     background: #9e9e9e2b;
@@ -625,10 +622,7 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
     }
 	.indexCardContent {
 		font-size: small;
-		padding: 5px 10px;
-		height: var(--card-height);
-		max-height: 289px;
-		border-top-width: var(--card-titleH);
+		padding: 10px 10px 5px;
 		box-sizing: border-box;
 		top: 0;
 	}
