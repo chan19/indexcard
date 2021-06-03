@@ -152,9 +152,6 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     box-sizing: border-box;
 }
 
-.indexCard:hover .indexCardContent {
-    height: 175px;
-}
 
 .indexCard .indexCardNotes {
     padding: 4px 8px;
@@ -294,23 +291,6 @@ body.viewOnly .indexCardTitle {
     padding-top: 4px;
 }
 
-.indexCard.isEditable:hover .indexCardFooter,.indexCard.isEditable:active .indexCardFooter {
-    bottom: 1px;
-    opacity: 1;
-    display: block;
-    height: 31px;
-}
-
-.indexCard .icon:hover {
-    transform: scale(1.1);
-    opacity: 1;
-    border-color: #010101;
-    color: #010101;
-}
-
-.indexCard .icon:active {
-    opacity: 0.8;
-}
 
 .indexCard .icon {
     color: #696666;
@@ -378,9 +358,7 @@ body.viewOnly .indexCardTitle {
     color: white;
 }
 
-.indexCard:hover .info.icon {
-    display: unset;
-}
+
 
 .indexCard.proxyCard {
     position: fixed;
@@ -452,9 +430,7 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     display: inline-block;
 }
 
-.indexCard .colorPicker .colorCode:hover {
-    opacity: 0.7;
-}
+
 
 #cardContainer .indexCard .cardMask {
     position: absolute;
@@ -473,10 +449,6 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     opacity: 0.8;
 }
 
-#cardContainer.fadeCards .indexCard.inFocus .cardMask:hover, #cardContainer.fadeCards .indexCard .cardMask:hover {
-    background: #9e9e9e2b;
-    opacity: 0.8;
-}
 
 #cardContainer.fadeCards .indexCard.inFocus .cardMask {
     opacity: 0;
@@ -521,6 +493,41 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
     display: inline-block;
 }
 
+body.nonTouchDevice .indexCard.isEditable:hover .indexCardFooter,body.nonTouchDevice .indexCard.isEditable:active .indexCardFooter {
+    bottom: 1px;
+    opacity: 1;
+    display: block;
+    height: 31px;
+}
+body.nonTouchDevice .indexCard.isEditable:hover .indexCardFooter {
+	height: var(--card-titleH);
+	bottom: 1px;
+	padding: 4px 0;
+}
+body.nonTouchDevice .indexCard .icon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    border-color: #010101;
+    display: block;
+}
+body.nonTouchDevice .indexCard:hover .info.icon{
+	display:block;
+}
+
+body.nonTouchDevice .indexCard .icon:active {
+    opacity: 0.8;
+}
+body.nonTouchDevice .indexCard:hover .indexCardContent {
+    height: 175px;
+}
+body.nonTouchDevice #cardContainer.fadeCards .indexCard.inFocus .cardMask:hover, body.noTouchDevice #cardContainer.fadeCards .indexCard .cardMask:hover {
+    background: #9e9e9e2b;
+    opacity: 0.8;
+}
+
+body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
+    opacity: 0.7;
+}
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     .indexCard {
         font-size: medium;
@@ -530,7 +537,15 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
         font-size: small;
         padding: 4px 8px;
     }
-
+	.indexCardContent {
+		font-size: small;
+		padding: 5px 10px;
+		height: var(--card-height);
+		max-height: 289px;
+		border-top-width: var(--card-titleH);
+		box-sizing: border-box;
+		top: 0;
+	}
     .indexCard .info.icon {
         height: 30px;
         width: 30px;
@@ -544,26 +559,14 @@ body.showPageMeter #cardContainer .indexCard .statusBox {
         font-size: medium;
     }
 
-    .indexCardContent,.indexCard:hover .indexCardContent {
-        font-size: small;
-        padding: 5px 10px;
-        height: var(--card-height);
-        max-height: 289px;
-        border-top-width: var(--card-titleH);
-        box-sizing: border-box;
-        top: 0;
-    }
+
 
     .indexCardNumber, .indexCardAct, .indexCardPgTarget {
         line-height: 28px;
         font-size: small;
     }
 
-    .indexCard.isEditable:hover .indexCardFooter {
-    height: var(--card-titleH);
-    bottom: 1px;
-    padding: 4px 0;
-    }
+
 
     .indexCard.isEditable .indexCardFooter .indexCardColumn {
     }

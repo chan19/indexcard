@@ -218,25 +218,13 @@ body {
     width: 33px;
 }
 
-#header #user.icon:hover {
-    border: none;
-    transform: scale(1.1);
-}
+
 
 body.viewOnly #viewIcon.icon {
     background-color: #fbb043;
     border: 4px solid #fbb043;
 }
 
-#header .icon:hover {
-    background-color: #068af5;
-    border: 4px solid #2196f3;
-}
-
-#header .icon:active {
-    background-color: #d1e5f5;
-    border: 4px solid #d1e5f5;
-}
 
 div#fileNamelabel {
     display: inline-block;
@@ -311,12 +299,7 @@ div#fileNamelabel {
     outline: none;
 }
 
-.button:hover, .button:hover::after {
-    /* opacity: 0.8; */
-    BACKGROUND: #ffffff00;
-    COLOR: #393939;
-    border-color: #393939;
-}
+
 
 .metadataItem .label {
     font-size: 10px;
@@ -385,9 +368,7 @@ div#fileNamelabel {
     top: 0;
 }
 
-#searchContainer:hover {
-    box-shadow: 0px 0px 6px 1px #a9a7a7
-}
+
 
 #searchContainer .icon {
     display: inline-block;
@@ -434,33 +415,7 @@ div#fileNamelabel {
     display: none;
 }
 
-#masterButtonPane .masterButton:hover::after {
-    position: absolute;
-    top: 100%;
-    font-size: 10px;
-    margin-top: 8px;
-    background: grey;
-    padding: 2px 8px;
-    color: white;
-    left: -5px;
-    border-radius: 4px;
-}
 
-#masterButtonPane #beatButton:hover::after {
-    content: 'BEATS';
-}
-
-#masterButtonPane #actButton:hover::after {
-    content: 'ACT';
-}
-
-#masterButtonPane #emoButton:hover::after {
-    content: 'EMOTION';
-}
-
-#masterButtonPane #pageMeterButton:hover::after {
-    content: 'PAGE METER';
-}
 
 #masterButtonPane #beatButton {
     background-image: url(../icons/beat.png);
@@ -479,19 +434,19 @@ div#fileNamelabel {
     background-image: url(../icons/pagemeter.png);
 }
 
-body.showActColors #masterButtonPane #actButton.masterButton, #masterButtonPane #actButton:hover {
+body.showActColors #masterButtonPane #actButton.masterButton{
     background-color: #FFC107;
 }
 
-body.showBeats #masterButtonPane #beatButton.masterButton, #masterButtonPane #beatButton:hover {
+body.showBeats #masterButtonPane #beatButton.masterButton {
     background-color: #4caf50;
 }
 
-body.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
+body.showEmo #masterButtonPane #emoButton.masterButton{
     background-color: #F44336;
 }
 
-body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButtonPane #pageMeterButton:hover {
+body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     background-color: #03a9f4;
 }
 
@@ -513,9 +468,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     margin-right: 4px;
 }
 
-.masterButton:hover {
-    transform: scale(1.1);
-}
+
 
 #deleteZone {
     height: 80px;
@@ -687,6 +640,87 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
     transition: 300ms linear all;
 }
 
+	body.nonTouchDevice #header #user.icon:hover {
+		border: none;
+		transform: scale(1.1);
+	}
+	body.nonTouchDevice #header .icon:hover {
+		background-color: #068af5;
+		border: 4px solid #2196f3;
+	}
+
+	body.nonTouchDevice #header .icon:active {
+		background-color: #d1e5f5;
+		border: 4px solid #d1e5f5;
+	}
+	body.nonTouchDevice #masterButtonPane .masterButton:hover::after {
+		position: absolute;
+		top: 100%;
+		font-size: 10px;
+		margin-top: 8px;
+		background: grey;
+		padding: 2px 8px;
+		color: white;
+		left: -5px;
+		border-radius: 4px;
+	}
+
+	body.nonTouchDevice #masterButtonPane #beatButton:hover::after {
+		content: 'BEATS';
+	}
+
+	body.nonTouchDevice #masterButtonPane #actButton:hover::after {
+		content: 'ACT';
+	}
+
+	body.nonTouchDevice #masterButtonPane #emoButton:hover::after {
+		content: 'EMOTION';
+	}
+
+	body.nonTouchDevice #masterButtonPane #pageMeterButton:hover::after {
+		content: 'PAGE METER';
+	}
+	body.nonTouchDevice.showActColors #masterButtonPane #actButton.masterButton,body.nonTouchDevice  #masterButtonPane #actButton:hover {
+		background-color: #FFC107;
+	}
+
+	body.nonTouchDevice.showBeats #masterButtonPane #beatButton.masterButton,body.nonTouchDevice #masterButtonPane #beatButton:hover {
+		background-color: #4caf50;
+	}
+
+	body.nonTouchDevice.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
+		background-color: #F44336;
+	}
+
+	body.nonTouchDevice.showPageMeter #masterButtonPane #pageMeterButton.masterButton,body.nonTouchDevice #masterButtonPane #pageMeterButton:hover {
+		background-color: #03a9f4;
+	}
+	body.nonTouchDevice .masterButton:hover {
+		transform: scale(1.1);
+	}
+
+	body.nonTouchDevice #searchContainer:hover {
+		box-shadow: 0px 0px 6px 1px #a9a7a7
+	}
+	body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after {
+		/* opacity: 0.8; */
+		BACKGROUND: #ffffff00;
+		COLOR: #393939;
+		border-color: #393939;
+	}
+    body.nonTouchDevice .button:active {
+        height: 30px;
+        font-size: small;
+        width: 100%;
+        margin: 0px 0px 4px !important;
+        box-sizing: border-box;
+        border-width: 0px 11px;
+    }
+    body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after{
+        BACKGROUND: #58b1f7;
+        COLOR: #ffffff;
+        border-color: #58b1f7;
+    }
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     body {
         
@@ -740,10 +774,6 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         /* background-color: transparent; */
     }
 
-    #header .icon:hover {
-        background-color: #e4e4e4;
-        border: 8px solid #e4e4e4;
-    }
     #header #user.icon{
         border: none;
         height: 30px;
@@ -807,18 +837,13 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         top: -12px;
         right: 0;
     }
-    .button, .button:active {
+    .button{
         height: 30px;
         font-size: small;
         width: 100%;
         margin: 0px 0px 4px !important;
         box-sizing: border-box;
         border-width: 0px 11px;
-    }
-    .button:hover, .button:hover::after{
-        BACKGROUND: #58b1f7;
-        COLOR: #ffffff;
-        border-color: #58b1f7;
     }
     #metaDataContainer {
         display: none;
@@ -846,8 +871,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         font-size: small;
     }
 
-    #searchContainer:hover {
-    }
+
 
     #searchContainer .icon {
         display: inline-block;
@@ -892,9 +916,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
         margin-right: unset;
         margin: 0px auto 0;
     }
-	#masterButtonPane .masterButton:hover::after {
-		display:none;
-	}
+
 	#masterButtonPane #beatButton {
 		background-image: url(../icons/mobile/beat.png);
 	}
@@ -930,10 +952,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton, #masterButto
 		background-image: url(../icons/pagemeter.png);
 		background-color: #03a9f4;
 	}
-	#masterButtonPane #pageMeterButton:hover, #masterButtonPane #actButton:hover,#masterButtonPane #beatButton:hover,#masterButtonPane #emoButton:hover {
-		transform: unset;   
-		background-color: #e4e4e4;
-	}
+
 	#deleteZone {
     }
 
