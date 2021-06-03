@@ -292,11 +292,27 @@ body.viewOnly .indexCardTitle {
 	opacity: 1;
 	border-top: 1px solid #e8e8e8;
 	background: white;
+	z-index: 1;
 }
-body.touchDevice .indexCard .indexCardFooter.isVisible {
-	height: var(--card-titleH);
-	bottom:	var(--card-titleH);
-	padding: 0px 0;
+.indexCardTouchConrols{
+	height:0;
+	overflow:hidden;
+	padding-top: 50%;
+	border-bottom-width: var(--card-titleH);
+	box-sizing: border-box;
+	bottom: var(--card-titleH);
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	background: white;
+	column-count: 4;
+}
+.indexCardTouchConrols.isVisible{
+	 height: var(--card-height);
+}
+body.touchDevice .indexCard .indexCardTouchConrols.isVisible {
+	height: var(--card-height);
+	bottom: 0;
 	opacity: 1;
 }
 .indexCardFooter .indexCardColumn {
@@ -321,16 +337,24 @@ body.touchDevice .indexCard .indexCardFooter.isVisible {
     display: block;
     margin: auto;
 }
-
+.indexCard .indexCardTouchConrols .icon{
+    opacity: 1;
+    display: block;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    box-sizing: border-box;
+    margin: a;
+}
 .indexCard .icon.move {
     cursor: grab;
     background-image: url(../icons/move.png);
 }
 
-.indexCard .delete.icon {
+.indexCard .indexCardTouchConrols 
+ .delete.icon {
     background-image: url(../icons/delete.png);
     cursor: pointer;
-    display: none;
 }
 
 .indexCard .popout.icon {
@@ -409,7 +433,18 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
     width: 0;
     height: 31px;
 }
-
+body.touchDevice .indexCard .colorPicker {
+	bottom: var(--card-titleH);
+	height: 52px;
+}
+body.touchDevice .indexCard .colorPicker .colorCode{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin: 4px 4px;
+    cursor: pointer;
+    display: inline-block;
+}
 .indexCard .colorPicker.isVisible {
     /*left: 0;*/
     /* overflow: visible; */
