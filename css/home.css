@@ -709,10 +709,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 		border-color: #393939;
 	}
     body.nonTouchDevice .button:active {
-        height: 30px;
         font-size: small;
-        width: 100%;
-        margin: 0px 0px 4px !important;
         box-sizing: border-box;
         border-width: 0px 11px;
     }

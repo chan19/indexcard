@@ -620,7 +620,7 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
 
     .indexCardTitle {
         font-size: small;
-        padding: 4px 8px;
+        padding: 4px 40px 4px 8px;
     }
 	.indexCardContent {
 		font-size: small;
