@@ -53,6 +53,7 @@ appManager = (function(){
 		init: function(oData){
 			var that = this;
 			this._version = 1;
+			this.initDevice();
 			this._initIoManager();
 			this._attachEvents();
 			var oData = this._getProcessedData(this._ioManager.readFromBackup());
@@ -70,6 +71,17 @@ appManager = (function(){
 		},
 		_data: {},
 		_eventListeners: {},
+		initDevice: function(){
+			this.setIsTouchDevice(navigator.maxTouchPoints > 0 ? true : false);
+		},
+		setIsTouchDevice: function(bIsTouch){
+			this._isTouchDevice = bIsTouch;
+			jQuery("body").addClass(bIsTouch? "touchDevice" : "nonTouchDevice");
+			return this;
+		},
+		getIsTouchDevice: function(){
+			return this._isTouchDevice;
+		},
 		_initIoManager: function(){
 			this._ioManager = new IoManager({
 				read: {

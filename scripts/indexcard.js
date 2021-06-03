@@ -129,6 +129,7 @@
 			this._beatCard = this._createBeatSelector();
 			this._node.find(".beatCard").append(this._beatCard.getNode().get(0));
 			this._attachEvents(this._node);
+			this.setEditable(!appManager.getIsTouchDevice());
 			return this._node;
 		},
 		_getColorPickerHtml: function(){
@@ -272,42 +273,47 @@
 			var fOnClick = this._getHandler("click");
 			var fOnPopout = this._getHandler("popout");
 			var notesPane = oNode.find(".indexCardNotes");
+			var isTouchDevice = appManager.getIsTouchDevice();
 			
-			oNode.on("click", function(e){
-				if(navigator.maxTouchPoints){
+			if(isTouchDevice){
+				oNode.find(".indexCardTitle").click(function(e){
+					notesPane.toggleClass("isVisible");
+				});
+				oNode.find(".indexCardContent").click(function(e){
 					oNode.find(".indexCardContent").blur();
 					fOnPopout(that);
-				}
-			});
-			oNode.find(".indexCardTitle").focusout(function(){
-				that._setIsDirty("title", true);
-				that._onTitleChange(this.innerText, false);
-				oNode.find(".icon.info").css({display:""});
-				
-			}).focusin(function(){
-				if(that._getIsDirty("title")){
+				});
+			} else {
+				oNode.find(".indexCardTitle").focusout(function(){
+					that._setIsDirty("title", true);
+					that._onTitleChange(this.innerText, false);
+					oNode.find(".icon.info").css({display:""});
 					
-				} else {
-					that._setIsDirty("title");
-					that.setProperty("title", "", true);
-				}
-				oNode.find(".icon.info").css({display:"none"});
-			});
-			oNode.find(".indexCardTitle,.indexCardContent").on("paste", function(e){
-				
-				
-			});
-			
-			oNode.find(".indexCardContent").focusout(function(){
-				that._onContentChange(this.value);
-			}).focusin(function(){
-				if(that._getIsDirty("content")){
+				}).focusin(function(){
+					if(that._getIsDirty("title")){
+						
+					} else {
+						that._setIsDirty("title");
+						that.setProperty("title", "", true);
+					}
+					oNode.find(".icon.info").css({display:"none"});
+				});
+				oNode.find(".indexCardTitle,.indexCardContent").on("paste", function(e){
 					
-				} else {
-					that._setIsDirty("content", true);
-					that.setProperty("content", "", true);
-				}
-			});
+					
+				});
+				
+				oNode.find(".indexCardContent").focusout(function(){
+					that._onContentChange(this.value);
+				}).focusin(function(){
+					if(that._getIsDirty("content")){
+						
+					} else {
+						that._setIsDirty("content", true);
+						that.setProperty("content", "", true);
+					}
+				});
+			}
 			oNode.find(".addCard").click(function(){
 				fOnAddNew(bIndex + 1);
 			});
