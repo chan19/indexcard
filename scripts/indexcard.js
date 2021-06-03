@@ -175,6 +175,7 @@
 						"<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1 )+ "</div>" +
 						"<div class='indexCardPgTarget'>" + oData.pgTarget + ((oData.pgTarget) > 1 ? " PAGES" : " PAGE") + "</div>" +
 						"<div class='indexCardAct'>" + (((oData.act == "undefined") || (oData.act == -1) )? "" : "ACT " + oData.act) + "</div>" +
+						"<div class='options icon'></div>"+
 						"</div>"+ controlsHtml + this._getColorPickerHtml()+
 						"<div class='cardMask'></div><div class='statusBox'></div>" +
 						"<div class='indexCardNotes'>" + (oData.notes[0] ? this.getCore().sanitizeHtml(oData.notes.join("<br>")) : "No notes to display") + "</div>" +
@@ -295,7 +296,7 @@
 					oNode.find(".indexCardContent").blur();
 					fOnPopout(that);
 				});
-				oNode.find(".indexCardMetaBar").click(function(e){
+				oNode.find(".indexCardMetaBar .options").click(function(e){
 					oNode.find(".indexCardTouchConrols").toggleClass("isVisible");
 				});
 			} else {
