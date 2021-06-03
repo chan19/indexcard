@@ -646,7 +646,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 	}
 	body.nonTouchDevice #header .icon:hover {
 		background-color: #068af5;
-		border: 4px solid #2196f3;
+		/* border: 4px solid #2196f3; */
+		border-color: #2196f3;
 	}
 
 	body.nonTouchDevice #header .icon:active {
