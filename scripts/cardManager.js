@@ -104,11 +104,14 @@ CardManager.prototype.getAllCardPositions = function(){
 CardManager.prototype.setCardData = function(aData){
 	this._cards = [];
 	this._cardById = {};
+	var isTouch = appManager.getIsTouchDevice();
 	if(aData.length){
 		this.createCards(aData);
 	} else{
 		this.createCards([{
-			index: 0
+			index: 0,
+			title: isTouch ? "No Title" : "click here to add a title to the card",
+			content: isTouch ? "Tap here to edit the card" : "click here to add description to the card"
 		}])
 	}
 	
