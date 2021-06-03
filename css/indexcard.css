@@ -142,7 +142,7 @@ body.showActColors .indexCard .indexCardNumber,body.showActColors .indexCard .in
     position: relative;
     /* border: 1px solid #e8e8e8; */
     border: none;
-    border-bottom: 1px solid #e8e8e8;
+    /* border-bottom: 1px solid #e8e8e8; */
     font-size: 14px;
     display: block;
     font-family: inherit;
@@ -252,7 +252,7 @@ body.viewOnly .indexCardTitle {
 .indexCardPgTarget {
     position: absolute;
     bottom: 0;
-    line-height: 30px;
+    line-height: var(--card-titleH);
     color: #908e8e;
     /*  display: none;*/
     display: inline-block;
@@ -269,8 +269,8 @@ body.viewOnly .indexCardTitle {
     position: relative;
 }
 
-.indexCardFooter {
-    position: relative;
+.indexCardFooter, .indexCardMetaBar{
+    position: absolute;
     width: 100%;
     height: 0;
     background: #f7f7f7;
@@ -284,7 +284,21 @@ body.viewOnly .indexCardTitle {
     bottom: -33px;
     display: block;
 }
-
+.indexCardMetaBar{
+	height: var(--card-titleH);
+	bottom: 0px;
+	padding: 0px 0;
+	position: absolute;
+	opacity: 1;
+	border-top: 1px solid #e8e8e8;
+	background: white;
+}
+body.touchDevice .indexCard .indexCardFooter.isVisible {
+	height: var(--card-titleH);
+	bottom:	var(--card-titleH);
+	padding: 0px 0;
+	opacity: 1;
+}
 .indexCardFooter .indexCardColumn {
     /* margin-top: 7px; */
     position: relative;
@@ -501,8 +515,8 @@ body.nonTouchDevice .indexCard.isEditable:hover .indexCardFooter,body.nonTouchDe
 }
 body.nonTouchDevice .indexCard.isEditable:hover .indexCardFooter {
 	height: var(--card-titleH);
-	bottom: 1px;
-	padding: 4px 0;
+	bottom: 0px;
+	padding: 0px 0;
 }
 body.nonTouchDevice .indexCard .icon:hover {
     transform: scale(1.1);
@@ -558,17 +572,9 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
         padding-top: 16px;
         font-size: medium;
     }
-
-
-
     .indexCardNumber, .indexCardAct, .indexCardPgTarget {
-        line-height: 28px;
+        line-height: var(--card-titleH);
         font-size: small;
-    }
-
-
-
-    .indexCard.isEditable .indexCardFooter .indexCardColumn {
     }
     .indexCard.isEditable .indexCardFooter .icon{
         height: 28px;
