@@ -264,7 +264,35 @@ body.viewOnly .indexCardTitle {
     /*! background: white; */
     text-transform: lowercase;
 }
-
+body.touchDevice .indexCardNumber{
+	width: 30px;
+	left: 8px;
+	position: a;
+}
+body.touchDevice .indexCardAct{
+	position: absolute;
+	background: unset;
+	right: 70px;
+	left: unset;
+	padding: unset;
+	width: unset;
+}
+body.touchDevice .indexCardPgTarget{
+	left: 0;
+	right: 50px;
+	width: auto;
+	height: 35px;
+	text-transform: uppercase;
+}
+body.touchDevice .options.icon{
+	background-image: url(../icons/options.png);
+	height: 35px;
+	width: 30px;
+	position: absolute;
+	right: 8px;
+	opacity: 0.6;
+	bottom: 0;
+}
 .indexCardTitle div, .indexCardContent div {
     position: relative;
 }
@@ -283,29 +311,33 @@ body.viewOnly .indexCardTitle {
     padding-top: 2px;
     bottom: -33px;
     display: block;
+    border-radius: 4px;
 }
 .indexCardMetaBar{
 	height: var(--card-titleH);
 	bottom: 0px;
-	padding: 0px 0;
+	padding: 0px 45px 0px 8px;
 	position: absolute;
 	opacity: 1;
 	border-top: 1px solid #e8e8e8;
 	background: white;
 	z-index: 1;
+	box-sizing: border-box;
 }
 .indexCardTouchConrols{
 	height:0;
 	overflow:hidden;
-	padding-top: 50%;
-	border-bottom-width: var(--card-titleH);
+	border-bottom-width: 0;
+	padding: 0;
 	box-sizing: border-box;
 	bottom: var(--card-titleH);
 	box-sizing: border-box;
 	position: absolute;
 	width: 100%;
-	background: white;
+	background: #ffffffe0;
 	column-count: 4;
+	transition: 300ms ease-out all;
+	opacity: 0;
 }
 .indexCardTouchConrols.isVisible{
 	 height: var(--card-height);
@@ -314,6 +346,8 @@ body.touchDevice .indexCard .indexCardTouchConrols.isVisible {
 	height: var(--card-height);
 	bottom: 0;
 	opacity: 1;
+	border-bottom-width: var(--card-titleH);
+	padding-top: 50%;
 }
 .indexCardFooter .indexCardColumn {
     /* margin-top: 7px; */
@@ -552,6 +586,7 @@ body.nonTouchDevice .indexCard.isEditable:hover .indexCardFooter {
 	height: var(--card-titleH);
 	bottom: 0px;
 	padding: 0px 0;
+	z-index: 2;
 }
 body.nonTouchDevice .indexCard .icon:hover {
     transform: scale(1.1);

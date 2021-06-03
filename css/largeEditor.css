@@ -117,7 +117,7 @@
 .largeEditor .largeEditorFieldContainer {
     margin: 4px;
     display: inline-block;
-    box-sizing: unset;
+    box-sizing: border-box;
     vertical-align: bottom;
     height: 27px;
     margin: 4px 0px 4px 8px;
@@ -420,9 +420,16 @@
     }
 
     .largeEditor .editorValue.largeField {
-    height: 300px;
+		height: 300px;
     }
-
+	body.touchDevice .largeEditor{
+		animation-name: dialogAppear;
+        animation-duration: 300ms;
+	}
+	@keyframes dialogAppear {
+			from {bottom:-100%;}
+			to {bottom: 4px;}
+	}
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     .largeEditor {
         width: 100%;
@@ -432,6 +439,7 @@
         right: unset;
         left: unset;
     }
+
 	.largeEditor .largeEditorHeader{
 		  
 	}
@@ -482,6 +490,7 @@
         width: 100%;
         height: 45px;
         padding: 4px 0px 4px 10px;
+        position: fixed;
     }
 
     .largeEditor .largeEditorButton {
