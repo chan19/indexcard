@@ -152,7 +152,7 @@
 			var controlsHtml = "";
 			if(isTouchDevice){
 				controlsHtml = "<div class='indexCardTouchConrols'>" +
-								"<div class='icon currentColor'></div><div class='icon tag'></div>" + 
+								"<div class='icon tag'></div>" + 
 								"<div class='icon addCard'></div><div class='icon delete'></div></div>";
 			} else {
 				controlsHtml = "<div class='indexCardFooter'>" +
@@ -297,6 +297,7 @@
 					fOnPopout(that);
 				});
 				oNode.find(".indexCardMetaBar .options").click(function(e){
+					jQuery(this).toggleClass("active");
 					oNode.find(".indexCardTouchConrols").toggleClass("isVisible");
 				});
 			} else {
