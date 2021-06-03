@@ -148,15 +148,18 @@
 			var indexNumberStyle = this._showIndex ? " " : "display:none";
 			var sizeClass = (size == "default") ? "" : "size" + size.toUpperCase();
 			var actClass = (oData.act!= "-1") ? "_act"+oData.act : "_actNone";
+			var isTouchDevice = appManager.getIsTouchDevice();
 			var html = "<div id='card_"+oData.id+"' class='indexCard " + isEditableClass + " "+ sizeClass + " "+oData.color + " "+ actClass+"'>"+
 						"<div class='indexCardTitle' contentEditable=" + isEditable + ">" + 
 							this.getCore().sanitizeHtml(oData.title) + "</div>" +
 						"<div class='icon info'>i</div>" +
 						"<div class='indexCardBg'></div>" +
 						"<textarea class='indexCardContent' contentEditable=" + isEditable + ">" + oData.content + "</textarea>" +
+						"<div class='indexCardMetaBar'>"+
 						"<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1 )+ "</div>" +
 						"<div class='indexCardPgTarget'>" + oData.pgTarget + ((oData.pgTarget) > 1 ? " PAGES" : " PAGE") + "</div>" +
 						"<div class='indexCardAct'>" + (((oData.act == "undefined") || (oData.act == -1) )? "" : "ACT " + oData.act) + "</div>" +
+						"</div>"+
 						"<div class='indexCardFooter'>" +
 						"<div class='indexCardColumn'><div class='icon currentColor'></div></div>" +
 						"<div class='indexCardColumn'><div class='icon tag'></div></div>" +
@@ -282,6 +285,9 @@
 				oNode.find(".indexCardContent").click(function(e){
 					oNode.find(".indexCardContent").blur();
 					fOnPopout(that);
+				});
+				oNode.find(".indexCardMetaBar").click(function(e){
+					oNode.find(".indexCardFooter").toggleClass("isVisible");
 				});
 			} else {
 				oNode.find(".indexCardTitle").focusout(function(){
