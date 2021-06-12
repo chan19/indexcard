@@ -10,7 +10,7 @@
     max-width: 18cm;
     height: 98%;
     /* min-height: 600px; */
-    background: white;
+    background: #e4e4e4;
     z-index: 3;
     border-top: 30px solid white;
     user-select: none;
@@ -23,7 +23,7 @@
     text-transform: uppercase;
     line-height: 35px;
     font-size: medium;
-    padding: 0px 30px;
+    padding: 0px 8px;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,13 +39,13 @@
 }
 .largeEditor .largeEditorPanel {
     /* border-bottom: 1px solid #ecebeb; */
-    margin: 5px 0;
+    margin: 0px 0 8px;
     position: relative;
 }
 
 .largeEditor .editorLabel {
     font-size: small;
-    color: #797979;
+    color: #4e4e4e;
     text-transform: capitalize;
     /* font-weight: bold; */
     margin-top: 14px;
@@ -97,6 +97,7 @@
     border-bottom: 48px solid transparent;
     border-top: 35px solid #ffffff00;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .largeEditor .largeEditorSelect {
@@ -339,7 +340,7 @@
     box-sizing: unset;
     position: relative;
     background: transparent;
-    border: 1px solid #d6d6d6;
+    border: 1px solid #828282;
     padding: 4px 10px 4px 10px;
     color: black;
     cursor: text;
@@ -397,8 +398,9 @@
     width: 25px;
 }
    .largeEditor .largeEditorPanel {
-        border-bottom: 8px solid #e4e4e4;
-        padding: 4px 0;
+        /* border-bottom: 8px solid #e4e4e4; */
+        padding: 0px 0 8px;
+        background: white;
     }
 
     .largeEditor .editorLabel {
@@ -407,7 +409,7 @@
         border-radius: unset;
         background: none;
         margin-left: 0;
-        padding: 0px 8px 4px;
+        padding: 8px 8px 4px;
     }
 
     .largeEditor .editorValue {
@@ -420,8 +422,30 @@
     }
 
     .largeEditor .editorValue.largeField {
-		height: 300px;
-    }
+		/* height: 320px; */
+		}
+	.largeEditorTabPanel{
+		background: white;
+		padding: 4px 0 0;
+	}
+	.largeEditorTab{
+		display: inline-block;
+		padding: 4px 0px;
+		margin: 0px 8px 0px 8px;
+		font-size: small;
+		color: #b3b3b3;
+		cursor: pointer;
+	}
+	#largeEditorSummaryTab{
+		
+	}
+	#largeEditorFootnoteTab{
+		
+	}
+	.largeEditorTab.selected{
+		border-bottom: 8px solid #4e4e4e;
+		color: #4e4e4e;
+	}
 	body.touchDevice .largeEditor{
 		animation-name: dialogAppear;
         animation-duration: 300ms;

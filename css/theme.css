@@ -20,8 +20,14 @@ body {
 	--color-TextColorAct2A: black;
 	--color-TextColorAct2B: white;
 	--color-TextColorAct3: white;
+	--color-body: #e4e4e4;
+	--color-header: #e8e8e8;
 }
-
+body.touchDevice{
+	--color-header: white;
+	--color-body: white;
+	 --card-width: 100%;
+}
 body.theme2 {
     --color-red: #f6a6b2;
     --color-blue: #90d2d8;
