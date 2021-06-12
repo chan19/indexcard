@@ -236,7 +236,7 @@ body.viewOnly .indexCardTitle {
     bottom: 2px;
     /* width: 100%; */
     line-height: 30px;
-    color: #d0d0d0;
+    color: #8e8e8e;
     background: transparent;
     padding: 0 4px;
     display: inline-block;
@@ -248,7 +248,7 @@ body.viewOnly .indexCardTitle {
     bottom: 0;
     /* width: 100%; */
     line-height: 30px;
-    color: #d0d0d0;
+    color: #8e8e8e;
     /* text-align: center; */
     background: white;
     padding: 0 4px;
@@ -260,7 +260,7 @@ body.viewOnly .indexCardTitle {
     position: absolute;
     bottom: 0;
     line-height: var(--card-titleH);
-    color: #d0d0d0;
+    color: #8e8e8e;
     /*  display: none;*/
     display: inline-block;
     left: 0;
@@ -285,8 +285,8 @@ body.touchDevice .indexCardAct{
 	width: unset;
 }
 body.touchDevice .indexCardPgTarget{
-	left: 0;
-	right: 50px;
+	left: 55px;
+	right: 125px;
 	width: auto;
 	height: 35px;
 	text-transform: uppercase;
@@ -297,11 +297,11 @@ body.touchDevice .options.icon{
 	width: 30px;
 	position: absolute;
 	right: 8px;
-	opacity: 0.2;
+	opacity: 0.4;
 	bottom: 0;
 }
 body.touchDevice .options.active{
-	opacity: 0.7;
+	opacity: 1;
 }
 .indexCardTitle div, .indexCardContent div {
     position: relative;
@@ -334,6 +334,8 @@ body.touchDevice .options.active{
 	background: white;
 	z-index: 1;
 	box-sizing: border-box;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
 }
 .indexCardTouchConrols{
 	height:0;
@@ -383,7 +385,7 @@ body.touchDevice .indexCard .indexCardTouchConrols.isVisible {
     margin: auto;
 }
 .indexCard .indexCardTouchConrols .icon{
-    opacity: 0.4;
+    opacity: 0.6;
     display: block;
     position: relative;
     height: 40px;

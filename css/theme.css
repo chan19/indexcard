@@ -25,7 +25,7 @@ body {
 }
 body.touchDevice{
 	--color-header: white;
-	--color-body: white;
+	/*--color-body: white;*/
 	 --card-width: 100%;
 }
 body.theme2 {

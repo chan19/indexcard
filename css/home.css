@@ -853,7 +853,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         z-index: 1;
         /* border: 1px solid #e3e4e4; */
         box-shadow: unset;
-        background: #e6e6e6;
+        background: #ffffff;
         border-radius: 18px;
     }
 
