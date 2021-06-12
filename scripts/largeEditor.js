@@ -109,7 +109,9 @@
 
             //var locationSel= "<select id='largeEditorSel1' class='largeEditorSelect'><option value=-1>INT/EXT</option><option value=0>INT</option><option value=1>EXT</option></select>";
             //var timeSel = "<select id='largeEditorSel2' class='largeEditorSelect'><option value=-1>DAY/NIGHT</option><option value=0>DAY</option><option value=1>NIGHT</option></select>";
-            return "<div id='largeEditor' class='largeEditor'>" + "<div class='largeEditorHeader'></div>" + "<div class='largeEditorBody'>" + "<div class='largeEditorPanel'><div class='largeEditorFieldContainer field1'></div><div class='largeEditorFieldContainer field2'></div>" + this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div><div class='largeEditorFieldContainer field4'></div>" + this._getLocationBox() + "</div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point title</div>" + "<div id='plotpointTitle' class='editorValue' contenteditable=true></div></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point description</div>" + "<textarea id = 'plotpointDesc' class='editorValue largeField' contenteditable=true></textarea></div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Additional Notes</div>" + "<textarea class='plotpointNote editorValue largeField' contenteditable=true></textarea></div>" + "</div>" + "<div class='largeEditorFloatingIcon prev'><</div><div class='largeEditorFloatingIcon next'>></div>" + "<div class='largeEditorButtonPane'>" + "<button class='largeEditorButton cancel'>CANCEL</button>" + "<button class='largeEditorButton save'>SAVE</button>" + "</div>" + "</div>"
+            return "<div id='largeEditor' class='largeEditor'>" + "<div class='largeEditorHeader'></div>" + "<div class='largeEditorBody'>" + "<div class='largeEditorPanel'><div class='largeEditorFieldContainer field1'></div><div class='largeEditorFieldContainer field2'></div>" + this._getColorPickerHtml() + "<div class='largeEditorFieldContainer field3'></div><div class='largeEditorFieldContainer field4'></div>" + this._getLocationBox() + "</div>" + "<div class='largeEditorPanel'>" + "<div class='editorLabel'>Plot point title</div>" + "<div id='plotpointTitle' class='editorValue' contenteditable=true></div></div>" + 
+			"<div class='largeEditorTabPanel'><div class='largeEditorTab selected largeEditorSummaryTab'>Summary</div><div class='largeEditorTab largeEditorFootnoteTab' >Footnote</div></div>"+
+			"<div class='largeEditorPanel summaryPanel'>" + "<textarea id = 'plotpointDesc' class='editorValue largeField' contenteditable=true></textarea></div>" + "<div class='largeEditorPanel footnotePanel' style='display:none'>" + "<textarea class='plotpointNote editorValue largeField' contenteditable=true></textarea></div>" + "</div>" + "<div class='largeEditorFloatingIcon prev'><</div><div class='largeEditorFloatingIcon next'>></div>" + "<div class='largeEditorButtonPane'>" + "<button class='largeEditorButton cancel'>CANCEL</button>" + "<button class='largeEditorButton save'>SAVE</button>" + "</div>" + "</div>"
         },
         _createNode: function() {
             this._node = jQuery(this.getHtml());
@@ -327,6 +329,27 @@
                     }
                 }
             });
+			var summaryPanel = this._node.find(".summaryPanel");
+			var footnotePanel = this._node.find(".footnotePanel");
+			var summaryTab = this._node.find(".largeEditorSummaryTab");
+			var footnoteTab  = this._node.find(".largeEditorFootnoteTab");
+			var summaryField = summaryPanel.find(".editorValue");
+			var footNoteField = footnotePanel.find(".editorValue");
+			
+			summaryTab.click(function(){
+				footnoteTab.removeClass("selected");
+				summaryTab.addClass("selected");
+				summaryPanel.show();
+				footnotePanel.hide();
+				summaryField.focus();
+			});
+			footnoteTab.click(function(){
+				footnoteTab.addClass("selected");
+				summaryTab.removeClass("selected");
+				summaryPanel.hide();
+				footnotePanel.show();
+				footNoteField.focus();
+			});
         },
 		_suppressSwipe: false,
 		_attachTouchEvents: function(){

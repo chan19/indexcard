@@ -110,8 +110,8 @@ CardManager.prototype.setCardData = function(aData){
 	} else{
 		this.createCards([{
 			index: 0,
-			title: isTouch ? "No Title" : "click here to add a title to the card",
-			content: isTouch ? "Tap here to edit the card" : "click here to add description to the card"
+			title: isTouch ? "No Title" : "click here to add a plot point title",
+			content: isTouch ? "Tap here to add the plot point summary" : "click here to add plot point summary"
 		}])
 	}
 	

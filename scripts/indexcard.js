@@ -141,8 +141,8 @@
 			return "<div class='colorPicker'><div class='colorPickerContainer'>"+ sHtml +"</div>"+
 			"<div class='colorPickerPopupArrow'></div></div>" ;
 		},
-		getHtml: function(oData){
-			var isEditable = this.getEditable();
+		getHtml: function(oData, bClone){
+			var isEditable = bClone? false : this.getEditable();
 			var isEditableClass = isEditable? "isEditable" : "";
 			var size = this.getSize();
 			var indexNumberStyle = this._showIndex ? " " : "display:none";
@@ -170,7 +170,7 @@
 							this.getCore().sanitizeHtml(oData.title) + "</div>" +
 						"<div class='icon info'>i</div>" +
 						"<div class='indexCardBg'></div>" +
-						"<textarea class='indexCardContent' contentEditable=" + isEditable + ">" + oData.content + "</textarea>" +
+						"<textarea class='indexCardContent'>" + oData.content + "</textarea>" +
 						"<div class='indexCardMetaBar'>"+
 						"<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1 )+ "</div>" +
 						"<div class='indexCardPgTarget'>" + oData.pgTarget + ((oData.pgTarget) > 1 ? " PAGES" : " PAGE") + "</div>" +
@@ -320,8 +320,11 @@
 					
 				});
 				
-				oNode.find(".indexCardContent").focusout(function(){
+				oNode.find(".indexCardContent").click(function(){
+					//jQuery(this).attr("readonly", false);
+				}).focusout(function(){
 					that._onContentChange(this.value);
+					//jQuery(this).attr("readonly", true);
 				}).focusin(function(){
 					if(that._getIsDirty("content")){
 						
@@ -330,6 +333,26 @@
 						that.setProperty("content", "", true);
 					}
 				});
+			/*
+			oNode.mousedown(function(e){
+				//that.getCore().setDragStart(that,e)
+				if(oNode.find(".indexCardContent").attr('readonly')=="readonly"){
+					mCounter ++;
+				}
+			});
+			oNode.mousemove(function(e){
+				if(mCounter == 1){
+					that.getCore().setDragStart(that,e);
+					mCounter++;
+				}
+			});
+			oNode.mouseup(function(e){
+				mCounter = 0;
+			});
+			*/
+			oNode.find(".move").mousedown(function(e){
+				that.getCore().setDragStart(that,e)
+			});
 			}
 			oNode.find(".addCard").click(function(){
 				fOnAddNew(bIndex + 1);
@@ -337,9 +360,7 @@
 			oNode.find(".delete").click(function(){
 				fOnDelete(bIndex);
 			});
-			oNode.find(".move").mousedown(function(e){
-				that.getCore().setDragStart(that,e)
-			});
+			var mCounter = 0;
 			oNode.find(".currentColor").click(function(){
 				colorPicker.toggleClass("isVisible");
 			});
@@ -375,7 +396,7 @@
 			this.setProperty("content", sValue, bRender);
 		},
 		getClone: function(){
-			var cloneHtml = this.getHtml(this.getData());
+			var cloneHtml = this.getHtml(this.getData(), true);
 			var cloneNode = jQuery(cloneHtml);
 			cloneNode.addClass("proxyCard");
 			return cloneNode;

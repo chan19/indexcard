@@ -478,12 +478,24 @@ appManager = (function(){
 			var originX = prevEvent.originalEvent.clientX-offset.left;
 			var originScrollX = window.scrollX;
 			var originScrollY = window.scrollY;
+			var $html = jQuery("html");
+			var canceScroll = true;
+			var cloneNode = oClone[0];
+			function scrollIfScrollZone(){
+				if(cloneNode && (screen.availHeight - cloneNode.getBoundingClientRect().top) < 40){
+					$html.animate({scrollTop: window.scrollY + 50},300);
+					setTimeout(function(){
+						scrollIfScrollZone();
+					}, 305);
+				}
+			}
 			
 			function drag(e){
 				oClone.css({
 					top: e.originalEvent.clientY - originY -originScrollY,
 					left: e.originalEvent.clientX - originX- originScrollX
 				});
+				//scrollIfScrollZone();
 				//console.log("x is " + e.originalEvent.movementX, " Y is "+e.originalEvent.movementY);
 			}
 			function drop(e){
