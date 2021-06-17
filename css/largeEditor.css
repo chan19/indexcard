@@ -18,7 +18,7 @@
     border-top: none;
 }
 .largeEditor .largeEditorHeader {
-    height: 35px;
+    height: var(--card-titleH);
     background: #607D8B;
     text-transform: uppercase;
     line-height: 35px;
@@ -95,7 +95,7 @@
     padding: 2px 0 2px 0;
     box-sizing: border-box;
     border-bottom: 48px solid transparent;
-    border-top: 35px solid #ffffff00;
+    border-top: var(--card-titleH) solid #ffffff00;
     width: 100%;
     overflow-x: hidden;
 }

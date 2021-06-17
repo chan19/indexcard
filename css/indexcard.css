@@ -33,7 +33,7 @@ body.touchDevice .indexCard {
 }
 
 .indexCardTitle {
-    padding: 2px 8px;
+    padding: 4px 8px;
     height: var(--card-titleH);
     outline: none;
     background-color: var(--color-blue);
@@ -131,7 +131,6 @@ body.showActColors .indexCard .indexCardTitle {
 
 .indexCardTitle:focus {
     background: white;
-    border: 1px solid #82b3ff;
     color: #696868;
 }
 
@@ -160,14 +159,14 @@ body.touchDevice .indexCardContent {
 }
 
 .indexCard .indexCardNotes {
-    padding: 4px 10px;
-    height: var(--card-summaryH);
+    height: 0;
     overflow-y: auto;
     scroll-margin: 0;
     scroll-padding: 0;
     outline: none;
     color: white;
     position: relative;
+    padding: 0px 10px;
     border-bottom: 0;
     position: absolute;
     top: var(--card-titleH);
@@ -180,13 +179,13 @@ body.touchDevice .indexCardContent {
     /*top: -200px;*/
     transition: 300ms ease-in-out all;
     word-break: break-word;
-    display: none;
+    display: block;
     z-index: 2;
 }
 
 .indexCard .indexCardNotes.isVisible {
-    /* top: 40px;*/
-    display: unset;
+    height: var(--card-summaryH);
+    padding: 4px 10px;
 }
 
 .indexCard .beatCard {
@@ -238,7 +237,7 @@ body.viewOnly .indexCardTitle {
     position: absolute;
     bottom: 0px;
     /* width: 100%; */
-    line-height: 30px;
+    line-height: var(--card-titleH);
     color: #8e8e8e;
     background: transparent;
     padding: 0 4px;
@@ -372,7 +371,7 @@ body.touchDevice .indexCard .indexCardTouchConrols.isVisible {
     height: var(--card-summaryH);
     bottom: var(--card-titleH);
     opacity: 1;
-    padding-top: 50%;
+    padding-top: 40%;
 }
 
 .indexCardFooter .indexCardColumn {
@@ -655,6 +654,7 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
         font-size: small;
         padding: 5px 15px 0px 15px;
         box-sizing: border-box;
+        line-height: initial;
     }
 
     .indexCardContent {
