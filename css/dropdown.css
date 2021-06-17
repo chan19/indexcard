@@ -2,27 +2,40 @@
     display: inline-block;
     position: relative;
     overflow-x: visible;
+    line-height: 200%;
 }
-
+.dropDown.noneditable{
+	
+}
 .dropDown .dropDownValue {
-    border: 1px solid  #737373;
-    padding: 5px 30px 4px 10px;
+    border: 1px solid  #c1c1c1;
+    padding: 0px 30px 0px 10px;
     color: #000000;
     cursor: pointer;
+    border-radius: 15px;
+    background: #d8d8d8;
 }
-
+.dropDown.noneditable .dropDownValue {
+	border: none;
+	cursor: default;
+	padding: 0px 4px;
+	color: #828282;
+	background: none;
+}
 .dropDown .dropDownArrow {
     position: absolute;
     height: 0;
     width: 0;
     border: 8px solid transparent;
-    top: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     right: 12px;
-    border-top-color: #7d7d7d;
+    border-top-color: #171717;
     border-bottom: none;
     cursor: pointer;
 }
-
+.dropDown.noneditable .dropDownArrow {display: none;}
 .dropDown .dropDownOptionContainer {
     position: absolute;
     width: 100%;
@@ -30,20 +43,23 @@
     overflow-y: auto;
     z-index: 2;
     overflow-x: hidden;
-    box-shadow: 0px 4px 4px 0px #bdbdbd;
+    box-shadow: 0px 3px 6px 2px #bdbdbd;
 }
 
 .dropDown .dropDownOption {
-    background: #2196F3;
-    color: white;
+    color: #565656;
+    background: white;
     padding: 4px 12px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid gainsboro;
     cursor: pointer;
     position: relative;
     z-index: 0;
     /* box-shadow: 0px 0px 4px 2px grey; */
 }
-
+ .dropDown .dropDownOption.selected{
+     background: #565656;
+     color: white;
+ }
 .dropDown .dropDownOption span {
     position: absolute;
     left: 100%;
@@ -61,7 +77,7 @@
     display: none;
 }
 
-.dropDown .dropDownValue:hover, .dropDown .dropDownOption:hover {
+.dropDown.editable .dropDownValue:hover, .dropDown .dropDownOption:hover {
     background: white;
     color: black;
 }
@@ -78,7 +94,12 @@
         top: 0;
         bottom: 0;
         height: fit-content;
-        background: #ffffff;
+        background: #ffffff0d;
+        z-index: 5;
+        max-height: 100%;
+        box-sizing: border-box;
+        border-top: 60px solid transparent;
+        border-bottom: 60px solid transparent;
     }
 
     .dropDown .dropDownOptionContainer:before {
@@ -89,11 +110,12 @@
         width: 100%;
         height: 100%;
         background: #00000096;
+        z-index: 0;
     }
 
     .dropDown .dropDownOption {
         background: #ffffff;
-        color: #2196f3;
+        color: #565656;;
         padding: 10px 40px;
         margin: 1px;
         cursor: pointer;

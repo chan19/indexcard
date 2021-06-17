@@ -443,7 +443,7 @@
 		
 	}
 	.largeEditorTab.selected{
-		border-bottom: 8px solid #4e4e4e;
+		border-bottom: 4px solid #4e4e4e;
 		color: #4e4e4e;
 	}
 	body.touchDevice .largeEditor{

@@ -15,26 +15,28 @@ body {
     --color-act2A: #ffc107;
     --color-act2B: #009688;
     --color-act3: #e91e63;
-	--color-TextColorActNone: black;
-	--color-TextColorAct1: white;
-	--color-TextColorAct2A: black;
-	--color-TextColorAct2B: white;
-	--color-TextColorAct3: white;
-	--color-body: #e4e4e4;
-	--color-header: #e8e8e8;
+    --color-TextColorActNone: black;
+    --color-TextColorAct1: white;
+    --color-TextColorAct2A: black;
+    --color-TextColorAct2B: white;
+    --color-TextColorAct3: white;
+    --color-body: #e4e4e4;
+    --color-header: #e8e8e8;
 }
-body.touchDevice{
-	--color-header: white;
-	/*--color-body: white;*/
-	 --card-width: 100%;
+
+body.touchDevice {
+    --color-header: white;
+    /*--color-body: white;*/
+    --card-width: 100%;
 }
+
 body.theme2 {
     --color-red: #f6a6b2;
     --color-blue: #90d2d8;
     --color-green: #b7ded2;
     --color-orange: #f7c297;
     --color-violet: #af90d8;
-	--color-white: white;
+    --color-white: white;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -42,6 +44,7 @@ body.theme2 {
         --card-width: 300px;
         --card-height: 240px;
         --card-titleH: 35px;
+        --card-summaryH: 170px;
     }
 }
 
@@ -50,6 +53,7 @@ body.theme2 {
         --card-width: 300px;
         --card-height: 240px;
         --card-titleH: 35px;
+        --card-summaryH: 170px;
     }
 }
 
@@ -58,6 +62,7 @@ body.theme2 {
         --card-width: 300px;
         --card-height: 240px;
         --card-titleH: 35px;
+                --card-summaryH: 170px;
     }
 }
 
@@ -66,6 +71,7 @@ body.theme2 {
         --card-width: 350px;
         --card-height: 375px;
         --card-titleH: 35px;
+                --card-summaryH: 305px;
     }
 }
 
