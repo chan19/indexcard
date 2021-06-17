@@ -7,6 +7,7 @@
 	Dropdown.prototype = {
 		init: function(oConfig){
 			oConfig.id = oConfig.id || "_dropdown" + count++;
+			this._editable = (oConfig.editable === undefined) ? true : !!oConfig.editable;
 			this._options = oConfig.list;
 			this._defaultText = oConfig.defaultText || "Select an Option";
 			this._classList = oConfig.class || [];
@@ -20,7 +21,9 @@
 		},
 		_owner: null,
 		_value: null,
+		_editable: true,
 		_options: {},
+		_isOpen: false,
 		_handlers: {
 			change: function(){
 				
@@ -61,6 +64,17 @@
 			}
 			return sel;
 		},
+		setEditable: function(bEditable){
+			this._editable = !!bEditable;
+			if(bEditable){
+				this._node.removeClass("noneditable").addClass("editable");
+			} else {
+				this._node.removeClass("editable").addClass("noneditable");
+			}
+		},
+		getEditable: function(){
+			return this._editable;
+		},
 		setValue: function(sKey, bSuppressHandlerCall){
 			var a = this.getOptions();
 			var i = this._getIndexOfKey(sKey);
@@ -70,6 +84,13 @@
 			if(!bSuppressHandlerCall){
 				this._handlers.change(sKey, i, sText);	
 			}
+			this._node.find(".dropDownOption").each(function(i,o){
+				if(o.dataset.value == sKey){
+					o.className = "dropDownOption selected";
+				} else {
+					o.className = "dropDownOption";
+				}
+			});
 			return this;
 		},
 		getValue: function(){
@@ -87,7 +108,8 @@
 			return html;
 		},
 		getHtml: function(sId, aList){
-			return "<div id='"+ sId + "' class='dropDown'><div class='dropDownValue'>" + this._defaultText +"</div><div class='dropDownArrow'></div>" +
+			var editableClass = this._editable ? "editable" : "noneditable";
+			return "<div id='"+ sId + "' class='dropDown " + editableClass+ "'><div class='dropDownValue'>" + this._defaultText +"</div><div class='dropDownArrow'></div>" +
 					"<div class='dropDownOptionContainer' style='display:none'>" + this._getOptionsHtml(aList) +
 					"</div></div>";
 		},
@@ -109,10 +131,29 @@
 		_attachEvents: function(){
 			var that = this;
 			var optionsContainer = this._node.find(".dropDownOptionContainer");
-			this._node.find(".dropDownValue,.dropDownArrow").click(function(){
-				optionsContainer.toggle();
+			var closeHandler = function(){
+				jQuery(window).off("click");
+				optionsContainer.hide();
+				that._isOpen = false;
+			}
+			this._node.find(".dropDownValue,.dropDownArrow").click(function(e){
+				if(that.getEditable()){
+					that._isOpen = !that._isOpen;
+					optionsContainer.toggle();
+					e.stopPropagation();
+					if(that._isOpen){
+						var selected = optionsContainer.find(".selected.dropDownOption");
+						if(selected.length){
+							optionsContainer.scrollTop(optionsContainer.scrollTop()+selected.position().top);
+						}
+						jQuery(window).on("click", closeHandler);
+					}
+				}
 			});
-			this._node.on("click", ".dropDownOption",function(){
+			this._node.on("click", ".dropDownOption",function(e){
+				e.stopPropagation();
+				jQuery(window).off("click");
+				that._isOpen = false;
 				var sel = this.attributes["data-value"].value;
 				var index = this.attributes["data-index"].value;
 				that.setValue(sel);

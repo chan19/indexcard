@@ -397,9 +397,11 @@ appManager = (function(){
 				if(body.hasClass("showBeats")){
 					body.removeClass("showBeats");
 					configureBeatButton.hide();
+					that.cardManager.setShowBeatSelector(false);
 				
 				} else {
 					body.addClass("showBeats");
+					that.cardManager.setShowBeatSelector(true);
 					//configureBeatButton.show();
 				}
 			});
@@ -408,19 +410,21 @@ appManager = (function(){
 				var body = jQuery("body");
 				if(body.hasClass("showActColors")){
 					body.removeClass("showActColors");
+					that.cardManager.setShowActSelector(false);
 				} else {
 					body.addClass("showActColors");
+					that.cardManager.setShowActSelector(true);
 				}
 			});
 			jQuery("#pageMeterButton").click(function(){
 				var body = jQuery("body");
 				if(body.hasClass("showPageMeter")){
+					that.cardManager.setShowPageMeter(false);
 					body.removeClass("showPageMeter");
 				} else {
 					body.addClass("showPageMeter");
-					that.cardManager.refreshPageMeter();
+					that.cardManager.setShowPageMeter(true);
 				}
-				
 			});
 			jQuery("#menuIcon").click(function(){
 				jQuery("#leftPanel").toggleClass("isVisible");

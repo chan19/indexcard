@@ -286,7 +286,8 @@
                 fOnSave.call(that, that._getValuesFromFields());
                 fOnNext.call(that);
             });
-            this._node.find(".currentColor").click(function() {
+            this._node.find(".currentColor").click(function(e) {
+				e.stopPropagation();
                 colorPicker.toggleClass("isVisible");
             });
             this._node.find(".colorCode").click(function() {
@@ -341,14 +342,14 @@
 				summaryTab.addClass("selected");
 				summaryPanel.show();
 				footnotePanel.hide();
-				summaryField.focus();
+				///summaryField.focus();
 			});
 			footnoteTab.click(function(){
 				footnoteTab.addClass("selected");
 				summaryTab.removeClass("selected");
 				summaryPanel.hide();
 				footnotePanel.show();
-				footNoteField.focus();
+				//footNoteField.focus();
 			});
         },
 		_suppressSwipe: false,
