@@ -70,6 +70,9 @@
             }
         },
         setEditable: function(bEditable) {
+			if(appManager.getIsTouchDevice()){
+				bEditable = false; // if the device is touch, editable is always false
+			}
             var node = this.getNodeReference();
             node.find(".indexCardTitle").attr("contentEditable", bEditable);
             node.find(".indexCardContent").attr("contentEditable", bEditable);
