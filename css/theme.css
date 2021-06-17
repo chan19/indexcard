@@ -24,11 +24,7 @@ body {
     --color-header: #e8e8e8;
 }
 
-body.touchDevice {
-    --color-header: white;
-    /*--color-body: white;*/
-    --card-width: 100%;
-}
+
 
 body.theme2 {
     --color-red: #f6a6b2;
@@ -62,16 +58,21 @@ body.theme2 {
         --card-width: 300px;
         --card-height: 240px;
         --card-titleH: 35px;
-                --card-summaryH: 170px;
+        --card-summaryH: 170px;
     }
 }
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     :root {
         --card-width: 350px;
-        --card-height: 375px;
-        --card-titleH: 35px;
-                --card-summaryH: 305px;
+        --card-height: 395px;
+        --card-titleH: 45px;
+        --card-summaryH: 305px;
+    }
+    body.touchDevice {
+    --color-header: white;
+    /*--color-body: white;*/
+    --card-width: 100%;
     }
 }
 
@@ -80,6 +81,12 @@ body.theme2 {
         --card-width: 275px;
         --card-height: 240px;
         --card-titleH: 35px;
+		 --card-summaryH: 170px;
+    }
+    body.touchDevice {
+    --color-header: white;
+    /*--color-body: white;*/
+    --card-width: 100%;
     }
 }
 

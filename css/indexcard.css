@@ -40,11 +40,12 @@ body.touchDevice .indexCard {
     color: white;
     border-bottom: 1px solid transparent;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 16px;
     position: relative;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 body.touchDevice .indexCardTitle {
@@ -159,8 +160,8 @@ body.touchDevice .indexCardContent {
 }
 
 .indexCard .indexCardNotes {
-    padding: 4px 8px;
-    height: var(--card-height);
+    padding: 4px 10px;
+    height: var(--card-summaryH);
     overflow-y: auto;
     scroll-margin: 0;
     scroll-padding: 0;
@@ -169,7 +170,7 @@ body.touchDevice .indexCardContent {
     position: relative;
     border-bottom: 0;
     position: absolute;
-    top: 0;
+    top: var(--card-titleH);
     background: #bfbfbf;
     color: black;
     width: 100%;
@@ -180,7 +181,6 @@ body.touchDevice .indexCardContent {
     transition: 300ms ease-in-out all;
     word-break: break-word;
     display: none;
-    border-top: 10px solid transparent;
     z-index: 2;
 }
 
@@ -236,7 +236,7 @@ body.viewOnly .indexCardTitle {
 
 .indexCardNumber {
     position: absolute;
-    bottom: 2px;
+    bottom: 0px;
     /* width: 100%; */
     line-height: 30px;
     color: #8e8e8e;
@@ -292,13 +292,12 @@ body.touchDevice .indexCardPgTarget {
     left: 55px;
     right: 125px;
     width: auto;
-    height: 35px;
     text-transform: uppercase;
 }
 
 body.touchDevice .options.icon {
     background-image: url(../icons/options.png);
-    height: 35px;
+    height: var(--card-titleH);
     width: 30px;
     position: absolute;
     right: 8px;
@@ -654,27 +653,27 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
 
     .indexCardTitle {
         font-size: small;
-        padding: 0px 40px 0px 8px;
+        padding: 5px 15px 0px 15px;
         box-sizing: border-box;
     }
 
     .indexCardContent {
         font-size: small;
-        padding: 10px 10px 5px;
+        padding: 10px 15px 5px;
         box-sizing: border-box;
         top: 0;
     }
 
     .indexCard .info.icon {
-        height: 30px;
-        width: 30px;
-        line-height: 30px;
+        height: 25px;
+        width: 25px;
+        line-height: 25px;
         font-size: 15px;
         font-weight: lighter;
+        margin: 4px;
     }
 
     .indexCard .indexCardNotes {
-        padding-top: 16px;
         font-size: medium;
     }
     .indexCardFooter .indexCardColumn {
