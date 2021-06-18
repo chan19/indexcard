@@ -299,11 +299,13 @@
         setProperty: function(sProp, val, bRender) {
             var propertyClass;
             var tmp;
+			var bFireEvent = true;
             if (this._props.indexOf(sProp) > -1) {
                 if (bRender) {
                     if (sProp == "color") {
                         this._node.removeClass(this.getProperty("color")).addClass(val);
                     } else if (sProp == "statusText") {
+						bFireEvent = false;
                         this._node.find(".statusBox").text(val);
                     } else if (sProp == "notes") {
                         this._node.find(".indexCardNotes").html((val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
@@ -324,7 +326,9 @@
 
                 }
                 this["_" + sProp] = val;
-                this.getCore().fireEvent("dataChange");
+				if(bFireEvent){
+					this.getCore().fireEvent("dataChange");
+				}
             }
             return this;
         },
