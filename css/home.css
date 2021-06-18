@@ -48,7 +48,7 @@ body {
     display: inline-block;
     margin-right: 20px;
     padding: 2px 12px;
-    background: #d2d2d2;
+    background: #000000;
     border-radius: 10px;
 }
 
@@ -297,12 +297,12 @@ div#fileNamelabel {
 .metadataItem .label {
     font-size: 10px;
     /* text-transform: uppercase; */
-    color: black;
+    color: white;
     margin: 0 2px 0 0;
 }
 
 .metadataItem .value, .metadataItem .detailedValue {
-    color: black;
+    color: white;
     /* font-weight: bold; */
     font-size: 12px;
 }
@@ -447,7 +447,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 }
 
 .masterButton {
-    background-color: #868585;
+    background-color: #000000;
     display: inline-block;
     height: 22px;
     width: 22px;
