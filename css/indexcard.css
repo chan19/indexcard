@@ -239,7 +239,7 @@ body.viewOnly .indexCardTitle {
     bottom: 0px;
     /* width: 100%; */
     line-height: var(--card-titleH);
-    color: #8e8e8e;
+    color: #c7c7c7;
     background: transparent;
     padding: 0 4px;
     display: inline-block;
@@ -299,7 +299,7 @@ body.touchDevice .options.icon {
     height: var(--card-titleH);
     position: absolute;
     right: 0px;
-    opacity: 1;
+    opacity: 0.6;
     bottom: 0;
     background-position: center;
     background-size: contain;
@@ -460,8 +460,8 @@ body.touchDevice .indexCard .info.icon {
     display:block;
     background-color:transparent;
     height: var(--card-titleH);
-    margin: 0 5px;
-    opacity: 0.6;
+    margin: 0 8px;
+    opacity: 0.4;
 }
 .indexCard.proxyCard {
     position: fixed;
@@ -660,7 +660,7 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
 
     .indexCardTitle {
         font-size: small;
-        padding: 5px 15px 0px 15px;
+        padding: 5px 21px 0px 15px;
         box-sizing: border-box;
         line-height: initial;
     }
@@ -683,7 +683,7 @@ body.nonTouchDevice .indexCard .colorPicker .colorCode:hover {
     }
 
     .indexCard .indexCardNotes {
-        font-size: medium;
+        font-size: small;
     }
     .indexCardFooter .indexCardColumn {
     padding-top: 4px;
