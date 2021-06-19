@@ -58,8 +58,15 @@
 		_getDisableNext: function(){
 			return this._disableNext;
 		},
-        open: function(oCard) {
+        open: function(oCard, sTab) {
             jQuery("#blocker").show();
+			if(sTab != ""){
+				if(sTab == "footnote"){
+					this._node.find(".largeEditorFootnoteTab").click();
+				} else {
+					this._node.find(".largeEditorSummaryTab").click();
+				}
+			}
             this._node.show();
 			this._rClone.show();
 			this._lClone.show();

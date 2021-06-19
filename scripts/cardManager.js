@@ -230,10 +230,10 @@ CardManager.prototype.deleteCard = function(nIndex){
 	this.refreshPageMeter();
 }
 
-CardManager.prototype.popoutCard = function(oCard){
+CardManager.prototype.popoutCard = function(oCard, sTab){
 	var i =oCard.getProperty("index");
 	var l = this.getCards().length;
-	this.largeEditor.setData(oCard.getData(),(i == 0), (i == l-1)).open(oCard);
+	this.largeEditor.setData(oCard.getData(),(i == 0), (i == l-1)).open(oCard, sTab);
 }
 CardManager.prototype.cloneProxyMove = function(aPos, oCard, oClone){
 	var node = oCard.getNodeReference();
@@ -327,7 +327,7 @@ CardManager.prototype.setShowPageMeter = function(bShow){
 		for(var i = 0; i < l; i++){
 			cur = aCards[i];
 			tmp = Number(cur.getProperty("pgTarget"));
-			cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp), true);
+			cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp -1), true);
 			cur.setPgTargetEditable(true);
 			meter +=  tmp;
 		}
@@ -347,7 +347,7 @@ CardManager.prototype.refreshPageMeter = function(){
 	for(var i = 0; i < l; i++){
 		cur = aCards[i];
 		tmp = Number(cur.getProperty("pgTarget"));
-		cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp), true);
+		cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp-1), true);
 		meter +=  tmp;
 	}
 	appManager.setTotalTargetPageCount(meter);

@@ -290,7 +290,7 @@
                 controlsHtml = "<div class='indexCardFooter'>" + "<div class='indexCardColumn'><div class='icon currentColor'></div></div>" + "<div class='indexCardColumn'><div class='icon tag'></div></div>" + "<div class='indexCardColumn'><div class='icon move'></div></div>" + "<div class='indexCardColumn'><div class='icon popout'></div></div>" + "<div class='indexCardColumn'><div class='icon addCard'></div></div>" + "</div>"
             }
 
-            var html = "<div id='card_" + oData.id + "' class='indexCard " + isEditableClass + " " + sizeClass + " " + oData.color + " " + actClass + "'>" + "<div class='indexCardTitle' contentEditable=" + isEditable + ">" + this.getCore().sanitizeHtml(oData.title) + "</div>" + "<div class='icon info'>" + infoIconText + "</div>" + "<div class='indexCardBg'></div>" + "<textarea class='indexCardContent'>" + oData.content + "</textarea>" + "<div class='indexCardMetaBar'>" + "<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1) + "</div>" + "<div class='indexCardPgTarget'></div>" + "<div class='indexCardAct'></div>" + "<div class='options icon'></div>" + "</div>" + controlsHtml + this._getColorPickerHtml() + "<div class='cardMask'></div><div class='statusBox'></div>" + "<div class='indexCardNotes'>" + (oData.notes[0] ? this.getCore().sanitizeHtml(oData.notes.join("<br>")) : "No notes to display") + "</div>" + "<div class='beatCard'></div>" + "</div>";
+            var html = "<div id='card_" + oData.id + "' class='indexCard " + isEditableClass + " " + sizeClass + " " + oData.color + " " + actClass + "'>" + "<div class='indexCardTitle' contentEditable=" + isEditable + ">" + this.getCore().sanitizeHtml(oData.title) + "</div>" + "<div class='icon info'>" + infoIconText + "</div>" + "<div class='indexCardBg'></div>" + "<textarea class='indexCardContent'>" + oData.content + "</textarea>" + "<div class='indexCardMetaBar'>" + "<div class='indexCardNumber' style='" + indexNumberStyle + "'>#" + (oData.index + 1) + "</div>" + "<div class='indexCardPgTarget'></div>" + "<div class='indexCardAct'></div>" + "<div class='options icon'></div>" + "</div>" + controlsHtml + this._getColorPickerHtml() + "<div class='cardMask'></div><div class='statusBox'></div>" + "<div class='indexCardNotes'>" + (oData.notes[0] ? this.getCore().sanitizeHtml(oData.notes.join("<br>")) : "No footnotes to display. Tap to add") + "</div>" + "<div class='beatCard'></div>" + "</div>";
             return html;
         },
         getProperty: function(sProp) {
@@ -308,7 +308,7 @@
 						bFireEvent = false;
                         this._node.find(".statusBox").text(val);
                     } else if (sProp == "notes") {
-                        this._node.find(".indexCardNotes").html((val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No notes to display");
+                        this._node.find(".indexCardNotes").html((val && val[0]) ? this.getCore().sanitizeHtml(val.join("<br>")) : "No footnotes to display. Tap to add");
                     } else if (sProp == "act") {
 						tmp = this.getProperty("act");
                         this._node.removeClass("_act" + (tmp == "-1" ? "None" : tmp)).addClass("_act" + (val == -1 ? "None" : val));
@@ -502,6 +502,10 @@
             });
             this._beatCard.attachOnChange(function(key, i, value) {
                 that.setProperty("beat", key, false);
+            });
+			oNode.find(".indexCardNotes").click(function() {
+                oNode.find(".indexCardContent").blur();
+                fOnPopout(that, "footnote");
             });
 			this._actSelector.attachOnChange(function(key, i, value) {
 				var prev = that.getProperty("act");
