@@ -61,7 +61,6 @@ appManager = (function(){
 			this._initOverview();
 			this._initTagPopup(oData.tags);
 			this._initCardManager(oData.cards);
-			this._initActDialog();
 			//set metadatas
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
@@ -114,10 +113,6 @@ appManager = (function(){
 				tags: aTag
 			});
 			this.tagPopup.render("testArea");
-		},
-		_initActDialog: function(){
-			this.actDialog = new ActDialog();
-			this.actDialog.render("testArea");
 		},
 		_initCardManager: function(aCard){
 			this.cardManager = new CardManager(aCard);
@@ -284,8 +279,18 @@ appManager = (function(){
 				c(oData);
 			});
 		},
+		openFileTitleDialog: function(sVal){
+			jQuery("#fileTitleDialog").show().find(".inputBar").val(sVal).focus();
+			jQuery("#blocker").show();
+			this.fireEvent("dialogOpen");
+		},
+		closeFileTitleDialog: function(){
+			jQuery("#fileTitleDialog").hide();
+			jQuery("#blocker").hide();
+		},
 		openBackupConfirmationWindow: function(){
 			jQuery("#backupConfirmationWindow").show();
+			this.fireEvent("dialogOpen");
 			jQuery("#blocker").show();
 		},
 		closeBackupConfirmationWindow: function(){
@@ -317,9 +322,16 @@ appManager = (function(){
 			jQuery("#backupConfirmationWindow .closeButton").click(function(){
 				that.closeBackupConfirmationWindow();
 			});
-			jQuery("#fileName").focusout(function(){
-				that.setFileName(this.innerText, false);
+			jQuery("#fileName").click(function(){
+				that.openFileTitleDialog(that.getFileName());
+			});
+			jQuery("#fileTitleSave").click(function(){
+				that.setFileName(jQuery("#fileTitleDialog .inputBar").val(), true);
+				that.closeFileTitleDialog();
 				that.fireEvent("dataChange");
+			});
+			jQuery("#fileTitleCancel").click(function(){
+				that.closeFileTitleDialog();
 			});
 			jQuery("#fileName").on("keydown", function(e){
 				if(e.keyCode == 13){
