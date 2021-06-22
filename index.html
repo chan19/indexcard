@@ -21,7 +21,6 @@
         <link href="css/overview.css" rel="stylesheet" type="text/css"/>
         <link href="css/tagPopup.css" rel="stylesheet" type="text/css"/>
         <link href="css/largeEditor.css" rel="stylesheet" type="text/css"/>
-        <link href="css/actDialog.css" rel="stylesheet" type="text/css"/>
         <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>
         <link href="css/cloudbox.css" rel="stylesheet" type="text/css"/>
         <script src="scripts/jquery-3.4.1.min.js"></script>
@@ -35,7 +34,6 @@
         <script src="scripts/overview.js"></script>
         <script src="scripts/tagPopup.js"></script>
         <script src="scripts/largeEditor.js"></script>
-        <script src="scripts/actDialog.js"></script>
         <script src="scripts/cloudBox.js"></script>
         <script>
             jQuery(document).ready(function() {
@@ -74,7 +72,7 @@
             <div id='menuIcon' class='icon' style='display:none'></div>
             <img id='logo' src='logos/inkextlogo.png'>
             <div id='fileNamelabel'>Title > </div>
-            <div id="fileName" contenteditable=true spellcheck=false></div>
+            <div id="fileName" spellcheck=false></div>
 			<div id='headerIconPane'>
 				<div id='createNewFile' title='Create new file' class='icon'></div>
 				<div id='viewIcon' class='icon' title='View only'></div>
@@ -103,7 +101,7 @@
 			</div>
         </div>
         <div id="searchContainer">
-            <input class="searchBar">
+            <input class="searchBar inputBar">
             <img src='icons/search.png' class='icon'>
         </div>
         <div id="masterButtonPane">
@@ -148,6 +146,12 @@
 			<div class='busyIndicator'></div>
 		</div>
         <div id="testArea">
+			<div id='fileTitleDialog' class='dialogPrompt' style='display:none'>
+				<div class='dialogPromptHeader'>Story Title</div>
+				<div class='dialogPromptBody'> <input class="inputBar"></div>
+				<button id='fileTitleSave' class='confirmButton button'>SAVE</button>
+				<button id='fileTitleCancel' class='confirmButton button'>CANCEL</button>
+			</div>
 			<div id='messageToast' class='messageToast'></div>
             <div id='updateWindow' class='dialogPrompt' style='display:none'>
                 <div class='dialogPromptHeader'>UPDATE</div>
