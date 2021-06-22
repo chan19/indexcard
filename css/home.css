@@ -803,7 +803,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         max-width: 90px;
         min-width: unset;
         text-overflow: ellipsis;
-        overflow-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     #fileName:focus {
@@ -827,10 +828,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         right: 0;
     }
     .button{
-        height: 40px;
-        font-size: medium;
+        height: 30px;
+        font-size: small;
         width: 100%;
-        margin: 0px 0px 10px !important;
+        margin: 0px 0px 4px !important;
         box-sizing: border-box;
         border-width: 0px 11px;
     }
