@@ -488,7 +488,7 @@ body.viewOnly .indexCard .indexCardFooter, #cardContainer.fadeCards .indexCard .
 .indexCard .colorPicker {
     /* height: 0; */
     position: absolute;
-    bottom: 32px;
+    bottom: var(--card-titleH);
     padding: 0;
     /* border: 1px solid #e2e2e2; */
     background: #000000;
