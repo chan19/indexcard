@@ -325,6 +325,13 @@ appManager = (function(){
 			jQuery("#fileName").click(function(){
 				that.openFileTitleDialog(that.getFileName());
 			});
+			jQuery("#fileTitleDialog .inputBar").on("keydown", function(e){
+				if(e.keyCode == 13){
+					jQuery("#fileTitleSave").click();
+					return false;
+				}
+				return (e.keyCode == 8) || (e.keyCode==46) || this.value.length<40;
+			});
 			jQuery("#fileTitleSave").click(function(){
 				that.setFileName(jQuery("#fileTitleDialog .inputBar").val(), true);
 				that.closeFileTitleDialog();
@@ -332,13 +339,6 @@ appManager = (function(){
 			});
 			jQuery("#fileTitleCancel").click(function(){
 				that.closeFileTitleDialog();
-			});
-			jQuery("#fileName").on("keydown", function(e){
-				if(e.keyCode == 13){
-					jQuery(this).blur();//.focusout();
-					return false;
-				}
-				return (e.keyCode == 8) || (e.keyCode==46) || this.innerText.length<40;
 			});
 			jQuery("#viewIcon").click(function(){
 				var oData = that.cardManager.getCardData();
