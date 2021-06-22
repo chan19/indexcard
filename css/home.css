@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     font-size: small;
     background: var(--color-body);
 }
@@ -12,7 +12,6 @@ body {
     background: var(--color-header);
     box-shadow: 0px 0px 5px 0px black;
     z-index: 3;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 #headerIconPane {
@@ -235,7 +234,7 @@ div#fileNamelabel {
     padding: 0px 2px;
     display: inline-block;
     font-size: 20px;
-    color: #101010;
+    color: #000000;
     margin: 0px 0;
     margin-top: 5px;
     max-width: 500px;
@@ -244,28 +243,18 @@ div#fileNamelabel {
     min-width: 200px;
     border: 1px solid white;
     border-radius: 2px;
-    cursor: text;
+    cursor: pointer;
     border-color: #e8e8e8;
     vertical-align: baseline;
     box-sizing: border-box;
     line-height: 35px;
-    font-weight: lighter;
+    font-weight: bold;
     text-decoration: none;
 }
 
 #fileName:hover {
-    background: #ffffff;
-    color: black;
+    color: #2196f3;
 }
-
-#fileName:focus {
-    background: white!important;
-    outline: none;
-    color: black;
-    border-color: #7a9fd8;
-    cursor: unset;
-}
-
 #savedTime {
     display: inline-block;
     font-size: small;
@@ -331,7 +320,7 @@ div#fileNamelabel {
 #searchContainer {
     position: fixed;
     top: 65px;
-    top: 5px;
+    top: 7px;
     width: 400px;
     left: 150px;
     z-index: 3;
@@ -339,28 +328,38 @@ div#fileNamelabel {
     height: 30px;
     margin: auto;
     box-shadow: 0px 0px 6px 1px #c7c7c7;
-    padding: 2px 4px;
+    padding: 0px 4px;
     overflow: hidden;
     border-radius: 2px;
     background: white;
 }
-
-#searchContainer .searchBar {
-    width: 370px;
-    border: none;
-    position: absolute;
-    border: none;
-    /* height: 30px; */
-    font-size: 18px;
-    line-height: 34px;
-    color: #191919;
-    outline: none;
-    cursor: text;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    vertical-align: middle;
-    top: 0;
+.inputBar{
+   border: none;
+   border: none;
+   position: relative;
+   height: 30px;
+   font-size: 18px;
+   line-height: 30px;
+   width: 100%;
+   color: #191919;
+   outline: none;
+   cursor: text;
+   font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+   vertical-align: middle;
+   top: 0;
+   padding: 2px;
+   box-sizing: border-box;
 }
-
+#searchContainer .searchBar .inputBar{
+	width: 370px;
+}
+#fileTitleDialog .inputBar{
+	display: block;
+	width: 100%;
+	/* border: 1px solid #d4d2d2; */
+	border-radius: 4px;
+	background: #efefef;
+}
 
 
 #searchContainer .icon {
@@ -551,13 +550,12 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     width: 400px;
     max-height: 400px;
     height: fit-content;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     padding: 0 15px;
     box-sizing: border-box;
 }
 
 .dialogPromptHeader {
-    color: #9c9c9c;
+    color: #333333;
     text-align: center;
     font-size: medium;
     margin: 0px 0px;
@@ -690,7 +688,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 		background-color: #03a9f4;
 	}
 	body.nonTouchDevice .masterButton:hover {
-		transform: scale(1.1);
+		/* transform: scale(1.1); */
 	}
 
 	body.nonTouchDevice #searchContainer:hover {
@@ -719,7 +717,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 
     #contentArea {
         margin: unset;
-        top: 100px;
+        top: 102px;
         width: fit-content;
         width: var(--card-width);
         left: 0;
@@ -743,7 +741,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     }
 
     #cardContainer .indexCard {
-        margin: 15px 0 8px;
+        margin: 8px 0 8px;
         /* box-shadow: unset; */
         /* border: 1px solid #e4e4e4; */
     }
@@ -760,7 +758,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     #header .icon {
         height: 28px;
         width: 28px;
-        margin: 5px 3px;
+        margin: 5px 0px;
         border: 8px solid transparent;
         /* background-color: transparent; */
     }
@@ -784,7 +782,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         height: 40px;
         width: 40px;
         top: 0px;
-        border: 7px solid #e91e6300;
+        border: none;
+        margin: 7px 2px 7px 4px;
     }
 
     #menuIcon.icon {
@@ -798,14 +797,17 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     }
 
     #fileName {
-        display: none;
+        /* display: none; */
         font-size: small;
-        margin-left: 48px;
+        margin-left: 45px;
         margin-top: 10px;
         padding: 0px 4px;
         border-radius: 8px;
         border-color: white;
-        max-width: 180px;
+        max-width: 90px;
+        min-width: unset;
+        text-overflow: ellipsis;
+        overflow-wrap: break-word;
     }
 
     #fileName:focus {
@@ -856,8 +858,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         background: #ffffff;
         border-radius: 18px;
     }
-
-    #searchContainer .searchBar {
+    #searchContainer .inputBar {
         width: 100%;
         line-height: 30px;
         font-size: small;
