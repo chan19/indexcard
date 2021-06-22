@@ -82,8 +82,8 @@
 }
 
 .dropDown.editable .dropDownValue:hover, .dropDown .dropDownOption:hover {
-    background: white;
-    color: black;
+    background: #d6d6d6;
+    color: #2196f3;
 }
 
 @media only screen and (max-width: 500px) and (min-width: 235px) and (orientation: portrait) {

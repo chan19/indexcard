@@ -241,10 +241,8 @@ div#fileNamelabel {
     height: 35px;
     overflow: hidden;
     min-width: 200px;
-    border: 1px solid white;
     border-radius: 2px;
     cursor: pointer;
-    border-color: #e8e8e8;
     vertical-align: baseline;
     box-sizing: border-box;
     line-height: 35px;
@@ -779,11 +777,11 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     }
 
     #logo {
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
         top: 0px;
         border: none;
-        margin: 7px 2px 7px 4px;
+        margin: 10px 2px 10px 4px;
     }
 
     #menuIcon.icon {
@@ -798,12 +796,10 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 
     #fileName {
         /* display: none; */
-        font-size: small;
         margin-left: 45px;
         margin-top: 10px;
         padding: 0px 4px;
         border-radius: 8px;
-        border-color: white;
         max-width: 90px;
         min-width: unset;
         text-overflow: ellipsis;
