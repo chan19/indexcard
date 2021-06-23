@@ -30,7 +30,7 @@ body {
 }
 
 #metaDataContainer {
-    z-index: 2;
+    z-index: 1;
     box-sizing: border-box;
     display: inline-block;
     line-height: 16px;
@@ -46,10 +46,9 @@ body {
 #metaDataContainer .metadataItem {
     display: inline-block;
     margin-right: 20px;
-    padding: 2px 12px;
-    background: #fffffff5;
+    padding: 2px 2px;
     border-radius: 10px;
-    box-shadow: 0px 0px 4px 0px #b9b9b9;
+    /* box-shadow: 0px 0px 4px 0px #b9b9b9; */
 }
 
 #contentArea {
@@ -285,13 +284,13 @@ div#fileNamelabel {
 .metadataItem .label {
     font-size: 10px;
     /* text-transform: uppercase; */
-    color: #020202;
+    color: #8c8c8c;
     margin: 0 2px 0 0;
 }
 
 .metadataItem .value, .metadataItem .detailedValue {
-    color: black;
-    /* font-weight: bold; */
+    color: #1d1d1d;
+    font-weight: bold;
     font-size: 12px;
 }
 
