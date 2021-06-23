@@ -912,42 +912,6 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         margin: 0px auto 0;
     }
 
-	#masterButtonPane #beatButton {
-		background-image: url(../icons/mobile/beat.png);
-	}
-
-	#masterButtonPane #actButton {
-		background-image: url(../icons/mobile/act.png);
-	}
-
-	#masterButtonPane #emoButton {
-		background-image: url(../icons/emotion.png);
-		display: none;
-	}
-
-	#masterButtonPane #pageMeterButton {
-		background-image: url(../icons/mobile/pagemeter.png);
-	}
-	body.showActColors #masterButtonPane #actButton.masterButton{
-		background-image: url(../icons/act.png);
-		background-color: #FFC107;
-	}
-
-	body.showBeats #masterButtonPane #beatButton.masterButton{
-		background-image: url(../icons/beat.png);
-		background-color: #4caf50;
-	}
-
-	body.showEmo #masterButtonPane #emoButton.masterButton {
-		background-image: url(../icons/emo.png);
-		background-color: #F44336;
-	}
-
-	body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
-		background-image: url(../icons/pagemeter.png);
-		background-color: #03a9f4;
-	}
-
 	#deleteZone {
     }
 
