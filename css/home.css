@@ -425,11 +425,11 @@ div#fileNamelabel {
 }
 
 body.showActColors #masterButtonPane #actButton.masterButton{
-    background-color: #FFC107;
+    background-color: #ffeb3b;
 }
 
 body.showBeats #masterButtonPane #beatButton.masterButton {
-    background-color: #4caf50;
+    background-color: #8bc34a;
 }
 
 body.showEmo #masterButtonPane #emoButton.masterButton{
@@ -444,7 +444,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 }
 
 .masterButton {
-    background-color: #000000;
+    background-color: #ffffffe6;
     display: inline-block;
     height: 22px;
     width: 22px;
@@ -455,7 +455,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     transition: 100ms linear all;
     cursor: pointer;
     background-repeat: no-repeat;
-    margin-right: 4px;
+    margin-right: 8px;
+    box-shadow: 0px 0px 4px 0px #929292;
 }
 
 
@@ -671,11 +672,11 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 		content: 'PAGE METER';
 	}
 	body.nonTouchDevice.showActColors #masterButtonPane #actButton.masterButton,body.nonTouchDevice  #masterButtonPane #actButton:hover {
-		background-color: #FFC107;
+		background-color: #ffeb3b;
 	}
 
 	body.nonTouchDevice.showBeats #masterButtonPane #beatButton.masterButton,body.nonTouchDevice #masterButtonPane #beatButton:hover {
-		background-color: #4caf50;
+		background-color: #8bc34a;
 	}
 
 	body.nonTouchDevice.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
@@ -701,7 +702,6 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     body.nonTouchDevice .button:active {
         font-size: small;
         box-sizing: border-box;
-        border-width: 0px 11px;
     }
     body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after{
         BACKGROUND: #58b1f7;
@@ -904,8 +904,8 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     .masterButton {
         display: block;
         /* margin-top: 8px; */
-        height: 28px;
-        width: 28px;
+        height: 25px;
+        width: 25px;
         box-shadow: unset;
         background-color: #e4e4e4;
         margin-right: unset;
