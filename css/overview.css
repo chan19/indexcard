@@ -18,7 +18,7 @@ div#overViewContainer {
 
 .overviewItem {
     border-bottom: 1px solid #ececec;
-    padding: 5px 8px 10px;
+    padding: 5px 0px 10px;
     margin-bottom: 10px;
     background: #f9f8f8;
     background: white;
@@ -27,8 +27,9 @@ div#overViewContainer {
 .overviewTitle {
     font-size: medium;
     margin-bottom: 0px;
-    /* font-weight: bold; */
+    font-weight: bold;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    color: black !important;
 }
 
 .overviewItem .overviewItemBullet {
@@ -77,14 +78,16 @@ div#overViewContainer {
 
 .overViewContainerHeader {
     height: 40px;
-    background: #e8e8e8;
+    background: #ffffff;
     padding: 0px 50px;
     position: relative;
     z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .overViewContainerHeaderText {
-    font-size: large;
     display: inline-block;
     line-height: 40px;
 }
@@ -100,7 +103,7 @@ div#overViewItemContainer {
     /* padding-bottom: 20px; */
     background: white;
     /* border-bottom: 5px solid white; */
-    padding: 60px 50px 5px;
+    padding: 40px 50px 5px;
 }
 
 #overViewPrint {

@@ -30,25 +30,26 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     /* text-decoration: underline; */
     background: #ffffff;
     color: #000000;
-    padding: 10px 16px;
+    padding: 10px 0px;
     font-size: x-large;
     box-sizing: border-box;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .overviewItem {
    /* border-bottom: 1px solid #ececec;*/
-    padding: 5px 8px 10px;
-    margin-bottom: 10px;
-    background: #f9f8f8;
-    background: white;
+   padding: 5px 0px 10px;
+   margin-bottom: 4px;
+   background: #f9f8f8;
+   background: white;
 }
 
 .overviewTitle {
     font-size: medium;
     margin-bottom: 0px;
-    /* font-weight: bold; */
+    font-weight: bold;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    color: black !important;
 }
 
 .overviewItem .overviewItemBullet {
@@ -66,7 +67,11 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     font-weight: normal;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
-
+.overviewNotes{
+    background-color: #efefef;
+    padding: 8px 4px;
+    border-radius: 4px;
+}
 .overviewItem.violet .overviewTitle{
    color: var(--color-violet)
 }
