@@ -76,7 +76,7 @@ body.theme2 {
     }
 }
 
-@media only screen and (max-width: 349px) and (min-width: 235px) and (orientation: portrait) {
+@media only screen and (max-width: 349px) {
     :root {
         --card-width: 275px;
         --card-height: 270px;
@@ -92,19 +92,26 @@ body.theme2 {
 
 ::-webkit-scrollbar {
     width: 10px;
+    display: none;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #ffffff;
+    /* background: transparent; */
+    display: none;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #f1f1f1;
+    background: transparent;
+    display: none;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+body{
+	scrollbar-color: #7f7f7f white;
+	scrollbar-width: thin;
 }

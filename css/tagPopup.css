@@ -9,12 +9,11 @@
     opacity: 0.7;
     overflow: hidden;
     /* border-bottom: none; */
-    margin: 1px;
 }
 
 .tagpopup.isVisible {
     display: block;
-    height: 220px;
+    height: var(--card-height);
     opacity: 1;
 }
 
@@ -42,7 +41,7 @@
     padding: 10px 8px;
     background: #efeeee;
     border-bottom: 2px solid #e8e8e8;
-    height: 150px;
+    height: var(--card-height-s);
     position: relative;
 }
 
