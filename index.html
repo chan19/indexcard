@@ -36,27 +36,37 @@
         <script src="scripts/largeEditor.js"></script>
         <script src="scripts/cloudBox.js"></script>
         <script>
-            jQuery(document).ready(function() {
-                appManager.init();
+			function checkUpdates(){
                 window.SCREENWRITING = {
-                    version: 17,
-                    update: ["Update Acts, Page meters in the home page itself"]
+                    version: 18,
+                    update: [	"Automatic save to cloud",
+								"Rename the files on cloud"
+							]
                 }
-                var curVers = Number(localStorage.softwareVersion || 0);
-                if (curVers < window.SCREENWRITING.version) {
+                if (localStorage.softwareVersion && (Number(localStorage.softwareVersion) < window.SCREENWRITING.version)) {
                     localStorage.softwareVersion = window.SCREENWRITING.version;
                     var str = "";
 					window.SCREENWRITING.update.forEach(function(s){
 						str += "<div class='dialogPromptItem'>" + s + "</div>";
 					});
                     jQuery("#updateWindow").show().find(".dialogPromptBody").html(str);
-                    jQuery("#blocker").show();
+					appManager.fireEvent("dialogOpen", {
+						id: "updatewindow",
+						closeHandler: function(){
+							jQuery("#updateWindow").hide();
+						}
+					});
                     jQuery("#updateWindow button").click(function() {
                         jQuery("#updateWindow").hide();
-                        jQuery("#blocker").hide();
+						appManager.fireEvent("dialogClose", {
+							id: "updatewindow"
+						});
                     });
-                }
-				
+                }				
+			}
+            jQuery(document).ready(function() {
+                appManager.init();
+				checkUpdates();
 				if(window.location.search){
 					jQuery("#user").show();
 				}
