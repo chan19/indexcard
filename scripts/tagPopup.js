@@ -8,6 +8,7 @@
 		_allTags: [],
 		_isOpen: false,
 		init: function(oConfig){
+			oConfig = oConfig || {tags: []};
 			this._createNode();
 			this._attachEvents();
 			this._addGlobalListeners();
@@ -60,7 +61,7 @@
 				this.close();
 			} else {
 				this.setTags(aTag);
-				var bottom = window.innerHeight - oNode.offset().top - oNode.height() + 20 +window.scrollY;
+				var bottom = window.innerHeight - oNode.offset().top - oNode.height() +window.scrollY;
 				var left = oNode.offset().left+window.scrollX;
 				this._node.css({
 					left: left,

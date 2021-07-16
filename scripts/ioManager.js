@@ -67,8 +67,8 @@ IoManager.prototype = {
 		return this;
 	},
 	readFromBackup: function(){
-		var sBackup = localStorage.backup || "{}";
-		return JSON.parse(sBackup);
+		var sBackup = localStorage.backup;
+		return sBackup ? JSON.parse(sBackup) : null;
 	},
 	_initRead: function(oConfig){
 		var id = oConfig.id;

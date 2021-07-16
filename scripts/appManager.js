@@ -55,21 +55,26 @@ appManager = (function(){
 			this._version = 1;
 			this.initDevice();
 			this._initIoManager();
-			this._attachEvents();
-			var oData = this._getProcessedData(this._ioManager.readFromBackup());
 			this._initBeat();
 			this._initOverview();
-			this._initTagPopup(oData.tags);
-			this._initCardManager(oData.cards);
-			//set metadatas
-			this.setLastSavedTime(oData.time);
-			this.setVersion(oData.version);
-			this.setFileName(oData.fileName, true);
-			this.setFileId(oData.id);
+			this._initTagPopup();
+			this._initCardManager();
+			this._attachEvents();
+			this._attachListeners();
+			this.setInitialData();
 			setInterval(this.refreshLastSavedTime.bind(this), 60000);
 		},
 		_data: {},
 		_eventListeners: {},
+		setInitialData: function(){
+			var oBackupData = this._ioManager.readFromBackup();
+			if(oBackupData == null){
+				this.createNewFile();
+			} else {
+				var oData = this._getProcessedData(oBackupData);
+				this.setData(oData, true);
+			}
+		},
 		initDevice: function(){
 			this.setIsTouchDevice(navigator.maxTouchPoints > 0 ? true : false);
 		},
@@ -82,11 +87,14 @@ appManager = (function(){
 			return this._isTouchDevice;
 		},
 		_initIoManager: function(){
+			var that = this;
 			this._ioManager = new IoManager({
 				read: {
 					id: "openFileTrigger",
 					pseudo: "openFile",
-					onRead: this.onFileFetch.bind(this)
+					onRead: function(oData){
+						that.setData(oData, true);
+					}
 				},
 				write: {
 					id: "saveFileTrigger",
@@ -114,21 +122,22 @@ appManager = (function(){
 			});
 			this.tagPopup.render("testArea");
 		},
-		_initCardManager: function(aCard){
-			this.cardManager = new CardManager(aCard);
-			if(aCard && aCard.length){
+		_initCardManager: function(){
+			this.cardManager = new CardManager();
+			/*if(aCard && aCard.length){
 				this.cardManager.setCardData(aCard);
 			} else{
 				this.cardManager.addNewCard(0);
-			}
+			}*/
 			return this;
 		},
 		_getProcessedData: function(oData){
+			oData = oData || {};
 			return {
 				time: oData.time || Date.now(),
 				version: oData.version || 1,
 				cards: oData.cards || [],
-				fileName: oData.fileName || "Untitled File",
+				fileName: oData.fileName || "Untitled file",
 				id: oData.id || "",
 				tags: oData.tags || []
 			}
@@ -206,6 +215,7 @@ appManager = (function(){
 			return this._fileId;
 		},
 		setData: function(oData, bSuppressBackup){
+			this.tagPopup.setAllTags(oData.tags);
 			this.setLastSavedTime(oData.time);
 			this.setVersion(oData.version);
 			this.setFileName(oData.fileName, true);
@@ -241,7 +251,8 @@ appManager = (function(){
 		},
 		createNewFile: function(){
 			var data = this._getProcessedData({});
-			this.setData(data);
+			this.setData(data, true);
+			this.openFileTitleDialog();
 		},
 		getDataToSave:function(){
 			var aData = this.getCurrentData();
@@ -261,8 +272,7 @@ appManager = (function(){
 				fileName: fileName,
 				tags: this.tagPopup.getAllTags(),
 				id: this.getFileId(),
-				beats: this.beat.getDataToSave()/*,
-				acts: this.actDialog.getDataToSave()*/
+				beats: this.beat.getDataToSave()
 			};
 		},
 		getData: function(sKey){
@@ -279,23 +289,36 @@ appManager = (function(){
 				c(oData);
 			});
 		},
-		openFileTitleDialog: function(sVal){
+		openFileTitleDialog: function(){
+			var sVal = this.getFileName();
 			jQuery("#fileTitleDialog").show().find(".inputBar").val(sVal).focus();
-			jQuery("#blocker").show();
-			this.fireEvent("dialogOpen");
+			this.fireEvent("dialogOpen", {
+				id: "fileTitle",
+				closeHandler: this.closeFileTitleDialog.bind(this)
+			});
 		},
-		closeFileTitleDialog: function(){
+		closeFileTitleDialog: function(bSuppressEvent){
 			jQuery("#fileTitleDialog").hide();
-			jQuery("#blocker").hide();
+			if(!bSuppressEvent){
+				this.fireEvent("dialogClose", {
+				id: "fileTitle"
+				});
+			}
 		},
 		openBackupConfirmationWindow: function(){
 			jQuery("#backupConfirmationWindow").show();
-			this.fireEvent("dialogOpen");
-			jQuery("#blocker").show();
+			this.fireEvent("dialogOpen", {
+				id: "backupConfirmation",
+				closeHandler: this.closeBackupConfirmationWindow.bind(this)
+			});
 		},
-		closeBackupConfirmationWindow: function(){
+		closeBackupConfirmationWindow: function(bSuppressEvent){
 			jQuery("#backupConfirmationWindow").hide();
-			jQuery("#blocker").hide();
+			if(!bSuppressEvent){
+				this.fireEvent("dialogClose", {
+				id: "backupConfirmation"
+				});
+			}
 		},
 		setBusy: function(bIsBusy){
 			jQuery("#busy")[bIsBusy? "show" : "hide"]();
@@ -312,18 +335,18 @@ appManager = (function(){
 			});
 			
 			jQuery("#createBackupBeforeNew").click(function(){
-				that.closeBackupConfirmationWindow();
 				that._ioManager.save(that.createNewFile.bind(that));
+				that.closeBackupConfirmationWindow();
 			});
 			jQuery("#createNewWithoutBackup").click(function(){
-				that.closeBackupConfirmationWindow();
 				that.createNewFile();
+				that.closeBackupConfirmationWindow();
 			});
 			jQuery("#backupConfirmationWindow .closeButton").click(function(){
 				that.closeBackupConfirmationWindow();
 			});
 			jQuery("#fileName").click(function(){
-				that.openFileTitleDialog(that.getFileName());
+				that.openFileTitleDialog();
 			});
 			jQuery("#fileTitleDialog .inputBar").on("keydown", function(e){
 				if(e.keyCode == 13){
@@ -414,7 +437,6 @@ appManager = (function(){
 				} else {
 					body.addClass("showBeats");
 					that.cardManager.setShowBeatSelector(true);
-					//configureBeatButton.show();
 				}
 			});
 
@@ -445,11 +467,42 @@ appManager = (function(){
 				that.beat.show();
 			});
 		},
+		_attachListeners: function(){
+			var openDialogRegister = {};
+			var baseLocationUrl = window.location.origin+window.location.pathname; 
+			this.listenTo("dialogOpen", function(oParam){
+				openDialogRegister[oParam.id] = oParam.closeHandler;
+				if(window.location.hash){
+					//window.location.replace(baseLocationUrl + "#view");
+				} else {
+					window.location.hash = "view";
+				}
+				jQuery("#blocker").show();
+				console.log("opening -- " + oParam.id);
+			});
+			this.listenTo("dialogClose", function(oParam){
+				delete openDialogRegister[oParam.id];
+				console.log("closing -- " + oParam.id);
+				if(Object.keys(openDialogRegister).length == 0){
+					window.location.hash = "";			
+				}
+			});
+			window.onhashchange = function(e){
+				if(window.location.hash == ""){
+					for(var each in openDialogRegister){
+						console.log("closing through hash -- " + each);
+						openDialogRegister[each](true);
+						delete openDialogRegister[each];
+					}
+					jQuery("#blocker").hide();
+				}
+			}
+		},
 		onMasterPaneButtonPress: function(sButton, oButton){
 			
 		},
-		onDrop: function(e, oClone, oCard, originalOffset){
-			var oTargetCard = this.cardManager.getCardAtMousePosition( e.clientX + window.scrollX, e.clientY + window.scrollY);
+		onDrop: function(oPos, oClone, oCard, originalOffset, bIsDelete){
+			var oTargetCard = this.cardManager.getCardAtMousePosition( oPos.x + window.scrollX, oPos.y + window.scrollY);
 			
 			var fromPos = oCard.getProperty("index");
 			var toPos;
@@ -457,14 +510,14 @@ appManager = (function(){
 			var scrollY1 = window.scrollY;
 			var cardContainer = jQuery("#contentArea");
 			var cardContainerH = cardContainer.height();
-			console.log(cardContainerH);
-			if(e.target.hasAttribute("delete-area")){
+		
+			if(bIsDelete){
 				oClone.remove();
 				this.cardManager.deleteCard(fromPos);
 				
 			} else if(oTargetCard && ((toPos = oTargetCard.getProperty("index")) != fromPos)){
 				cardContainer.height(cardContainerH + "px");
-				window.scrollTo(scrollX1,scrollY1)
+				window.scrollTo(scrollX1,scrollY1);
 				this.cardManager.moveCardToIndex(oCard,fromPos, toPos, oClone, scrollY1, function(){
 					window.scrollTo(scrollX1,scrollY1);
 					cardContainer.css("height", "");
@@ -476,9 +529,58 @@ appManager = (function(){
 					oClone.remove();
 				});
 			}
-			console.log(fromPos,toPos);
 			return 
 		},
+		setTouchDragStart: function(oCard, prevEvent){
+			var that =this;
+			this._isDragStart = true;
+			var offset = oCard.getNodeReference().offset();
+			var oClone = oCard.getClone().css({
+				top: offset.top - window.scrollY,
+				left: offset.left - window.scrollX
+			});
+			var originY = prevEvent.touches[0].clientX-offset.top;
+			var originX = prevEvent.touches[0].clientY-offset.left;
+			var originScrollX = window.scrollX;
+			var originScrollY = window.scrollY;
+			var $html = jQuery("html");
+			var canceScroll = true;
+			var cloneNode = oClone[0];
+			function scrollIfScrollZone(){
+				if(cloneNode && (screen.availHeight - cloneNode.getBoundingClientRect().top) < 40){
+					$html.animate({scrollTop: window.scrollY + 50},300);
+					setTimeout(function(){
+						scrollIfScrollZone();
+					}, 305);
+				}
+			}
+			
+			function drag(e){
+				e.preventDefault();
+				e.stopPropagation();
+				curX = e.touches[0].clientX;
+				curY = e.touches[0].clientY;
+				oClone.css({
+					top: curY - originY -originScrollY,
+					left: curX - originX- originScrollX
+				});
+				scrollIfScrollZone();
+				//console.log("x is " + e.originalEvent.movementX, " Y is "+e.originalEvent.movementY);
+			}
+			function drop(e){
+				jQuery(window).off("touchmove", drag);
+				jQuery(window).off("touchend", drop);
+				that.onDrop({
+					x: curX,
+					y: curY
+					
+				}, oClone, oCard, offset, false);
+			}
+			var curX = originX, curY = originY;
+			jQuery(window).trigger("touchstart");
+			jQuery(window).on("touchmove", drag);
+			jQuery(window).on("touchend", drop);
+		},		
 		setDragStart: function(oCard, prevEvent){
 			var that =this;
 			this._isDragStart = true;
@@ -497,27 +599,61 @@ appManager = (function(){
 			var $html = jQuery("html");
 			var canceScroll = true;
 			var cloneNode = oClone[0];
-			function scrollIfScrollZone(){
-				if(cloneNode && (screen.availHeight - cloneNode.getBoundingClientRect().top) < 40){
-					$html.animate({scrollTop: window.scrollY + 50},300);
-					setTimeout(function(){
-						scrollIfScrollZone();
-					}, 305);
+			var cardHeight = oClone.height();
+			var scrollThreshold = cardHeight + 20;
+			
+			var curDragId = Date.now();
+			var bScrollEnable = true;
+			function scrollIfScrollZone(dragId){
+				var pTop = oClone.position().top;
+				if(bScrollEnable && (curDragId == dragId)){
+					console.log(window.innerHeight , pTop);
+					if(window.innerHeight - pTop < scrollThreshold){
+						console.log("scroll");
+						bScrollEnable = false;
+						$html.animate({scrollTop: window.scrollY + cardHeight},1000, function(){
+							bScrollEnable = true;
+							scrollIfScrollZone(curDragId);
+						});
+					} else if(pTop < 60){
+						console.log("scroll up");
+						bScrollEnable = false;
+						$html.animate({scrollTop: window.scrollY - cardHeight},1000, function(){
+							bScrollEnable = true;
+							scrollIfScrollZone(curDragId);
+						});						
+					}
+					
 				}
 			}
 			
 			function drag(e){
+				var pTop = oClone.position().top;
 				oClone.css({
 					top: e.originalEvent.clientY - originY -originScrollY,
 					left: e.originalEvent.clientX - originX- originScrollX
 				});
-				//scrollIfScrollZone();
+				//console.log(e.originalEvent.screenY);
+				curDragId = Date.now();
+				if((window.innerHeight - pTop < scrollThreshold) || pTop < 60){
+					setTimeout(function(){
+						scrollIfScrollZone(curDragId);
+					}, 1100);
+				}
 				//console.log("x is " + e.originalEvent.movementX, " Y is "+e.originalEvent.movementY);
 			}
 			function drop(e){
+				curDragId =Date.now();
+				bScrollEnable = false;
+				var bIsDelete = e.target.hasAttribute("delete-area");
 				jQuery(window).off("mousemove", drag);
 				jQuery(window).off("mouseup", drop);
-				that.onDrop(e.originalEvent, oClone, oCard, offset);
+				
+				that.onDrop({
+					x: e.originalEvent.clientX,
+					y: e.originalEvent.clientY
+					
+				}, oClone, oCard, offset, bIsDelete);
 				jQuery("#deleteZone").removeClass("isVisible");
 			}
 			jQuery(window).on("mousemove", drag);
@@ -533,9 +669,6 @@ appManager = (function(){
 		sanitizeHtml: function(s){
 			s = s || "";
 			return s.replace(/\<(\/)?(div|a|p|script|style|img|span|iframe|frame|button|input|textarea)\>/gi, "").replace(/\r|\n/gi, "<br>");
-		},
-		getConfirmation: function(sText, fnOk, fnCancel){
-			jQuery("#confirmationWindow").show();
 		},
 		showSuccess: function(sMsg){
 			sMsg = sMsg || "Success";

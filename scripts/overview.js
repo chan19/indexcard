@@ -10,12 +10,19 @@
 			var html = this._getHtml(aCard);
 			jQuery("#overViewItemContainer").html(html);
 			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
-			jQuery("#blocker").show();
 			jQuery("#overViewContainer").show();
+			this.getCore().fireEvent("dialogOpen", {
+				id: "overview",
+				closeHandler: this.hide.bind(this)
+			});
 		},
-		hide: function(){
+		hide: function(bSuppressEvent){
 			jQuery("#overViewContainer").hide();
-			jQuery("#blocker").hide();
+			if(!bSuppressEvent){
+				this.getCore().fireEvent("dialogClose", {
+					id: "overview"
+				});					
+			}		
 		},
 		getCore: function(){
 			return appManager;
@@ -63,7 +70,10 @@
 			return this._node;
 		},
 		_attachEvents: function(){
-			jQuery("#overviewContainerClose").click(this.hide.bind(this));
+			var that = this;
+			jQuery("#overviewContainerClose").click(function(){
+				that.hide();
+			});
 			jQuery("#overViewPrint").click(this.print.bind(this));
 		},
 		toDoc: function(){

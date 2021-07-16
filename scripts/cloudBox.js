@@ -4,6 +4,7 @@ var cloudBox = (function() {
     var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1'];
     var SCOPES = "https://www.googleapis.com/auth/drive.file";
     var authorizeButton, signoutButton;
+	var bCloudModeIsActive = false;
     function initClient() {
         gapi.client.init({
             apiKey: QWT,
@@ -52,8 +53,8 @@ var cloudBox = (function() {
 
     function setCloudMode(bLoggedIn) {
         if (bLoggedIn) {
-            var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-			
+			bCloudModeIsActive = true;
+            var oData = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();	
             appManager.setCloudMode(true,{
                 name: oData.getGivenName() + " " + oData.getFamilyName(),
                 email: oData.getEmail(),
@@ -61,6 +62,7 @@ var cloudBox = (function() {
             });
 
         } else {
+			bCloudModeIsActive = false;
             appManager.setCloudMode(false);
         }
     }
@@ -68,8 +70,10 @@ var cloudBox = (function() {
     var driveItems = {};
     return {
         init: function(oConfig) {
+			this._addGlobalListeners();
             authorizeButton = document.getElementById('authorize_button');
             signoutButton = document.getElementById('signout_button');
+			
 
         },
         onClientLoad: function() {
@@ -104,10 +108,10 @@ var cloudBox = (function() {
                 fnS(resp.items);
             });
         },
-        _getItem: function(sType, fnS) {
+        _getItem: function(sType, fnS, bForceFetch) {
             var that = this;
             if (sType == "file" || sType == "folder") {
-                if (driveItems[sType]) {
+                if (!bForceFetch && driveItems[sType]) {
                     fnS(driveItems[sType]);
                 } else {
                     this._fetchItemsFromCloud(function(aItem) {
@@ -120,14 +124,12 @@ var cloudBox = (function() {
 
         },
         getFolders: function(fnS) {
-            fnS = fnS || function() {}
-            ;
+            fnS = fnS || function() {};
             this._getItem("folder", fnS);
         },
-        getFiles: function(fnS) {
-            fnS = fnS || function() {}
-            ;
-            this._getItem("file", fnS);
+        getFiles: function(fnS, bForceFetch) {
+            fnS = fnS || function() {};
+            this._getItem("file", fnS, bForceFetch);
         },
         getFolder: function(sId) {},
         getFile: function(sId, fnS) {
@@ -151,7 +153,7 @@ var cloudBox = (function() {
 				oData.id =sId;
 				appManager.setFileId(sId);
                 appManager._ioManager.saveToBackUp(oData);
-                appManager.onFileFetch(oData, true);
+				appManager.setData(oData, true);
                 fnS();
             });
         },
@@ -213,15 +215,29 @@ var cloudBox = (function() {
             });
         },
 		updateFile: function(sId, fnS, fnE){
+			var boundary = 'foo_bar_baz'
+            var delimiter = "\r\n--" + boundary + "\r\n";
+            var close_delim = "\r\n--" + boundary + "--";
             var fileData = JSON.stringify([appManager.getDataToSave()]);
+            var contentType = 'text/plain';
+            var metadata = {
+                'name': appManager.getFileName() + ".ijson",
+				'title' : appManager.getFileName() + ".ijson",
+                'mimeType': contentType
+            };
+
+            var multipartRequestBody = delimiter + 'Content-Type: application/json; charset=UTF-8\r\n\r\n' + JSON.stringify(metadata) + delimiter + 'Content-Type: ' + contentType + '\r\n\r\n' + fileData + '\r\n' + close_delim;
             var request = window.gapi.client.request({
                 'path': 'https://www.googleapis.com/upload/drive/v2/files/' + sId,
                 //  'id': '195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE',
                 'method': 'PUT',
-                'params': {
-                    'uploadType': 'media'
+				'params': {
+                    'uploadType': 'multipart'
                 },
-                'body': fileData
+                'headers': {
+                    'Content-Type': 'multipart/related; boundary=' + boundary + ''
+                },
+                'body': multipartRequestBody
             });
 
             request.execute(function(o) {
@@ -266,29 +282,36 @@ var cloudBox = (function() {
 				}
             });
         },
-		save: function(){
-			var fileId = appManager.getFileId();
-			this.close();
-			appManager.setBusy(true);
-			if(fileId){
-				this.updateFile(fileId, function(){
-					appManager.setBusy(false);
-					appManager.showSuccess("File has been updated");
+		save: function(bSuppressBusy){
+			if(bCloudModeIsActive){
+				var fileId = appManager.getFileId();
+				this.close();
+				appManager.setBusy(!bSuppressBusy);
+				if(fileId){
+					this.updateFile(fileId, function(){
+						appManager.setBusy(false);
+						if(!bSuppressBusy){
+							appManager.showSuccess("File has been updated");
+						}
 
-				}, function(e){
-					appManager.setBusy(false);
-					appManager.showFailure(e);
-				});					
-			} else {
-				this.createFile(function(o){
-					appManager.setBusy(false);
-					appManager.showSuccess("File has been saved");
-					appManager.setFileId(o.id);
-					appManager.fireEvent("dataChange");
-				}, function(e){
-					appManager.setBusy(false);
-					appManager.showFailure(e);
-				});
+					}, function(e){
+						appManager.setBusy(false);
+						appManager.showFailure(e);
+					});					
+				} else {
+					this.createFile(function(o){
+						appManager.setBusy(false);
+						if(!bSuppressBusy){
+							appManager.showSuccess("File has been successfully created");
+						}
+						appManager.setFileId(o.id);
+						appManager.fireEvent("dataChange");
+						that.refreshFiles(true);
+					}, function(e){
+						appManager.setBusy(false);
+						appManager.showFailure(e);
+					});
+				}				
 			}
 		},
         _fetchFileHtml: function(aFile) {
@@ -298,22 +321,29 @@ var cloudBox = (function() {
             });
             return html;
         },
-		refreshFiles: function(){
+		refreshFiles: function(bForceFetch){
 			var that = this;
 			appManager.setBusy(true);
             this.getFiles(function(aFile) {
                 appManager.setBusy(false);
                 jQuery("#cloudBox").find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
-            });			
+            }, bForceFetch);			
 		},
 		open: function(){
-			jQuery("#blocker").show();
             jQuery("#cloudBox").show();
+			this.getCore().fireEvent("dialogOpen", {
+				id: "cloudBox",
+				closeHandler: this.close.bind(this)
+			});
 			this.refreshFiles();
 		},
-		close: function(){
-			jQuery("#blocker").hide();
+		close: function(bSuppressEvent){
             jQuery("#cloudBox").hide();
+			if(!bSuppressEvent){
+				this.getCore().fireEvent("dialogClose", {
+					id: "cloudBox"
+				});				
+			}
 		},
         _attachEvents: function() {
             var that = this;
@@ -328,7 +358,19 @@ var cloudBox = (function() {
 		    jQuery("#closeCloudBox").click(function(){
 			  that.close();
 			});
-        }
+        },
+		_addGlobalListeners: function(fDataGetter){
+			var that = this;
+			this.getCore().listenTo("dataChange", function(oParam){
+				if(!oParam ||(oParam && !oParam.suppressBackup)){
+					console.log("cloudbox save");
+					that.save(true);
+				}
+			});
+		},
+		getCore: function(){
+			return appManager;
+		}
     };
 }
 )();

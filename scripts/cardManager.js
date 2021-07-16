@@ -1,7 +1,7 @@
-function CardManager(aData){
-	this.init(aData);
+function CardManager(){
+	this.init();
 }
-CardManager.prototype.init = function(aData){
+CardManager.prototype.init = function(){
 	this._cards = [];
 	this._cardById = {};
 	this._initLargeEditor();
@@ -30,13 +30,14 @@ CardManager.prototype.getNodes = function(){
 CardManager.prototype._initLargeEditor = function(){
 	var that = this;
 	function setDataToCard(o, d){
-		o.setProperty("title", d.title, true);
-		o.setProperty("content", d.content, true);
-		o.setProperty("color", d.color, true);
-		o.setProperty("meta", d.meta);
-		o.setProperty("notes", d.notes, true);
-		o.setProperty("act", d.act, true);
-		o.setProperty("pgTarget", d.pgTarget, true);
+		o.setProperty("title", d.title, true, true);
+		o.setProperty("content", d.content, true, true);
+		o.setProperty("color", d.color, true, true);
+		o.setProperty("meta", d.meta, true, true);
+		o.setProperty("notes", d.notes, true, true);
+		o.setProperty("act", d.act, true, true);
+		o.setProperty("pgTarget", d.pgTarget, true, true);
+		appManager.fireEvent("dataChange");
 	}
 	function isSaveRequired(oCardData, oEditorData){
 		var isRequired = false;
@@ -106,6 +107,7 @@ CardManager.prototype.setCardData = function(aData){
 	this._cards = [];
 	this._cardById = {};
 	var isTouch = appManager.getIsTouchDevice();
+	aData = aData || [];
 	if(aData.length){
 		this.createCards(aData);
 	} else{
@@ -167,7 +169,7 @@ CardManager.prototype._updateCardsIndex = function(nFromPos){
 	var oCard;
 	for(var i= nFromPos + 1; i< aCards.length; i++){
 		oCard = aCards[i];
-		oCard.setProperty("index", i );
+		oCard.setProperty("index", i , false, true);
 	}
 }
 
@@ -199,6 +201,7 @@ CardManager.prototype.addNewCard = function(nIndex){
 		this._updateCardsIndex(nIndex);
 		this.renderAll();
 	}
+	appManager.fireEvent("dataChange");
 	this.refreshPageMeter();
 }
 
@@ -282,12 +285,13 @@ CardManager.prototype.moveCardToIndex = function(oCard,fromIndex, toIndex, oClon
 		this._updateCardsIndex(toIndex, true);
 	}
 	
-	oCard.setProperty("index", toIndex, false);
+	oCard.setProperty("index", toIndex, false, true);
 	this.animateCardsReorder(aNode, aPos, oCard, oClone, sY, function(){
 		jQuery("#cardContainer").removeClass("reordermode");
 		that.renderAll();
 		callback();
 	});
+	appManager.fireEvent("dataChange");
 	
 }
 CardManager.prototype.getCardAtMousePosition = function(eX,eY){
@@ -342,12 +346,12 @@ CardManager.prototype.setShowPageMeter = function(bShow){
 CardManager.prototype.refreshPageMeter = function(){
 	var aCards = this.getCards();
 	var l = aCards.length;
-	var meter = 1;
+	var meter = 0;
 	var cur, tmp;
 	for(var i = 0; i < l; i++){
 		cur = aCards[i];
 		tmp = Number(cur.getProperty("pgTarget"));
-		cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp-1), true);
+		cur.setProperty("statusText", "p.no " + meter + " - " + (meter + tmp), true);
 		meter +=  tmp;
 	}
 	appManager.setTotalTargetPageCount(meter);
@@ -363,7 +367,7 @@ CardManager.prototype.updateCardsAct = function(nPos, sNewAct, sOldAct){
 				if(oActRank[aCards[i].getProperty("act")] <= oActRank[sNewAct]){
 					break;
 				} else {
-					aCards[i].setProperty("act", sNewAct, true);
+					aCards[i].setProperty("act", sNewAct, true, true);
 				}
 			}
 		} else if (rankOfNewAct > rankOfOldAct) {
@@ -371,10 +375,14 @@ CardManager.prototype.updateCardsAct = function(nPos, sNewAct, sOldAct){
 				if(oActRank[aCards[i].getProperty("act")] >= oActRank[sNewAct]){
 					break;
 				} else {
-					aCards[i].setProperty("act", sNewAct, true);
+					aCards[i].setProperty("act", sNewAct, true, true);
 				}
 			}
 		}
+		this.getCore().fireEvent("dataChange");
+}
+CardManager.prototype.getCore = function(){
+	return appManager;
 }
 CardManager.prototype._attachListeners = function(){
 	var that = this;

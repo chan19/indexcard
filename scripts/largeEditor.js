@@ -59,7 +59,6 @@
 			return this._disableNext;
 		},
         open: function(oCard, sTab) {
-            jQuery("#blocker").show();
 			if(sTab != ""){
 				if(sTab == "footnote"){
 					this._node.find(".largeEditorFootnoteTab").click();
@@ -72,16 +71,24 @@
 			this._lClone.show();
             this._isOpen = true;
             this._owner = oCard;
+			this.getCore().fireEvent("dialogOpen", {
+				id: "largeEditor",
+				closeHandler: this.close.bind(this)
+			});
             return this;
         },
-        close: function() {
+        close: function(bSuppressEvent) {
             var that = this;
             this._isOpen = false;
             this.setOwner(false);
             this._node.hide();
 			this._rClone.hide();
 			this._lClone.hide();
-            jQuery("#blocker").hide();
+			if(!bSuppressEvent){
+				this.getCore().fireEvent("dialogClose", {
+					id: "largeEditor"
+				});				
+			}
             return this;
         },
         _getColorPickerHtml: function() {

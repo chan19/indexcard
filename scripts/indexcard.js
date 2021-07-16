@@ -296,10 +296,10 @@
         getProperty: function(sProp) {
             return this["_" + sProp];
         },
-        setProperty: function(sProp, val, bRender) {
+        setProperty: function(sProp, val, bRender, bSuppressFireEvent) {
             var propertyClass;
             var tmp;
-			var bFireEvent = true;
+			var bFireEvent = !bSuppressFireEvent;
             if (this._props.indexOf(sProp) > -1) {
                 if (bRender) {
                     if (sProp == "color") {
@@ -320,8 +320,12 @@
                         // second parameter true, so that the onchange handler of the selector isn't called.
                     } else if (sProp == "content") {
                         this._node.find(".indexCardContent").val(val);
-                    } else {
-                        this._node.find(".indexCard" + (sProp == "title" ? "Title" : "Number")).html(this.getCore().sanitizeHtml(val));
+                    } else if (sProp == "title") {
+                        this._node.find(".indexCardTitle").html(this.getCore().sanitizeHtml(val));
+                    } else if (sProp == "index") {
+                        this._node.find(".indexCardNumber").html(val);
+                    } else if (sProp == "meta"){
+                        // do nothing
                     }
 
                 }
@@ -417,6 +421,9 @@
                     jQuery(this).toggleClass("active");
                     oNode.find(".indexCardTouchConrols").toggleClass("isVisible");
                 });
+				oNode.find(".move").on("touchstart", function(e) {
+					that.getCore().setTouchDragStart(that, e);
+                });
             } else {
                 oNode.find(".indexCardTitle").focusout(function() {
                     that._setIsDirty("title", true);
@@ -449,24 +456,24 @@
                         that.setProperty("content", "", true);
                     }
                 });
-                /*
-			oNode.mousedown(function(e){
-				//that.getCore().setDragStart(that,e)
-				if(oNode.find(".indexCardContent").attr('readonly')=="readonly"){
-					mCounter ++;
-				}
-			});
-			oNode.mousemove(function(e){
-				if(mCounter == 1){
-					that.getCore().setDragStart(that,e);
-					mCounter++;
-				}
-			});
-			oNode.mouseup(function(e){
-				mCounter = 0;
-			});
-			*/
-            oNode.find(".move").mousedown(function(e) {
+				/*
+					oNode.mousedown(function(e){
+						//that.getCore().setDragStart(that,e)
+						if(oNode.find(".indexCardContent").attr('readonly')=="readonly"){
+							mCounter ++;
+						}
+					});
+					oNode.mousemove(function(e){
+						if(mCounter == 1){
+							that.getCore().setDragStart(that,e);
+							mCounter++;
+						}
+					});
+					oNode.mouseup(function(e){
+						mCounter = 0;
+					});
+				*/
+				oNode.find(".move").mousedown(function(e) {
                     that.getCore().setDragStart(that, e)
                 });
             }
@@ -510,7 +517,7 @@
 			this._actSelector.attachOnChange(function(key, i, value) {
 				var prev = that.getProperty("act");
 				var cardIndex = that.getProperty("index");
-                that.setProperty("act", key, true);
+                that.setProperty("act", key, true, true); // suppress data save call. instead save in the cardmanager update acts.
 				that.getCore().fireEvent("actChange", {
 					index: cardIndex,
 					cur: key,
@@ -524,10 +531,14 @@
 
         },
         _onTitleChange: function(sValue, bRender) {
-            this.setProperty("title", sValue, bRender);
+			if(sValue != this.getProperty("title")){
+				this.setProperty("title", sValue, bRender);				
+			}
         },
         _onContentChange: function(sValue, bRender) {
-            this.setProperty("content", sValue, bRender);
+			if(sValue != this.getProperty("content")){
+				this.setProperty("content", sValue, bRender);
+			}
         },
         getClone: function() {
             var cloneHtml = this.getHtml(this.getData(), true);

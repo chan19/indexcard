@@ -72,14 +72,25 @@
 		toggle: function(){
 			this._node.toggleClass("isVisible");
 		},
-		hide: function(){
+		hide: function(bSuppressEvent){
 			this._node.find(".beatItem").removeClass("selected");
 			this._node.removeClass("isVisible");
 			this._currentSelected = null;
+			if(!bSuppressEvent){
+				appManager.fireEvent("dialogClose", {
+						id: "configureBeat"
+				});				
+			}
 		},
 		show: function(){
-			jQuery("#blocker").show();
+			var that =this;
 			this._node.addClass("isVisible");
+			appManager.fireEvent("dialogOpen", {
+					id: "configureBeat",
+					closeHandler: function(){
+						that.beat.hide();
+					}
+			});
 		}
 	}
 	
