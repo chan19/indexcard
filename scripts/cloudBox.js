@@ -123,6 +123,15 @@ var cloudBox = (function() {
             }
 
         },
+		_updateFileTitleInCache: function(sId, sTitle){
+			var files = driveItems.file;
+			for(var i = 0; i < files.length; i++){
+				if(files[i].id == sId){
+					files[i].title = sTitle;
+					break;
+				}
+			}
+		},
         getFolders: function(fnS) {
             fnS = fnS || function() {};
             this._getItem("folder", fnS);
@@ -195,18 +204,18 @@ var cloudBox = (function() {
             });
 
         },
-        createFile: function(fnS) {
+        createFile: function(aData, fnS) {
             appManager.setBusy(true);
             var that = this;
             this.getFolders(function(aFolder) {
                 if (aFolder.length) {
-                    that._createFile(aFolder[0].id, function(o) {
+                    that._createFile(aFolder[0].id, aData, function(o) {
                         appManager.setBusy(false);
                         fnS(o);
                     });
                 } else {
                     that.createFolder(function(oResp) {
-                        that._createFile(oResp.id, function(o) {
+                        that._createFile(oResp.id, aData, function(o) {
                             appManager.setBusy(false);
                             fnS(o);
                         });
@@ -214,11 +223,11 @@ var cloudBox = (function() {
                 }
             });
         },
-		updateFile: function(sId, fnS, fnE){
+		updateFile: function(sId, aData, fnS, fnE){
 			var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
             var close_delim = "\r\n--" + boundary + "--";
-            var fileData = JSON.stringify([appManager.getDataToSave()]);
+            var fileData = JSON.stringify(aData);
             var contentType = 'text/plain';
             var metadata = {
                 'name': appManager.getFileName() + ".ijson",
@@ -248,11 +257,11 @@ var cloudBox = (function() {
 				}
             });			
 		},
-        _createFile: function(sFolderId, fnS, fnE) {
+        _createFile: function(sFolderId, aData, fnS, fnE) {
             var boundary = 'foo_bar_baz'
             var delimiter = "\r\n--" + boundary + "\r\n";
             var close_delim = "\r\n--" + boundary + "--";
-            var fileData = JSON.stringify([appManager.getDataToSave()]);
+            var fileData = JSON.stringify(aData);
             var contentType = 'text/plain';
             var metadata = {
                 'name': appManager.getFileName() + ".ijson",
@@ -283,23 +292,28 @@ var cloudBox = (function() {
             });
         },
 		save: function(bSuppressBusy){
+			var that = this;
+			var oData = appManager.getDataToSave();
+			var aData = [oData];
 			if(bCloudModeIsActive){
 				var fileId = appManager.getFileId();
 				this.close();
 				appManager.setBusy(!bSuppressBusy);
 				if(fileId){
-					this.updateFile(fileId, function(){
+					this.updateFile(fileId, aData, function(){
 						appManager.setBusy(false);
 						if(!bSuppressBusy){
 							appManager.showSuccess("File has been updated");
 						}
+						that._updateFileTitleInCache(fileId, appManager.getFileName());
+						that.refreshFiles();
 
 					}, function(e){
 						appManager.setBusy(false);
 						appManager.showFailure(e);
 					});					
 				} else {
-					this.createFile(function(o){
+					this.createFile(aData, function(o){
 						appManager.setBusy(false);
 						if(!bSuppressBusy){
 							appManager.showSuccess("File has been successfully created");
