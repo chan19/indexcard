@@ -30,7 +30,7 @@
     max-height: 100%;
     box-sizing: border-box;
     border-top: 0px solid transparent;
-    border-bottom: 75px solid transparent;
+    border-bottom: 100px solid transparent;
     position: absolute;
     overflow: auto;
     width: 100%;
@@ -67,6 +67,8 @@
 	border-top: 1px solid #c3c3c3;
 	width: 100%;
 	left: 0;
+	background: white;
+	box-sizing: border-box;
 }
 #cloudBox .button {
 }
