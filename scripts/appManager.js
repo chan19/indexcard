@@ -633,13 +633,12 @@ appManager = (function(){
 					top: e.originalEvent.clientY - originY -originScrollY,
 					left: e.originalEvent.clientX - originX- originScrollX
 				});
-				//console.log(e.originalEvent.screenY);
 				curDragId = Date.now();
-				if((window.innerHeight - pTop < scrollThreshold) || pTop < 60){
+				/*if((window.innerHeight - pTop < scrollThreshold) || pTop < 60){
 					setTimeout(function(){
 						scrollIfScrollZone(curDragId);
 					}, 1100);
-				}
+				}*/
 				//console.log("x is " + e.originalEvent.movementX, " Y is "+e.originalEvent.movementY);
 			}
 			function drop(e){

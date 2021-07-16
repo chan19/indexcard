@@ -81,8 +81,10 @@ var cloudBox = (function() {
             this._attachEvents();
         },
         _segregateFilesAndFolders: function(oItems) {
-            driveItems.folder = driveItems.folder || [];
-            driveItems.file = driveItems.file || [];
+			driveItems = {
+				folder: [],
+				file: []
+			}
             oItems.forEach(function(o) {
                 if (!o.explicitlyTrashed) {
                     // ignore if deleted
@@ -297,7 +299,6 @@ var cloudBox = (function() {
 			var aData = [oData];
 			if(bCloudModeIsActive){
 				var fileId = appManager.getFileId();
-				this.close();
 				appManager.setBusy(!bSuppressBusy);
 				if(fileId){
 					this.updateFile(fileId, aData, function(){

@@ -29,7 +29,7 @@ CardManager.prototype.getNodes = function(){
 }
 CardManager.prototype._initLargeEditor = function(){
 	var that = this;
-	function setDataToCard(o, d){
+	function setDataToCard(o, d, bSuppressEvent){
 		o.setProperty("title", d.title, true, true);
 		o.setProperty("content", d.content, true, true);
 		o.setProperty("color", d.color, true, true);
@@ -37,7 +37,9 @@ CardManager.prototype._initLargeEditor = function(){
 		o.setProperty("notes", d.notes, true, true);
 		o.setProperty("act", d.act, true, true);
 		o.setProperty("pgTarget", d.pgTarget, true, true);
-		appManager.fireEvent("dataChange");
+		if(!bSuppressEvent){
+			appManager.fireEvent("dataChange");
+		}
 	}
 	function isSaveRequired(oCardData, oEditorData){
 		var isRequired = false;
@@ -56,9 +58,12 @@ CardManager.prototype._initLargeEditor = function(){
 			var owner = this.getOwner();
 			var sOldAct = owner.getProperty("act");
 			var sNewAct = data.act;
-			setDataToCard(owner, data);
+			
 			if(sOldAct != sNewAct){
+				setDataToCard(owner, data, true);
 				that.updateCardsAct(owner.getProperty("index"), sNewAct, sOldAct);
+			} else {
+				setDataToCard(owner, data);
 			}
 			that.refreshPageMeter();
 		},
