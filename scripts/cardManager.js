@@ -28,31 +28,58 @@ CardManager.prototype.getNodes = function(){
 	return aNode;
 }
 CardManager.prototype._initLargeEditor = function(){
-	var that = this;
-	function setDataToCard(o, d, bSuppressEvent){
-		o.setProperty("title", d.title, true, true);
-		o.setProperty("content", d.content, true, true);
-		o.setProperty("color", d.color, true, true);
-		o.setProperty("meta", d.meta, true, true);
-		o.setProperty("notes", d.notes, true, true);
-		o.setProperty("act", d.act, true, true);
-		o.setProperty("pgTarget", d.pgTarget, true, true);
-		if(!bSuppressEvent){
-			appManager.fireEvent("dataChange");
-		}
-	}
-	function isSaveRequired(oCardData, oEditorData){
-		var isRequired = false;
-		oPrev = oPrev || {};
-		oCur = oCur || {};
-		for(var each in oPrev){
-			if(oCur[each] == oPrev[each]){
-				isRequired = true;
-				break;
+	function compare(a,b){
+		var isEqual = true;
+		if((a instanceof Array) && (b instanceof Array)){
+			if(a.length == b.length){
+				for(var i=0; i < a.length; i++){
+					if(!(isEqual = compare(a[i],b[i]))){
+						break;
+					}
+				}				
+			} else {
+				isEqual = false;
 			}
+			return isEqual;
+		} else if ((a instanceof Object) && (b instanceof Object)){
+			if(Object.keys(a).length == Object.keys(b).length){
+				for(var each in a){
+					if(!(isEqual = compare(a[each],b[each]))){
+						break;
+					}
+				}				
+			} else {
+				isEqual = false;
+			}			
+		} else {
+			isEqual = (a === b);
 		}
-		return isRequired;
+		return isEqual;
 	}
+	var that = this;
+	var props = ["title", "content", "color", "meta", "notes", "act", "pgTarget"];
+	function setDataToCard(o, d, bSuppressEvent){
+		var isSaveRequired = false;
+		props.forEach(function(s, i){
+			if(compare(o.getProperty(s), d[s]) === false){
+				isSaveRequired = true;
+			}
+		});
+		if(isSaveRequired){
+			console.log("save required");
+			o.setProperty("title", d.title, true, true);
+			o.setProperty("content", d.content, true, true);
+			o.setProperty("color", d.color, true, true);
+			o.setProperty("meta", d.meta, true, true);
+			o.setProperty("notes", d.notes, true, true);
+			o.setProperty("act", d.act, true, true);
+			o.setProperty("pgTarget", d.pgTarget, true, true);
+			if(!bSuppressEvent){
+				appManager.fireEvent("dataChange");
+			}			
+		}
+	}
+	
 	this.largeEditor = new LargeEditor({
 		onSave: function(data){
 			var owner = this.getOwner();
