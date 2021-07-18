@@ -126,7 +126,7 @@ var cloudBox = (function() {
 
         },
 		_updateFileTitleInCache: function(sId, sTitle){
-			var files = driveItems.file;
+			var files = driveItems.file || [];
 			for(var i = 0; i < files.length; i++){
 				if(files[i].id == sId){
 					files[i].title = sTitle;
