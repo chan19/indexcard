@@ -1,0 +1,79 @@
+.formDialog{
+	display:none;
+	position: fixed;
+	background: white;
+	z-index: 3;
+	min-width: 300px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 70%;
+}
+.formDialogHeader{
+	text-align: center;
+	text-transform: uppercase;
+	background: #03a9f4;
+	color: white;
+	padding: 5px 0;
+	font-size: large;
+}
+.formDialogBody{
+	
+}
+.itemPane{
+	border-bottom: 1px solid #e2e2e2;
+	padding: 8px 12px;
+}
+.itemPaneHeader{
+	font-size: large;
+	font-weight: bold;
+	color: #000000;
+	text-transform: uppercase;
+	display: block;
+	width: 100%;
+}
+.itemPaneBody{
+	padding-left: 0px;
+}
+.itemPaneRow{
+	margin-top: 1px;
+}
+.itemRowLabel, .itemRowValue, .itemRowSingle{
+	display: inline-block;
+}
+.itemRowLabel{
+	font-size: small;
+	color: #8c8c8c;
+	width: 40px;
+}
+.itemRowValue{
+	margin-left: 0px;
+}
+.formDialogInput{
+	border: 1px solid transparent;
+	font-size: medium;
+	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+input.formDialogInput:active, input.formDialogInput:focus,input.formDialogInput.editable  {
+    background: #d6d6d6;
+    outline: none;
+    color: #151515;
+    cursor: pointer;
+}
+
+.itemRowSingle{
+	margin: 12px 0 0px 4px;
+	color: #313131;
+	font-size: small;
+	font-weight: bold;
+}
+.formDialogFooter{
+	padding: 0px 8px;
+}
+.formDialogButton {
+	
+}
+.formDialogButton.closeButton{
+	background: #e91e63;
+	border-color: #e91e63;
+}

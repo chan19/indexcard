@@ -1,0 +1,133 @@
+.dropDown {
+    display: inline-block;
+    position: relative;
+    overflow-x: visible;
+    line-height: 200%;
+}
+.dropDown.noneditable{
+	
+}
+.dropDown .dropDownValue {
+    border: 1px solid  #a9a9a9;
+    padding: 0px 30px 0px 10px;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 15px;
+    background: #cecece;
+    background: transparent;
+    color: #464646;
+}
+.dropDown.noneditable .dropDownValue {
+	border: none;
+	cursor: default;
+	padding: 0px 4px;
+	color: #c7c7c7;
+	background: none;
+	text-transform: uppercase;
+}
+.dropDown .dropDownArrow {
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 12px;
+    border-top-color: #171717;
+    border-bottom: none;
+    cursor: pointer;
+    border-top-color: #a9a9a9;
+}
+.dropDown.noneditable .dropDownArrow {display: none;}
+.dropDown .dropDownOptionContainer {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 2;
+    overflow-x: hidden;
+    box-shadow: 0px 3px 6px 2px #bdbdbd;
+}
+
+.dropDown .dropDownOption {
+    color: #565656;
+    background: white;
+    padding: 4px 12px;
+    border-bottom: 1px solid gainsboro;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    /* box-shadow: 0px 0px 4px 2px grey; */
+}
+ .dropDown .dropDownOption.selected{
+     background: #565656;
+     color: white;
+ }
+.dropDown .dropDownOption span {
+    position: absolute;
+    left: 100%;
+    background: black;
+    color: white;
+    display: none;
+    z-index: 2;
+    top: 0;
+    width: auto;
+    /* width: 200px; */
+    padding: 4px 8px;
+}
+
+.dropDown .dropDownOption:hover span {
+    display: none;
+}
+
+.dropDown.editable .dropDownValue:hover, .dropDown .dropDownOption:hover {
+    background: #d6d6d6;
+    color: #2196f3;
+}
+
+@media only screen and (max-width: 500px) and (min-width: 235px) and (orientation: portrait) {
+    .dropDown .dropDownOptionContainer {
+        position: fixed;
+        width: 100%;
+        box-shadow: unset;
+        width: fit-content;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        height: fit-content;
+        background: #ffffff0d;
+        z-index: 5;
+        max-height: 100%;
+        box-sizing: border-box;
+        border-top: 60px solid transparent;
+        border-bottom: 60px solid transparent;
+    }
+
+    .dropDown .dropDownOptionContainer:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #00000096;
+        z-index: 0;
+    }
+
+    .dropDown .dropDownOption {
+        background: #ffffff;
+        color: #565656;;
+        padding: 10px 40px;
+        margin: 1px;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        font-size: 20px;
+        width: auto;
+        border-bottom: none;
+    }
+}

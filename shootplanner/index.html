@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>shootit </title>
+        <meta charset="UTF-8">
+        <meta name="title" content="shootit">
+        <meta name="description" content="An online software to plan your shoot">
+        <meta name="image" content="logos/inkextlogo.png">
+        <meta name="author" content="chan">
+        <meta property="og:title" content="shootit">
+        <meta property="og:description" content="An online software to plan your shoot">
+        <meta property="og:image" content="logos/inkextlogo.png">
+        <meta property="og:author" content="chan">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="logos/inkextlogo.png" type="image/x-icon">
+        <link href="css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/home.css" rel="stylesheet" type="text/css"/>
+        <link href="css/formDialog.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Cast.css" rel="stylesheet" type="text/css"/>
+        <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>
+        <script src="scripts/jquery-3.4.1.min.js"></script>
+        <script src="library/dropdown.js"></script>
+		<script src="config/Model.js"></script>
+		<script src="scripts/Cast.js"></script>
+		<script src="scripts/Databox.js"></script>
+        <script src="scripts/appManager.js"></script>
+        <script>
+			function checkUpdates(){
+                window.PREPRODUCTION = {
+                    version: 0,
+                    update: []
+                }
+                if (localStorage.softwareVersion && (Number(localStorage.softwareVersion) < window.PREPRODUCTION.version)) {
+                    localStorage.softwareVersion = window.PREPRODUCTION.version;
+                    var str = "";
+					window.PREPRODUCTION.update.forEach(function(s){
+						str += "<div class='dialogPromptItem'>" + s + "</div>";
+					});
+                    jQuery("#updateWindow").show().find(".dialogPromptBody").html(str);
+					appManager.fireEvent("dialogOpen", {
+						id: "updatewindow",
+						closeHandler: function(){
+							jQuery("#updateWindow").hide();
+						}
+					});
+                    jQuery("#updateWindow button").click(function() {
+                        jQuery("#updateWindow").hide();
+						appManager.fireEvent("dialogClose", {
+							id: "updatewindow"
+						});
+                    });
+                }				
+			}
+            jQuery(document).ready(function() {
+                appManager.init();
+				checkUpdates();
+				if(window.location.search){
+					jQuery("#user").show();
+				}
+                //VoiceAssistant.takeCommand();
+
+            });
+            //HOME.saveFile();
+        </script>
+        <style></style>
+    </head>
+    <body>
+        <div id="header">
+            <div id='menuIcon' class='icon' style='display:none'></div>
+            <img id='logo' src='logos/inkextlogo.png'>
+            <div id='fileNamelabel'>Title > </div>
+            <div id="fileName" spellcheck=false></div>
+			<div id='headerIconPane'>
+				<div id='createNewFile' title='Create new file' class='icon'></div>
+				<div id='viewIcon' class='icon' title='View only'></div>
+				<div id='saveFile' class='icon' title='backup'></div>
+				<div id='openFile' class='icon' title='open'></div>
+				<div id='saveFileTrigger' class='icon' title='backup' style='display:none'></div>
+				<input id="openFileTrigger" class="button" type="file" accept=".spln" style='display:none'>
+				<div id='cloudFetch' class='icon' title ='Fetch from cloud' style='display:none'></div>
+				<div id='user' class='icon' title='user' style='display:none'></div>
+			</div>
+			<div id='savePane' class='headerActionPane' style='display:none'>
+				<div class='headerActionInfo'>Save the file to </div>
+				<button id='saveToLocal' class='button'>COMPUTER</button>
+				<button id='saveToCloud' class='button'>CLOUD</button>
+			</div>
+			<div id='loadPane' class='headerActionPane' style='display:none'>
+				<div class='headerActionInfo'>Load a file from -</div>
+				<button id='loadFromLocal' class='button'>COMPUTER</button>
+				<button id='loadFromCloud' class='button'>CLOUD</button>
+			</div>
+			<div id='userInfoPane' class='headerActionPane' style='display:none'>
+				<div class='userName'>Guest User</div>
+				<div class='userInfoBody'></div>
+				<button id="authorize_button" style="display: none;" class='button'>Sign In with Google</button>
+				<button id="signout_button" style="display: none;" class='button'>Sign Out</button>
+			</div>
+        </div>
+        <div id="searchContainer">
+            <input class="searchBar inputBar">
+            <img src='icons/search.png' class='icon'>
+        </div>
+        <div id="masterButtonPane">
+            <div id="actButton" class="masterButton"></div>
+            <div id="beatButton" class="masterButton"></div>
+            <div id="pageMeterButton" class="masterButton"></div>
+            <div id="emoButton" class="masterButton"></div>
+        </div>
+        <div id="metaDataContainer">
+            <div id="time" class="metadataItem">
+                <span class='label'>Saved</span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="pageCount" class="metadataItem">
+                <span class='label'>Page Meter - </span>
+                <span class='value'></span>
+                <span class='detailedValue'></span>
+            </div>
+            <div id="version" class="metadataItem" style="display:none">
+                <span class='label'>Version </span>
+                <span class='value'></span>
+            </div>
+        </div>
+        <div id='viewControlsPane'>
+            <button id='configureBeat' class='button' style="display:none">Configure BEATs</button>
+        </div>
+        <div id="rightPanel"></div>
+        <div id="contentArea">
+            <div id="cardContainer"></div>
+        </div>
+        <div id='overViewContainer'>
+            <div class='overViewContainerHeader'>
+                <div class='overViewContainerHeaderText'></div>
+                <div id='overViewPrint'></div>
+            </div>
+            <div id='overviewContainerClose'>X</div>
+            <div id='overViewItemContainer'></div>
+        </div>
+        <div id='blocker'></div>
+		<div id='busy' style='display:none'>
+			<div class='busyIndicator'></div>
+		</div>
+        <div id="testArea">
+			<div id='fileTitleDialog' class='dialogPrompt' style='display:none'>
+				<div class='dialogPromptHeader'>Project Title</div>
+				<div class='dialogPromptBody'> <input class="inputBar"></div>
+				<button id='fileTitleSave' class='confirmButton button'>SAVE</button>
+				<button id='fileTitleCancel' class='confirmButton button'>CANCEL</button>
+			</div>
+			<div id='messageToast' class='messageToast'></div>
+            <div id='updateWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>UPDATE</div>
+                <div class='dialogPromptBody'></div>
+                <div class='dialogPromptSign'>-Chan</div>
+                <button class='button'>CLOSE</button>
+            </div>
+            <div id='backupConfirmationWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>SAVE THE CURRENT FILE?</div>
+                <div class='dialogPromptBody'>
+                   Do you want to save the current file on your computer, before creating a new one? 
+                </div>
+                <button id='createBackupBeforeNew' class='confirmButton button'>SAVE</button>
+				<button id='createNewWithoutBackup' class='confirmButton button'>DON'T SAVE</button>
+                <button class='closeButton button'>CANCEL</button>
+            </div>
+			<div id ='cloudBox' style='display:none'>
+				<div class='cloudBoxHeader'>SYNC WITH CLOUD</div>
+				<div class='cloudBoxContainer'></div>
+				<div class='buttonPane'>
+					<button id='closeCloudBox' class='button'>CLOSE</button>
+				</div>
+			</div>
+        </div>
+        <div id="footer">
+            <div id="deleteZone" delete-area=true>
+                <div class='deleteZoneText' delete-area=true>REMOVE</div>
+                <div class='deleteZoneIcon' delete-area=true></div>
+            </div>
+        </div>
+        <div id='leftPanel'>
+            <script type="text/javascript">
+				if(1 || window.location.search){
+					//cloudBox.init();
+				}
+				function handleClientLoad() {
+                 //  cloudBox.onClientLoad();
+                }
+ 
+            </script>
+            <script async defer onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
+        </div>
+    </body>
+</html>

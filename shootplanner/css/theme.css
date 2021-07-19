@@ -1,0 +1,117 @@
+:root {
+    --color-red: #e91e63;
+    --color-blue: #4d81d0;
+    --color-green: #009688;
+    --color-orange: #ff9800;
+    --color-violet: #694aa0;
+    --color-white: white;
+    --card-width-s: 175px;
+    --card-height-s: 175px;
+}
+
+body {
+    --color-actNone: #fffffffa;
+    --color-act1: #2196f3;
+    --color-act2A: #ffc107;
+    --color-act2B: #009688;
+    --color-act3: #e91e63;
+    --color-TextColorActNone: black;
+    --color-TextColorAct1: white;
+    --color-TextColorAct2A: black;
+    --color-TextColorAct2B: white;
+    --color-TextColorAct3: white;
+    --color-body: #e4e4e4;
+    --color-header: #e8e8e8;
+}
+
+
+
+body.theme2 {
+    --color-red: #f6a6b2;
+    --color-blue: #90d2d8;
+    --color-green: #b7ded2;
+    --color-orange: #f7c297;
+    --color-violet: #af90d8;
+    --color-white: white;
+}
+
+@media only screen and (max-width: 1280px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 270px;
+        --card-titleH: 35px;
+        --card-summaryH: 200px;
+    }
+}
+
+@media only screen and (max-width: 1800px) and (min-width: 1280px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 265px;
+        --card-titleH: 40px;
+        --card-summaryH: 185px;
+    }
+}
+
+@media only screen and (min-width: 1801px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 240px;
+        --card-titleH: 35px;
+        --card-summaryH: 200px;
+    }
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    :root {
+        --card-width: 350px;
+        --card-height: 395px;
+        --card-titleH: 45px;
+        --card-summaryH: 305px;
+    }
+    body.touchDevice {
+    --color-header: white;
+    /*--color-body: white;*/
+    --card-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 349px) {
+    :root {
+        --card-width: 275px;
+        --card-height: 270px;
+        --card-titleH: 35px;
+		 --card-summaryH: 200px;
+    }
+    body.touchDevice {
+    --color-header: white;
+    /*--color-body: white;*/
+    --card-width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    /* background: transparent; */
+    display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    display: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+body{
+	scrollbar-color: #7f7f7f white;
+	scrollbar-width: thin;
+}
