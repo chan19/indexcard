@@ -54,14 +54,16 @@ Model = {
 			name: "SID",
 			actor: "RISHI",
 			contact: "98884 445654",
-			notes: ""
+			notes: "",
+			type: "PRIMARY" // primary,secondary
 		},
 		CAST_2: {
 			id: "CAST_2",
 			name: "Amulya",
 			actor: "Anusha",
 			contact: "98884 445654",
-			notes: " Tentative. may go for another"
+			notes: " Tentative. may go for another",
+			type: "PRIMARY"
 		}
 	},
 	COSTUME: {

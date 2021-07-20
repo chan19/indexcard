@@ -406,12 +406,12 @@ div#fileNamelabel {
 
 
 
-#masterButtonPane #beatButton {
-    background-image: url(../icons/beat.png);
+#masterButtonPane #locationButton {
+    background-image: url(../icons/location.png);
 }
 
-#masterButtonPane #actButton {
-    background-image: url(../icons/act.png);
+#masterButtonPane #castButton {
+    background-image: url(../icons/cast.png);
 }
 
 #masterButtonPane #emoButton {
@@ -423,11 +423,11 @@ div#fileNamelabel {
     background-image: url(../icons/pagemeter.png);
 }
 
-body.showActColors #masterButtonPane #actButton.masterButton{
+body.showActColors #masterButtonPane #castButton.masterButton{
     background-color: #ffeb3b;
 }
 
-body.showBeats #masterButtonPane #beatButton.masterButton {
+body.showBeats #masterButtonPane #locationButton.masterButton {
     background-color: #8bc34a;
 }
 
@@ -656,11 +656,11 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 		border-radius: 4px;
 	}
 
-	body.nonTouchDevice #masterButtonPane #beatButton:hover::after {
+	body.nonTouchDevice #masterButtonPane #locationButton:hover::after {
 		content: 'BEATS';
 	}
 
-	body.nonTouchDevice #masterButtonPane #actButton:hover::after {
+	body.nonTouchDevice #masterButtonPane #castButton:hover::after {
 		content: 'ACT';
 	}
 
@@ -671,11 +671,11 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 	body.nonTouchDevice #masterButtonPane #pageMeterButton:hover::after {
 		content: 'PAGE METER';
 	}
-	body.nonTouchDevice.showActColors #masterButtonPane #actButton.masterButton,body.nonTouchDevice  #masterButtonPane #actButton:hover {
+	body.nonTouchDevice.showActColors #masterButtonPane #castButton.masterButton,body.nonTouchDevice  #masterButtonPane #castButton:hover {
 		background-color: #ffeb3b;
 	}
 
-	body.nonTouchDevice.showBeats #masterButtonPane #beatButton.masterButton,body.nonTouchDevice #masterButtonPane #beatButton:hover {
+	body.nonTouchDevice.showBeats #masterButtonPane #locationButton.masterButton,body.nonTouchDevice #masterButtonPane #locationButton:hover {
 		background-color: #8bc34a;
 	}
 
