@@ -97,7 +97,7 @@ var Costume = (function() {
         _createNode: function() {
             var that = this;
             var oData = this.getData();
-            this._node = jQuery("<div id='costumeDialog' class='formDialog'><div class='formDialogHeader'>Costume</div>" + "<div class='formDialogBody'></div>" + "<div class='formDialogFooter'><button id='costumeAdd' class='formDialogButton button'>Add new Character</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>");
+            this._node = jQuery("<div id='costumeDialog' class='formDialog'><div class='formDialogHeader'>Costume</div>" + "<div class='formDialogBody'></div>" + "<div class='formDialogFooter'><button id='costumeAdd' class='formDialogButton button'>Add new Costume</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>");
             this._node.find(".formDialogBody").append(this._getListNodes(oData));
             this._attachEvents(this._node);
             return this;

@@ -46,7 +46,7 @@ var Cast = (function() {
                     bShowNotes = true;
                 }
 				(function(){
-					var tmp = jQuery("<div class='castItem itemPane noneditable' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='castItemTitle itemPaneHeader formDialogInput' placeholder='Character name' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='castItemActor itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.actor + "' placeholder='Actor name'>" + "</div>" + "<div class='castItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "' placeholder='Contact details'>" + "</div>" + "<div class='castItemType itemPaneRow'>" + "</div>" + "<div class='castItemNotes itemPaneRow'>" + "<textarea class='itemRowSingle formDialogInput' style='display:" + (bShowNotes ? "initial" : "none") + "' resize=none placeholder='Add notes' rows='4'>" + (cur.notes || "") + "</textarea>" + "</div></div>" + "<div class='floatingButtonPane'>" +
+					var tmp = jQuery("<div class='castItem itemPane noneditable' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='castItemTitle itemPaneHeader formDialogInput' placeholder='Character name' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='castItemActor itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.actor + "' placeholder='Actor name'>" + "</div>" + "<div class='castItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "' placeholder='Contact details' style='display:" + (cur.contact ? "initial" : "none") + "'>" + "</div>" + "<div class='castItemType itemPaneRow'>" + "</div>" + "<div class='castItemNotes itemPaneRow'>" + "<textarea class='itemRowSingle formDialogInput' style='display:" + (bShowNotes ? "initial" : "none") + "' resize=none placeholder='Add notes' rows='4'>" + (cur.notes || "") + "</textarea>" + "</div></div>" + "<div class='floatingButtonPane'>" +
 					"<div class='actionButton edit'></div><div class='actionButton ok'></div></div>" + "</div>");
 					var id = cur.id;
 					var nameNode = tmp.find(".castItemTitle");
@@ -64,10 +64,10 @@ var Cast = (function() {
 						editable: false,
 						list: [{
 							key: "PRIMARY",
-							value: "Primary"
+							value: "Primary character"
 						}, {
 							key: "SECONDARY",
-							value: "Secondary"
+							value: "Secondary character"
 						}]
 					});				
 				
