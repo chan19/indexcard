@@ -4,18 +4,23 @@
     overflow-x: visible;
     line-height: 150%;
 }
+.dropDown.autofit{
+	width: 100%;
+}
 .dropDown.noneditable{
 	
 }
 .dropDown .dropDownValue {
-    border: 1px solid  #dcdbdb;
+    border: 1px solid  #eaeaea;
     padding: 0px 30px 0px 10px;
     color: #000000;
     cursor: pointer;
-    background: #cecece;
-    background: transparent;
-    color: #464646;
-    /* border-radius: 15px; */
+    background: #eaeaea;
+    color: #000000;
+    border-radius: 15px;
+}
+.dropDown.autofit .dropDownValue{
+	border-radius: 0;
 }
 .dropDown.noneditable .dropDownValue {
 	border: none;
@@ -24,6 +29,8 @@
 	color: #c7c7c7;
 	background: none;
 	text-transform: uppercase;
+	font-size: small;
+	padding: 0px 10px;
 }
 .dropDown .dropDownArrow {
     position: absolute;

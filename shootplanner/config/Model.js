@@ -10,6 +10,8 @@ Model = {
 		CHARACTERS: [{
 			id: "CAST_1",
 			costume: "COSTUME_1",
+			gender: "M",
+			type: "PRIMARY",
 			makeup: "",
 			notes: ""
 		}],
@@ -55,20 +57,23 @@ Model = {
 			actor: "RISHI",
 			contact: "98884 445654",
 			notes: "",
-			type: "PRIMARY" // primary,secondary
+			type: "SECONDARY" // primary,secondary
 		},
 		CAST_2: {
 			id: "CAST_2",
 			name: "Amulya",
 			actor: "Anusha",
 			contact: "98884 445654",
-			notes: " Tentative. may go for another",
-			type: "PRIMARY"
+			notes: "Tentative. may go for another"
 		}
 	},
 	COSTUME: {
 		COSTUME_1: {
-			name: "Shirt, Pant, Jacket"
+			id: "COSTUME_1",
+			character: "CAST_1",
+			name: "SID COSTUME",
+			description: "Jeans",
+			notes: ""
 		}
 	},
 	EXTRAS:  {
@@ -83,10 +88,12 @@ Model = {
 		
 	},
 	LOCATION: {
-		LOCATION_1: {
+		LOCATION_1:{ 
+			id: "LOCATION_1",
 			name: "HOSPITAL",
-			loc: "VIJAYA HOSPITAL",
-			address: " RR NAGAR"
+			place: "VIJAYA HOSPITAL",
+			contact: "33444 33232",
+			notes: ""
 		}
 	},
 	SET: {

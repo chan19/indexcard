@@ -1,14 +1,13 @@
 var Location = (function() {
-    return {
-
+	
+	return {
         init: function(oConfig) {
             var oData = oConfig.data || {};
             this.setData(oData);
             return this;
         },
         _isRendered: false,
-        _props: ["id", "name", "address", "contact", "notes"],
-
+        _props: ["id", "name", "place", "contact", "notes"],
         getCore: function() {
             return appManager;
         },
@@ -32,34 +31,66 @@ var Location = (function() {
             this._node.hide();
             jQuery("#blocker").hide();
         },
-        _getListHtml: function(oData) {
+        _getListNodes: function(oData) {
+			var that = this;
             var html = "";
             var i = -1;
             var bShowNotes = false;
+			var tmpNode = jQuery("<div></div>");
+			var tmpDropDown;
             for (var each in oData) {
                 cur = oData[each];
                 i++;
                 if (cur.notes) {
                     bShowNotes = true;
                 }
-                html += "<div class='locationItem itemPane' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='locationItemTitle itemPaneHeader formDialogInput' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='locationItemActor itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.actor + "'>" + "</div>" + "<div class='locationItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "'>" + "</div>" + "<div class='locationItemType itemPaneRow'>" + "</div>" + "<div class='locationItemNotes itemPaneRow' style='display:" + (bShowNotes ? "initial" : "none") + "'>" + "<div class='itemRowSingle'>" + (cur.notes || "") + "</div>" + "</div>" + "<div class='itemPaneRow edit'>edit</div>" + "</div>" + "</div>";
+				(function(){
+					var tmp = jQuery("<div class='locationItem itemPane noneditable' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='locationItemTitle itemPaneHeader formDialogInput' placeholder='Location title' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='locationItemPlace itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.place + "' placeholder='Place name'>" + "</div>" + "<div class='locationItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "' placeholder='Contact details'>" + "</div>" + "<div class='locationItemType itemPaneRow'>" + "</div>" + "<div class='locationItemNotes itemPaneRow'>" + "<textarea class='itemRowSingle formDialogInput' style='display:" + (bShowNotes ? "initial" : "none") + "' resize=none placeholder='Add notes' rows='4'>" + (cur.notes || "") + "</textarea>" + "</div></div>" + "<div class='floatingButtonPane'>" +
+					"<div class='actionButton edit'></div><div class='actionButton ok'></div></div>" + "</div>");
+					
+					
+					var id = cur.id;
+					var nameNode = tmp.find(".locationItemTitle");
+					var placeNode = tmp.find(".locationItemPlace input");
+					var contactNode = tmp.find(".locationItemContact input");
+					var notesNode = tmp.find(".locationItemNotes textarea");			
+				tmp.find(".edit").on("click", function(){
+					 that.setItemEditable(tmp, true);
+				});
+				tmp.find(".ok").on("click", function(){
+					 var oData = {
+						id: id,
+						name: nameNode.val(),
+						place: placeNode.val(),
+						contact: contactNode.val(),
+						notes: notesNode.val()
+					};
+					that.getCore().setDataToModel("LOCATION", oData);
+					 that.setItemEditable(tmp, false);
+				});
+				tmpNode.append(tmp);
+				})();
             }
-            return html;
+            return tmpNode.children();
         },
-        getHtml: function(oData) {
-            var html = "<div id='locationDialog' class='formDialog'><div class='formDialogHeader'>Locations</div>" + "<div class='formDialogBody'>" + this._getListHtml(oData) + "</div>" + "<div class='formDialogFooter'><button id='locationAdd' class='formDialogButton button'>Add new Location</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>";
-            return html;
+        _createNode: function() {
+            var that = this;
+            var oData = this.getData();
+            this._node = jQuery("<div id='locationDialog' class='formDialog'><div class='formDialogHeader'>Location</div>" + "<div class='formDialogBody'></div>" + "<div class='formDialogFooter'><button id='locationAdd' class='formDialogButton button'>Add new location</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>");
+			this._node.find(".formDialogBody").append(this._getListNodes(oData));
+            this._attachEvents(this._node);
+            return this;
         },
         refresh: function() {
-            var html = this._getListHtml(this.getData());
-            this.getNode().find(".formDialogBody").html(html);
+            var aNode = this._getListNodes(this.getData());
+            this.getNode().find(".formDialogBody").html(aNode);
             return this;
         },
         addEntry: function(oData) {
             oData = oData || {
-                id: "CAST_" + Date.now(),
+                id: "LOC_" + Date.now(),
                 name: "",
-                actor: "",
+                place: "",
                 contact: "",
                 notes: ""
             };
@@ -67,6 +98,7 @@ var Location = (function() {
             data[oData.id] = oData;
             this.setData(data);
             this.refresh();
+			this.getNode().find(".itemPane").last().find(".edit").click();
             return this;
 
         },
@@ -77,28 +109,19 @@ var Location = (function() {
             return this._node;
         },
         setItemEditable: function(oListItemNode, bEditable) {
-            oListItemNode[bEditable ? "addClass" : "removeClass"]("editable").find(".formDialogInput").attr('readonly', !bEditable)[bEditable ? "addClass" : "removeClass"]("editable");
-        },
-        _createNode: function() {
-            var that = this;
-            var oData = this.getData();
-            this._node = jQuery(this.getHtml(oData));
-            this._node.find(".locationItemType").each(function(i, cur) {
-                var d = new Dropdown({
-                    defaultText: "Location Type",
-                    onChange: function(k, i, v) {},
-                    list: [{
-                        key: "0",
-                        value: "SET"
-                    }, {
-                        key: "1",
-                        value: "REAL"
-                    }]
-                });
-                cur.append(d.getNode().get(0));
-            });
-            this._attachEvents(this._node);
-            return this;
+			if(bEditable){
+				oListItemNode.addClass("editable").removeClass("noneditable").find(".formDialogInput").attr('readonly', false).show().addClass("editable");
+				oListItemNode.find(".floatingButtonPane .actionButton.ok").show();
+				oListItemNode.find(".locationItemTitle").focus();
+			} else {
+				oListItemNode.removeClass("editable").addClass("noneditable").find(".formDialogInput").attr('readonly', true).removeClass("editable").each(function(a,b){
+					var node = jQuery(b);
+					node[node.val() ? "show" : "hide"]();				
+				});
+				oListItemNode.find(".floatingButtonPane .actionButton.ok").hide();
+			}
+			
+			return this;
         },
         render: function(sId) {
             jQuery("#" + sId).append(this.getNode());
@@ -112,12 +135,8 @@ var Location = (function() {
             this._node.find(".closeButton").on("click", function() {
                 that.close();
             });
-            this._node.find("#castAdd").on("click", function() {
+            this._node.find("#locationAdd").on("click", function() {
                 that.addEntry();
-            });
-            this._node.on("click", ".edit", function() {
-                var node = jQuery(this).parents(".locationItem");
-                that.setItemEditable(node, !node.hasClass("editable"));
             });
         }
 

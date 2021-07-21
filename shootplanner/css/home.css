@@ -419,8 +419,8 @@ div#fileNamelabel {
     display: none;
 }
 
-#masterButtonPane #pageMeterButton {
-    background-image: url(../icons/pagemeter.png);
+#masterButtonPane #costumeButton {
+    background-image: url(../icons/costume.png);
 }
 
 body.showActColors #masterButtonPane #castButton.masterButton{

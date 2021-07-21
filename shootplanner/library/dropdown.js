@@ -7,10 +7,12 @@
 	Dropdown.prototype = {
 		init: function(oConfig){
 			oConfig.id = oConfig.id || "_dropdown" + count++;
+			this.id = oConfig.id;
 			this._editable = (oConfig.editable === undefined) ? true : !!oConfig.editable;
-			this._options = oConfig.list;
+			this._options = oConfig.list || [];
 			this._defaultText = oConfig.defaultText || "Select an Option";
 			this._classList = oConfig.class || [];
+			this._autofit  = oConfig.autofit || false;
 			this._setHandlers(oConfig);
 			this._createNode(oConfig);
 			this._attachEvents();
@@ -18,10 +20,14 @@
 			if(oConfig.value){
 				this.setValue(oConfig.value);
 			}
+			if(oConfig.visible !== undefined){
+				this.setVisible(oConfig.visible);
+			}
 		},
 		_owner: null,
 		_value: null,
 		_editable: true,
+		_isVisible: true,
 		_options: {},
 		_isOpen: false,
 		_handlers: {
@@ -39,10 +45,14 @@
 				onChange: fn
 			});
 		},
-		setOptions: function(aList){
+		setOptions: function(aList, sKey){
 			this._options = aList;
 			this._node.find(".dropDownOptionContainer").empty().append(this._getOptionsHtml(aList));
-			this.setValue(oList[0].key);
+			if(sKey){
+				this.setValue(sKey);
+			} else {
+				this.setValue(null);
+			}
 			return this;
 		},
 		getOptions: function(){
@@ -71,30 +81,51 @@
 			} else {
 				this._node.removeClass("editable").addClass("noneditable");
 			}
+			return this;
 		},
 		getEditable: function(){
 			return this._editable;
 		},
 		setValue: function(sKey, bSuppressHandlerCall){
-			var a = this.getOptions();
-			var i = this._getIndexOfKey(sKey);
-			var sText = (i == -1 )? this._defaultText : a[i].value;
-			this._node.find(".dropDownValue").text(sText.length < 25? sText : (sText.substr(0, 25) + "..."));
-			this._value = sKey;
-			if(!bSuppressHandlerCall){
-				this._handlers.change(sKey, i, sText);	
+			if( sKey == null || sKey == undefined){
+					var sText = this._defaultText;
+					this._node.find(".dropDownValue").text(sText);
+					this._value = null;
+					if(!bSuppressHandlerCall){
+						this._handlers.change(sKey, i, sText);	
+					}
+					this._node.find(".dropDownOption").each(function(i,o){
+						o.className = "dropDownOption";
+					});					
+			} else {
+				var a = this.getOptions();
+				var i = this._getIndexOfKey(sKey);
+				if(i!= -1){
+					var sText = a[i].value;
+					this._node.find(".dropDownValue").text(sText.length < 25? sText : (sText.substr(0, 25) + "..."));
+					this._value = sKey;
+					if(!bSuppressHandlerCall){
+						this._handlers.change(sKey, i, sText);	
+					}
+					this._node.find(".dropDownOption").each(function(i,o){
+						if(o.dataset.value == sKey){
+							o.className = "dropDownOption selected";
+						} else {
+							o.className = "dropDownOption";
+						}
+					});				
+				}				
 			}
-			this._node.find(".dropDownOption").each(function(i,o){
-				if(o.dataset.value == sKey){
-					o.className = "dropDownOption selected";
-				} else {
-					o.className = "dropDownOption";
-				}
-			});
+
 			return this;
 		},
 		getValue: function(){
 			return this._value;
+		},
+		setVisible: function(bVisible){
+			this._visible = bVisible;
+			this._node[bVisible ? "show" : "hide"]();
+			return this;
 		},
 		_getOptionsHtml: function(aList){
 			var html = "";
@@ -109,7 +140,8 @@
 		},
 		getHtml: function(sId, aList){
 			var editableClass = this._editable ? "editable" : "noneditable";
-			return "<div id='"+ sId + "' class='dropDown " + editableClass+ "'><div class='dropDownValue'>" + this._defaultText +"</div><div class='dropDownArrow'></div>" +
+			var autofitClass = this._autofit ? "autofit" :"";
+			return "<div id='"+ sId + "' class='dropDown " + editableClass+ " " + autofitClass+"'><div class='dropDownValue'>" + this._defaultText +"</div><div class='dropDownArrow'></div>" +
 					"<div class='dropDownOptionContainer' style='display:none'>" + this._getOptionsHtml(aList) +
 					"</div></div>";
 		},
@@ -117,7 +149,7 @@
 			return this._node;
 		},
 		_createNode: function(o){
-			this._node = jQuery(this.getHtml(o.id, o.list));
+			this._node = jQuery(this.getHtml(this.id, this._options));
 			return this;
 		},
 		render: function(sId){

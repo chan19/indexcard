@@ -1,6 +1,6 @@
 var Cast = (function() {
-    return {
-
+	
+	return {
         init: function(oConfig) {
             var oData = oConfig.data || {};
             this.setData(oData);
@@ -32,27 +32,77 @@ var Cast = (function() {
             this._node.hide();
             jQuery("#blocker").hide();
         },
-        _getListHtml: function(oData) {
+        _getListNodes: function(oData) {
+			var that = this;
             var html = "";
             var i = -1;
             var bShowNotes = false;
+			var tmpNode = jQuery("<div></div>");
+			var tmpDropDown;
             for (var each in oData) {
                 cur = oData[each];
                 i++;
                 if (cur.notes) {
                     bShowNotes = true;
                 }
-                html += "<div class='castItem itemPane' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='castItemTitle itemPaneHeader formDialogInput' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='castItemActor itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.actor + "'>" + "</div>" + "<div class='castItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "'>" + "</div>" + "<div class='castItemType itemPaneRow'>" + "</div>" + "<div class='castItemNotes itemPaneRow' style='display:" + (bShowNotes ? "initial" : "none") + "'>" + "<div class='itemRowSingle'>" + (cur.notes || "") + "</div>" + "</div>" + "<div class='itemPaneRow edit'>edit</div>" + "</div>" + "</div>";
+				(function(){
+					var tmp = jQuery("<div class='castItem itemPane noneditable' data-id='" + cur.id + "' data-index='" + i + "'>" + "<input class='castItemTitle itemPaneHeader formDialogInput' placeholder='Character name' readonly value='" + cur.name + "'>" + "<div class='itemPaneBody'>" + "<div class='castItemActor itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.actor + "' placeholder='Actor name'>" + "</div>" + "<div class='castItemContact itemPaneRow'>" + "<input class='itemRowValue formDialogInput' readonly value='" + cur.contact + "' placeholder='Contact details'>" + "</div>" + "<div class='castItemType itemPaneRow'>" + "</div>" + "<div class='castItemNotes itemPaneRow'>" + "<textarea class='itemRowSingle formDialogInput' style='display:" + (bShowNotes ? "initial" : "none") + "' resize=none placeholder='Add notes' rows='4'>" + (cur.notes || "") + "</textarea>" + "</div></div>" + "<div class='floatingButtonPane'>" +
+					"<div class='actionButton edit'></div><div class='actionButton ok'></div></div>" + "</div>");
+					var id = cur.id;
+					var nameNode = tmp.find(".castItemTitle");
+					var actorNode = tmp.find(".castItemActor input");
+					var contactNode = tmp.find(".castItemContact input");
+					var notesNode = tmp.find(".castItemNotes textarea");
+					var characterTypeNode = new Dropdown({
+						defaultText: "Primay/ Secondary Character",
+						autofit: true,
+						value: cur.type,
+						visible: (cur.type !== null && cur.type !== undefined && cur.type !== ""),
+						onChange: function(k, i, v) {
+							
+						},
+						editable: false,
+						list: [{
+							key: "PRIMARY",
+							value: "Primary"
+						}, {
+							key: "SECONDARY",
+							value: "Secondary"
+						}]
+					});				
+				
+				tmp.find(".castItemType").append(characterTypeNode.getNode());
+				tmp.find(".edit").on("click", function(){
+					 that.setItemEditable(tmp, true, characterTypeNode);
+				});
+				tmp.find(".ok").on("click", function(){
+					 var oData = {
+						 id: id,
+						name: nameNode.val(),
+						actor: actorNode.val(),
+						contact: contactNode.val(),
+						notes: notesNode.val(),
+						type: characterTypeNode.getValue()
+					};
+					that.getCore().setDataToModel("CAST", oData);
+					 that.setItemEditable(tmp, false, characterTypeNode);
+				});
+				tmpNode.append(tmp);
+				})();
             }
-            return html;
+            return tmpNode.children();
         },
-        getHtml: function(oData) {
-            var html = "<div id='castDialog' class='formDialog'><div class='formDialogHeader'>Cast</div>" + "<div class='formDialogBody'>" + this._getListHtml(oData) + "</div>" + "<div class='formDialogFooter'><button id='castAdd' class='formDialogButton button'>Add new Character</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>";
-            return html;
+        _createNode: function() {
+            var that = this;
+            var oData = this.getData();
+            this._node = jQuery("<div id='castDialog' class='formDialog'><div class='formDialogHeader'>Cast</div>" + "<div class='formDialogBody'></div>" + "<div class='formDialogFooter'><button id='castAdd' class='formDialogButton button'>Add new Character</button>" + "<button class='formDialogButton button closeButton'>Close</button></div></div>");
+			this._node.find(".formDialogBody").append(this._getListNodes(oData));
+            this._attachEvents(this._node);
+            return this;
         },
         refresh: function() {
-            var html = this._getListHtml(this.getData());
-            this.getNode().find(".formDialogBody").html(html);
+            var aNode = this._getListNodes(this.getData());
+            this.getNode().find(".formDialogBody").html(aNode);
             return this;
         },
         addEntry: function(oData) {
@@ -67,6 +117,7 @@ var Cast = (function() {
             data[oData.id] = oData;
             this.setData(data);
             this.refresh();
+			this.getNode().find(".itemPane").last().find(".edit").click();
             return this;
 
         },
@@ -76,29 +127,22 @@ var Cast = (function() {
             }
             return this._node;
         },
-        setItemEditable: function(oListItemNode, bEditable) {
-            oListItemNode[bEditable ? "addClass" : "removeClass"]("editable").find(".formDialogInput").attr('readonly', !bEditable)[bEditable ? "addClass" : "removeClass"]("editable");
-        },
-        _createNode: function() {
-            var that = this;
-            var oData = this.getData();
-            this._node = jQuery(this.getHtml(oData));
-            this._node.find(".castItemType").each(function(i, cur) {
-                var d = new Dropdown({
-                    defaultText: "Character Type",
-                    onChange: function(k, i, v) {},
-                    list: [{
-                        key: "0",
-                        value: "PRIMARY"
-                    }, {
-                        key: "1",
-                        value: "SECONDARY"
-                    }]
-                });
-                cur.append(d.getNode().get(0));
-            });
-            this._attachEvents(this._node);
-            return this;
+        setItemEditable: function(oListItemNode, bEditable, oDropDown) {
+			if(bEditable){
+				oListItemNode.addClass("editable").removeClass("noneditable").find(".formDialogInput").attr('readonly', false).show().addClass("editable");
+				oListItemNode.find(".floatingButtonPane .actionButton.ok").show();
+				oDropDown.setVisible(true).setEditable(true);
+				oListItemNode.find(".castItemTitle").focus();
+			} else {
+				oListItemNode.removeClass("editable").addClass("noneditable").find(".formDialogInput").attr('readonly', true).removeClass("editable").each(function(a,b){
+					var node = jQuery(b);
+					node[node.val() ? "show" : "hide"]();				
+				});
+				oDropDown.setVisible(!(oDropDown.getValue() === null || oDropDown.getValue() === undefined)).setEditable(false);
+				oListItemNode.find(".floatingButtonPane .actionButton.ok").hide();
+			}
+			
+			return this;
         },
         render: function(sId) {
             jQuery("#" + sId).append(this.getNode());
@@ -114,10 +158,6 @@ var Cast = (function() {
             });
             this._node.find("#castAdd").on("click", function() {
                 that.addEntry();
-            });
-            this._node.on("click", ".edit", function() {
-                var node = jQuery(this).parents(".castItem");
-                that.setItemEditable(node, !node.hasClass("editable"));
             });
         }
 

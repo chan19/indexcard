@@ -1,11 +1,3 @@
 #castDialog{
 	
 }
-
-#castDialog .itemPaneRow.edit{
-	margin-left: 4px;
-	margin-top: 8px;
-	color: #03a9f4;
-	cursor: pointer;
-	font-weight: bold;
-}

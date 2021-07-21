@@ -1,13 +1,16 @@
 .formDialog {
     display: none;
     position: fixed;
-    background: white;
     z-index: 3;
-    min-width: 300px;
+    width: 350px;
     left: 0;
     right: 0;
     margin: auto;
-    width: 70%;
+    height: 100%;
+    box-sizing: border-box;
+    top: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 20px solid transparent;
 }
 
 .formDialogHeader {
@@ -17,15 +20,21 @@
     color: white;
     padding: 5px 0;
     font-size: large;
+    position: relative;
+    z-index: 1;
 }
 
-.formDialogBody {
-}
+.formDialogBody {box-sizing: border-box;border-top: 32px solid transparent;max-height: 100%;border-bottom: 51px solid transparent;position: absolute;overflow: auto;width: 100%;background: white;height: 100%;top: 0px;}
 
 .itemPane {
     border-bottom: 1px solid #e2e2e2;
-    padding: 8px 12px;
+    padding: 8px 10px;
     box-sizing: border-box;
+    position: relative;
+}
+
+.itemPane.editable {
+    background: #ffffff;
 }
 
 .itemPaneHeader {
@@ -42,7 +51,8 @@
 }
 
 .itemPaneRow {
-    margin-top: 4px;
+    margin-top: 1px;
+    width: 290px;
 }
 
 .itemRowLabel, .itemRowValue, .itemRowSingle {
@@ -64,28 +74,82 @@
     font-size: medium;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     display: block;
-    width: 100%;
+    width: 290px;
     box-sizing: border-box;
+    padding: 0px 1px;
+    line-height: 150%;
+    padding: 0px 10px;
+    resize: none;
 }
 
-input.formDialogInput:active, input.formDialogInput:focus{
+.formDialogInput:active, .formDialogInput:focus {
     background: #ffffff00;
     outline: none;
     color: #151515;
     cursor: pointer;
 }
-input.formDialogInput.editable, input.formDialogInput.editable:active, input.formDialogInput.editable:focus{
+
+.formDialogInput.editable, .formDialogInput.editable:active, .formDialogInput.editable:focus {
     background: #eaeaea;
+    padding: 0px 10px;
 }
+
 .itemRowSingle {
-    margin: 12px 0 0px 4px;
+    /* margin: 12px 0 0px 4px; */
     color: #313131;
     font-size: small;
     font-weight: bold;
+    padding: 0px 10px;
+}
+
+.formDialog .floatingButtonPane {
+    display: inline;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    margin: 8px 10px;
+}
+
+.formDialog .floatingButtonPane .actionButton {
+    cursor: pointer;
+    display: none;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-position: center;
+    transition: 100ms linear all;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.formDialog .itemPane.editable .floatingButtonPane .actionButton:hover {
+    opacity: 0.7;
+}
+
+.formDialog .floatingButtonPane .edit.actionButton {
+    background-image: url(../icons/edit.png);
+}
+
+.formDialog .itemPane.noneditable:hover .floatingButtonPane .edit {
+    display: block;
+}
+
+.formDialog .floatingButtonPane .ok.actionButton {
+    background-image: url(../icons/ok2.png);
+}
+
+.formDialog .floatingButtonPane .cancel.actionButton {
+    background-image: url(../icons/cancel.png);
 }
 
 .formDialogFooter {
-    padding: 0px 8px;
+    padding: 4px 8px 0px;
+    position: absolute;
+    bottom: 0px;
+    background: #d8d8d8;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .formDialogButton {
