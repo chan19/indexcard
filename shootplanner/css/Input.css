@@ -1,0 +1,31 @@
+.Input {
+    border: 1px solid transparent;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    display: block;
+    width: 290px;
+    box-sizing: border-box;
+    padding: 0px 1px;
+    line-height: 100%;
+    padding: 0px 10px;
+    resize: none;
+    color: grey;
+}
+.Input.headerInput {
+    font-weight: bold;
+    color: black;
+}
+.Input:active, .Input:focus {
+    background: #ffffff00;
+    outline: none;
+    color: #151515;
+    cursor: pointer;
+}
+
+.Input.editable, .Input.editable:active, .Input.editable:focus {
+    background: #eaeaea;
+    padding: 0px 10px;
+}
+.Input.autofit{
+	
+}

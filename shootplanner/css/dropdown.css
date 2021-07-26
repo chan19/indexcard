@@ -26,10 +26,10 @@
 	border: none;
 	cursor: default;
 	padding: 0px 4px;
-	color: #c7c7c7;
+	color: grey;
 	background: none;
-	text-transform: uppercase;
-	font-size: small;
+	text-transform: capitalize;
+	font-size: medium;
 	padding: 0px 10px;
 }
 .dropDown .dropDownArrow {

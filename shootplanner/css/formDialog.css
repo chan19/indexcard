@@ -24,7 +24,7 @@
     z-index: 1;
 }
 
-.formDialogBody {box-sizing: border-box;border-top: 32px solid transparent;max-height: 100%;border-bottom: 51px solid transparent;position: absolute;overflow: auto;width: 100%;background: white;height: 100%;top: 0px;}
+.formDialogBody {box-sizing: border-box;border-top: 32px solid transparent;max-height: 100%;border-bottom: 75px solid transparent;position: absolute;overflow: auto;width: 100%;background: white;height: 100%;top: 0px;}
 
 .itemPane {
     border-bottom: 1px solid #e2e2e2;
@@ -67,31 +67,6 @@
 
 .itemRowValue {
     margin-left: 0px;
-}
-
-.formDialogInput {
-    border: 1px solid transparent;
-    font-size: medium;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    display: block;
-    width: 290px;
-    box-sizing: border-box;
-    padding: 0px 1px;
-    line-height: 150%;
-    padding: 0px 10px;
-    resize: none;
-}
-
-.formDialogInput:active, .formDialogInput:focus {
-    background: #ffffff00;
-    outline: none;
-    color: #151515;
-    cursor: pointer;
-}
-
-.formDialogInput.editable, .formDialogInput.editable:active, .formDialogInput.editable:focus {
-    background: #eaeaea;
-    padding: 0px 10px;
 }
 
 .itemRowSingle {
