@@ -27,17 +27,25 @@
 		getCore: function(){
 			return appManager;
 		},
+		refreshOverview: function(){
+			
+		},
 		_getHtml: function(aData){
 			var html = "", s= "", aNote;
 			var that = this;
+			var oSettings = this._getMetadataSettings();
+			var metadataHtml = "";
 			aData.forEach(function(o, i){
 				aNote = o.notes || [];
 				sNote = "";
-				aNote.forEach(function(n){
-					if(n){
-						sNote += "<div class='overviewNotes'>" + that.getCore().sanitizeHtml(n) + "</div>" ;				
-					}
-				});
+				if(oSettings.notes){
+					aNote.forEach(function(n){
+						if(n){
+							sNote += "<div class='overviewNotes'>" + that.getCore().sanitizeHtml(n) + "</div>" ;				
+						}
+					});				
+				}
+				metadataHtml = "<div class='overviewItemMetadata'><div>";
 				html += "<div class='overviewItem " +o.color+ "'>" +
 						"<div class='overviewTitle'>" + (o.index +1 ) + ". " + o.title + "</div>" +
 						"<div class='overviewContent'>" + that.getCore().sanitizeHtml(o.content) + "</div>" +
@@ -47,6 +55,18 @@
 			return html;
 		},
 		_getDocHtml: function(aData){
+			
+		},
+		_getMetadataSettings: function(){
+			return {
+				act: true,
+				location: true,
+				pgCount: true,
+				color: false,
+				notes: true
+			};
+		},
+		openSettings: function(){
 			
 		},
 		print: function(){
