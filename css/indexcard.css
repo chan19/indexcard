@@ -39,7 +39,7 @@ body.touchDevice .indexCard {
     outline: none;
     background-color: var(--color-blue);
     color: white;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid white;
     font-size: 14px;
     line-height: 16px;
     position: relative;
@@ -71,32 +71,32 @@ body.touchDevice .indexCardTitle {
     left: 4px;
 }
 
-.indexCard.blue .indexCardTitle, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
+.indexCard.blue .indexCardTitle,body.nightmode .indexCard.blue .indexCardContent, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
     background-color: var(--color-blue);
     color: white;
 }
 
-.indexCard.red .indexCardTitle, .indexCard.red .currentColor,.indexCard.red .indexCardBg, .indexCard .colorPicker .colorCode.red {
+.indexCard.red .indexCardTitle,body.nightmode .indexCard.red .indexCardContent, .indexCard.red .currentColor,.indexCard.red .indexCardBg, .indexCard .colorPicker .colorCode.red {
     background-color: var(--color-red);
     color: white;
 }
 
-.indexCard.green .indexCardTitle, .indexCard.green .currentColor,.indexCard.green .indexCardBg, .indexCard .colorPicker .colorCode.green {
+.indexCard.green .indexCardTitle,body.nightmode .indexCard.green .indexCardContent, .indexCard.green .currentColor,.indexCard.green .indexCardBg, .indexCard .colorPicker .colorCode.green {
     background-color: var(--color-green);
     color: white;
 }
 
-.indexCard.orange .indexCardTitle, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg, .indexCard .colorPicker .colorCode.orange {
+.indexCard.orange .indexCardTitle,body.nightmode .indexCard.orange .indexCardContent, .indexCard.orange .currentColor,.indexCard.orange .indexCardBg, .indexCard .colorPicker .colorCode.orange {
     background-color: var(--color-orange);
     color: black;
 }
 
-.indexCard.violet .indexCardTitle, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg, .indexCard .colorPicker .colorCode.violet {
+.indexCard.violet .indexCardTitle,body.nightmode .indexCard.violet .indexCardContent, .indexCard.violet .currentColor,.indexCard.violet .indexCardBg, .indexCard .colorPicker .colorCode.violet {
     background-color: var(--color-violet);
     color: white;
 }
 
-.indexCard.white .indexCardTitle, .indexCard.white .currentColor,.indexCard.white .indexCardBg, .indexCard .colorPicker .colorCode.white {
+.indexCard.white .indexCardTitle,body.nightmode .indexCard.white .indexCardContent, .indexCard.white .currentColor,.indexCard.white .indexCardBg, .indexCard .colorPicker .colorCode.white {
     background-color: var(--color-white);
     color: black;
     border-bottom-color: #e4e4e4;

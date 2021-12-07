@@ -27,6 +27,7 @@ body {
     display: inline-block;
     position: absolute;
     border: 5px solid #e91e6300;
+    cursor:pointer;
 }
 
 #metaDataContainer {
@@ -58,14 +59,16 @@ body {
     margin: 0 40px;
     background: var(--color-body);
 }
-.headerActionPane{
+
+.headerActionPane {
     position: fixed;
     background: #d2d2d2;
     top: 45px;
     box-shadow: 0px 5px 8px 0px grey;
     padding: 4px 10px;
-    z-index: 2;	
+    z-index: 2;
 }
+
 .headerActionPane:before {
     position: absolute;
     content: '';
@@ -77,17 +80,21 @@ body {
     top: -8px;
     right: 4px;
 }
+
 .headerActionPane .button {
     margin: 2px 0 2px;
     width: 100%;
     box-sizing: border-box;
 }
-#savePane{
-	right: 100px;
+
+#savePane {
+    right: 100px;
 }
-#loadPane{
-	right: 60px;
+
+#loadPane {
+    right: 60px;
 }
+
 #userInfoPane {
     right: 8px;
 }
@@ -103,8 +110,10 @@ body {
     font-size: medium;
     margin: 10px 0 10px;
 }
+
 #userInfoPane .button {
 }
+
 #leftPanel {
     position: fixed;
     top: 45px;
@@ -210,13 +219,10 @@ body {
     width: 33px;
 }
 
-
-
 body.viewOnly #viewIcon.icon {
     background-color: #fbb043;
     border: 4px solid #fbb043;
 }
-
 
 div#fileNamelabel {
     display: inline-block;
@@ -228,6 +234,7 @@ div#fileNamelabel {
     margin-left: 12px;
     vertical-align: baseline;
     opacity: 0;
+	z-index:-1;
 }
 
 #fileName {
@@ -253,12 +260,12 @@ div#fileNamelabel {
 #fileName:hover {
     color: #2196f3;
 }
+
 #savedTime {
     display: inline-block;
     font-size: small;
     color: grey;
 }
-
 
 .button, .button:active,.button::after {
     height: 30px;
@@ -279,8 +286,6 @@ div#fileNamelabel {
     outline: none;
 }
 
-
-
 .metadataItem .label {
     font-size: 10px;
     /* text-transform: uppercase; */
@@ -289,7 +294,7 @@ div#fileNamelabel {
 }
 
 .metadataItem .value, .metadataItem .detailedValue {
-    color: #1d1d1d;
+    color: var(--color-body-text);
     font-weight: bold;
     font-size: 12px;
 }
@@ -300,7 +305,7 @@ div#fileNamelabel {
     background: black;
     top: 0px;
     display: block;
-    color: white;
+    color: var(--color-body-text);
     width: 160px;
     left: 0;
     padding: 5px;
@@ -331,34 +336,36 @@ div#fileNamelabel {
     border-radius: 2px;
     background: white;
 }
-.inputBar{
-   border: none;
-   border: none;
-   position: relative;
-   height: 30px;
-   font-size: 18px;
-   line-height: 30px;
-   width: 100%;
-   color: #191919;
-   outline: none;
-   cursor: text;
-   font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-   vertical-align: middle;
-   top: 0;
-   padding: 2px;
-   box-sizing: border-box;
-}
-#searchContainer .searchBar .inputBar{
-	width: 370px;
-}
-#fileTitleDialog .inputBar{
-	display: block;
-	width: 100%;
-	/* border: 1px solid #d4d2d2; */
-	border-radius: 4px;
-	background: #efefef;
+
+.inputBar {
+    border: none;
+    border: none;
+    position: relative;
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    width: 100%;
+    color: #191919;
+    outline: none;
+    cursor: text;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    vertical-align: middle;
+    top: 0;
+    padding: 2px;
+    box-sizing: border-box;
 }
 
+#searchContainer .searchBar .inputBar {
+    width: 370px;
+}
+
+#fileTitleDialog .inputBar {
+    display: block;
+    width: 100%;
+    /* border: 1px solid #d4d2d2; */
+    border-radius: 4px;
+    background: #efefef;
+}
 
 #searchContainer .icon {
     display: inline-block;
@@ -405,8 +412,6 @@ div#fileNamelabel {
     display: none;
 }
 
-
-
 #masterButtonPane #beatButton {
     background-image: url(../icons/beat.png);
 }
@@ -424,7 +429,7 @@ div#fileNamelabel {
     background-image: url(../icons/pagemeter.png);
 }
 
-body.showActColors #masterButtonPane #actButton.masterButton{
+body.showActColors #masterButtonPane #actButton.masterButton {
     background-color: #ffeb3b;
 }
 
@@ -432,11 +437,11 @@ body.showBeats #masterButtonPane #beatButton.masterButton {
     background-color: #8bc34a;
 }
 
-body.showEmo #masterButtonPane #emoButton.masterButton{
+body.showEmo #masterButtonPane #emoButton.masterButton {
     background-color: #F44336;
 }
 
-body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
+body.showPageMeter #masterButtonPane #pageMeterButton.masterButton {
     background-color: #03a9f4;
 }
 
@@ -459,8 +464,6 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     margin-right: 8px;
     box-shadow: 0px 0px 4px 0px #929292;
 }
-
-
 
 #deleteZone {
     height: 80px;
@@ -569,9 +572,15 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     font-size: medium;
     margin: 8px 0 8px;
 }
-.dialogPromptItem{margin-bottom: 4px;position: relative;padding-left: 14px;}
-.dialogPromptItem:before{
-    content:'';
+
+.dialogPromptItem {
+    margin-bottom: 4px;
+    position: relative;
+    padding-left: 14px;
+}
+
+.dialogPromptItem:before {
+    content: '';
     position: absolute;
     height: 4px;
     width: 5px;
@@ -581,6 +590,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     left: 0px;
     border-radius: 50%;
 }
+
 .dialogPromptSign {
     padding: 0 0px 4px;
     font-size: medium;
@@ -631,87 +641,94 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
     transition: 300ms linear all;
 }
 
-	body.nonTouchDevice #header #user.icon:hover {
-		border: none;
-		transform: scale(1.1);
-	}
-	body.nonTouchDevice #header .icon:hover {
-		background-color: #068af5;
-		/* border: 4px solid #2196f3; */
-		border-color: #2196f3;
-	}
+body.nonTouchDevice #header #user.icon:hover {
+    border: none;
+    transform: scale(1.1);
+}
 
-	body.nonTouchDevice #header .icon:active {
-		background-color: #d1e5f5;
-		border: 4px solid #d1e5f5;
-	}
-	body.nonTouchDevice #masterButtonPane .masterButton:hover::after {
-		position: absolute;
-		top: 100%;
-		font-size: 10px;
-		margin-top: 8px;
-		background: black;
-		padding: 2px 8px;
-		color: white;
-		left: -5px;
-		border-radius: 4px;
-	}
+body.nonTouchDevice #header .icon:hover {
+    background-color: #068af5;
+    /* border: 4px solid #2196f3; */
+    border-color: #2196f3;
+}
 
-	body.nonTouchDevice #masterButtonPane #beatButton:hover::after {
-		content: 'BEATS';
-	}
+body.nonTouchDevice #header .icon:active {
+    background-color: #d1e5f5;
+    border: 4px solid #d1e5f5;
+}
 
-	body.nonTouchDevice #masterButtonPane #actButton:hover::after {
-		content: 'ACT';
-	}
+body.nonTouchDevice #masterButtonPane .masterButton:hover::after {
+    position: absolute;
+    top: 100%;
+    font-size: 10px;
+    margin-top: 8px;
+    background: black;
+    padding: 2px 8px;
+    color: white;
+    left: -5px;
+    border-radius: 4px;
+}
 
-	body.nonTouchDevice #masterButtonPane #emoButton:hover::after {
-		content: 'EMOTION';
-	}
+body.nonTouchDevice #masterButtonPane #beatButton:hover::after {
+    content: 'BEATS';
+}
 
-	body.nonTouchDevice #masterButtonPane #pageMeterButton:hover::after {
-		content: 'PAGE METER';
-	}
-	body.nonTouchDevice.showActColors #masterButtonPane #actButton.masterButton,body.nonTouchDevice  #masterButtonPane #actButton:hover {
-		background-color: #ffeb3b;
-	}
+body.nonTouchDevice #masterButtonPane #actButton:hover::after {
+    content: 'ACT';
+}
 
-	body.nonTouchDevice.showBeats #masterButtonPane #beatButton.masterButton,body.nonTouchDevice #masterButtonPane #beatButton:hover {
-		background-color: #8bc34a;
-	}
+body.nonTouchDevice #masterButtonPane #emoButton:hover::after {
+    content: 'EMOTION';
+}
 
-	body.nonTouchDevice.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
-		background-color: #F44336;
-	}
+body.nonTouchDevice #masterButtonPane #pageMeterButton:hover::after {
+    content: 'PAGE METER';
+}
 
-	body.nonTouchDevice.showPageMeter #masterButtonPane #pageMeterButton.masterButton,body.nonTouchDevice #masterButtonPane #pageMeterButton:hover {
-		background-color: #03a9f4;
-	}
-	body.nonTouchDevice .masterButton:hover {
-		/* transform: scale(1.1); */
-	}
+body.nonTouchDevice.showActColors #masterButtonPane #actButton.masterButton,body.nonTouchDevice #masterButtonPane #actButton:hover {
+    background-color: #ffeb3b;
+}
 
-	body.nonTouchDevice #searchContainer:hover {
-		box-shadow: 0px 0px 6px 1px #a9a7a7
-	}
-	body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after {
-		/* opacity: 0.8; */
-		BACKGROUND: #ffffff00;
-		COLOR: #393939;
-		border-color: #393939;
-	}
-    body.nonTouchDevice .button:active {
-        font-size: small;
-        box-sizing: border-box;
-    }
-    body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after{
-        BACKGROUND: #58b1f7;
-        COLOR: #ffffff;
-        border-color: #58b1f7;
-    }
+body.nonTouchDevice.showBeats #masterButtonPane #beatButton.masterButton,body.nonTouchDevice #masterButtonPane #beatButton:hover {
+    background-color: #8bc34a;
+}
+
+body.nonTouchDevice.showEmo #masterButtonPane #emoButton.masterButton, #masterButtonPane #emoButton:hover {
+    background-color: #F44336;
+}
+
+body.nonTouchDevice.showPageMeter #masterButtonPane #pageMeterButton.masterButton,body.nonTouchDevice #masterButtonPane #pageMeterButton:hover {
+    background-color: #03a9f4;
+}
+
+body.nonTouchDevice .masterButton:hover {
+    /* transform: scale(1.1); */
+}
+
+body.nonTouchDevice #searchContainer:hover {
+    box-shadow: 0px 0px 6px 1px #a9a7a7
+}
+
+body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after {
+    /* opacity: 0.8; */
+    BACKGROUND: #ffffff00;
+    COLOR: #393939;
+    border-color: #393939;
+}
+
+body.nonTouchDevice .button:active {
+    font-size: small;
+    box-sizing: border-box;
+}
+
+body.nonTouchDevice .button:hover,body.nonTouchDevice .button:hover::after {
+    BACKGROUND: #58b1f7;
+    COLOR: #ffffff;
+    border-color: #58b1f7;
+}
+
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
     body {
-        
     }
 
     #contentArea {
@@ -729,10 +746,12 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         height: 54px;
         border-bottom: 1px solid #e4e4e4;
     }
-	body.touchDevice #header{
-		 box-shadow: none;
-	}
-	#leftPanel {
+
+    body.touchDevice #header {
+        box-shadow: none;
+    }
+
+    #leftPanel {
     }
 
     #cardContainer {
@@ -762,7 +781,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         /* background-color: transparent; */
     }
 
-    #header #user.icon{
+    #header #user.icon {
         border: none;
         height: 30px;
         width: 30px;
@@ -820,15 +839,18 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 
     #saveFile {
     }
-    .headerActionPane{
+
+    .headerActionPane {
         top: 54px;
     }
-    .headerActionPane:before{
+
+    .headerActionPane:before {
         border-width: 12px;
         top: -12px;
         right: 0;
     }
-    .button{
+
+    .button {
         height: 30px;
         font-size: small;
         width: 100%;
@@ -836,6 +858,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         box-sizing: border-box;
         border-width: 0px 11px;
     }
+
     #metaDataContainer {
         display: none;
     }
@@ -856,6 +879,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         background: #ffffff;
         border-radius: 18px;
     }
+
     #searchContainer .inputBar {
         width: 100%;
         line-height: 30px;
@@ -865,8 +889,6 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         padding: 0px 12px;
         box-sizing: border-box;
     }
-
-
 
     #searchContainer .icon {
         display: inline-block;
@@ -913,7 +935,7 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
         margin: 0px auto 0;
     }
 
-	#deleteZone {
+    #deleteZone {
     }
 
     #deleteZone.isVisible {
@@ -930,13 +952,15 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton{
 
     #blocker {
     }
-    .dialogPrompt{
+
+    .dialogPrompt {
         top: 55px;
         width: 100%;
         /* border: 2px solid transparent; */
         box-sizing: border-box;
     }
-    .dialogPromptBody{
+
+    .dialogPromptBody {
         margin: 16px 0 25px;
     }
 }

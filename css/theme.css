@@ -22,8 +22,12 @@ body {
     --color-TextColorAct3: white;
     --color-body: #e4e4e4;
     --color-header: #e8e8e8;
+	--color-body-text: #1d1d1d;
 }
-
+body.nightmode {
+	--color-body: #121212;
+	--color-body-text: white;
+}
 
 
 body.theme2 {
