@@ -38,12 +38,12 @@
         <script>
 			function checkUpdates(){
                 window.SCREENWRITING = {
-                    version: 18,
-                    update: [	"Automatic save to cloud",
-								"Rename the files on cloud"
+                    version: 19,
+                    update: [	"nightmode upon clicking on the logo"
 							]
                 }
-                if (localStorage.softwareVersion && (Number(localStorage.softwareVersion) < window.SCREENWRITING.version)) {
+                if ((localStorage.softwareVersion == undefined )||(localStorage.softwareVersion && 
+						(Number(localStorage.softwareVersion) < window.SCREENWRITING.version))) {
                     localStorage.softwareVersion = window.SCREENWRITING.version;
                     var str = "";
 					window.SCREENWRITING.update.forEach(function(s){
@@ -62,11 +62,34 @@
 							id: "updatewindow"
 						});
                     });
-                }				
+                }
+
+			}
+			function toggleNightMode(){
+				var nightmode = !window.SCREENWRITING.PERSONALISATION.nightmode;
+				window.SCREENWRITING.PERSONALISATION.nightmode = nightmode;
+				localStorage.PERSONALISATION = JSON.stringify(window.SCREENWRITING.PERSONALISATION);
+				jQuery("body")[nightmode? "addClass" : "removeClass"]("nightmode");
+			}
+			function initialisePersonalisation(){
+				jQuery("#logo").click(function(){
+					toggleNightMode();
+				});
+				window.SCREENWRITING = window.SCREENWRITING || {};
+				window.SCREENWRITING.PERSONALISATION = {nightmode: false};
+				var nightmode = window.SCREENWRITING.PERSONALISATION.nightmode;
+				if(localStorage.PERSONALISATION){
+					window.SCREENWRITING.PERSONALISATION.nightmode = JSON.parse(localStorage.PERSONALISATION).nightmode;
+				} else {
+					localStorage.PERSONALISATION = JSON.stringify(window.SCREENWRITING.PERSONALISATION);
+				}
+				jQuery("body")[window.SCREENWRITING.PERSONALISATION.nightmode? "addClass" : "removeClass"]("nightmode");
+
 			}
             jQuery(document).ready(function() {
                 appManager.init();
 				checkUpdates();
+				initialisePersonalisation();
 				if(window.location.search){
 					jQuery("#user").show();
 				}
