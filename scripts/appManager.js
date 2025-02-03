@@ -308,10 +308,10 @@ appManager = (function(){
 					that.setFileId(sId);
 					that._ioManager.saveToBackUp(oData);
 					that.setData(oData, true);
-					that.setBusy(false);
-					if(fnS){
-						fnS();
-					}
+				}
+				that.setBusy(false);
+				if(fnS){
+					fnS();
 				}
 			});	
 			

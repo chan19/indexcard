@@ -202,6 +202,14 @@
 				<button id='createNewWithoutBackup' class='confirmButton button'>DON'T SAVE</button>
                 <button class='closeButton button'>CANCEL</button>
             </div>
+            <div id='versionConflictWindow' class='dialogPrompt' style='display:none'>
+                <div class='dialogPromptHeader'>Two versions of the file available</div>
+                <div class='dialogPromptBody'>
+                   Which file do you want to load?
+                </div>
+                <button id='loadLatestFromCloud' class='confirmButton button'>CLOUD VERSION</button>
+				<button id='loadcurrentFromHere' class='confirmButton button'>LOCAL VERSION</button>
+            </div>
 			<div id ='cloudBox' style='display:none'>
 				<div class='cloudBoxHeader'>SYNC WITH CLOUD</div>
 				<div class='cloudBoxContainer'></div>
