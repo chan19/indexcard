@@ -275,6 +275,9 @@ appManager = (function(){
 				beats: this.beat.getDataToSave()
 			};
 		},
+		loadLatestFileFromCloud: function(){
+			cloudBox.loadFile(this.getFileId());
+		},
 		getData: function(sKey){
 			var aData = this.getCurrentData();
 			return sKey? aData[sKey] : aData;

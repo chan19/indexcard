@@ -159,13 +159,17 @@ var cloudBox = (function() {
             });
         },
         loadFile: function(sId, fnS) {
+			appManager.setBusy(true);
             this.getFile(sId, function(o) {
 				var oData = o[0];
 				oData.id =sId;
 				appManager.setFileId(sId);
                 appManager._ioManager.saveToBackUp(oData);
 				appManager.setData(oData, true);
-                fnS();
+				appManager.setBusy(false);
+                if(fnS){
+					fnS();
+				}
             });
         },
         getUserProfile: function(fnS) {
@@ -364,10 +368,8 @@ var cloudBox = (function() {
             var that = this;
             jQuery("#cloudBox").on("click", ".cloudBoxFileItem", function() {
 				that.close();
-				appManager.setBusy(true);
                 var fileId = this.attributes["data-fileId"].value;
                 that.loadFile(fileId, function() {
-					appManager.setBusy(false);
                 });
             });
 		    jQuery("#closeCloudBox").click(function(){
