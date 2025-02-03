@@ -226,12 +226,18 @@ appManager = (function(){
 		_isCloudMode: false,
 		setCloudMode: function(bOn, oUserInfo){
 			this._isCloudMode = bOn;
-			oUserInfo = oUserInfo || {
-                name: "Guest User",
-                email: "",
-                img: "icons/user.png"
-            };
-			this.updateUserInfo(oUserInfo);
+			if(oUserInfo){
+				this.updateUserInfo(oUserInfo);
+				this.loadLatestFileFromCloud();
+			} else{
+				this.updateUserInfo({
+				    name: "Guest User",
+				    email: "",
+				    img: "icons/user.png"
+				});			
+			}
+			;
+			
 			// remove this later
 			if(!!window.location.search == false){
 				this._isCloudMode = false;
