@@ -281,8 +281,43 @@ appManager = (function(){
 				beats: this.beat.getDataToSave()
 			};
 		},
+		loadFile: function(sId, fnS){
+			var that = this;
+			this.setBusy(true);
+			cloudBox.getFile(sId, function(o) {
+				var oData = o[0];
+				oData.id =sId;
+				that.setFileId(sId);
+			    that._ioManager.saveToBackUp(oData);
+				that.setData(oData, true);
+				that.setBusy(false);
+			    if(fnS){
+					fnS();
+				}
+			});	
+			
+		},
+		loadFileFromCloudIfLatest: function(sId, fnS){
+			var that = this;
+			this.setBusy(true);
+			var localVersion = this.getVersion();
+			cloudBox.getFile(sId, function(o) {
+				var oData = o[0];
+				oData.id =sId;
+				if(oData.version > localVersion){
+					that.setFileId(sId);
+					that._ioManager.saveToBackUp(oData);
+					that.setData(oData, true);
+					that.setBusy(false);
+					if(fnS){
+						fnS();
+					}
+				}
+			});	
+			
+		},
 		loadLatestFileFromCloud: function(){
-			cloudBox.loadFile(this.getFileId());
+			this.loadFileFromCloudIfLatest(this.getFileId());
 		},
 		getData: function(sKey){
 			var aData = this.getCurrentData();
@@ -329,6 +364,22 @@ appManager = (function(){
 				});
 			}
 		},
+		openVersionConflictWindow: function(){
+			jQuery("#versionConflictWindow").show();
+			this.fireEvent("dialogOpen", {
+				id: "versionConflict",
+				closeHandler: function(){}
+			});
+		},
+		closeVersionConflictWindow: function(bSuppressEvent){
+			jQuery("#versionConflictWindow").hide();
+			if(!bSuppressEvent){
+				this.fireEvent("dialogClose", {
+				id: "versionConflicts"
+				});
+			}
+		},
+		
 		setBusy: function(bIsBusy){
 			jQuery("#busy")[bIsBusy? "show" : "hide"]();
 		},
@@ -350,6 +401,12 @@ appManager = (function(){
 			jQuery("#createNewWithoutBackup").click(function(){
 				that.createNewFile();
 				that.closeBackupConfirmationWindow();
+			});
+			jQuery("#loadLatestFromCloud").click(function(){
+				that.closeVersionConflictWindow();
+			});
+			jQuery("#loadcurrentFromHere").click(function(){
+				that.closeVersionConflictWindow();
 			});
 			jQuery("#backupConfirmationWindow .closeButton").click(function(){
 				that.closeBackupConfirmationWindow();

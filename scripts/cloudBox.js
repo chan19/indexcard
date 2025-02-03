@@ -158,6 +158,7 @@ var cloudBox = (function() {
                 fnS(oFileData);
             });
         },
+		
         loadFile: function(sId, fnS) {
 			appManager.setBusy(true);
             this.getFile(sId, function(o) {
@@ -369,7 +370,7 @@ var cloudBox = (function() {
             jQuery("#cloudBox").on("click", ".cloudBoxFileItem", function() {
 				that.close();
                 var fileId = this.attributes["data-fileId"].value;
-                that.loadFile(fileId, function() {
+                appManager.loadFile(fileId, function() {
                 });
             });
 		    jQuery("#closeCloudBox").click(function(){
