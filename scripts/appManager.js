@@ -304,12 +304,14 @@ appManager = (function(){
 			cloudBox.getFile(sId, function(o) {
 				var oData = o[0];
 				oData.id =sId;
+				that.setBusy(false);
 				if(oData.version > localVersion){
 					that.setFileId(sId);
 					that._ioManager.saveToBackUp(oData);
 					that.setData(oData, true);
+				} else if(oData.version < localVersion){
+					appManager.fireEvent("dataChange");
 				}
-				that.setBusy(false);
 				if(fnS){
 					fnS();
 				}
