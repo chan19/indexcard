@@ -91,7 +91,12 @@ div#overViewContainer {
     display: inline-block;
     line-height: 40px;
 }
-
+.overViewContainerHeaderDate {
+    display: inline-block;
+    /* font-weight: normal; */
+    font-size: small;
+    opacity: 0.4;
+}
 div#overViewItemContainer {
     overflow-y: auto;
     height: 100%;

@@ -5,11 +5,18 @@
 	}
 	Overview.prototype = {
 		_data: {},
+		_month :["January","February","March","April","May","June","July","August","September","October","November","December"],
+		_getCurDate: function(){
+			let curDate = new Date();
+			return curDate.getDate()+ " "+ this._month[curDate.getMonth()] + " "+curDate.getFullYear();
+		},
 		open: function(oData){
 			var aCard = oData.cards;
 			var html = this._getHtml(aCard);
 			jQuery("#overViewItemContainer").html(html);
 			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
+			jQuery("#overViewContainer .overViewContainerHeaderDate").html(" - " + this._getCurDate());
+			
 			jQuery("#overViewContainer").show();
 			this.getCore().fireEvent("dialogOpen", {
 				id: "overview",
