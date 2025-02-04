@@ -260,6 +260,13 @@ appManager = (function(){
 			this.setData(data, true);
 			this.openFileTitleDialog();
 		},
+		duplicateFile: function(){
+			var oData = this.getCurrentData();
+			delete oData.id;
+			oData.fileName = oData.filName+ " - COPY";
+			this.setData(oData, true);
+			this.openFileTitleDialog();
+		},
 		getDataToSave:function(){
 			var aData = this.getCurrentData();
 			aData.time = this.setLastSavedTime();

@@ -271,7 +271,7 @@ var cloudBox = (function() {
             var fileData = JSON.stringify(aData);
             var contentType = 'text/plain';
             var metadata = {
-                'name': appManager.getFileName() + ".ijson",
+                'name': aData[0].fileName+ ".ijson",
                 'mimeType': contentType,
                 'parents': [sFolderId]
             };
