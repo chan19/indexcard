@@ -392,6 +392,11 @@ var cloudBox = (function() {
                 appManager.loadFile(fileId, function() {
                 });
             });
+			jQuery("#cloudBox").on("click", ".fileDelete", function(e) {
+				that.close();
+			    var fileId = this.attributes["data-fileId"].value;
+			    console.log(fileId, "delete");
+			});
 		    jQuery("#closeCloudBox").click(function(){
 			  that.close();
 			});
