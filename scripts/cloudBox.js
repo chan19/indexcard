@@ -394,7 +394,7 @@ var cloudBox = (function() {
             });
 			jQuery("#cloudBox").on("click", ".fileDelete", function(e) {
 				that.close();
-			    var fileId = this.attributes["data-fileId"].value;
+			    var fileId = this.parentNode.attributes["data-fileid"].value;
 			    console.log(fileId, "delete");
 			});
 		    jQuery("#closeCloudBox").click(function(){

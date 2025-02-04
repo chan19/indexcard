@@ -43,6 +43,7 @@
     color: #000000;
     cursor: pointer;
     background-color: #ffffff;
+    position:relative;
 }
 
 .cloudBoxFileItem:hover {
