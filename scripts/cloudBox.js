@@ -298,6 +298,24 @@ var cloudBox = (function() {
 				}
             });
         },
+		deleteFile: function(sId, fnS, fnE){
+			 var request = gapi.client.request({
+			    'path': '/drive/v2/files/' + sId,
+			    'method': 'DELETE',
+			    'headers': {
+			        'Content-Type': 'application/json'
+			    },
+			    'body': {}
+			});
+
+			request.execute(function(o) {
+				if(o.error){
+					fnE("File could not be deleted.<br>" + o.error.message);
+				} else {
+					fnS(o);				
+				}
+			});
+		},
 		save: function(bSuppressBusy){
 			var that = this;
 			var oData = appManager.getDataToSave();
@@ -337,7 +355,8 @@ var cloudBox = (function() {
         _fetchFileHtml: function(aFile) {
             var html = "";
             aFile.forEach(function(oFile, i) {
-                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title.replace(".ijson", "") + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(oFile.modifiedDate)).toLocaleString() + "</div>" + "</div>");
+                html += ("<div class='cloudBoxFileItem' data-fileId='" + oFile.id + "'>" + "<div class='cloudBoxFileItemName'>" + oFile.title.replace(".ijson", "") + "</div>" + "<div class='cloudBoxFileItemDate'>Last Modified - " + (new Date(oFile.modifiedDate)).toLocaleString() + "</div>" + 
+				"<div class='fileDelete'></div></div>");
             });
             return html;
         },
