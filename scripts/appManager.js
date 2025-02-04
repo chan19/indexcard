@@ -263,7 +263,7 @@ appManager = (function(){
 		duplicateFile: function(){
 			var oData = this.getCurrentData();
 			delete oData.id;
-			oData.fileName = oData.filName+ " - COPY";
+			oData.fileName = oData.fileName+ " - COPY";
 			this.setData(oData, true);
 			this.openFileTitleDialog();
 		},
