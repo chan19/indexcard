@@ -209,8 +209,8 @@ body {
 #cloudFetch.icon {
     background-image: url(../icons/cloud.png);
 }
-.duplicateFile.icon{
-	 background-image: url(../icons/copys.png);
+#copyIcon.icon{
+	 background-image: url(../icons/copy.png);
 }
 
 #user.icon {
