@@ -393,9 +393,11 @@ var cloudBox = (function() {
                 });
             });
 			jQuery("#cloudBox").on("click", ".fileDelete", function(e) {
+				e.stopPropagation();
 				that.close();
 			    var fileId = this.parentNode.attributes["data-fileid"].value;
 			    console.log(fileId, "delete");
+				
 			});
 		    jQuery("#closeCloudBox").click(function(){
 			  that.close();
