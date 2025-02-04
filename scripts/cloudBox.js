@@ -309,7 +309,7 @@ var cloudBox = (function() {
 			});
 
 			request.execute(function(o) {
-				if(o.error){
+				if(o && o.error){
 					fnE("File could not be deleted.<br>" + o.error.message);
 				} else {
 					fnS(o);				
