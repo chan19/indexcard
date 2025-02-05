@@ -615,9 +615,9 @@ body.showPageMeter #masterButtonPane #pageMeterButton.masterButton {
     width: 5px;
     display: block;
     background: #565656;
-    bottom: 8px;
+    top: 10px;
     left: 0px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 
 .dialogPromptSign {
