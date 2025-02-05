@@ -229,12 +229,17 @@ appManager = (function(){
 			if(oUserInfo){
 				this.updateUserInfo(oUserInfo);
 				this.loadLatestFileFromCloud();
+				this.fireEvent("onLogin",{
+					name: oUserInfo.name,
+					email: oUserInfo.email
+				});
 			} else{
 				this.updateUserInfo({
 				    name: "Guest User",
 				    email: "",
 				    img: "icons/user.png"
-				});			
+				});	
+				this.fireEvent("onLogout",{});		
 			}
 			;
 			
@@ -342,12 +347,16 @@ appManager = (function(){
 				c(oData);
 			});
 		},
-		openFileTitleDialog: function(){
+		openFileTitleDialog: function(bIsCopy){
 			var sVal = this.getFileName();
 			jQuery("#fileTitleDialog").show().find(".inputBar").val(sVal).focus();
+			jQuery("#fileTitleDialog #fileTitleCancel")[bIsCopy? "hide" : "show"]();
+			var that = this;
 			this.fireEvent("dialogOpen", {
 				id: "fileTitle",
-				closeHandler: this.closeFileTitleDialog.bind(this)
+				closeHandler: function(){
+					that.closeFileTitleDialog();
+				}
 			});
 		},
 		closeFileTitleDialog: function(bSuppressEvent){
@@ -538,13 +547,18 @@ appManager = (function(){
 			jQuery("#menuIcon").click(function(){
 				jQuery("#leftPanel").toggleClass("isVisible");
 			});
+			jQuery("#copyIcon").click(function(){
+				that.duplicateFile();
+			});
 			configureBeatButton.click(function(){
 				that.beat.show();
 			});
+			
 		},
 		_attachListeners: function(){
 			var openDialogRegister = {};
-			var baseLocationUrl = window.location.origin+window.location.pathname; 
+			var baseLocationUrl = window.location.origin+window.location.pathname;
+			var nCopyIcon = jQuery("#copyIcon");
 			this.listenTo("dialogOpen", function(oParam){
 				openDialogRegister[oParam.id] = oParam.closeHandler;
 				if(window.location.hash){
@@ -561,6 +575,12 @@ appManager = (function(){
 				if(Object.keys(openDialogRegister).length == 0){
 					window.location.hash = "";			
 				}
+			});
+			this.listenTo("onLogin", function(oData){
+				nCopyIcon.show();
+			});
+			this.listenTo("onLogout", function(oData){
+				nCopyIcon.hide();
 			});
 			window.onhashchange = function(e){
 				if(window.location.hash == ""){

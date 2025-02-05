@@ -2,6 +2,7 @@
 	Overview = function(domId){
 		this._domContainer = jQuery("#"+domId);
 		this._attachEvents();
+		this._attachListeners();
 	}
 	Overview.prototype = {
 		_data: {},
@@ -17,13 +18,6 @@
 			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
 			jQuery("#overViewContainer .overViewContainerHeaderDate").html(this._getCurDate());
 			jQuery("#overViewContainer .overViewContainerAuthor").hide();
-			cloudBox.getUserProfile(function(o){
-			    if(o.name=='Guest User'){
-				
-				} else {
-					jQuery("#overViewContainer .overViewContainerAuthor").html(o.name).show();
-				}
-			});
 			
 			jQuery("#overViewContainer").show();
 			this.getCore().fireEvent("dialogOpen", {
@@ -112,6 +106,16 @@
 				that.hide();
 			});
 			jQuery("#overViewPrint").click(this.print.bind(this));
+		},
+		_attachListeners: function(){
+			var nAuthor = jQuery("#overViewContainer .overViewContainerAuthor");
+			appManager.listenTo("onLogin", function(o){
+				nAuthor.html(o.name).show();
+			});
+			appManager.listenTo("onLogout", function(o){
+				nAuthor.html(" ").show();
+			});
+			
 		},
 		toDoc: function(){
 			

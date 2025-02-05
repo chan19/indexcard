@@ -2,11 +2,13 @@
     --color-red: #e91e63;
     --color-blue: #4d81d0;
     --color-green: #009688;
-    --color-orange: #ff9800;
+    --color-orange: #ffa521;
     --color-violet: #694aa0;
     --color-white: white;
     --card-width-s: 175px;
     --card-height-s: 175px;
+    --color-orange: #FFC107;
+    --color-violet: #673AB7;
 }
 
 body {
@@ -43,7 +45,7 @@ body.theme2 {
     :root {
         --card-width: 300px;
         --card-height: 270px;
-        --card-titleH: 35px;
+        --card-titleH: 40px;
         --card-summaryH: 200px;
     }
 }
