@@ -20,7 +20,8 @@ body {
     background: #ffffff;
     padding: 10px 20px;
     height: auto;
-font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 #printableOverviewHeader {
@@ -29,19 +30,19 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     font-weight: bold;
     /* text-decoration: underline; */
     background: #ffffff;
-    color: #000000;
     padding: 5px 0px;
     font-size: xx-large;
     box-sizing: border-box;
     /* text-align: center; */
     text-align: center;
     text-transform: capitalize;
+    color: #282828;
 }
 div#printableOverviewHeaderAuthor {
         text-align: center;
         font-size: medium;
         text-transform: uppercase;
-        color: #5b5b5b;
+        color: #6a6a6a;
         font-weight: normal;
 }
 
@@ -51,10 +52,11 @@ div#printableOverviewHeaderDate {
     font-size: small;
     opacity: 0.4;
     text-align: center;
+    margin-top: 4px;
 }
 .overviewItem {
    /* border-bottom: 1px solid #ececec;*/
-   padding: 5px 0px 10px;
+   padding: 10px 0px 10px;
    margin-bottom: 4px;
    background: #f9f8f8;
    background: white;
@@ -64,7 +66,7 @@ div#printableOverviewHeaderDate {
     font-size: medium;
     margin-bottom: 0px;
     font-weight: bold;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
     color: black !important;
 }
 
@@ -78,10 +80,10 @@ div#printableOverviewHeaderDate {
 
 .overviewContent {
     font-size: medium;
-    color: black;
+    color: #373737;
     margin: 4px 0;
     font-weight: normal;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
 }
 .overviewNotes{
     background-color: #efefef;
@@ -120,6 +122,6 @@ div#printableOverviewHeaderDate {
 #overViewItemContainer {
     /* height: 100%; */
     margin-top: 10px;
-    padding-top: 4px;
+    padding-top: 8px;
     border-top: 1px solid #bababa;
 }

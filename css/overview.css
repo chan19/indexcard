@@ -28,8 +28,8 @@ div#overViewContainer {
     font-size: medium;
     margin-bottom: 0px;
     font-weight: bold;
-    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    color: black !important;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #2e2e2e !important;
 }
 
 .overviewItem .overviewItemBullet {
@@ -46,6 +46,7 @@ div#overViewContainer {
     margin: 4px 0;
     font-weight: normal;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .overviewItem.violet .overviewTitle{
@@ -89,9 +90,10 @@ div#overViewContainer {
 
 .overViewContainerHeaderText {
     display: block;
-    /* line-height: 40px; */
     text-align: center;
-    font-size: xx-large;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
 }
 .overViewContainerHeaderDate {
     display: block;
@@ -99,6 +101,7 @@ div#overViewContainer {
     font-size: small;
     opacity: 0.4;
     text-align: center;
+    margin-top: 2px;
 }
 .overViewContainerAuthor{
 	text-align: center;
@@ -118,7 +121,7 @@ div#overViewItemContainer {
     /* padding-bottom: 20px; */
     background: white;
     /* border-bottom: 5px solid white; */
-    padding: 0px 50px 5px;
+    padding: 10px 50px 5px;
     /* margin-top: 15px; */
     bottom: 0px;
 }
