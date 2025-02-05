@@ -360,12 +360,15 @@ var cloudBox = (function() {
             });
             return html;
         },
-		refreshFiles: function(bForceFetch){
+		refreshFiles: function(bForceFetch, fnS){
 			var that = this;
 			appManager.setBusy(true);
             this.getFiles(function(aFile) {
                 appManager.setBusy(false);
                 jQuery("#cloudBox").find(".cloudBoxContainer").html(that._fetchFileHtml(aFile));
+				if(fnS){
+					fnS(aFile);
+				}
             }, bForceFetch);			
 		},
 		open: function(){
@@ -397,6 +400,19 @@ var cloudBox = (function() {
 				that.close();
 			    var fileId = this.parentNode.attributes["data-fileid"].value;
 			    console.log(fileId, "delete");
+			//	this.deleteFile(fileId, function(){}, function(){});
+				if(fileId == appManager.getFileId()){
+					// if current file is being deleted
+					this.deleteFile()
+					that.refreshFiles(true, function(aFile){
+						if(aFile && aFile.length){
+							appManager.loadFile(aFile[0].id, function() {
+								
+							});
+						}
+						
+					});
+				}
 				
 			});
 		    jQuery("#closeCloudBox").click(function(){

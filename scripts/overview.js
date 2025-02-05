@@ -16,9 +16,7 @@
 			var html = this._getHtml(aCard);
 			jQuery("#overViewItemContainer").html(html);
 			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
-			jQuery("#overViewContainer .overViewContainerHeaderDate").html(this._getCurDate());
-			jQuery("#overViewContainer .overViewContainerAuthor").hide();
-			
+			jQuery("#overViewContainer .overViewContainerHeaderDate").html(this._getCurDate());		
 			jQuery("#overViewContainer").show();
 			this.getCore().fireEvent("dialogOpen", {
 				id: "overview",
@@ -113,7 +111,7 @@
 				nAuthor.html(o.name).show();
 			});
 			appManager.listenTo("onLogout", function(o){
-				nAuthor.html(" ").show();
+				nAuthor.html(" ").hide();
 			});
 			
 		},
