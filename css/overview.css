@@ -77,9 +77,9 @@ div#overViewContainer {
 }
 
 .overViewContainerHeader {
-    height: 40px;
+    height: 80px;
     background: #ffffff;
-    padding: 0px 50px;
+    padding: 2px 50px;
     position: relative;
     z-index: 1;
     font-size: large;
@@ -88,27 +88,39 @@ div#overViewContainer {
 }
 
 .overViewContainerHeaderText {
-    display: inline-block;
-    line-height: 40px;
+    display: block;
+    /* line-height: 40px; */
+    text-align: center;
+    font-size: xx-large;
 }
 .overViewContainerHeaderDate {
-    display: inline-block;
-    /* font-weight: normal; */
+    display: block;
+    font-weight: normal;
     font-size: small;
     opacity: 0.4;
+    text-align: center;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: grey;
+	font-weight: normal;
 }
 div#overViewItemContainer {
     overflow-y: auto;
-    height: 100%;
+    height: auto;
     position: absolute;
-    top: 0;
+    top: 85px;
     width: 100%;
     /* border: 50px solid white; */
     box-sizing: border-box;
     /* padding-bottom: 20px; */
     background: white;
     /* border-bottom: 5px solid white; */
-    padding: 40px 50px 5px;
+    padding: 0px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
 }
 
 #overViewPrint {
@@ -127,6 +139,8 @@ div#overViewItemContainer {
     float: right;
     opacity: 0.8;
     transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
 }
 
 #overViewPrint:hover {
@@ -164,7 +178,7 @@ div#overViewItemContainer {
     }
 
     .overViewContainerHeader {
-        height: 60px;
+        /* height: 60px; */
         position: relative;
         z-index: 1;
         padding: unset;
@@ -172,10 +186,10 @@ div#overViewItemContainer {
     }
 
     .overViewContainerHeaderText {
-        font-size: 20px;
-        display: inline-block;
-        line-height: 60px;
-        position: absolute;
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
         left: 0;
         top: 0;
         text-overflow: ellipsis;
@@ -208,7 +222,8 @@ div#overViewItemContainer {
     div#overViewItemContainer {
         border: 0px solid white;
         padding: 4px 8px;
-        margin-top: 60px;
+        margin-top: 0px;
+        top: 81px;
     }
 
     #overViewPrint {

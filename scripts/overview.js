@@ -15,7 +15,15 @@
 			var html = this._getHtml(aCard);
 			jQuery("#overViewItemContainer").html(html);
 			jQuery("#overViewContainer .overViewContainerHeaderText").html(oData.fileName);
-			jQuery("#overViewContainer .overViewContainerHeaderDate").html(" - " + this._getCurDate());
+			jQuery("#overViewContainer .overViewContainerHeaderDate").html(this._getCurDate());
+			jQuery("#overViewContainer .overViewContainerAuthor").hide();
+			cloudBox.getUserProfile(function(o){
+			    if(o.name=='Guest User'){
+				
+				} else {
+					jQuery("#overViewContainer .overViewContainerAuthor").html(o.name).show();
+				}
+			});
 			
 			jQuery("#overViewContainer").show();
 			this.getCore().fireEvent("dialogOpen", {
