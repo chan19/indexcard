@@ -83,6 +83,7 @@ div#printableOverviewHeaderDate {
     color: #373737;
     margin: 4px 0;
     font-weight: normal;
+    line-height:1.5;
     /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
 }
 .overviewNotes{

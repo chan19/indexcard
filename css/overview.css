@@ -29,7 +29,7 @@ div#overViewContainer {
     margin-bottom: 0px;
     font-weight: bold;
     /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
-    color: #2e2e2e !important;
+    color: #474747 !important;
 }
 
 .overviewItem .overviewItemBullet {
@@ -42,7 +42,7 @@ div#overViewContainer {
 
 .overviewContent {
     font-size: medium;
-    color: black;
+    color: #717171;
     margin: 4px 0;
     font-weight: normal;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
@@ -124,6 +124,2437 @@ div#overViewItemContainer {
     padding: 10px 50px 5px;
     /* margin-top: 15px; */
     bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
+}
+
+#overViewPrint {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    right: 5px;
+    background-image: url(../icons/print.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    transition: 100ms linear all;
+    position: absolute;
+    top: 5px;
+}
+
+#overViewPrint:hover {
+    transform: scale(1.1);
+}
+
+#overViewPrint:active {
+    opacity: 1;
+}
+
+#overViewContainer .overviewNotes {
+    color: #000000;
+    font-family: Open;
+    font-size: medium;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background: #dedede;
+    padding: 4px 12px;
+    /* border: 1px #9E9E9E solid; */
+    /* padding: 10px 0; */
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: initial;
+}
+
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+    div#overViewContainer {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+        top: 0;
+        border-top: unset;
+        max-width: unset;
+        margin: unset;
+    }
+
+    .overViewContainerHeader {
+        /* height: 60px; */
+        position: relative;
+        z-index: 1;
+        padding: unset;
+        text-align: center;
+    }
+
+    .overViewContainerHeaderText {
+        /* font-size: 20px; */
+        display: block;
+        /* line-height: 60px; */
+        /* position: absolute; */
+        left: 0;
+        top: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .overviewItem {
+        border-left-width: 10px !important;
+        margin-bottom: 2px;
+    }
+
+    #overviewContainerClose {
+        height: 40px;
+        width: 40px;
+        left: 5px;
+        top: 5px;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: normal;
+        margin: 5px;
+        box-shadow: unset;
+    }
+
+    #overviewContainerClose:hover {
+        opacity: 0.8
+    }
+
+    div#overViewItemContainer {
+        border: 0px solid white;
+        padding: 4px 8px;
+        margin-top: 0px;
+        top: 81px;
+    }
+
+    #overViewPrint {
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+        z-index: 1;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: normal;
+    }
+}div#overViewContainer {
+    position: fixed;
+    top: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 5px solid transparent;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 18cm;
+    margin: auto;
+    /* background: white; */
+    z-index: 4;
+    display: none;
+    height: 100%;
+    /* background: #f9f8f8; */
+    box-sizing: border-box;
+}
+
+.overviewItem {
+    border-bottom: 1px solid #ececec;
+    padding: 5px 0px 10px;
+    margin-bottom: 10px;
+    background: #f9f8f8;
+    background: white;
+}
+
+.overviewTitle {
+    font-size: medium;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /* font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; */
+    color: #474747 !important;
+}
+
+.overviewItem .overviewItemBullet {
+    height: 14px;
+    width: 14px;
+    background: black;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.overviewContent {
+    font-size: medium;
+    color: #717171;
+    margin: 4px 0;
+    font-weight: normal;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+.overviewItem.violet .overviewTitle{
+   color: var(--color-violet)
+}
+
+.overviewItem.blue .overviewTitle{
+    color: var(--color-blue)
+}
+
+.overviewItem.green .overviewTitle{
+     color: var(--color-green);
+}
+
+.overviewItem.orange .overviewTitle{
+     color: var(--color-orange);
+}
+
+.overviewItem.red .overviewTitle{
+     color: var(--color-red);
+}
+.overviewItem.white .overviewTitle{
+     color: black;
+}
+#overviewContainerClose {cursor: pointer;position: absolute;right: -12px;top: -12px;display: inline-block;height: 25px;width: 25px;text-align: center;background: white;border-radius: 50%;color: white;background: #2e2e2e;font-size: 12px;line-height: 25px;font-weight: bold;box-shadow: 0px 0px 4px 2px grey;z-index: 2;}
+
+#overviewContainerClose:hover {
+    opacity: 0.8
+}
+
+.overViewContainerHeader {
+    height: 80px;
+    background: #ffffff;
+    padding: 2px 50px;
+    position: relative;
+    z-index: 1;
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overViewContainerHeaderText {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin: 8px 0px 4px 0;
+    color: #282828;
+}
+.overViewContainerHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 2px;
+}
+.overViewContainerAuthor{
+	text-align: center;
+	font-size: medium;
+	text-transform: uppercase;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+div#overViewItemContainer {
+    overflow-y: auto;
+    height: auto;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    /* border: 50px solid white; */
+    box-sizing: border-box;
+    /* padding-bottom: 20px; */
+    background: white;
+    /* border-bottom: 5px solid white; */
+    padding: 10px 50px 5px;
+    /* margin-top: 15px; */
+    bottom: 0px;
+    line-height:1.5;
 }
 
 #overViewPrint {
