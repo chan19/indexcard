@@ -270,7 +270,7 @@ appManager = (function(){
 			delete oData.id;
 			oData.fileName = oData.fileName+ " - COPY";
 			this.setData(oData, true);
-			this.openFileTitleDialog();
+			this.openFileTitleDialog(true);
 		},
 		getDataToSave:function(){
 			var aData = this.getCurrentData();
