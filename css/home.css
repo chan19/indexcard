@@ -234,7 +234,11 @@ body {
 	transform: scale(1.2);
 	opacity: 0.5;
 }
-
+body.nightmode #copyIcon.icon{
+	 background-image: url(../icons/copyW.png);
+	 height: 25px;
+	 width: 25px;
+}
 #user.icon {
     background-image: url(../icons/user.png);
     background-color: #2196f3;
