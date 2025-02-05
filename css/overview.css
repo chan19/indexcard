@@ -78,7 +78,7 @@ div#overViewContainer {
 }
 
 .overViewContainerHeader {
-    height: 80px;
+    height: 95px;
     background: #ffffff;
     padding: 2px 50px;
     position: relative;
@@ -114,7 +114,7 @@ div#overViewItemContainer {
     overflow-y: auto;
     height: auto;
     position: absolute;
-    top: 85px;
+    top: 100px;
     width: 100%;
     /* border: 50px solid white; */
     box-sizing: border-box;
@@ -227,7 +227,7 @@ div#overViewItemContainer {
         border: 0px solid white;
         padding: 4px 8px;
         margin-top: 0px;
-        top: 81px;
+        top: 104px;
     }
 
     #overViewPrint {
