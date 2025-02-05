@@ -403,7 +403,7 @@ var cloudBox = (function() {
 			//	this.deleteFile(fileId, function(){}, function(){});
 				if(fileId == appManager.getFileId()){
 					// if current file is being deleted
-					this.deleteFile()
+					//this.deleteFile()
 					that.refreshFiles(true, function(aFile){
 						if(aFile && aFile.length){
 							appManager.loadFile(aFile[0].id, function() {
