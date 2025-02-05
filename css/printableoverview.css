@@ -30,12 +30,28 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
     /* text-decoration: underline; */
     background: #ffffff;
     color: #000000;
-    padding: 10px 0px;
-    font-size: x-large;
+    padding: 5px 0px;
+    font-size: xx-large;
     box-sizing: border-box;
     /* text-align: center; */
+    text-align: center;
+    text-transform: capitalize;
+}
+div#printableOverviewHeaderAuthor {
+        text-align: center;
+        font-size: medium;
+        text-transform: uppercase;
+        color: #5b5b5b;
+        font-weight: normal;
 }
 
+div#printableOverviewHeaderDate {
+    display: block;
+    font-weight: normal;
+    font-size: small;
+    opacity: 0.4;
+    text-align: center;
+}
 .overviewItem {
    /* border-bottom: 1px solid #ececec;*/
    padding: 5px 0px 10px;
@@ -104,4 +120,6 @@ font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 #overViewItemContainer {
     /* height: 100%; */
     margin-top: 10px;
+    padding-top: 4px;
+    border-top: 1px solid #bababa;
 }

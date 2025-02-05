@@ -90,6 +90,8 @@
 			printWindow.document.write("<link href='css/printableoverview.css' type='text/css' rel='stylesheet'>");
 			printWindow.document.write("<div id='printableOverviewContainer'>");
 			printWindow.document.write("<div id='printableOverviewHeader'>" + appManager.getFileName() + "</div>");
+			printWindow.document.write("<div id='printableOverviewHeaderAuthor'>" + jQuery("#overViewContainer .overViewContainerAuthor").html() + "</div>");
+			printWindow.document.write("<div id='printableOverviewHeaderDate'>" + this._getCurDate() + "</div>");
 			printWindow.document.write(printable.html());
 			printWindow.document.write("</div>");
 			
