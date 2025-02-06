@@ -75,7 +75,7 @@ body.touchDevice .indexCardTitle {
 
 .indexCard.blue .indexCardTitle,body.nightmode .indexCard.blue .indexCardContent, .indexCard.blue .currentColor,.indexCard.blue .indexCardBg, .indexCard .colorPicker .colorCode.blue {
     background-color: var(--color-blue);
-    color: white;
+    color: #000000;
 }
 
 .indexCard.red .indexCardTitle,body.nightmode .indexCard.red .indexCardContent, .indexCard.red .currentColor,.indexCard.red .indexCardBg, .indexCard .colorPicker .colorCode.red {
@@ -247,6 +247,7 @@ body.viewOnly .indexCardTitle {
     padding: 0 4px;
     display: inline-block;
     margin-left: 4px;
+    color: gainsboro;
 }
 
 .indexCardAct {
