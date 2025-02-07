@@ -57,6 +57,7 @@ appManager = (function(){
 			this._initIoManager();
 			this._initBeat();
 			this._initOverview();
+			this._initMediaView();
 			this._initTagPopup();
 			this._initCardManager();
 			this._attachEvents();
@@ -111,6 +112,9 @@ appManager = (function(){
 		},
 		_initOverview: function(){
 			this._overviewManager = new Overview("overViewContainer");
+		},
+		_initMediaView: function(){
+			this._mediaViewManager = new MediaView("mediaViewContainer");
 		},
 		_initBeat: function(){
 			this.beat = new Beat(oConfig.beat);

@@ -430,6 +430,20 @@ var cloudBox = (function() {
 		},
 		getCore: function(){
 			return appManager;
+		},
+		fetchYoutubeVideoPreview: function(sUrl, fnS){
+			var apiUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(sUrl)}&format=json`;
+
+			fetch(apiUrl)
+			  .then(response => response.json())
+			  .then(data => {
+			   fnS({
+			      title: data.title,
+			      thumbnail: data.thumbnail_url,
+			      author: data.author_name
+			    });
+			  })
+			  .catch(error => console.error("Error fetching YouTube metadata:", error));
 		}
     };
 }
