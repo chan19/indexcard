@@ -20,7 +20,7 @@
 			jQuery("#mediaViewContainer").hide();
 			if(!bSuppressEvent){
 				this.getCore().fireEvent("dialogClose", {
-					id: "mediaVieww"
+					id: "mediaView"
 				});					
 			}		
 		},
@@ -44,7 +44,7 @@
 		},
 		append: function(o){
 			var html = this._getHtml([o]);
-			jQuery("#mediaViewItemContainer").html(html);
+			jQuery("#mediaViewItemContainer").append(html);
 		},
 		_getNode: function(){
 			return this._node;
