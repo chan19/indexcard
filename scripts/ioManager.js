@@ -81,8 +81,13 @@ IoManager.prototype = {
 		reader.onload = function(){
 			sData = reader.result;
 			aData = JSON.parse(sData);
-			fCallback(aData[0]);
-			that.saveToBackUp(aData[0])
+			if(aData && aData[0]){
+				aData[0].id = null;
+				fCallback(aData[0]);
+				that.saveToBackUp(aData[0])
+			}
+			
+			
 		}
 		/*jQuery("#" + oConfig.pseudo).on("click", function(){
 			that._readNode.click();

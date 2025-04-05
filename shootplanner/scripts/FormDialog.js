@@ -16,7 +16,7 @@ var Cast = (function() {
 				largeInput: "textarea",
 				header: "input"
 			}
-		}
+		},
         _props: [],
 		_initializeProps: function(oProp){
 			/*
@@ -95,10 +95,11 @@ var Cast = (function() {
 									tmp.setEditable(true);
 								});
 								okButton.on("ok", function(){
-									tmp.setEditable(false):
+									tmp.setEditable(false);
 								});
 					node = tmp.getNode();
 							break;
+							}
 			
 			return node;
 

@@ -94,7 +94,7 @@ appManager = (function(){
 					id: "openFileTrigger",
 					pseudo: "openFile",
 					onRead: function(oData){
-						that.setData(oData, true);
+						that.setData(oData);
 					}
 				},
 				write: {
