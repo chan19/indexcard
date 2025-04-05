@@ -334,6 +334,7 @@ appManager = (function(){
 				}
 			}, function(){
 				// in case the current file trying to load is not avaialbe on cloud, open neww file
+				that.setBusy(false);
 				that.createNewFile();
 				fnE();
 			});	
