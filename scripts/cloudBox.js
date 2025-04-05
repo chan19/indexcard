@@ -143,7 +143,9 @@ var cloudBox = (function() {
             this._getItem("file", fnS, bForceFetch);
         },
         getFolder: function(sId) {},
-        getFile: function(sId, fnS) {
+        getFile: function(sId, fnS, fnE) {
+			fnS = fnS || function(){};
+			fnE = fnE || function(){};
             var request = gapi.client.request({
                 'path': '/drive/v2/files/' + sId + "?alt=media",
                 'method': 'get',
@@ -155,7 +157,12 @@ var cloudBox = (function() {
 
             request.execute(function(oFileData) {
                 oFileData = oFileData || [];
-                fnS(oFileData);
+				if(oFileData.error){
+					fnE();
+				} else {
+					fnS(oFileData);
+				}
+                
             });
         },
 		

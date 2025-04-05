@@ -313,7 +313,8 @@ appManager = (function(){
 			});	
 			
 		},
-		loadFileFromCloudIfLatest: function(sId, fnS){
+		loadFileFromCloudIfLatest: function(sId, fnS, fnE){
+			fnE = fnE || function(){};
 			var that = this;
 			this.setBusy(true);
 			var localVersion = this.getVersion();
@@ -331,11 +332,17 @@ appManager = (function(){
 				if(fnS){
 					fnS();
 				}
+			}, function(){
+				// in case the current file trying to load is not avaialbe on cloud, open neww file
+				that.createNewFile();
+				fnE();
 			});	
 			
 		},
-		loadLatestFileFromCloud: function(){
-			this.loadFileFromCloudIfLatest(this.getFileId());
+		loadLatestFileFromCloud: function(fnS, fnE){
+			fnS = fnS || function(){};
+			fnE = fnE || function(){};
+			this.loadFileFromCloudIfLatest(this.getFileId(), fnS, fnE);
 		},
 		getData: function(sKey){
 			var aData = this.getCurrentData();
